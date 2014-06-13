@@ -1,0 +1,136 @@
+<!doctype html>
+<!--
+
+MOSQUITO wants its sweet, sweet data
+
+                //\
+               || |
+               || |
+               |  |
+          ______\/_  ,
+         '||||||'  (o)
+         `------'--  \
+                /|\   \
+                       \
+                       
+-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="pirsApp">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="full-screen" id="loadingScreen">
+<!--         <div class="full-screen-child-vertical-center">
+        <i class="fa fa-spinner rotating huge-icon"></i>
+        </div> -->
+    </div>
+    <header class="navbar hidden-xs">
+        <div class="container">
+            <h1 class="clearfix mobileShrink"><a href="//digitalstewards.ca" target="_blank" title="Digital Stewardship Initiative Home Page"><img src="images/dsi-logo.png" class="pull-left" style="padding-right:10px" alt="Digital Stewardship Initiative"/></a><span>Access My Info</span><small>Request access to your personal information</small></h1>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row" sticky use-placeholder id="mainNav">
+            <nav class="col-xs-12 centre-xs">
+                <ol class="pagination pagination-sm" ng-controller="ProgressCtrl" ng-class="flexProgress">
+                  <li ng-class="{disabled: (activeIndex < 1 || previous.restricted)}">
+                    <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+                    <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+                  </li>
+                  <li ng-repeat="stage in stages" ng-class="{firstStep: $first, lastStep: $last, disabled: (stage.restricted), active: stage.selected, completedPast: stage.pastSelected, fadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
+                    <a class="{{stage.className}}" ng-show="(stage.restricted)">
+                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
+                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
+                    </a>
+                    <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
+                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
+                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
+                    </a>
+                  </li>
+                  <li ng-class="{disabled: (activeIndex == stages.length - 1 || next.restricted)}">
+                    <a ng-href="{{next.path}}" ng-show="(!next.restricted)"><span><i class="fa fa-arrow-right"></i></span></a>
+                    <a ng-show="(next.restricted)"><span><i ng-class="arrowIcon(next)" class="fa fa-arrow-right"></i></span></a>
+                </li>
+                </ol>
+            </nav>
+        </div>
+        <div ng-view="" class="marb10"></div>
+        <footer class="small mart10 clearfix">
+            <p class="small site-policy p-bg mart10"><strong>Privacy Statement</strong>: This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date &amp; time of access, and several other non-identifying metadata fields.</p>
+            <p class="small site-policy p-bg"><strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. The Digital Stewardship Initiative (DSI) partners and contributors make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.</p>
+            <p class="small p-bg site-policy">
+                <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="images/creativecommons.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+            </p>
+        </footer>
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/html2canvas/build/html2canvas.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/license.js"></script>
+    <script src="scripts/modules/Enter/enter.js"></script>
+    <script src="scripts/modules/ngJSPDF/ngjspdf.js"></script>
+    <script src="scripts/modules/ProgressBarNav/progressbarnav.js"></script>
+    <script src="scripts/modules/StateDataManager/statedatamanager.js"></script>
+    <script src="scripts/modules/Sticky/sticky.js"></script>
+    <script src="scripts/modules/PIRSDataModel/company.js"></script>
+    <script src="scripts/modules/PIRSDataModel/service.js"></script>
+    <script src="scripts/modules/PIRSDataModel/serviceType.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/company.js"></script>
+    <script src="scripts/controllers/subscriberInfo.js"></script>
+    <script src="scripts/controllers/accountInfo.js"></script>
+    <script src="scripts/controllers/letter.js"></script>
+    <script src="scripts/controllers/finish.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

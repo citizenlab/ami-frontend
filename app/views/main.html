@@ -1,0 +1,79 @@
+<h2>Request access to your personal&nbsp;information.</h2>
+<p>It was recently revealed that in 2011 over 780,000 Canadians' personal information was disclosed by telecom providers to the government.<sup> 1</sup> You may have been among them.</p>
+<p>This tool<sup> 2</sup> helps you learn  about the information that your telecom provider collected about you and what it could potentially disclose to third parties. <strong>Under Canadian privacy law, your telecom provider is LEGALLY OBLIGED to respond to requests sent using this tool</strong>.</p>
+<p><strong>To create your request, simply follow these straightforward steps.</strong> This tool will create a formal letter which you can either <strong>print and mail</strong> through the post, or <em>if the company privacy officer's email address is available</em>, <strong>email</strong> it.</p>
+
+<div class="clearfix mart10 marb10">
+	<a ng-href="#/companyInfo" class="btn btn-lg btn-primary" ng-click="next()" ng-class="{disabled:nextIsLoading}">
+	<i class="fa" ng-class="{'fa-flag': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i> 
+	<span ng-if="!nextIsLoading">&nbsp;Start Your Request</span>
+	<span ng-if="nextIsLoading">&nbsp;Please Wait...</span>
+	</a>
+</div>
+
+<div class="well clearfix mart10">
+	<a ng-if="!show" class="pull-right btn btn-info" ng-click="showToggle()">Show FAQ <i class="fa fa-chevron-down"></i></a>
+	<a ng-if="show" class="pull-right btn btn-info" ng-click="showToggle()">Hide FAQ <i class="fa fa-chevron-up"></i></a>
+	<h3>Frequently Asked Questions</h3>
+	<div ng-if="show">
+		<hr>
+		<h4>What is a PIPEDA request?</h4>
+		<p><abbr title="Personal Information Protection and Electronic Documents Act">PIPEDA</abbr> contains 10 <a href="http://laws-lois.justice.gc.ca/eng/acts/P-8.6/page-19.html#h-25" target="_blank">Fair Information Principles</a>, one of which (Principle 4.9) relates to individuals’ right to access personal information data operators (such as telcos) hold about them.</p>
+		<p>In general, the Act obligates data operators to give individuals access to their personal information on request. Operators have to do this in a complete and timely way, at little or no cost to the requester. <small>(Source: <a href="http://www.priv.gc.ca/resource/fs-fi/02_05_d_54_ati_02_e.asp" target="_blank">Office of the Privacy Commissioner of Canada</a>)</small></p>
+		<hr>
+		<h4>Why should I care?</h4>
+		<P>PIPEDA requests can empower Canadians to understand how companies manage the personal information entrusted to them and then make informed decisions about their commericial relationship with that company.</P>
+		<p>Please see this <a href="https://citizenlab.org/2014/05/responding-crisis-canadian-telecommunications/">blog post</a> by Christopher Parsons for background.</p>
+		<hr>
+		<h4>OK, what do I have to do?</h4>
+		<p>Just fill out the form and generate a PDF letter, which you'll then mail to the indicated address via snail mail. If the company in question has a listed email address for a privacy officer, you'll also be able to send your letter electronically.</p>
+		<hr>
+		<h4>What happens if I don't get a response?</h4>
+		<p>Sometimes things can get lost in the large bureaucracies of Canadian telcos. If you don't receive a response within 30 days, follow up by sending a polite reminder to the company asking why they haven't responded to your request. If that fails to get a response, you can compalin to the federal privacy commissioner.</p>
+		<hr>
+		<h4>What do I do once I get a response?</h4>
+		<p>After completing this form, you have an opportunity to <a href="https://openmedia.ca/MyInfo/reminder" target="_blank">sign up to receive a reminder email</a> 30 days later. This email will ask some basic questions about your response, and will not collect any personal information. Your answers will be aggregated with others to help us better understand what happens when people file these requests.</p>
+		<hr>
+		<h4>Does this tool collect my personal information?</h4>
+		<p><strong>No</strong>, this tool has been designed to run <strong>entirely within your web browser</strong>. The information you input into the form stays on your computer; <strong>we have no idea who you are, and want to keep it that way</strong>!</p>
+		<hr>
+		<h4>Who's behind this service?</h4>
+		<p>This service was developed by the <a href="https://digitalstewards.ca" target="_blank">Digital Stewardship Initiative</a> at the Munk School of Global Affiars at the University of Toronto.</p>
+		<hr>
+		<p>
+			<a ng-href="#/companyInfo" class="btn btn-primary" ng-click="next()" ng-class="{disabled:nextIsLoading}">
+			<i class="fa" ng-class="{'fa-flag': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i> 
+			<span ng-if="!nextIsLoading">&nbsp;Start Now</span>
+			<span ng-if="nextIsLoading">&nbsp;Please Wait...</span>
+			</a>
+		</p>
+	</div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Contributors</h3>
+    <p>The following groups contributed to the design, development, and outreach of this service.</p>
+  </div>
+</div>
+<div class="row mart10">
+	<div class="text-center col-xs-12 col-sm-8"><p><strong>Developed by:</strong></p></div>
+	<div class="text-center col-xs-12 col-sm-4"><p class="hidden-xs"><strong>Outreach Partner:</strong></p></div>
+</div>
+<div class="row text-center">
+  <div class="col-xs-12 col-sm-4">
+    <a href="https://digitalstewards.ca"><img src="images/dsi-logo.png" alt="Digital Stewardship Initiative" height="100px"/></a>
+  </div>
+  <div class="col-xs-12 col-sm-4 mart10">
+    <a href="https://citizenlab.org" target="_blank" class="lead"><img src="images/citizen_lab_logo.png" width="100px" alt="The Citizen Lab"/></a>
+    <br><span class="small">@ The Munk School of Global Affairs,<br/> University of Toronto</span>
+  </div>
+
+  <div class="col-xs-12 col-sm-4 mart10">
+  	<p class="visible-xs"><strong>Outreach Partner:</strong></p>
+    <a href="https://openmedia.ca" target="_blank" class="lead"><img src="images/open_media_logo.png" width="150px" alt="Open Media"/></a>
+  </div>
+</div>
+<p class="small p-bg mart30 site-policy">
+[1] Canadian Telcos Asked to Disclose Subscriber Data Every 27 Seconds. Source: <a href="http://www.michaelgeist.ca/content/view/7116/125/" target="_blank">Professor Michael Geist</a><br/>
+[2] Developed by the Digital Stewardship Initiative and the Citizen Lab. <a href="https://digitalstewards.ca/tools/ami" target="_blank">Read more</a> about AMI.
+</p>
