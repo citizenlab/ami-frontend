@@ -460,6 +460,36 @@
             ]
          },
          {
+            "name":"Virgin Mobile",
+            "formalName":"Virgin Mobile",
+            "address":{
+               "attention":"Privacy Officer, c/o Executive Office",
+               "address1":"720 King St West",
+               "address2":"Suite 905",
+               "city":"Toronto",
+               "province":"ON",
+               "postalcode":"M5Y 2T3",
+               "email": "privacy@virginmobile.ca"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
             "name":"Wind Mobile",
             "formalName":"Globalive Wireless Management Corp.",
             "address":{
