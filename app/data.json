@@ -228,6 +228,36 @@
             ]
          },
          {
+            "name":"Koodo Mobile",
+            "formalName":"Koodo Mobile",
+            "address":{
+               "attention":"Koodo Mobile Privacy Officer",
+               "address1":"200 Consilium Place",
+               "address2":"Suite 300",
+               "city":"Scarborough",
+               "province":"ON",
+               "postalcode":"M1H 3J3",
+               "email":"privacy@koodomobile.com"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+              {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
             "name":"MTS Allstream",
             "formalName":"MTS Allstream",
             "address":{

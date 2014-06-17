@@ -12,6 +12,11 @@
       </select>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12 mart10">
+      <p class="small">We’ve included as many of the major telecom companies as possible, and we’re working to add more of the smaller providers too. You can suggest a provider you’d like to see added by emailing <a href="mailto:contact@openmedia.ca">contact@openmedia.ca</a></p>
+    </div>
+  </div>
 </div>
 <div class="well clearfix" ng-show="company">
 <h3><label>Service(s) <span class="required">*</span></label></h3>
@@ -20,7 +25,6 @@
       <input type="checkbox" ng-model="companyService.selected" ng-true-value="selected" ng-checked="showService(companyService)" data-ng-false-value=""  tabindex="1" />
       <span class="fa" ng-class="{'fa-phone': companyService.serviceObj.serviceType.name=='telephone', 'fa-mobile': companyService.serviceObj.serviceType.name=='mobile', 'fa-globe': companyService.serviceObj.serviceType.name=='internet'}"></span>&nbsp;{{companyService.serviceObj.name}}
     </label>
-</div>
 </div>
 <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!IsServiceSelected || nextIsLoading)}" ng-click="next()">
 <span ng-if="!nextIsLoading">Next</span>
