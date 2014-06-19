@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('MainCtrl', ['$scope', 'StateDataManager', 'NavCollection', function ($scope, StateDataManager, NavCollection) {
+pirsApp.controller('MainCtrl', ['$scope', 'StateDataManager', 'NavCollection', '$location', function ($scope, StateDataManager, NavCollection, $location) {
     $scope.nextIsLoading = false;
     if(StateDataManager.has('faqShow')){
       $scope.show = StateDataManager.get('faqShow');
@@ -29,6 +29,7 @@ pirsApp.controller('MainCtrl', ['$scope', 'StateDataManager', 'NavCollection', f
     }
     $scope.next = function(){
       $scope.nextIsLoading = true;
+      $location.path('companyInfo');
     }
     NavCollection.finishSelect('home');
 }]);
