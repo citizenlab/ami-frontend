@@ -145,15 +145,21 @@ ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$tim
   };
   navCollection.startSelectByPath = function(path){
     var itemToFind = _.findWhere(this.collection, {'path': path});
-    this.startSelect(itemToFind.id);
+    if(itemToFind){
+      this.startSelect(itemToFind.id);
+    }
   }
   navCollection.finishSelectByPath = function(path){
     var itemToFind = _.findWhere(this.collection, {'path': path});
-    this.finishSelect(itemToFind.id);
+    if(itemToFind){
+      this.finishSelect(itemToFind.id);
+    }
   }
   navCollection.errorSelectByPath = function(path){
     var itemToFind = _.findWhere(this.collection, {'path': path});
-    this.errorSelect(itemToFind.id);
+    if(itemToFind){
+      this.errorSelect(itemToFind.id);
+    }
   }
   return navCollection;
 }]);
