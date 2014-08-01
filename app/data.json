@@ -1,5 +1,4 @@
-{
-   "results":{
+{   "results":{
       "piiQuestions":{
          "ipaddr":"All logs of IP addresses associated with me, my devices, and/or my account (e.g. IP addresses assigned to my devices/router, IP addresses or domain names of sites I visit and the times, dates, and port numbers)",
          "subscriber":"Listing of 'subscriber information' that you store about me, my devices, and/or my account",
@@ -49,6 +48,64 @@
          }
       },
       "companies":[
+         {
+            "name":"Acanac",
+            "formalname":"Acanac",
+            "address":{
+               "address1":"1650 Dundas Street East",
+               "address2":"Unit 204",
+               "city":"Mississauga",
+               "province":"ON",
+               "postalcode":"L4X 2Z3",
+               "email":"privacy@acanac.ca"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"ACN Canada",
+            "formalname":"ACN Canada",
+            "address":{
+               "address1":"1100 Ave. des Canadiens-de-Montréal ",
+               "address2":"Suite 450",
+               "city":"Montreal ",
+               "province":"QC",
+               "postalcode":"H3B 2S2",
+               "email":"privacyofficer@acninc.com"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
          {
             "name":"Bell",
             "formalName":"Bell Canada",
@@ -110,19 +167,19 @@
             ]
          },
          {
-            "name":"Eastlink",
-            "formalName":"Eastlink",
+            "name":"Bruce Telecom",
+            "formalname":"Bruce Telecom",
             "address":{
-               "attention":"Attn: Privacy Officer",
-               "address1":"P.O. Box 8660, Station A",
-               "address2":"6080 Young Street, 8th Floor",
-               "city":"Halifax",
-               "province":"NS",
-               "postalcode":"B3K 5M3",
-               "e-mail":"privacy@corp.eastlink.ca"
+               "address1":"3145 Hwy 21",
+               "address2":"PO Box 80",
+               "city":"Tiverton",
+               "province":"ON",
+               "postalcode":"N0G 2T0",
+               "email":"jackie.arnold@brucetelecom.com"
             },
             "contactActor":{
-               "title":"Privacy Officer"
+               "title":"Privacy Officer",
+               "contactname":"Jacqueline Arnold"
             },
             "services":[
                {
@@ -170,6 +227,34 @@
             ]
          },
          {
+            "name":"Comwave",
+            "formalname":"Comwave",
+            "address":{
+               "address1":"61 Wildcat Rd.",
+               "city":"Toronto",
+               "province":"ON",
+               "postalcode":"M3J 2P5",
+               "email":"privacy@comwave.net"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
             "name":"Distributel",
             "formalName":"Distributel Communications Limited",
             "address":{
@@ -199,6 +284,66 @@
             ]
          },
          {
+            "name":"Eastlink",
+            "formalName":"Eastlink",
+            "address":{
+               "attention":"Attn: Privacy Officer",
+               "address1":"P.O. Box 8660, Station A",
+               "address2":"6080 Young Street, 8th Floor",
+               "city":"Halifax",
+               "province":"NS",
+               "postalcode":"B3K 5M3",
+               "email":"privacy@corp.eastlink.ca"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Execulink",
+            "formalname":"Execulink",
+            "address":{
+               "address1":"PO Box 130",
+               "address2":"Main St. N.",
+               "city":"Burgessville",
+               "province":"ON",
+               "postalcode":"N0J 1C0",
+               "email":"privacyofficer@execulink.com"
+            },
+            "contactActor":{
+               "title":"Privacy Officer",
+               "contactname":"Jonathan E. Scott "
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
             "name":"Fido",
             "formalName":"Fido Solutions",
             "address":{
@@ -207,10 +352,39 @@
                "city":"Montréal",
                "province":"QC",
                "postalcode":"H5A 1K3",
-               "email":null
+               "email":"my.privacy@fidomobile.ca"
             },
             "contactActor":{
                "title":"Chief Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Fongo",
+            "formalname":"Fongo",
+            "address":{
+               "address1":"235 Ardelt Ave",
+               "address2":"Unit 2B",
+               "city":"Kitchener",
+               "province":"ON",
+               "postalcode":"N2C 2M3",
+               "email":"privacyofficer@fongo.com"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
             },
             "services":[
                {
@@ -243,7 +417,36 @@
                "title":"Privacy Officer"
             },
             "services":[
-              {
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Mobilicity",
+            "formalname":"Mobilicity",
+            "address":{
+               "address1":"555 Hanlan Rd.",
+               "address2":"Unit # 8",
+               "city":"Woodbridge",
+               "province":"ON",
+               "postalcode":"L4L 4R8",
+               "email":"privacy@mobilicity.ca"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
                   "name":"Mobility",
                   "serviceType":"mobile"
                },
@@ -272,7 +475,64 @@
                "title":"Privacy Officer"
             },
             "services":[
-              {
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Northwestel",
+            "formalname":"Northwestel",
+            "address":{
+               "address1":"P.O. Box 2727",
+               "city":"Whitehorse",
+               "province":"Yukon Territories",
+               "postalcode":"Y1A 4Y4",
+               "email":"dallas.yeulett@nwtel.ca"
+            },
+            "contactActor":{
+               "title":"Senior Manager - Regulatory Compliance",
+               "contactname":"Dallas Yeulett"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Novus",
+            "formalname":"Novus",
+            "address":{
+               "address1":"300 - 112 3rd Ave. East",
+               "city":"Vancouver",
+               "province":"BC",
+               "postalcode":"V5T 1C8",
+               "email":"privacy@novusnow.ca "
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
                   "name":"Mobility",
                   "serviceType":"mobile"
                },
@@ -322,7 +582,8 @@
                "address2":null,
                "city":"Toronto",
                "province":"ON",
-               "postalcode":"M4W 1G9"
+               "postalcode":"M4W 1G9",
+               "email": "privacy@rci.rogers.com"
             },
             "contactActor":{
                "title":"Chief Privacy Officer"
@@ -352,7 +613,7 @@
                "city":"Regina",
                "province":"SK",
                "postalcode":"S4P 3Y2",
-               "e-mail":"privacy.matters@sasktel.sk.ca"
+               "email":"privacy.matters@sasktel.sk.ca"
             },
             "contactActor":{
                "title":"Chief Privacy Officer"
@@ -377,7 +638,7 @@
             "formalName":"Shaw",
             "address":{
                "attention":"Shaw Privacy Officer",
-               "address1":"630–3rd Ave. S.W.",
+               "address1":"630 3rd Ave. S.W.",
                "city":"Calgary",
                "province":"AB",
                "postalcode":"T3P 4L4",
@@ -385,6 +646,34 @@
             },
             "contactActor":{
                "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Tbaytel",
+            "formalname":"Tbaytel",
+            "address":{
+               "address1":"1046 Lithium Drive",
+               "city":"Thunder Bay",
+               "province":"ON",
+               "postalcode":"P7B 6G3",
+               "email":"chiefprivacyofficer@tbaytel.com"
+            },
+            "contactActor":{
+               "title":"Privacy Manager"
             },
             "services":[
                {
@@ -411,6 +700,34 @@
                "province":"ON",
                "postalcode":"N7M 5J5",
                "email":"privacy@teksavvy.com"
+            },
+            "contactActor":{
+               "title":"Privacy Ombudsman"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
+            "name":"Telebec",
+            "formalname":"Telebec",
+            "address":{
+               "address1":"555, Avenue Centrale",
+               "city":"Val-d'Or",
+               "province":"QC",
+               "postalcode":"J9P 1P6",
+               "email":"ombudsman@telebec.com"
             },
             "contactActor":{
                "title":"Privacy Ombudsman"
@@ -490,6 +807,35 @@
             ]
          },
          {
+            "name":"VIF Internet",
+            "formalname":"VIF Internet",
+            "address":{
+               "address1":"368 Notre Dame O",
+               "address2":"Suite 200",
+               "city":"Montreal",
+               "province":"QC",
+               "postalcode":"H2Y 1T9",
+               "email":"viftech@vif.com"
+            },
+            "contactActor":{
+               "title":"Privacy Officer"
+            },
+            "services":[
+               {
+                  "name":"Mobility",
+                  "serviceType":"mobile"
+               },
+               {
+                  "name":"Internet",
+                  "serviceType":"internet"
+               },
+               {
+                  "name":"Home Phone",
+                  "serviceType":"telephone"
+               }
+            ]
+         },
+         {
             "name":"Virgin Mobile",
             "formalName":"Virgin Mobile",
             "address":{
@@ -499,7 +845,7 @@
                "city":"Toronto",
                "province":"ON",
                "postalcode":"M5Y 2T3",
-               "email": "privacy@virginmobile.ca"
+               "email":"privacy@virginmobile.ca"
             },
             "contactActor":{
                "title":"Privacy Officer"
@@ -524,7 +870,7 @@
             "formalName":"Globalive Wireless Management Corp.",
             "address":{
                "attention":"Chief Privacy Officer",
-               "address1":"207 Queen’s Quay West",
+               "address1":"207 Queen's Quay West",
                "address2":"Suite 710, PO Box 114",
                "city":"Toronto",
                "province":"ON",
