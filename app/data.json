@@ -134,7 +134,10 @@
                   "name":"Bell Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "577"
+            }
          },
          {
             "name":"Bell Aliant",
@@ -164,7 +167,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "855"
+            }
          },
          {
             "name":"Bruce Telecom",
@@ -259,7 +265,7 @@
             "formalName":"Distributel Communications Limited",
             "address":{
                "attention":"c/o Privacy Officer",
-               "address1":"177 Nepean St. Suite 300,",
+               "address1":"177 Nepean St. Suite 300",
                "city":"Ottawa",
                "province":"ON",
                "postalcode":"K2P 0B4",
@@ -281,7 +287,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "11814"
+            }
          },
          {
             "name":"Eastlink",
@@ -311,7 +320,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "11260"
+            }
          },
          {
             "name":"Execulink",
@@ -487,7 +499,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "15290"
+            }
          },
          {
             "name":"Northwestel",
@@ -572,7 +587,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "6407"
+            }
          },
          {
             "name":"Rogers",
@@ -601,7 +619,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "812"
+            }
          },
          {
             "name":"Sasktel",
@@ -660,7 +681,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "6327"
+            }
          },
          {
             "name":"Tbaytel",
@@ -717,7 +741,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "5645"
+            }
          },
          {
             "name":"Telebec",
@@ -774,7 +801,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "852"
+            }
          },
          {
             "name":"Videotron",
@@ -804,7 +834,10 @@
                   "name":"Home Phone",
                   "serviceType":"telephone"
                }
-            ]
+            ],
+            "linkedData": {
+               "ixMapStars": "5769"
+            }
          },
          {
             "name":"VIF Internet",
@@ -924,6 +957,184 @@
                }
             ]
          }
-      ]
+      ],
+   "linkedData": {
+      "ixMapStarsLegend": {
+         "1": {
+            "star_short_name": "Public commitment to PIPEDA",
+            "star_long_des": "Carrier earns recognition if it explicitly indicates compliance with PIPEDA or comparable privacy legislation."
+         },
+         "2": {
+            "star_short_name": "Public commitment to inform users about third party data requests.",
+            "star_long_des": "Carrier explicitly indicates that it informs users when a third party has sought their personal data, unless prohibited by law."
+         },
+         "3": {
+            "star_short_name": "Transparency about frequency of third party data requests and transfers.",
+            "star_long_des": "Carrier discloses statistics summarizing all requests for data from third parties such as government, law-enforcement, commercial and non-commercial entities, and whether it has complied with these requests."
+         },
+         "4": {
+            "star_short_name": "Transparency about conditions for third party data transfers.",
+            "star_long_des": "Carrier makes public the specific conditions for all third party transfers, especially instances where informed consent is not required for transfer. Carrier earns an additional point for requiring a court order before handing over personal information in such circumstances."
+         },
+         "5": {
+            "star_short_name": "Privacy policy includes broad interpretation of \"personal information\"",
+            "star_long_des": "Carrier states that it treats IP addresses (and other unique device identifiers), as well as meta-data (e.g. who communicated with whom, when, where, etc.) where appropriate, as personal information."
+         },
+         "6": {
+            "star_short_name": "Publicly states the normal retention period for personal information.",
+            "star_long_des": "Carrier specifies number of days that data is normally retained. Retention periods may vary according to different forms of data as appropriate to need."
+         },
+         "7": {
+            "star_short_name": "Publicly states where personal information is stored and routed.",
+            "star_long_des": "Carrier indicates the relevant jurisdiction(s) for customer information. It earns an additional point for declaring that personal data is stored exclusively in Canada."
+         },
+         "8": {
+            "star_short_name": "Take publicly visible steps to avoid US routing of Canadian data.",
+            "star_long_des": "Carrier commits to ensuring that personal data transmissions are routed through Canadian internet exchange points unless non-Canadian routing is absolutely necessary."
+         },
+         "9": {
+            "star_short_name": "Fight for users’ privacy rights in the courts.",
+            "star_long_des": "Carrier has a public record of resisting data requests in court."
+         },
+         "10": {
+            "star_short_name": "Fight for users’ privacy rights legislatively.",
+            "star_long_des": "Carrier publicly supports efforts to strengthen federal privacy laws and regulations, or publicly oppose measures that threaten them."
+         }
+      },
+      "ixMapStars": {
+         "577": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0.5",
+            "8": "0",
+            "9": "0",
+            "10": "0"
+         },
+         "855": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0.5",
+            "8": "0",
+            "9": "0.5",
+            "10": "0"
+         },
+         "11814": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0",
+            "5": "0",
+            "6": "0",
+            "7": "0",
+            "8": "0",
+            "9": "1",
+            "10": "0.5"
+         },
+         "11260": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0",
+            "8": "0",
+            "9": "0.5",
+            "10": "0"
+         },
+         "15290": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0.5",
+            "8": "0",
+            "9": "0.5",
+            "10": "0"
+         },
+         "6407": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0.5",
+            "8": "0",
+            "9": "1",
+            "10": "0"
+         },
+         "812": {
+            "1": "0.5",
+            "2": "0",
+            "3": "0",
+            "4": "0",
+            "5": "0",
+            "6": "0",
+            "7": "0",
+            "8": "0",
+            "9": "0.5",
+            "10": "0"
+         },
+         "6327": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0",
+            "5": "0",
+            "6": "0",
+            "7": "0.5",
+            "8": "0",
+            "9": "0.5",
+            "10": "0"
+         },
+         "5645": {
+            "1": "1",
+            "2": "0.5",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0",
+            "8": "0",
+            "9": "1",
+            "10": "0.5"
+         },
+         "852": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0",
+            "8": "0",
+            "9": "0",
+            "10": "0.5"
+         },
+         "5769": {
+            "1": "1",
+            "2": "0",
+            "3": "0",
+            "4": "0.5",
+            "5": "0",
+            "6": "0",
+            "7": "0",
+            "8": "0",
+            "9": "0",
+            "10": "0"
+      }
    }
+   } 
+}
 }

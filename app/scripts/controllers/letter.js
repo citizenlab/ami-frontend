@@ -71,13 +71,13 @@ pirsApp.controller('LetterCtrl', ['$scope', '$location', '$timeout', '$window','
     }, 10);
   }
   $scope.instructionsDisplayToggle = function(){
-      if($scope.displayInstructions){
-        $scope.displayInstructions = false;
-      }
-      else{
-        $scope.displayInstructions = true;
-      }
+    if($scope.displayInstructions){
+      $scope.displayInstructions = false;
     }
+    else{
+      $scope.displayInstructions = true;
+    }
+  }
   $scope.save = function(){
     PdfLetter.generate($('#letter'), function(){
       $timeout(function(){
@@ -91,8 +91,8 @@ pirsApp.controller('LetterCtrl', ['$scope', '$location', '$timeout', '$window','
   };
 
   $scope.showService = function(service){
-      return (service.selected === "selected");
-    }
+    return (service.selected === "selected");
+  }
 
   $scope.buildEmail = function(){
     var to, subject, body, email, el;

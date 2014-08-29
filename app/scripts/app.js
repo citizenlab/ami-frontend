@@ -86,6 +86,24 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
         company.addService(service);
       }, company);
 
+      // Include Linked data
+      if(typeof companyInfo.linkedData !== "undefined"){
+        angular.forEach(companyInfo.linkedData, function(value, key){
+          // console.log(key, value);
+          if(key == "ixMapStars"){
+            var ixMapStars = {}
+            _.zip(results.linkedData[key][value], results.linkedData["ixMapStarsLegend"]);
+            // console.log(results.linkedData[key][value]);
+            // console.log(results.linkedData["ixMapStarsLegend"]);
+            for(var i in results.linkedData["ixMapStarsLegend"]){
+              results.linkedData["ixMapStarsLegend"][i]['score'] = results.linkedData[key][value][i];
+            }
+            ixMapStars = results.linkedData["ixMapStarsLegend"];
+            company.ixMapStars = ixMapStars;
+          }
+        }, company);
+      }
+
       companies.push(company);
     }, companies);
     StateDataManager.stash('companies', companies);
