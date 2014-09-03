@@ -74,6 +74,8 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
     // Build Companies
     angular.forEach(results.companies, function(companyInfo, companyId){
       var company = new PIRS_Company();
+      var ixMapStars, starData, companyStars = [];
+      
       company.setName(companyInfo.name)
       company.setAddress(companyInfo.address);
       company.setContactActor(companyInfo.contactActor);
@@ -88,22 +90,22 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
 
       // Include Linked data
       if(typeof companyInfo.linkedData !== "undefined"){
-        angular.forEach(companyInfo.linkedData, function(value, key){
-          // console.log(key, value);
-          if(key == "ixMapStars"){
-            var ixMapStars = {}
-            _.zip(results.linkedData[key][value], results.linkedData["ixMapStarsLegend"]);
-            // console.log(results.linkedData[key][value]);
-            // console.log(results.linkedData["ixMapStarsLegend"]);
-            for(var i in results.linkedData["ixMapStarsLegend"]){
-              results.linkedData["ixMapStarsLegend"][i]['score'] = results.linkedData[key][value][i];
-            }
+        // angular.forEach(companyInfo.linkedData, function(value, key){
+          // if(key == "ixMapStars"){
             ixMapStars = results.linkedData["ixMapStarsLegend"];
-            company.ixMapStars = ixMapStars;
-          }
-        }, company);
+            starData = results.linkedData["ixMapStars"][companyInfo.linkedData['ixMapStars']];
+            for(var i in results.linkedData["ixMapStarsLegend"]){
+              companyStars.push({
+                "score": starData[i],
+                "star_short_name": results.linkedData["ixMapStarsLegend"][i]["star_short_name"],
+                "star_long_des": results.linkedData["ixMapStarsLegend"][i]["star_long_des"]
+              });
+            }
+            company.addLinkedDataSet('ixMapStars', companyStars);
+        //   }
+        // }, company);
+        console.log(company);
       }
-
       companies.push(company);
     }, companies);
     StateDataManager.stash('companies', companies);

@@ -15,6 +15,7 @@ function PIRS_Company(){
   this.contactActor;
   this.email;
   this.services = {};
+  this.linkedDataSets = {};
 
   this.setAddress = function(options){
     if(typeof options === "object"){
@@ -83,6 +84,20 @@ function PIRS_Company(){
     }
     else{
       throw new Error("No service with that ID present for company " + company.name);
+    }
+  }
+  this.addLinkedDataSet = function(dataSetId, dataSet){
+    this.linkedDataSets[dataSetId] = dataSet;
+  }
+  this.getLinkedDataSets = function(){
+    return this.linkedDataSets;
+  }
+  this.getLinkedDataSet = function(dataSetId){
+    if(typeof this.linkedDataSets[dataSetId] !== "undefined"){
+      return this.linkedDataSets[dataSetId];
+    }
+    else{
+      throw new Error("No data set with that ID present for company " + company.name);
     }
   }
 }

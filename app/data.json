@@ -965,15 +965,15 @@
             "star_long_des": "Carrier earns recognition if it explicitly indicates compliance with PIPEDA or comparable privacy legislation."
          },
          "2": {
-            "star_short_name": "Public commitment to inform users about third party data requests.",
+            "star_short_name": "Public commitment to inform users about third party data requests",
             "star_long_des": "Carrier explicitly indicates that it informs users when a third party has sought their personal data, unless prohibited by law."
          },
          "3": {
-            "star_short_name": "Transparency about frequency of third party data requests and transfers.",
+            "star_short_name": "Transparency about frequency of third party data requests and transfers",
             "star_long_des": "Carrier discloses statistics summarizing all requests for data from third parties such as government, law-enforcement, commercial and non-commercial entities, and whether it has complied with these requests."
          },
          "4": {
-            "star_short_name": "Transparency about conditions for third party data transfers.",
+            "star_short_name": "Transparency about conditions for third party data transfers",
             "star_long_des": "Carrier makes public the specific conditions for all third party transfers, especially instances where informed consent is not required for transfer. Carrier earns an additional point for requiring a court order before handing over personal information in such circumstances."
          },
          "5": {
@@ -981,23 +981,23 @@
             "star_long_des": "Carrier states that it treats IP addresses (and other unique device identifiers), as well as meta-data (e.g. who communicated with whom, when, where, etc.) where appropriate, as personal information."
          },
          "6": {
-            "star_short_name": "Publicly states the normal retention period for personal information.",
+            "star_short_name": "Publicly states the normal retention period for personal information",
             "star_long_des": "Carrier specifies number of days that data is normally retained. Retention periods may vary according to different forms of data as appropriate to need."
          },
          "7": {
-            "star_short_name": "Publicly states where personal information is stored and routed.",
+            "star_short_name": "Publicly states where personal information is stored and routed",
             "star_long_des": "Carrier indicates the relevant jurisdiction(s) for customer information. It earns an additional point for declaring that personal data is stored exclusively in Canada."
          },
          "8": {
-            "star_short_name": "Take publicly visible steps to avoid US routing of Canadian data.",
+            "star_short_name": "Take publicly visible steps to avoid US routing of Canadian data",
             "star_long_des": "Carrier commits to ensuring that personal data transmissions are routed through Canadian internet exchange points unless non-Canadian routing is absolutely necessary."
          },
          "9": {
-            "star_short_name": "Fight for users’ privacy rights in the courts.",
+            "star_short_name": "Fight for users’ privacy rights in the courts",
             "star_long_des": "Carrier has a public record of resisting data requests in court."
          },
          "10": {
-            "star_short_name": "Fight for users’ privacy rights legislatively.",
+            "star_short_name": "Fight for users’ privacy rights legislatively",
             "star_long_des": "Carrier publicly supports efforts to strengthen federal privacy laws and regulations, or publicly oppose measures that threaten them."
          }
       },

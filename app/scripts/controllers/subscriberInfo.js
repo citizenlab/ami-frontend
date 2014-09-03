@@ -22,7 +22,6 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
   else{
     if(StateDataManager.has('company')){
       $scope.company = StateDataManager.get('company');
-      console.log($scope.company);
     }
     if(StateDataManager.has('customer')){
       $scope.customer = StateDataManager.get('customer');
