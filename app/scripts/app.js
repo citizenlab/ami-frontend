@@ -101,6 +101,7 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
                 "star_long_des": results.linkedData["ixMapStarsLegend"][i]["star_long_des"]
               });
             }
+            companyStars = _.sortBy(companyStars, "score").reverse();
             company.addLinkedDataSet('ixMapStars', companyStars);
         //   }
         // }, company);

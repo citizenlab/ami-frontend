@@ -27,7 +27,7 @@
     </label>
     <div class="fat col-sm-6" ng-show="company.linkedDataSets.ixMapStars && companyService.serviceObj.serviceType.name=='internet'">
       <span ng-repeat="star in company.linkedDataSets.ixMapStars" class="fa ixmapstar" ng-class="{'fa-star': star.score == '1', 'fa-star-half-o': star.score == '0.5', 'fa-star-o': star.score == '0'}" title="{{star.star_short_name}}: {{star.score}}/1"></span>
-      <br/><a href="ixmaps.ca/transparency.php" target="_blank">ISP Privacy Transparency Score <span class="fa fa-external-link"></span></a>: 
+      <br/><a href="http://ixmaps.ca/transparency.php" target="_blank">ISP Privacy Transparency Score <span class="fa fa-external-link"></span></a>: 
     </div>
 </div>
 <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!IsServiceSelected || nextIsLoading)}" ng-click="next()">
