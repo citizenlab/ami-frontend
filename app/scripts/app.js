@@ -17,7 +17,8 @@ var pirsApp = angular.module('pirsApp', [
     'ngJSPDF',
     'ProgressBarNav',
     'StateDataManager',
-    'ngSticky'
+    'ngSticky',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
