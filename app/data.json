@@ -1,56 +1,32 @@
 {   "results":{
       "piiQuestions":{
          "ipaddr":"All logs of IP addresses associated with me, my devices, and/or my account (e.g. IP addresses assigned to my devices/router, IP addresses or domain names of sites I visit and the times, dates, and port numbers)",
-         "subscriber":"Listing of 'subscriber information' that you store about me, my devices, and/or my account",
-         "geo":"Any geolocational information that you may have collected about me, my devices, and/or associated with my account (e.g. GPS information, cell tower information)",
-         "texts":"Text messages or multi-media messages (sent and received, including date, time, and recipient information)",
-         "calls":"Call logs (e.g. numbers dialed, times and dates of calls, call durations, routing information, and any geolocational or cellular tower information associated with the calls)",
-         "collectedAppInfo":"Information collected about me, or persons/devices associated with my account, using one of your company's mobile device applications",
-         "extras":"Any additional kinds of information that you have collected, retained, or derived from the telecommunications services or devices that I, or someone associated with my account, have transmitted or received using your company's services",
-         "disclosures":"Any information about disclosures of my personal information, or information about my account or devices, to other parties, including law enforcement and other state agencies"
+"subscriber":"Listing of 'subscriber information' that you store about me, my devices, and/or my account",
+"deviceInfo": "information about my mobile device(s) or other clients used to access your service",
+"geo":"Any geolocational information that you may have collected about me, my devices, and/or associated with my account (e.g. GPS information)",
+"texts":"Text messages or multi-media messages (sent and received, including date, time, and recipient information)",
+"extras":"Any additional kinds of information that you have collected, retained, or derived from the application that I, or someone associated with my account, have transmitted or received using your company's services",
+"disclosures":"Any information about disclosures of my personal information, or information about my account or devices, to other parties, including law enforcement and other state agencies",
+"retention":"Information about the retention policies for archival, backup, and destruction of each of the personal information requested above"
       },
       "serviceTypes":{
-         "internet":{
+         "chatApp":{
             "piiQuestions":[
                "ipaddr",
                "subscriber",
+               "deviceInfo",
                "geo",
                "texts",
-               "calls",
-               "collectedAppInfo",
                "extras",
-               "disclosures"
-            ]
-         },
-         "mobile":{
-            "piiQuestions":[
-               "ipaddr",
-               "subscriber",
-               "geo",
-               "texts",
-               "calls",
-               "collectedAppInfo",
-               "extras",
-               "disclosures"
-            ]
-         },
-         "telephone":{
-            "piiQuestions":[
-               "ipaddr",
-               "subscriber",
-               "geo",
-               "texts",
-               "calls",
-               "collectedAppInfo",
-               "extras",
-               "disclosures"
+               "disclosures",
+               "retention"
             ]
          }
       },
       "companies":[
          {
-            "name":"Acanac",
-            "formalname":"Acanac",
+            "name":"LINE Corporation",
+            "formalname":"LINE Corporation",
             "address":{
                "address1":"1650 Dundas Street East",
                "address2":"Unit 204",
@@ -64,1077 +40,95 @@
             },
             "services":[
                {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
+                  "name":"LINE",
+                  "serviceType":"chatApp"
                }
             ]
          },
          {
-            "name":"ACN Canada",
-            "formalname":"ACN Canada",
+            "name":"Tencent",
+            "formalname":"Tencent",
             "address":{
-               "address1":"1100 Ave. des Canadiens-de-Montréal ",
-               "address2":"Suite 450",
-               "city":"Montreal ",
-               "province":"QC",
-               "postalcode":"H3B 2S2",
-               "email":"privacyofficer@acninc.com"
+               "address1":"1650 Dundas Street East",
+               "address2":"Unit 204",
+               "city":"Mississauga",
+               "province":"ON",
+               "postalcode":"L4X 2Z3",
+               "email":"privacy@acanac.ca"
             },
             "contactActor":{
                "title":"Privacy Officer"
             },
             "services":[
                {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
+                  "name":"WeChat",
+                  "serviceType":"chatApp"
                }
             ]
          },
          {
-            "name":"Bell",
-            "formalName":"Bell Canada",
+            "name":"Kakao Corporation",
+            "formalname":"Kakao Corporation",
             "address":{
-               "attention":"The Office of the Bell Privacy Ombudsman",
-               "address1":"160 Elgin St.",
-               "address2":null,
-               "city":"Ottawa",
+               "address1":"1650 Dundas Street East",
+               "address2":"Unit 204",
+               "city":"Mississauga",
                "province":"ON",
-               "postalcode":"K2P 2C4",
-               "email":"privacy@bell.ca"
-            },
-            "contactActor":{
-               "title":"Privacy Ombudsman"
-            },
-            "services":[
-               {
-                  "name":"Bell Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Bell Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Bell Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "577"
-            }
-         },
-         {
-            "name":"Bell Aliant",
-            "formalName":"Bell Aliant",
-            "address":{
-               "attention":"Attn: Privacy Manager",
-               "address1":"1st Floor, Fort William Building",
-               "address2":"P.O. Box 2110",
-               "city":"St. John's",
-               "province":"NL",
-               "postalcode":"A1C 5H6",
-               "email":"PrivacyManager@bellaliant.ca"
-            },
-            "contactActor":{
-               "title":"Privacy Manager"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "855"
-            }
-         },
-         {
-            "name":"Bruce Telecom",
-            "formalname":"Bruce Telecom",
-            "address":{
-               "address1":"3145 Hwy 21",
-               "address2":"PO Box 80",
-               "city":"Tiverton",
-               "province":"ON",
-               "postalcode":"N0G 2T0",
-               "email":"jackie.arnold@brucetelecom.com"
-            },
-            "contactActor":{
-               "title":"Privacy Officer",
-               "contactname":"Jacqueline Arnold"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Cogeco",
-            "formalName":"COGECO CABLE INC.",
-            "address":{
-               "attention":"Attn: Caroline Dignard, Chief Privacy Officer",
-               "address1":"5 Place Ville-Marie, Suite 1700",
-               "city":"Montréal",
-               "province":"QC",
-               "postalcode":"H3B 0B3",
-               "email":"privacy@cogeco.com"
-            },
-            "contactActor":{
-               "title":"Chief Privacy Officer",
-               "name":"Caroline Dignard"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Comwave",
-            "formalname":"Comwave",
-            "address":{
-               "address1":"61 Wildcat Rd.",
-               "city":"Toronto",
-               "province":"ON",
-               "postalcode":"M3J 2P5",
-               "email":"privacy@comwave.net"
+               "postalcode":"L4X 2Z3",
+               "email":"privacy@acanac.ca"
             },
             "contactActor":{
                "title":"Privacy Officer"
             },
             "services":[
                {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
+                  "name":"Kakao Talk",
+                  "serviceType":"chatApp"
                }
             ]
          },
          {
-            "name":"Distributel",
-            "formalName":"Distributel Communications Limited",
+            "name":"WhatsApp",
+            "formalname":"WhatsApp",
             "address":{
-               "attention":"c/o Privacy Officer",
-               "address1":"177 Nepean St. Suite 300",
-               "city":"Ottawa",
+               "address1":"1650 Dundas Street East",
+               "address2":"Unit 204",
+               "city":"Mississauga",
                "province":"ON",
-               "postalcode":"K2P 0B4",
-               "email":"privacy.officer@distributel.ca"
+               "postalcode":"L4X 2Z3",
+               "email":"privacy@acanac.ca"
             },
             "contactActor":{
                "title":"Privacy Officer"
             },
             "services":[
                {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
+                  "name":"WhatsApp",
+                  "serviceType":"chatApp"
                }
-            ],
-            "linkedData": {
-               "ixMapStars": "11814"
-            }
+            ]
          },
          {
-            "name":"Eastlink",
-            "formalName":"Eastlink",
+            "name":"Viber",
+            "formalname":"Viber",
             "address":{
-               "attention":"Attn: Privacy Officer",
-               "address1":"P.O. Box 8660, Station A",
-               "address2":"6080 Young Street, 8th Floor",
-               "city":"Halifax",
-               "province":"NS",
-               "postalcode":"B3K 5M3",
-               "email":"privacy@corp.eastlink.ca"
+               "address1":"1650 Dundas Street East",
+               "address2":"Unit 204",
+               "city":"Mississauga",
+               "province":"ON",
+               "postalcode":"L4X 2Z3",
+               "email":"privacy@acanac.ca"
             },
             "contactActor":{
                "title":"Privacy Officer"
             },
             "services":[
                {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "11260"
-            }
-         },
-         {
-            "name":"Execulink",
-            "formalname":"Execulink",
-            "address":{
-               "address1":"PO Box 130",
-               "address2":"Main St. N.",
-               "city":"Burgessville",
-               "province":"ON",
-               "postalcode":"N0J 1C0",
-               "email":"privacyofficer@execulink.com"
-            },
-            "contactActor":{
-               "title":"Privacy Officer",
-               "contactname":"Jonathan E. Scott "
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Fido",
-            "formalName":"Fido Solutions",
-            "address":{
-               "address1":"800 De La Gauchetière Street West",
-               "address2":"Suite 4000",
-               "city":"Montréal",
-               "province":"QC",
-               "postalcode":"H5A 1K3",
-               "email":"my.privacy@fidomobile.ca"
-            },
-            "contactActor":{
-               "title":"Chief Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Fongo",
-            "formalname":"Fongo",
-            "address":{
-               "address1":"235 Ardelt Ave",
-               "address2":"Unit 2B",
-               "city":"Kitchener",
-               "province":"ON",
-               "postalcode":"N2C 2M3",
-               "email":"privacyofficer@fongo.com"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Koodo Mobile",
-            "formalName":"Koodo Mobile",
-            "address":{
-               "attention":"Koodo Mobile Privacy Officer",
-               "address1":"200 Consilium Place",
-               "address2":"Suite 300",
-               "city":"Scarborough",
-               "province":"ON",
-               "postalcode":"M1H 3J3",
-               "email":"privacy@koodomobile.com"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Mobilicity",
-            "formalname":"Mobilicity",
-            "address":{
-               "address1":"555 Hanlan Rd.",
-               "address2":"Unit # 8",
-               "city":"Woodbridge",
-               "province":"ON",
-               "postalcode":"L4L 4R8",
-               "email":"privacy@mobilicity.ca"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"MTS Allstream",
-            "formalName":"MTS Allstream",
-            "address":{
-               "attention":"Allstream Privacy Officer",
-               "address1":"200 Wellington Street West, Suite 1200",
-               "city":"Toronto",
-               "province":"ON",
-               "postalcode":"M5V 3G2",
-               "email":"privacyoffice@mtsallstream.com"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "15290"
-            }
-         },
-         {
-            "name":"Northwestel",
-            "formalname":"Northwestel",
-            "address":{
-               "address1":"P.O. Box 2727",
-               "city":"Whitehorse",
-               "province":"Yukon Territories",
-               "postalcode":"Y1A 4Y4",
-               "email":"dallas.yeulett@nwtel.ca"
-            },
-            "contactActor":{
-               "title":"Senior Manager - Regulatory Compliance",
-               "contactname":"Dallas Yeulett"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Novus",
-            "formalname":"Novus",
-            "address":{
-               "address1":"300 - 112 3rd Ave. East",
-               "city":"Vancouver",
-               "province":"BC",
-               "postalcode":"V5T 1C8",
-               "email":"privacy@novusnow.ca "
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Primus",
-            "formalName":"Primus Telecommunications Canada Inc.",
-            "address":{
-               "attention":"Primus Legal Department c/o Privacy Officer",
-               "address1":"5343 Dundas Street West",
-               "city":"Toronto",
-               "province":"ON",
-               "postalcode":"M9B 6K5"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "6407"
-            }
-         },
-         {
-            "name":"Rogers",
-            "formalName":"Rogers Group of Companies",
-            "address":{
-               "address1":"333 Bloor Street East",
-               "address2":null,
-               "city":"Toronto",
-               "province":"ON",
-               "postalcode":"M4W 1G9",
-               "email": "privacy@rci.rogers.com"
-            },
-            "contactActor":{
-               "title":"Chief Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "812"
-            }
-         },
-         {
-            "name":"Sasktel",
-            "formalName":"Sasktel",
-            "address":{
-               "attention":"SaskTel Chief Privacy Officer",
-               "address1":"13th Floor",
-               "address2":"2121 Saskatchewan Drive",
-               "city":"Regina",
-               "province":"SK",
-               "postalcode":"S4P 3Y2",
-               "email":"privacy.matters@sasktel.sk.ca"
-            },
-            "contactActor":{
-               "title":"Chief Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Shaw",
-            "formalName":"Shaw",
-            "address":{
-               "attention":"Shaw Privacy Officer",
-               "address1":"630 3rd Ave. S.W.",
-               "city":"Calgary",
-               "province":"AB",
-               "postalcode":"T3P 4L4",
-               "email":"privacy@shaw.ca"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "6327"
-            }
-         },
-         {
-            "name":"Tbaytel",
-            "formalname":"Tbaytel",
-            "address":{
-               "address1":"1046 Lithium Drive",
-               "city":"Thunder Bay",
-               "province":"ON",
-               "postalcode":"P7B 6G3",
-               "email":"chiefprivacyofficer@tbaytel.com"
-            },
-            "contactActor":{
-               "title":"Privacy Manager"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"TekSavvy",
-            "formalName":"TekSavvy Solutions Inc.",
-            "address":{
-               "address1":"800 Richmond Street",
-               "address2":null,
-               "city":"Chatham",
-               "province":"ON",
-               "postalcode":"N7M 5J5",
-               "email":"privacy@teksavvy.com"
-            },
-            "contactActor":{
-               "title":"Privacy Ombudsman"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "5645"
-            }
-         },
-         {
-            "name":"Telebec",
-            "formalname":"Telebec",
-            "address":{
-               "address1":"555, Avenue Centrale",
-               "city":"Val-d'Or",
-               "province":"QC",
-               "postalcode":"J9P 1P6",
-               "email":"ombudsman@telebec.com"
-            },
-            "contactActor":{
-               "title":"Privacy Ombudsman"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"TELUS",
-            "formalName":"TELUS Communications Company",
-            "address":{
-               "attention":"TELUS Communications Company Privacy Request Centre",
-               "address1":"PO Box 2590, Station M",
-               "city":"Calgary",
-               "province":"AB",
-               "postalcode":"T2P 5J6",
-               "email":"privacy@telus.com"
-            },
-            "contactActor":{
-               "title":"Communications Company Privacy Request Centre"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "852"
-            }
-         },
-         {
-            "name":"Videotron",
-            "formalName":"Videotron",
-            "address":{
-               "attention":"Attn: Alain Charlebois, Vice-President, Human Resources",
-               "address1":"612 St-Jacques Street West, ",
-               "address2":"4th floor, North Tower",
-               "city":"Montreal",
-               "province":"QC",
-               "postalcode":"H3C 4M8"
-            },
-            "contactActor":{
-               "title":"Vice-President, Human Resources",
-               "name":"Alain Charlebois"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ],
-            "linkedData": {
-               "ixMapStars": "5769"
-            }
-         },
-         {
-            "name":"VIF Internet",
-            "formalname":"VIF Internet",
-            "address":{
-               "address1":"368 Notre Dame O",
-               "address2":"Suite 200",
-               "city":"Montreal",
-               "province":"QC",
-               "postalcode":"H2Y 1T9",
-               "email":"viftech@vif.com"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Virgin Mobile",
-            "formalName":"Virgin Mobile",
-            "address":{
-               "attention":"Privacy Officer, c/o Executive Office",
-               "address1":"720 King St West",
-               "address2":"Suite 905",
-               "city":"Toronto",
-               "province":"ON",
-               "postalcode":"M5Y 2T3",
-               "email":"privacy@virginmobile.ca"
-            },
-            "contactActor":{
-               "title":"Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Wind Mobile",
-            "formalName":"Globalive Wireless Management Corp.",
-            "address":{
-               "attention":"Chief Privacy Officer",
-               "address1":"207 Queen's Quay West",
-               "address2":"Suite 710, PO Box 114",
-               "city":"Toronto",
-               "province":"ON",
-               "postalcode":"M5J 1A7",
-               "email":"privacyofficer@windmobile.ca"
-            },
-            "contactActor":{
-               "title":"Chief Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
-               }
-            ]
-         },
-         {
-            "name":"Xplornet",
-            "formalName":"Xplornet Communications Inc.",
-            "address":{
-               "attention":"Attn: Chief Privacy Officer",
-               "address1":"300 Lockhart Mill Road",
-               "address2":"P.O. Box 9060",
-               "city":"Woodstock",
-               "province":"NB",
-               "postalcode":"E7M 6B5"
-            },
-            "contactActor":{
-               "title":"Chief Privacy Officer"
-            },
-            "services":[
-               {
-                  "name":"Mobility",
-                  "serviceType":"mobile"
-               },
-               {
-                  "name":"Internet",
-                  "serviceType":"internet"
-               },
-               {
-                  "name":"Home Phone",
-                  "serviceType":"telephone"
+                  "name":"Viber",
+                  "serviceType":"chatApp"
                }
             ]
          }
-      ],
-   "linkedData": {
-      "ixMapStarsLegend": {
-         "1": {
-            "star_short_name": "Public commitment to PIPEDA",
-            "star_long_des": "Carrier earns recognition if it explicitly indicates compliance with PIPEDA or comparable privacy legislation."
-         },
-         "2": {
-            "star_short_name": "Public commitment to inform users about third party data requests",
-            "star_long_des": "Carrier explicitly indicates that it informs users when a third party has sought their personal data, unless prohibited by law."
-         },
-         "3": {
-            "star_short_name": "Transparency about frequency of third party data requests and transfers",
-            "star_long_des": "Carrier discloses statistics summarizing all requests for data from third parties such as government, law-enforcement, commercial and non-commercial entities, and whether it has complied with these requests."
-         },
-         "4": {
-            "star_short_name": "Transparency about conditions for third party data transfers",
-            "star_long_des": "Carrier makes public the specific conditions for all third party transfers, especially instances where informed consent is not required for transfer. Carrier earns an additional point for requiring a court order before handing over personal information in such circumstances."
-         },
-         "5": {
-            "star_short_name": "Privacy policy includes broad interpretation of \"personal information\"",
-            "star_long_des": "Carrier states that it treats IP addresses (and other unique device identifiers), as well as meta-data (e.g. who communicated with whom, when, where, etc.) where appropriate, as personal information."
-         },
-         "6": {
-            "star_short_name": "Publicly states the normal retention period for personal information",
-            "star_long_des": "Carrier specifies number of days that data is normally retained. Retention periods may vary according to different forms of data as appropriate to need."
-         },
-         "7": {
-            "star_short_name": "Publicly states where personal information is stored and routed",
-            "star_long_des": "Carrier indicates the relevant jurisdiction(s) for customer information. It earns an additional point for declaring that personal data is stored exclusively in Canada."
-         },
-         "8": {
-            "star_short_name": "Take publicly visible steps to avoid US routing of Canadian data",
-            "star_long_des": "Carrier commits to ensuring that personal data transmissions are routed through Canadian internet exchange points unless non-Canadian routing is absolutely necessary."
-         },
-         "9": {
-            "star_short_name": "Fight for users’ privacy rights in the courts",
-            "star_long_des": "Carrier has a public record of resisting data requests in court."
-         },
-         "10": {
-            "star_short_name": "Fight for users’ privacy rights legislatively",
-            "star_long_des": "Carrier publicly supports efforts to strengthen federal privacy laws and regulations, or publicly oppose measures that threaten them."
-         }
-      },
-      "ixMapStars": {
-         "577": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0.5",
-            "8": "0",
-            "9": "0",
-            "10": "0"
-         },
-         "855": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0.5",
-            "8": "0",
-            "9": "0.5",
-            "10": "0"
-         },
-         "11814": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0",
-            "5": "0",
-            "6": "0",
-            "7": "0",
-            "8": "0",
-            "9": "1",
-            "10": "0.5"
-         },
-         "11260": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0",
-            "8": "0",
-            "9": "0.5",
-            "10": "0"
-         },
-         "15290": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0.5",
-            "8": "0",
-            "9": "0.5",
-            "10": "0"
-         },
-         "6407": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0.5",
-            "8": "0",
-            "9": "1",
-            "10": "0"
-         },
-         "812": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0",
-            "5": "0",
-            "6": "0",
-            "7": "0",
-            "8": "0",
-            "9": "0.5",
-            "10": "0"
-         },
-         "6327": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0",
-            "5": "0",
-            "6": "0",
-            "7": "0.5",
-            "8": "0",
-            "9": "0.5",
-            "10": "0"
-         },
-         "5645": {
-            "1": "1",
-            "2": "0.5",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0",
-            "8": "0",
-            "9": "1",
-            "10": "0.5"
-         },
-         "852": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0",
-            "8": "0",
-            "9": "0",
-            "10": "0.5"
-         },
-         "5769": {
-            "1": "1",
-            "2": "0",
-            "3": "0",
-            "4": "0.5",
-            "5": "0",
-            "6": "0",
-            "7": "0",
-            "8": "0",
-            "9": "0",
-            "10": "0"
-      }
+      ]
    }
-   } 
-}
 }
