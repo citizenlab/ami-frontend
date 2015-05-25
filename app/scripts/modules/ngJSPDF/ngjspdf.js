@@ -37,7 +37,7 @@ ngJSPDF.service("PdfLetter", function(){
         // dispose: object with X, Y of the last line add to the PDF
         //          this allow the insertion of new lines after html
 
-          pdf.save('letter.pdf');
+          pdf.save('Right_to_information_request.pdf');
           callback();
         },
       margins

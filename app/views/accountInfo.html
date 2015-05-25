@@ -6,7 +6,7 @@
 <div ng-show="!oneService">
   <div class="checkbox">
       <label ng-class="{'bg-success': companyService.selected}" >
-        <input type="checkbox" ng-model="servicesUnderOneAccount" ng-true-value="true" data-ng-false-value=""  tabindex="1" ng-checked="servicesUnderOneAccount"/>
+        <input type="checkbox" ng-model="servicesUnderOneAccount" ng-true-value="{{true}}" data-ng-false-value="{{false}}"  tabindex="1" ng-checked="servicesUnderOneAccount"/>
         <span class="glyphicon" ng-class="{'glyphicon-phone-alt': companyService.serviceObj.serviceType.name=='telephone', 'glyphicon-phone': companyService.serviceObj.serviceType.name=='mobile', 'glyphicon-globe': companyService.serviceObj.serviceType.name=='internet'}"></span>Do you have one customer account for your <span ng-repeat="service in services | filter:showService"><span ng-if="!$first && !$last">, </span><span ng-if="$last && !$first"> and </span>{{service.serviceObj.name}}<span ng-if="$first && $last"> service</span><span ng-if="!$first && $last"> services?</span></span>
       </label>
   </div>

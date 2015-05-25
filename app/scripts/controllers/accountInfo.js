@@ -28,7 +28,7 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
     $scope.singleAccount = {};
   }
 
-  if(!StateDataManager.has('customer') || !StateDataManager.get('company') || !StateDataManager.has('services') || !((typeof _.findWhere(StateDataManager.get('services'), {selected: "selected"})) !== "undefined")){
+  if(!StateDataManager.has('customer') || !StateDataManager.get('company') || !StateDataManager.has('services') || !((typeof _.findWhere(StateDataManager.get('services'), {selected: true})) !== "undefined")){
     $scope.previous();
     return;
   }
@@ -102,7 +102,7 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
     return isFilled;
   }
   $scope.showService = function(service){
-      return (service.selected === "selected");
+      return (service.selected === true);
     }
   $scope.next = function(){
     if($scope.requiredFieldsFilled()){

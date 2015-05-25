@@ -39,7 +39,7 @@ pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window',
       StateDataManager.stash('services', $scope.services);
     }
     $scope.showService = function(service){
-      return (service.selected === "selected");
+      return (service.selected === true);
     }
     $scope.getPiiTypes = function(){
       var piiTypes = [];

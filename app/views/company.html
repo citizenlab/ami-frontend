@@ -22,7 +22,7 @@
 <h3><label>Service(s) <span class="required">*</span></label></h3>
 <div class="checkbox  clearfix" ng-repeat="companyService in services">
     <label class="fat col-sm-6" ng-class="{'bg-success': companyService.selected}" >
-      <input type="checkbox" ng-model="companyService.selected" ng-true-value="selected" ng-checked="showService(companyService)" data-ng-false-value=""  tabindex="1" />
+      <input type="checkbox" ng-model="companyService.selected" ng-true-value="{{true}}" ng-checked="showService(companyService)" data-ng-false-value="{{false}}"  tabindex="1" />
       <span class="fa" ng-class="{'fa-phone': companyService.serviceObj.serviceType.name=='telephone', 'fa-mobile': companyService.serviceObj.serviceType.name=='mobile', 'fa-globe': companyService.serviceObj.serviceType.name=='internet'}"></span>&nbsp;{{companyService.serviceObj.name}}
     </label>
     <div class="fat col-sm-6" ng-show="company.linkedDataSets.ixMapStars && companyService.serviceObj.serviceType.name=='internet'">

@@ -91,7 +91,7 @@ pirsApp.controller('LetterCtrl', ['$scope', '$location', '$timeout', '$window','
   };
 
   $scope.showService = function(service){
-    return (service.selected === "selected");
+    return (service.selected === true);
   }
 
   $scope.buildEmail = function(){
