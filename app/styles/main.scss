@@ -428,7 +428,7 @@ label {
         padding: 8px 8px;
         @media (min-width: $screen-sm-min) {
             font-size:14px;
-            padding: 8px 12px;
+            padding: 8px 13px;
         }
         span {
             @media (min-width: $screen-sm-min) {
@@ -437,7 +437,13 @@ label {
             }
         }
     }
-
+}
+.pagination-sm > li.arrow {
+    a {
+        @media (min-width: $screen-sm-min) {
+            padding: 8px 16.5px;
+        }
+    }
 }
 
 .centre-xs {
