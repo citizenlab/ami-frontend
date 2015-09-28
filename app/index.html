@@ -52,7 +52,7 @@ MOSQUITO wants its sweet, sweet data
     <div class="container">
         <div class="row" sticky use-placeholder id="mainNav">
             <nav class="col-xs-12 centre-xs">
-                <ol class="pagination pagination-sm" ng-controller="ProgressCtrl" ng-class="flexProgress">
+                <ol class="pagination pagination-sm clearfix" ng-controller="ProgressCtrl" ng-class="flexProgress">
                   <li class="arrow" ng-class="{disabled: (activeIndex < 1 || previous.restricted)}">
                     <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
                     <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>

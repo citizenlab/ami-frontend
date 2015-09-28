@@ -265,7 +265,9 @@ label {
 }
 
 .pagination {
-    margin:0 auto;
+    display: block;
+    width:100%;
+    margin:0;
     > li {
         > a > span {
             display:block;
@@ -425,8 +427,10 @@ label {
         }
     }
     a {
-        padding: 8px 8px;
+        padding: 12px 8px;
+        width: 13%;
         @media (min-width: $screen-sm-min) {
+            width: auto;
             font-size:14px;
             padding: 8px 13px;
         }
@@ -440,7 +444,9 @@ label {
 }
 .pagination-sm > li.arrow {
     a {
+        width: 11%;
         @media (min-width: $screen-sm-min) {
+            width: auto;
             padding: 8px 16.5px;
         }
     }
