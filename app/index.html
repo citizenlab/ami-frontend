@@ -47,6 +47,11 @@ MOSQUITO wants its sweet, sweet data
     <header class="navbar hidden-xs">
         <div class="container">
             <h1 class="clearfix mobileShrink"><img src="images/ami-logo-small.png" class="pull-left" alt="Access My Info"/><span>Access My Info</span><small>Request access to your personal information</small></h1>
+            <div ng-controller="JurisdictionCtrl">
+                 <select tabindex="1" name="jurisdiction" ng-model="jurisdiction" ng-options="jurisdiction.title for jurisdiction in jurisdictions track by jurisdiction.id" class="form-control input-lg">
+        <option value="" selected>Select jurisdiction</option>
+      </select>
+            </div>
         </div>
     </header>
     <div class="container">
@@ -77,7 +82,7 @@ MOSQUITO wants its sweet, sweet data
         <div ng-view="" class="marb10"></div>
         <footer class="small mart10 clearfix">
             <p class="small site-policy p-bg mart10"><strong>Privacy Statement</strong>: This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date &amp; time of access, and several other non-identifying metadata fields.</p>
-            <p class="small site-policy p-bg"><strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. The Digital Stewardship Initiative (DSI) partners and contributors make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.</p>
+            <p class="small site-policy p-bg"><strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.</p>
             <p class="small p-bg site-policy">
                 <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="images/creativecommons.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
             </p>
@@ -92,7 +97,7 @@ MOSQUITO wants its sweet, sweet data
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
@@ -105,28 +110,31 @@ MOSQUITO wants its sweet, sweet data
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
     <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
     <script src="bower_components/html2canvas/build/html2canvas.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/modules/ngTooltip/ui-bootstrap-custom-0.10.0.min.js"></script>
     <script src="scripts/license.js"></script>
     <script src="scripts/modules/Enter/enter.js"></script>
     <script src="scripts/modules/ngJSPDF/ngjspdf.js"></script>
     <script src="scripts/modules/ProgressBarNav/progressbarnav.js"></script>
     <script src="scripts/modules/StateDataManager/statedatamanager.js"></script>
+    <script src="scripts/modules/AMIRequest/amirequest.js"></script>
     <script src="scripts/modules/Sticky/sticky.js"></script>
-    <script src="scripts/modules/ngTooltip/ui-bootstrap-custom-0.10.0.min.js"></script>
     <script src="scripts/modules/PIRSDataModel/company.js"></script>
     <script src="scripts/modules/PIRSDataModel/service.js"></script>
     <script src="scripts/modules/PIRSDataModel/serviceType.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/jurisdiction.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/industry.js"></script>
     <script src="scripts/controllers/company.js"></script>
     <script src="scripts/controllers/subscriberInfo.js"></script>
     <script src="scripts/controllers/accountInfo.js"></script>

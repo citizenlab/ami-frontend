@@ -1,0 +1,23 @@
+<!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
+<h2>Industries that collect your data -- {{jurisdiction.title}}</h2>
+<form>
+  <fieldset>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-institution bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting an industry that provides you a service you're interested in learning more about.</p></div>
+<div class="well">
+  <h3><label for="company">Industry <span class="required">*</span></label></h3>
+  <div class="row">
+    <div class="col-sm-6">
+      <select tabindex="1" name="industry" ng-model="industry" ng-options="industry.title for industry in industries track by industry.id" class="form-control input-lg">
+        <option value="" selected>Select industry</option>
+      </select>
+    </div>
+  </div>
+</div>
+<button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!isIndustrySelected || nextIsLoading)}" ng-click="next()">
+<span ng-if="!nextIsLoading">Next</span>
+<span ng-if="nextIsLoading">Please Wait...</span>
+&nbsp;
+<i class="fa" ng-class="{'fa-arrow-right': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i>
+</button>
+</fieldset>
+</form>

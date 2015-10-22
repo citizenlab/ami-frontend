@@ -10,56 +10,86 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'StateDataManager', 'NavCollection', function ($scope, $timeout, $location, $window, StateDataManager, NavCollection) {
+pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'StateDataManager', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, StateDataManager, NavCollection, companies, AMIRequest, dataProviderService) {
     $window.scrollTo(0,0)
     NavCollection.unRestrict('companyInfo');
     $scope.previous = function(){
       $location.path('/');
     }
     $scope.nextIsLoading = false;
+    
+    $scope.industry = AMIRequest.get('industry');
     // $scope.companies = companies;
-    $scope.companies = StateDataManager.get('companies');
-    if(StateDataManager.has('company')){
-      $scope.company = StateDataManager.get('company');
+    $scope.companies = companies;
+
+    $scope.$watch('company', function(newCompany, oldCompany){
+      AMIRequest.set('operator', newCompany);
+      dataProviderService.getItem('operators/' + newCompany.id + '/services')
+      .then(function(services){
+        if(services.length){
+          if(services.length > 1){
+            $scope.services = services;
+            for (var i =  services.length - 1; i >= 0; i--) {
+               services[i].selected = false;
+            };
+          }
+          else{
+            services[0].selected = true;
+            AMIRequest.set('services', services);
+            $scope.IsServiceSelected = true;
+          }
+        }
+        else{
+          alert("Sorry, no services for this operator.");
+        }
+      });
+    });
+    // if(StateDataManager.has('company')){
+    //   $scope.company = StateDataManager.get('company');
+    // }
+    // if(StateDataManager.has('services')){
+    //   $scope.services = StateDataManager.get('services');
+    // }
+    // else{
+    //   $scope.services = [];
+    // }
+    // $scope.prepServices = function(){
+    //   $scope.services = [];
+    //   angular.forEach($scope.company.getServices(), function(service, key){
+    //     this.push({
+    //       selected: false,
+    //       serviceObj: service
+    //     })
+    //   }, $scope.services);
+    //   StateDataManager.stash('services', $scope.services);
+    // }
+    $scope.$watch(function(){
+      if($scope.services && $scope.services.length > 0){
+        if($scope.checkServiceSelection()){
+          $scope.IsServiceSelected = true;
+        }
+        else{
+          $scope.IsServiceSelected = false;
+        }
+      }
+    });
+
+    $scope.checkServiceSelection = function(){
+      for (var i = $scope.services.length - 1; i >= 0; i--) {
+        if($scope.services[i].selected){
+          return true;
+        }
+      }
     }
-    if(StateDataManager.has('services')){
-      $scope.services = StateDataManager.get('services');
-    }
-    else{
-      $scope.services = [];
-    }
-    $scope.prepServices = function(){
-      $scope.services = [];
-      angular.forEach($scope.company.getServices(), function(service, key){
-        this.push({
-          selected: false,
-          serviceObj: service
-        })
-      }, $scope.services);
-      StateDataManager.stash('services', $scope.services);
-    }
+
     $scope.showService = function(service){
+      console.log(service, $scope.services);
       return (service.selected === true);
     }
-    $scope.getPiiTypes = function(){
-      var piiTypes = [];
-      angular.forEach($scope.services, function(service, key){
-        if($scope.showService(service)){
-          piiTypes = piiTypes.concat(service.serviceObj.getServicePiiTypes());
-        }
-      }, piiTypes);
-      $scope.piiTypes = _.uniq(piiTypes);
-      if($scope.piiTypes.length > 0){
-        $scope.IsServiceSelected = true;
-        NavCollection.unRestrict('subscriberInfo');
-      }
-      else{
-        $scope.IsServiceSelected = false;
-        NavCollection.restrict('subscriberInfo');
-      }
-    }
+    
     $scope.next = function(){
       if($scope.IsServiceSelected){
+        AMIRequest.set('services', $scope.services);
         $scope.nextIsLoading = true;
         $location.path('subscriberInfo');
       }
@@ -96,12 +126,7 @@ pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window',
         }
       }
     });
-    $scope.$watch('services', function(newServices, oldServices){
-      $scope.getPiiTypes();
-    }, true)
-    $scope.$watch('piiTypes', function(newPiiTypes, oldPiiTypes){
-      StateDataManager.stash('piiTypes', $scope.piiTypes);
-    }, true);
+
 
     NavCollection.finishSelect('companyInfo');
   }]);

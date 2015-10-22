@@ -10,8 +10,10 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('MainCtrl', ['$scope', 'StateDataManager', 'NavCollection', '$location', function ($scope, StateDataManager, NavCollection, $location) {
+pirsApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'StateDataManager', 'NavCollection', '$location', 'jurisdictions', function ($scope, AMIRequest, StateDataManager, NavCollection, $location, jurisdictions) {
+    console.log(jurisdictions);
     $scope.nextIsLoading = false;
+    $scope.jurisdiction = AMIRequest.get('jurisdiction');
     if(StateDataManager.has('faqShow')){
       $scope.show = StateDataManager.get('faqShow');
     }
@@ -31,5 +33,10 @@ pirsApp.controller('MainCtrl', ['$scope', 'StateDataManager', 'NavCollection', '
       $scope.nextIsLoading = true;
       $location.path('companyInfo');
     }
+    $scope.$watch(function() {
+      var jurisdiction;
+      jurisdiction = AMIRequest.get('jurisdiction');
+      $scope.jurisdiction = jurisdiction;
+    });
     NavCollection.finishSelect('home');
 }]);

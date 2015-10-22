@@ -1,34 +1,26 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
-<h2>Your Telecommunications Service Providers</h2>
+<h2>{{industry.title}}</h2>
 <form>
   <fieldset>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting a company that provides you telecommunications services (internet, landline, or mobile telephone). You're entitled to do this for all companies that provide you such services.</p></div>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting a company that provides your services. You're entitled to do this for all companies that provide you such services.</p></div>
 <div class="well">
   <h3><label for="company">Company <span class="required">*</span></label></h3>
   <div class="row">
     <div class="col-sm-6">
-      <select tabindex="1" name="company" ng-model="company" ng-options="company.name for company in companies" class="form-control input-lg">
+      <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies" class="form-control input-lg">
         <option value="" selected>Select company</option>
       </select>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-12 mart10">
-      Supplementary info about companies. What to do if company not on list: Here's template for you.
-    </div>
-  </div>
 </div>
-<div class="well clearfix" ng-show="company">
+<div class="well clearfix" ng-show="services">
 <h3><label>Service(s) <span class="required">*</span></label></h3>
-<div class="checkbox  clearfix" ng-repeat="companyService in services">
-    <label class="fat col-sm-6" ng-class="{'bg-success': companyService.selected}" >
-      <input type="checkbox" ng-model="companyService.selected" ng-true-value="{{true}}" ng-checked="showService(companyService)" data-ng-false-value="{{false}}"  tabindex="1" />
-      <span class="fa" ng-class="{'fa-phone': companyService.serviceObj.serviceType.name=='telephone', 'fa-mobile': companyService.serviceObj.serviceType.name=='mobile', 'fa-globe': companyService.serviceObj.serviceType.name=='internet'}"></span>&nbsp;{{companyService.serviceObj.name}}
+<div class="checkbox  clearfix" ng-repeat="service in services">
+    <label class="fat col-sm-6" ng-class="{'bg-success': service.selected}" >
+      <input type="checkbox" ng-model="service.selected" ng-true-value="{{true}}" ng-checked="showService(service)" data-ng-false-value="{{false}}"  tabindex="1" />
+      {{service.title}}
     </label>
-    <div class="fat col-sm-6" ng-show="company.linkedDataSets.ixMapStars && companyService.serviceObj.serviceType.name=='internet'">
-      <span ng-repeat="star in company.linkedDataSets.ixMapStars" class="fa ixmapstar" ng-class="{'fa-star': star.score == '1', 'fa-star-half-o': star.score == '0.5', 'fa-star-o': star.score == '0'}" tooltip-animation="false" tooltip="{{star.star_short_name}}"></span>
-      <br/><a href="http://ixmaps.ca/transparency.php" target="_blank">ISP Privacy Transparency Score <span class="fa fa-external-link"></span></a>: 
-    </div>
+</div>
 </div>
 <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!IsServiceSelected || nextIsLoading)}" ng-click="next()">
 <span ng-if="!nextIsLoading">Next</span>

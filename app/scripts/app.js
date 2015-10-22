@@ -17,6 +17,7 @@ var pirsApp = angular.module('pirsApp', [
     'ngJSPDF',
     'ProgressBarNav',
     'StateDataManager',
+    'AMIRequest',
     'ngSticky',
     'ui.bootstrap'
   ])
@@ -24,11 +25,33 @@ var pirsApp = angular.module('pirsApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          jurisdictions: ["dataProviderService", function(dataProviderService) {
+            return dataProviderService.getItem("jurisdictions");
+          }]
+        },
+      })
+      .when('/industry', {
+        templateUrl: 'views/industry.html',
+        controller: 'IndustryCtrl',
+        resolve: {
+          industries: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem("jurisdictions/" + jurisdiction.id + "/industries");
+          }]
+        },
       })
       .when('/companyInfo', {
         templateUrl: 'views/company.html',
-        controller: 'CompanyCtrl'
+        controller: 'CompanyCtrl',
+        resolve: {
+          companies: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem("jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
+          }]
+        },
       })
       .when('/subscriberInfo', {
         templateUrl: 'views/subscriber.html',
@@ -55,6 +78,23 @@ function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
+
+pirsApp.factory('dataProviderService', ['$route', '$q', '$http', function( $route, $q, $http ) {
+    var baseURL = "http://localhost:8888/amicms/wp-json/amicms/";
+    return {
+        getItem: function (itemPath) {
+            var delay = $q.defer();
+            var itemURL = baseURL + itemPath;
+            $http({method: 'GET', url: itemURL, params: {}})
+            .success( function(data, status, headers, config) {
+                delay.resolve( data );
+            }).error( function(data, status, headers, config) {
+                delay.reject( data );
+            });
+            return delay.promise;
+        }
+    };
+}]);
 
 pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
   $http({method: 'GET', url: 'data.json'})
@@ -117,7 +157,7 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
   });
   var stages = [
       {
-        name: "Overview",
+        name: "",
         path: "#/",
         id: "home",
         icon: "fa fa-home",
@@ -126,16 +166,25 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
         target: "_self"
       },
       {
-        name: "Company",
-        path: "#/companyInfo",
-        id: "companyInfo",
-        icon: "fa fa-briefcase",
+        name: "Industry",
+        path: "#/industry",
+        id: "industry",
+        icon: "fa fa-institution",
         restricted: false,
         className: "",
         target: "_self"
       },
       {
-        name: "Contact",
+        name: "Org",
+        path: "#/companyInfo",
+        id: "companyInfo",
+        icon: "fa fa-briefcase",
+        restricted: true,
+        className: "",
+        target: "_self"
+      },
+      {
+        name: "You",
         path: "#/subscriberInfo",
         id: "subscriberInfo",
         icon: "fa fa-user",
@@ -153,7 +202,7 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
         target: "_self"
       },
       {
-        name: "Letter",
+        name: "Request",
         path: "#/letter",
         id: "letter",
         icon: "fa fa-file-text",
