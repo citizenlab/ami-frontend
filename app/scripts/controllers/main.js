@@ -14,6 +14,9 @@ pirsApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'StateDataManager', 'Nav
     console.log(jurisdictions);
     $scope.nextIsLoading = false;
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
+    $scope.component = {};
+    // $scope.jurisdiction = {"id": 18};
+    $scope.industry = {"id": 30};
     if(StateDataManager.has('faqShow')){
       $scope.show = StateDataManager.get('faqShow');
     }
@@ -31,7 +34,7 @@ pirsApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'StateDataManager', 'Nav
     }
     $scope.next = function(){
       $scope.nextIsLoading = true;
-      $location.path('companyInfo');
+      $location.path('industry');
     }
     $scope.$watch(function() {
       var jurisdiction;

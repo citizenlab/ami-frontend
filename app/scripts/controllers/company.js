@@ -12,38 +12,66 @@ Unless required by applicable law or agreed to in writing, software distributed 
 'use strict';
 pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'StateDataManager', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, StateDataManager, NavCollection, companies, AMIRequest, dataProviderService) {
     $window.scrollTo(0,0)
-    NavCollection.unRestrict('companyInfo');
+    NavCollection.unRestrict('operator');
     $scope.previous = function(){
-      $location.path('/');
+      $location.path('/industry');
     }
     $scope.nextIsLoading = false;
     
+    if(!AMIRequest.has('industry')){
+      $scope.previous();
+      return;
+    }
+
     $scope.industry = AMIRequest.get('industry');
     // $scope.companies = companies;
     $scope.companies = companies;
 
+    if(AMIRequest.has('operator')){
+      $scope.company = AMIRequest.get('operator');
+    }
+
+
     $scope.$watch('company', function(newCompany, oldCompany){
-      AMIRequest.set('operator', newCompany);
-      dataProviderService.getItem('operators/' + newCompany.id + '/services')
-      .then(function(services){
-        if(services.length){
-          if(services.length > 1){
-            $scope.services = services;
-            for (var i =  services.length - 1; i >= 0; i--) {
-               services[i].selected = false;
-            };
+      if(newCompany !== oldCompany){
+        AMIRequest.set('operator', newCompany);
+        dataProviderService.getItem('operators/' + newCompany.id + '/services')
+        .then(function(services){
+          if(services.length){
+            if(services.length > 1){
+              $scope.services = services;
+              for (var i =  services.length - 1; i >= 0; i--) {
+                 services[i].selected = false;
+              };
+            }
+            else{
+              delete $scope.services;
+              services[0].selected = true;
+              AMIRequest.set('services', services);
+              $scope.stageComplete();
+            }
           }
           else{
-            services[0].selected = true;
-            AMIRequest.set('services', services);
-            $scope.IsServiceSelected = true;
+            alert("Sorry, no services for this operator.");
+          }
+        });
+      }
+      else{
+        if(AMIRequest.has('services')){
+          if(AMIRequest.get('services').length > 1){
+            $scope.services = AMIRequest.get('services');
+          }
+          else{
+            $scope.stageComplete();
           }
         }
-        else{
-          alert("Sorry, no services for this operator.");
-        }
-      });
+      }
     });
+
+$scope.stageComplete = function(){
+  $scope.IsServiceSelected = true;
+  NavCollection.unRestrict('subject');
+}
     // if(StateDataManager.has('company')){
     //   $scope.company = StateDataManager.get('company');
     // }
@@ -65,8 +93,9 @@ pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window',
     // }
     $scope.$watch(function(){
       if($scope.services && $scope.services.length > 0){
+        AMIRequest.set('services', $scope.services);
         if($scope.checkServiceSelection()){
-          $scope.IsServiceSelected = true;
+          $scope.stageComplete();
         }
         else{
           $scope.IsServiceSelected = false;
@@ -89,44 +118,44 @@ pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window',
     
     $scope.next = function(){
       if($scope.IsServiceSelected){
-        AMIRequest.set('services', $scope.services);
         $scope.nextIsLoading = true;
-        $location.path('subscriberInfo');
+        $location.path('subject');
       }
     }
 
     // $scope.customer = {address:{}};
     // $scope.pii = $scope.services.getAddress();
     $scope.$watch('company', function(newCompany, oldCompany){
-      var customer;
-      if(typeof $scope.company !== "undefined"){
-        console.log(newCompany);
-        StateDataManager.stash('company', $scope.company);
-        if(StateDataManager.get('company') !== oldCompany){
-          $scope.prepServices();
-          if(StateDataManager.has('customer')){
-            customer = StateDataManager.get('customer');
-            customer.accountNo = null;
-            customer.phone = null;
-            customer.email = null;
-            StateDataManager.stash('customer', customer);
-          }
-          if(StateDataManager.has('servicesUnderOneAccount')){
-            StateDataManager.pop('servicesUnderOneAccount')
-          }
-          if(StateDataManager.has('singleAccount')){
-            StateDataManager.pop('singleAccount');
-          }
-          if(StateDataManager.has('alreadyDone')){
-            StateDataManager.pop('alreadyDone');
-          }
-          if(StateDataManager.has('letterDoneState')){
-            StateDataManager.pop('letterDoneState');
-          }
-        }
-      }
+      AMIRequest.set('operator', $scope.company);
+      // var customer;
+      // if(typeof $scope.company !== "undefined"){
+      //   console.log(newCompany);
+      //   StateDataManager.stash('company', $scope.company);
+      //   if(StateDataManager.get('company') !== oldCompany){
+      //     $scope.prepServices();
+      //     if(StateDataManager.has('customer')){
+      //       customer = StateDataManager.get('customer');
+      //       customer.accountNo = null;
+      //       customer.phone = null;
+      //       customer.email = null;
+      //       StateDataManager.stash('customer', customer);
+      //     }
+      //     if(StateDataManager.has('servicesUnderOneAccount')){
+      //       StateDataManager.pop('servicesUnderOneAccount')
+      //     }
+      //     if(StateDataManager.has('singleAccount')){
+      //       StateDataManager.pop('singleAccount');
+      //     }
+      //     if(StateDataManager.has('alreadyDone')){
+      //       StateDataManager.pop('alreadyDone');
+      //     }
+      //     if(StateDataManager.has('letterDoneState')){
+      //       StateDataManager.pop('letterDoneState');
+      //     }
+      //   }
+      // }
     });
 
 
-    NavCollection.finishSelect('companyInfo');
+    NavCollection.finishSelect('operator');
   }]);

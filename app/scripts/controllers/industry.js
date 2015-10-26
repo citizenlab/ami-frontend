@@ -21,16 +21,27 @@ pirsApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window'
     // $scope.companies = companies;
     $scope.industries = industries;
     
+    if(AMIRequest.has('industry')){
+      $scope.industry = AMIRequest.get('industry');
+      $scope.isIndustrySelected = true;
+    }
+
     $scope.next = function(){
       if($scope.isIndustrySelected){
         $scope.nextIsLoading = true;
-        $location.path('companyInfo');
+        $location.path('operator');
       }
     }
     $scope.$watch('industry', function(oldIndustry, newIndustry){
       if($scope.industry && $scope.industry.id){
         AMIRequest.set('industry', $scope.industry);
         $scope.isIndustrySelected = true;
+        NavCollection.unRestrict('operator');
+      }
+      else{
+        AMIRequest.set('industry', {});
+        $scope.isIndustrySelected = false;
+        NavCollection.restrict('operator');
       }
     })
     $scope.$watch(function() {

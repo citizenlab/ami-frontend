@@ -42,7 +42,7 @@ var pirsApp = angular.module('pirsApp', [
           }]
         },
       })
-      .when('/companyInfo', {
+      .when('/operator', {
         templateUrl: 'views/company.html',
         controller: 'CompanyCtrl',
         resolve: {
@@ -53,17 +53,29 @@ var pirsApp = angular.module('pirsApp', [
           }]
         },
       })
-      .when('/subscriberInfo', {
+      .when('/subject', {
         templateUrl: 'views/subscriber.html',
         controller: 'SubscriberCtrl'
       })
-      .when('/accountInfo', {
+      .when('/account', {
         templateUrl: 'views/accountInfo.html',
         controller: 'AccountCtrl'
       })
-      .when('/letter', {
-        templateUrl: 'views/letter.html',
-        controller: 'LetterCtrl'
+      .when('/request', {
+        templateUrl: 'views/request.html',
+        controller: 'RequestCtrl',
+        resolve: {
+          components: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+            var services = AMIRequest.get('services');
+            var service_ids = [];
+             angular.forEach(services, function(value, key){
+                if(value.selected){
+                  service_ids.push(value.id);
+                }
+              }, service_ids);
+            return dataProviderService.getItem("components/", {"services": service_ids});
+          }]
+        },
       })
       .when('/finish', {
         templateUrl: 'views/finish.html',
@@ -82,10 +94,13 @@ function validateEmail(email) {
 pirsApp.factory('dataProviderService', ['$route', '$q', '$http', function( $route, $q, $http ) {
     var baseURL = "http://localhost:8888/amicms/wp-json/amicms/";
     return {
-        getItem: function (itemPath) {
+        getItem: function (itemPath, params) {
             var delay = $q.defer();
             var itemURL = baseURL + itemPath;
-            $http({method: 'GET', url: itemURL, params: {}})
+            if(typeof params == "undefined"){
+              params = {};
+            }
+            $http({method: 'GET', url: itemURL, params: params})
             .success( function(data, status, headers, config) {
                 delay.resolve( data );
             }).error( function(data, status, headers, config) {
@@ -95,6 +110,34 @@ pirsApp.factory('dataProviderService', ['$route', '$q', '$http', function( $rout
         }
     };
 }]);
+
+pirsApp.directive('requestTemplate', function ($compile, dataProviderService) {
+    var linker = function (scope, element, attrs) {
+        var jurisdiction = scope.jurisdiction.id;
+        var industry = scope.industry.id;
+        var itemPath = "jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
+        dataProviderService.getItem(itemPath).then(function (response) {
+            element.html(response[0].meta.request_body);
+            $compile(element.contents())(scope);
+        });
+    };
+
+    return {
+        restrict: 'E',
+        link: linker,
+        scope: {
+            component: '=',
+            operator: '=',
+            subject: '=',
+            jurisdiction: '=',
+            industry: '=',
+            servicelist: '=',
+            date: '=',
+            componentquestions: '=',
+            componentdata: '='
+        }
+    };
+});
 
 pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
   $http({method: 'GET', url: 'data.json'})
@@ -169,15 +212,15 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
         name: "Industry",
         path: "#/industry",
         id: "industry",
-        icon: "fa fa-institution",
+        icon: "fa fa-industry",
         restricted: false,
         className: "",
         target: "_self"
       },
       {
         name: "Org",
-        path: "#/companyInfo",
-        id: "companyInfo",
+        path: "#/operator",
+        id: "operator",
         icon: "fa fa-briefcase",
         restricted: true,
         className: "",
@@ -185,8 +228,8 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
       },
       {
         name: "You",
-        path: "#/subscriberInfo",
-        id: "subscriberInfo",
+        path: "#/subject",
+        id: "subject",
         icon: "fa fa-user",
         restricted: true,
         className: "",
@@ -194,8 +237,8 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
       },
       {
         name: "Account",
-        path: "#/accountInfo",
-        id: "accountInfo",
+        path: "#/account",
+        id: "account",
         icon: "fa fa-barcode",
         restricted: true,
         className: "",
@@ -203,8 +246,8 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
       },
       {
         name: "Request",
-        path: "#/letter",
-        id: "letter",
+        path: "#/request",
+        id: "request",
         icon: "fa fa-file-text",
         restricted: true,
         className: "",
@@ -212,7 +255,7 @@ pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
       },
       {
         name: "Connect",
-        path: "https://openmedia.ca/MyInfo/reminder",
+        path: "https://openeffect.ca",
         id: "finish",
         icon: "fa fa-external-link",
         restricted: false,

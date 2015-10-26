@@ -11,20 +11,40 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 'use strict';
 var AMIRequest = angular.module('AMIRequest', []);
-AMIRequest.service("AMIRequest", function($rootScope){
+AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   var request = {};
   request.get = function(key){
     return this[key];
   }
   request.set = function(key, value){
+    var oldValue = this[key];
     this[key] = value;
+    if(oldValue !== value && this.hierarchy.indexOf(key) >= 0){
+      this.resolveHierarchy(key);
+    }
   }
-  request.subject = {};
-  request.operator = {};
-  request.jurisdiction = {};
-  request.industry = {};
-  request.services = {};
-  request.components = {};
-  request.letter = {};
+  request.has = function(key){
+    return (typeof this[key] !== "undefined");
+  }
+  request.resolveHierarchy = function(key){
+    var index = this.hierarchy.indexOf(key);
+    if(key === "jurisdiction"){
+      NavCollection.restrict('operator');
+      delete this['industry'];
+      $location.path('/');
+      index+=1;
+    }
+    for (var i = index+1; i <= this.hierarchy.length; i++) {
+      delete this[this.hierarchy[i]];
+      try{
+        NavCollection.restrict(this.hierarchy[i]);
+      }
+      catch(e){
+        console.log("welp");
+      }
+    };
+  }
+  request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'letter'];
+
   return request;
 });

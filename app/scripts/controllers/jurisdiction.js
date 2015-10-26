@@ -5,9 +5,15 @@ pirsApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$win
     .then(function(jurisdictions){
       $scope.jurisdictions = jurisdictions;
       $scope.jurisdiction = jurisdictions[0];
+      AMIRequest.set('jurisdiction', jurisdictions[0]);
       return jurisdictions[0];
     }));
-    $scope.$watch('jurisdiction', function(newJurisdiction, oldJurisdiction){
-      AMIRequest.set('jurisdiction', newJurisdiction);
+    $scope.selectJurisdiction = function(jurisdiction){
+      AMIRequest.set('jurisdiction', jurisdiction);
+    }
+    $scope.$watch(function() {
+      var jurisdiction;
+      jurisdiction = AMIRequest.get('jurisdiction');
+      $scope.jurisdiction = jurisdiction;
     });
 }]);

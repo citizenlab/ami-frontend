@@ -1,19 +1,19 @@
 <!-- <div class="btn btn-default" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span> Back to Your Information</div> -->
-<h2>Account Details for your {{company.name}} services</h2>
+<h2>Account Details for your {{company.title}} services</h2>
 <form>
 <fieldset>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-barcode bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Your account number</strong> and other details help {{company.name}} identify the information it holds on you. These details can be found on your monthly invoice or in your service's online account portal.</p></div>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-barcode bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Your account number</strong> and other details help {{company.title}} identify the information it holds on you. These details can be found on your monthly invoice or in your service's online account portal.</p></div>
 <div ng-show="!oneService">
   <div class="checkbox">
       <label ng-class="{'bg-success': companyService.selected}" >
         <input type="checkbox" ng-model="servicesUnderOneAccount" ng-true-value="{{true}}" data-ng-false-value="{{false}}"  tabindex="1" ng-checked="servicesUnderOneAccount"/>
-        <span class="glyphicon" ng-class="{'glyphicon-phone-alt': companyService.serviceObj.serviceType.name=='telephone', 'glyphicon-phone': companyService.serviceObj.serviceType.name=='mobile', 'glyphicon-globe': companyService.serviceObj.serviceType.name=='internet'}"></span>Do you have one customer account for your <span ng-repeat="service in services | filter:showService"><span ng-if="!$first && !$last">, </span><span ng-if="$last && !$first"> and </span>{{service.serviceObj.name}}<span ng-if="$first && $last"> service</span><span ng-if="!$first && $last"> services?</span></span>
+        <span class="glyphicon" ng-class="{'glyphicon-phone-alt': companyService.title=='Mobile Phone', 'glyphicon-phone': companyService.title=='mobile', 'glyphicon-globe': companyService.title=='Home internet'}"></span>Do you have one customer account for your <span ng-repeat="service in services | filter:showService"><span ng-if="!$first && !$last">, </span><span ng-if="$last && !$first"> and </span>{{service.title}}<span ng-if="$first && $last"> service</span><span ng-if="!$first && $last"> services?</span></span>
       </label>
   </div>
 </div>
 <div ng-if="servicesUnderOneAccount">
   <div class="well">
-    <h3><span ng-repeat="service in services | filter:showService"><span ng-if="!$first && !$last">, </span><span ng-if="$last && !$first"> and </span>{{service.serviceObj.name}}<span ng-if="!$first && $last"></span></span></h3>
+    <h3><span ng-repeat="service in services | filter:showService"><span ng-if="!$first && !$last">, </span><span ng-if="$last && !$first"> and </span>{{service.title}}<span ng-if="!$first && $last"></span></span></h3>
     <div class="row">
       <div class="form-group col-sm-6">
         <label for="singleAccount.number">Account Number <span class="required">*</span></label>
@@ -42,7 +42,7 @@
 </div>
 <div ng-if="!servicesUnderOneAccount">
   <div class="well" ng-repeat="service in services | filter:showService">
-    <h3>{{service.serviceObj.name}}</h3>
+    <h3>{{service.title}}</h3>
     <div class="row">
       <div class="form-group col-sm-6">
         <label for="service.account.number">Account Number <span class="required">*</span></label>

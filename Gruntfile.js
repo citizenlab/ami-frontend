@@ -234,6 +234,9 @@ module.exports = function (grunt) {
             [/(\/bower_components\/font-awesome\/fonts)/g, 'god help me', function(match) {
               return match.replace('/bower_components/font-awesome/fonts', '../fonts');
             }],
+            [/(\(\/fonts\/)/g, 'god help me', function(match) {
+              return match.replace('(/fonts', '(../fonts');
+            }],
           ],
         }
       }
@@ -396,7 +399,7 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        preserveComments: 'some'
+        preserveComments: "some"
       }
     },
 

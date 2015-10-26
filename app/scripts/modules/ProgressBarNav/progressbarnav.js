@@ -175,7 +175,6 @@ ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'StateDataMana
         return stage.icon;
       }
     };
-
      $scope.$watch(function() {
       $scope.previous = NavCollection.previous;
       $scope.next = NavCollection.next;

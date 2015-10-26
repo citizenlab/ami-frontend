@@ -1,5 +1,5 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
-<h2>{{industry.title}}</h2>
+<h2>{{industry.title}}: Select an organization</h2>
 <form>
   <fieldset>
 <div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting a company that provides your services. You're entitled to do this for all companies that provide you such services.</p></div>
@@ -7,7 +7,7 @@
   <h3><label for="company">Company <span class="required">*</span></label></h3>
   <div class="row">
     <div class="col-sm-6">
-      <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies" class="form-control input-lg">
+      <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies track by company.id" class="form-control input-lg">
         <option value="" selected>Select company</option>
       </select>
     </div>

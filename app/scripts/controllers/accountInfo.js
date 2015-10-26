@@ -10,11 +10,11 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', function ($scope, $location, $window, StateDataManager, NavCollection) {
+pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', 'AMIRequest', function ($scope, $location, $window, StateDataManager, NavCollection, AMIRequest) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   $scope.previous = function(){
-    $location.path('/subscriberInfo');
+    $location.path('/subject');
   }
   if(StateDataManager.has('servicesUnderOneAccount')){
     $scope.servicesUnderOneAccount = StateDataManager.get('servicesUnderOneAccount');
@@ -27,13 +27,12 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
   else{
     $scope.singleAccount = {};
   }
-
-  if(!StateDataManager.has('customer') || !StateDataManager.get('company') || !StateDataManager.has('services') || !((typeof _.findWhere(StateDataManager.get('services'), {selected: true})) !== "undefined")){
+  if(!AMIRequest.has('subject') || !AMIRequest.has('operator') || !AMIRequest.has('services' || !(typeof _.findWhere(AMIRequest.get('services'), {selected: true}) !== "undefined"))){
     $scope.previous();
     return;
   }
   else{
-    $scope.services = StateDataManager.get('services');
+    $scope.services = AMIRequest.get('services');
     $scope.selectedServices = 0;
     angular.forEach($scope.services, function(value, key){
       if(value.selected){
@@ -43,11 +42,9 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
     if($scope.selectedServices == 1){
       $scope.oneService = true;
     }
-    $scope.company = StateDataManager.get('company');
+    $scope.company = AMIRequest.get('operator');
     angular.forEach($scope.services, function(service, key){
-      if(typeof service.account == "undefined"){
-        service.account = {};
-      }
+      var identifiers = {};
       service.getFirstEmail = function(){
         return $scope.services[0].account.email;
       }
@@ -75,11 +72,11 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
     if($scope.servicesUnderOneAccount){
       console.log($scope.singleAccount);
       if($scope.singleAccount && $scope.singleAccount.number){
-        NavCollection.unRestrict('letter');
+        NavCollection.unRestrict('request');
         return true;
       }
       else{
-        NavCollection.restrict('letter');
+        NavCollection.restrict('request');
         return false;
       }
     }
@@ -94,10 +91,10 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
       }
     }, isFilled);
     if(isFilled){
-      NavCollection.unRestrict('letter');
+      NavCollection.unRestrict('request');
     }
     else{
-      NavCollection.restrict('letter');
+      NavCollection.restrict('request');
     }
     return isFilled;
   }
@@ -107,16 +104,17 @@ pirsApp.controller('AccountCtrl', ['$scope', '$location', '$window', 'StateDataM
   $scope.next = function(){
     if($scope.requiredFieldsFilled()){
       $scope.nextIsLoading = true;
-      $location.path('letter');
+      $location.path('request');
     }
   }
   $scope.$watch('services', function(){
     StateDataManager.stash('services', $scope.services);
+
   })
   $scope.$watch('servicesUnderOneAccount', function(){
     StateDataManager.stash('servicesUnderOneAccount', $scope.servicesUnderOneAccount);
     StateDataManager.stash('singleAccount', $scope.singleAccount);
   })
 
-  NavCollection.finishSelect('accountInfo');
+  NavCollection.finishSelect('account');
 }]);

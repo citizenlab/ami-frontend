@@ -9,22 +9,23 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', function ($scope, $location, $window, StateDataManager, NavCollection) {
+pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', 'AMIRequest', function ($scope, $location, $window, StateDataManager, NavCollection, AMIRequest) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
+  
   $scope.previous = function(){
-    $location.path('/companyInfo');
+    $location.path('/company');
   }
-  if(!StateDataManager.has('piiTypes')){
+  if(!AMIRequest.has('services')){
     $scope.previous();
     return;
   }
   else{
-    if(StateDataManager.has('company')){
-      $scope.company = StateDataManager.get('company');
+    if(AMIRequest.has('operator')){
+      $scope.company = AMIRequest.get('operator');
     }
-    if(StateDataManager.has('customer')){
-      $scope.customer = StateDataManager.get('customer');
+    if(AMIRequest.has('subject')){
+      $scope.customer = AMIRequest.get('subject');
     }else{
       $scope.customer = {address: {}};
     }
@@ -92,7 +93,6 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
     ]
   }
   $scope.requiredFieldsFilled = function(){
-    console.log("province", $scope.customer.address.province)
     var filled = (
     ($scope.customer.firstName)
     && ($scope.customer.lastName)
@@ -104,22 +104,22 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
     );
     if(filled){
       $scope.customer.isComplete = true;
-      NavCollection.unRestrict('accountInfo');
+      NavCollection.unRestrict('account');
     }
     else{
       $scope.customer.isComplete = false;
-      NavCollection.restrict('accountInfo');
+      NavCollection.restrict('account');
     }
     return filled;
   }
   $scope.next = function(){
     if($scope.requiredFieldsFilled()){
       $scope.nextIsLoading = true;
-      $location.path('accountInfo');
+      $location.path('account');
     }
   }
   $scope.$watch('customer', function(){
-    StateDataManager.stash('customer', $scope.customer);
+    AMIRequest.set('subject', $scope.customer);
   })
   $scope.showNotice = function(){
     StateDataManager.stash('noticeValue', true);
@@ -127,5 +127,5 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
   if(StateDataManager.has('alreadyDone')){
     $scope.showNotice();
   }
-  NavCollection.finishSelect('subscriberInfo');
+  NavCollection.finishSelect('subject');
 }]);
