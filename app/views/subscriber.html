@@ -3,6 +3,9 @@
 <form>
 <fieldset>
 <div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-user bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Your name and address</strong> will be used to create a formal letter and also help {{company.name}} identify you in its records. Remember, this form <strong>does not collect your data</strong> – it creates a letter for you to send yourself.</p></div>
+<div ng-repeat="identifier in identifiers">
+  <form-item id="{{identifier.id}}" form_field_type="identifier.meta.form_field_type" options="identifier.meta.options" label="identifier.title"></form-item>
+</div>
 <div class="well">
 <div class="row">
   <div class="form-group col-sm-4">

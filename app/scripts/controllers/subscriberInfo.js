@@ -9,7 +9,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', 'AMIRequest', function ($scope, $location, $window, StateDataManager, NavCollection, AMIRequest) {
+pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', 'AMIRequest', 'identifiers', function ($scope, $location, $window, StateDataManager, NavCollection, AMIRequest, identifiers) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   
@@ -20,7 +20,9 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
     $scope.previous();
     return;
   }
-  else{
+  if(identifiers){
+    $scope.identifiers = identifiers['34'];
+  }
     if(AMIRequest.has('operator')){
       $scope.company = AMIRequest.get('operator');
     }
@@ -91,7 +93,6 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
           "code":"YT"
         }
     ]
-  }
   $scope.requiredFieldsFilled = function(){
     var filled = (
     ($scope.customer.firstName)

@@ -55,7 +55,19 @@ var pirsApp = angular.module('pirsApp', [
       })
       .when('/subject', {
         templateUrl: 'views/subscriber.html',
-        controller: 'SubscriberCtrl'
+        controller: 'SubscriberCtrl',
+        resolve: {
+          identifiers: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+            var services = AMIRequest.get('services');
+            var service_ids = [];
+             angular.forEach(services, function(value, key){
+                if(value.selected){
+                  service_ids.push(value.id);
+                }
+              }, service_ids);
+            return dataProviderService.getItem("identifiers/", {"services[]": service_ids});
+          }]
+        },
       })
       .when('/account', {
         templateUrl: 'views/accountInfo.html',
@@ -73,7 +85,7 @@ var pirsApp = angular.module('pirsApp', [
                   service_ids.push(value.id);
                 }
               }, service_ids);
-            return dataProviderService.getItem("components/", {"services": service_ids});
+            return dataProviderService.getItem("components/", {"services[]": service_ids});
           }]
         },
       })
@@ -135,6 +147,40 @@ pirsApp.directive('requestTemplate', function ($compile, dataProviderService) {
             date: '=',
             componentquestions: '=',
             componentdata: '='
+        }
+    };
+});
+
+pirsApp.directive('formItem', function ($compile, dataProviderService) {
+    var template = {
+      text: '<label for="{{id}}"><input type="text" name="{{id}}"/>',
+      select: '<label for="{{id}}"><select name="{{id}}"><option ng-repeat="{{option in field_options}}" value="{{option.value}}">option.title</option></select>'
+    }
+
+    var linker = function (scope, element, attrs) {
+        var id = scope.id;
+        var form_field_type = scope.form_field_type;
+        switch(form_field_type){
+          case "Text":
+            template = templates['text'];
+          break;
+          case "Select":
+            template = templates['select'];
+          break;
+          default:
+            template = templates['text'];
+          break;
+        }
+    };
+
+    return {
+        restrict: 'E',
+        link: linker,
+        scope: {
+            id: '=',
+            form_field_type: '=',
+            label: '=',
+            options: '='
         }
     };
 });
