@@ -17,6 +17,7 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     return this[key];
   }
   request.set = function(key, value){
+    console.log(key, "set", value);
     var oldValue = this[key];
     this[key] = value;
     if(oldValue !== value && this.hierarchy.indexOf(key) >= 0){

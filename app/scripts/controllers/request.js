@@ -9,7 +9,7 @@ pirsApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'StateDataM
     $scope.previous();
     return;
   }
-
+console.log(AMIRequest.get('subject'));
   $scope.components = components;
   $scope.jurisdiction = AMIRequest.get('jurisdiction');
   $scope.industry = AMIRequest.get('industry');

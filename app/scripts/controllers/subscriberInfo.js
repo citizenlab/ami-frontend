@@ -20,8 +20,29 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
     $scope.previous();
     return;
   }
+  $scope.services = AMIRequest.get('services');
   if(identifiers){
-    $scope.identifiers = identifiers['34'];
+    if(AMIRequest.has('subject')){
+      $scope.subject = AMIRequest.get('subject');
+    }
+    else{
+      $scope.subject = {};
+      $scope.subject.basic_personal_info = {};
+      $scope.subject.service_identifiers = {};
+      console.log("subject overwrite", $scope.subject);
+      AMIRequest.set('subject', $scope.subject);
+    }
+    console.log($scope.subject);
+    if(identifiers['basic_personal_info']){
+      $scope.basic_identifiers = identifiers['basic_personal_info'];
+    }
+    $scope.service_identifiers = identifiers;
+    delete $scope.service_identifiers['basic_personal_info'];
+    for(i in $scope.service_identifiers){
+      if(typeof $scope.subject.service_identifiers[i] == "undefined"){
+        $scope.subject.service_identifiers[i] = {};
+      }
+    }
   }
     if(AMIRequest.has('operator')){
       $scope.company = AMIRequest.get('operator');
@@ -31,102 +52,20 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
     }else{
       $scope.customer = {address: {}};
     }
-    // $scope.customer.firstName = "Tester";
-    // $scope.customer.lastName = "Testerson";
-    // $scope.customer.address.address1 = "47 Test Avenue";
-    // $scope.customer.address.address2 = "#123";
-    // $scope.customer.address.city = "Testfield";
-    // $scope.customer.address.province = "ON";
-    // $scope.customer.address.postalcode = "T3S7E4";
 
-    $scope.provinces = [
-        {
-          "name":"Alberta",
-          "code":"AB"
-        },
-        {
-          "name":"British Columbia",
-          "code":"BC"
-        },
-        {
-          "name":"Manitoba", 
-          "code":"MB"
-        },
-        {
-          "name":"New Brunswick",
-          "code":"NB"
-        },
-        {
-          "name":"Newfoundland",
-          "code":"NL"
-        },
-        {
-          "name":"Northwest Territories",
-          "code":"NT"
-        },
-        {
-          "name":"Nova Scotia",
-          "code":"NS"
-        },
-        {
-          "name":"Nunavut",
-          "code":"NU"
-        },
-        {
-          "name":"Ontario",
-          "code":"ON"
-        },
-        {
-          "name":"Prince Edward Island",
-          "code":"PE"
-        },
-        {
-          "name":"Quebec",
-          "code":"QC"
-        },
-        {
-          "name":"Saskatchewan",
-          "code":"SK"
-        },
-        {
-          "name":"Yukon Territory",
-          "code":"YT"
-        }
-    ]
-  $scope.requiredFieldsFilled = function(){
-    var filled = (
-    ($scope.customer.firstName)
-    && ($scope.customer.lastName)
-    && ($scope.customer.address.address1)
-    && ($scope.customer.address.city)
-    && ($scope.customer.address.province)
-    && ($scope.customer.address.province !== "")
-    && ($scope.customer.address.postalcode)
-    );
-    if(filled){
-      $scope.customer.isComplete = true;
-      NavCollection.unRestrict('account');
-    }
-    else{
-      $scope.customer.isComplete = false;
-      NavCollection.restrict('account');
-    }
-    return filled;
-  }
+    $scope.$watch('subject', function(newVal, oldVal){
+      console.log("subject", newVal);
+      AMIRequest.set('subject', newVal);
+    });
+    
+
   $scope.next = function(){
     if($scope.requiredFieldsFilled()){
       $scope.nextIsLoading = true;
       $location.path('account');
     }
   }
-  $scope.$watch('customer', function(){
-    AMIRequest.set('subject', $scope.customer);
-  })
-  $scope.showNotice = function(){
-    StateDataManager.stash('noticeValue', true);
-  }
-  if(StateDataManager.has('alreadyDone')){
-    $scope.showNotice();
-  }
+  
   NavCollection.finishSelect('subject');
+  NavCollection.unRestrict('request');
 }]);

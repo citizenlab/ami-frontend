@@ -151,16 +151,25 @@ pirsApp.directive('requestTemplate', function ($compile, dataProviderService) {
     };
 });
 
+pirsApp.filter('object2Array', function() {
+  return function(input) {
+    return _.toArray(input);
+  }
+});
+
 pirsApp.directive('formItem', function ($compile, dataProviderService) {
-    var template = {
-      text: '<label for="{{id}}"><input type="text" name="{{id}}"/>',
-      select: '<label for="{{id}}"><select name="{{id}}"><option ng-repeat="{{option in field_options}}" value="{{option.value}}">option.title</option></select>'
+    var templates = {
+      text: '<label for="{{id}}">{{label}}<input type="text" class="form-control" name="{{id}}" ng-model="val"/>',
+      select: '<label for="{{id}}">{{label}}<select name="{{id}}" class="form-control" ng-model="val" ng-options="option as option.title for option in options track by option.value" ng-model="selected"></select>'
     }
 
     var linker = function (scope, element, attrs) {
         var id = scope.id;
-        var form_field_type = scope.form_field_type;
-        switch(form_field_type){
+        var fieldtype = scope.fieldtype;
+        var template;
+        scope.val = "";
+        console.log(arguments);
+        switch(fieldtype){
           case "Text":
             template = templates['text'];
           break;
@@ -171,6 +180,11 @@ pirsApp.directive('formItem', function ($compile, dataProviderService) {
             template = templates['text'];
           break;
         }
+        element.html(template);
+        scope.$watch('val', function(newVal, oldVal){
+          scope.model[scope.id] = {title: scope.label, value: newVal, weight: scope.weight};
+        });
+        $compile(element.contents())(scope);
     };
 
     return {
@@ -178,9 +192,11 @@ pirsApp.directive('formItem', function ($compile, dataProviderService) {
         link: linker,
         scope: {
             id: '=',
-            form_field_type: '=',
+            fieldtype: '=',
             label: '=',
-            options: '='
+            options: '=',
+            weight: '=',
+            model: '=ngModel'
         }
     };
 });
