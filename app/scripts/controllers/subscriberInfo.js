@@ -44,16 +44,15 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
       }
     }
   }
-    if(AMIRequest.has('operator')){
-      $scope.company = AMIRequest.get('operator');
-    }
+  if(AMIRequest.has('operator')){
+    $scope.company = AMIRequest.get('operator');
+  }
 
-    $scope.$watch('subject', function(newVal, oldVal){
-      console.log("subject", newVal);
-      AMIRequest.set('subject', newVal);
-    });
+  $scope.$watch('subject', function(newVal, oldVal){
+    console.log("subject", newVal);
+    AMIRequest.set('subject', newVal);
+  });
     
-
   $scope.next = function(){
     if($scope.requiredFieldsFilled()){
       $scope.nextIsLoading = true;

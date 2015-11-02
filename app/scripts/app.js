@@ -144,15 +144,15 @@ AMIApp.run(function($http, NavCollection, $timeout){
         className: "",
         target: "_self"
       },
-      {
-        name: "Account",
-        path: "#/account",
-        id: "account",
-        icon: "fa fa-barcode",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
+      // {
+      //   name: "Account",
+      //   path: "#/account",
+      //   id: "account",
+      //   icon: "fa fa-barcode",
+      //   restricted: true,
+      //   className: "",
+      //   target: "_self"
+      // },
       {
         name: "Request",
         path: "#/request",
