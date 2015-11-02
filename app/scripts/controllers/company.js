@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'StateDataManager', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, StateDataManager, NavCollection, companies, AMIRequest, dataProviderService) {
+AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService) {
     $window.scrollTo(0,0)
     NavCollection.unRestrict('operator');
     $scope.previous = function(){
@@ -72,25 +72,7 @@ $scope.stageComplete = function(){
   $scope.IsServiceSelected = true;
   NavCollection.unRestrict('subject');
 }
-    // if(StateDataManager.has('company')){
-    //   $scope.company = StateDataManager.get('company');
-    // }
-    // if(StateDataManager.has('services')){
-    //   $scope.services = StateDataManager.get('services');
-    // }
-    // else{
-    //   $scope.services = [];
-    // }
-    // $scope.prepServices = function(){
-    //   $scope.services = [];
-    //   angular.forEach($scope.company.getServices(), function(service, key){
-    //     this.push({
-    //       selected: false,
-    //       serviceObj: service
-    //     })
-    //   }, $scope.services);
-    //   StateDataManager.stash('services', $scope.services);
-    // }
+
     $scope.$watch(function(){
       if($scope.services && $scope.services.length > 0){
         AMIRequest.set('services', $scope.services);
@@ -123,37 +105,8 @@ $scope.stageComplete = function(){
       }
     }
 
-    // $scope.customer = {address:{}};
-    // $scope.pii = $scope.services.getAddress();
     $scope.$watch('company', function(newCompany, oldCompany){
       AMIRequest.set('operator', $scope.company);
-      // var customer;
-      // if(typeof $scope.company !== "undefined"){
-      //   console.log(newCompany);
-      //   StateDataManager.stash('company', $scope.company);
-      //   if(StateDataManager.get('company') !== oldCompany){
-      //     $scope.prepServices();
-      //     if(StateDataManager.has('customer')){
-      //       customer = StateDataManager.get('customer');
-      //       customer.accountNo = null;
-      //       customer.phone = null;
-      //       customer.email = null;
-      //       StateDataManager.stash('customer', customer);
-      //     }
-      //     if(StateDataManager.has('servicesUnderOneAccount')){
-      //       StateDataManager.pop('servicesUnderOneAccount')
-      //     }
-      //     if(StateDataManager.has('singleAccount')){
-      //       StateDataManager.pop('singleAccount');
-      //     }
-      //     if(StateDataManager.has('alreadyDone')){
-      //       StateDataManager.pop('alreadyDone');
-      //     }
-      //     if(StateDataManager.has('letterDoneState')){
-      //       StateDataManager.pop('letterDoneState');
-      //     }
-      //   }
-      // }
     });
 
 

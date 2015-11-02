@@ -1,5 +1,5 @@
 'use strict';
-pirsApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$window', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, AMIRequest, dataProviderService) {
+AMIApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$window', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, AMIRequest, dataProviderService) {
     $scope.jurisdictions = {};
     AMIRequest.set('jurisdiction', dataProviderService.getItem("jurisdictions")
     .then(function(jurisdictions){

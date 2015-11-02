@@ -26,14 +26,13 @@ MOSQUITO wants its sweet, sweet data
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="pirsApp">
+  <body ng-app="AMIApp">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -129,22 +128,19 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/license.js"></script>
     <script src="scripts/modules/Enter/enter.js"></script>
     <script src="scripts/modules/ngJSPDF/ngjspdf.js"></script>
+    <script src="scripts/modules/dataProviderService/dataproviderservice.js"></script>
+    <script src="scripts/modules/formItem/formItem.js"></script>
+    <script src="scripts/modules/requestTemplate/requesttemplate.js"></script>
     <script src="scripts/modules/ProgressBarNav/progressbarnav.js"></script>
-    <script src="scripts/modules/StateDataManager/statedatamanager.js"></script>
     <script src="scripts/modules/AMIRequest/amirequest.js"></script>
     <script src="scripts/modules/Sticky/sticky.js"></script>
-    <script src="scripts/modules/PIRSDataModel/company.js"></script>
-    <script src="scripts/modules/PIRSDataModel/service.js"></script>
-    <script src="scripts/modules/PIRSDataModel/serviceType.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/jurisdiction.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/industry.js"></script>
     <script src="scripts/controllers/company.js"></script>
     <script src="scripts/controllers/subscriberInfo.js"></script>
-    <script src="scripts/controllers/accountInfo.js"></script>
     <script src="scripts/controllers/request.js"></script>
-    <script src="scripts/controllers/letter.js"></script>
     <script src="scripts/controllers/finish.js"></script>
     <!-- endbuild -->
 </body>

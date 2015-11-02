@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -9,7 +9,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', 'AMIRequest', 'identifiers', function ($scope, $location, $window, StateDataManager, NavCollection, AMIRequest, identifiers) {
+AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   
@@ -46,11 +46,6 @@ pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDa
   }
     if(AMIRequest.has('operator')){
       $scope.company = AMIRequest.get('operator');
-    }
-    if(AMIRequest.has('subject')){
-      $scope.customer = AMIRequest.get('subject');
-    }else{
-      $scope.customer = {address: {}};
     }
 
     $scope.$watch('subject', function(newVal, oldVal){

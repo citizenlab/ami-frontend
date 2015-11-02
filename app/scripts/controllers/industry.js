@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'StateDataManager', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, StateDataManager, NavCollection, industries, AMIRequest, dataProviderService) {
+AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService) {
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
     $window.scrollTo(0,0)
     NavCollection.unRestrict('industry');

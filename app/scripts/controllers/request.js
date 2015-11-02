@@ -1,5 +1,5 @@
 'use strict';
-pirsApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', 'AMIRequest', 'components', function ($scope, $location, $window, StateDataManager, NavCollection, AMIRequest, components) {
+AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'components', function ($scope, $location, $window, NavCollection, AMIRequest, components) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   $scope.previous = function(){
@@ -9,7 +9,7 @@ pirsApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'StateDataM
     $scope.previous();
     return;
   }
-console.log(AMIRequest.get('subject'));
+
   $scope.components = components;
   $scope.jurisdiction = AMIRequest.get('jurisdiction');
   $scope.industry = AMIRequest.get('industry');

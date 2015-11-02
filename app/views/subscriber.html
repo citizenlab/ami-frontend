@@ -7,25 +7,15 @@
 <div class="well">
 <div class="row">
     <h2 class="col-sm-12" ng-if="basic_identifiers">Basic Personal Information</h2>
-    <div class="form-group col-sm-12" ng-repeat="identifier in basic_identifiers">
+    <div class="form-group col-sm-12" ng-repeat="identifier in basic_identifiers | object2Array | orderBy:'+weight'">
       <form-item id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.basic_personal_info"></form-item>
     </div>
     <div ng-repeat="(key, identifiers) in service_identifiers">
     <h2 ng-repeat="service in services" ng-show="service.id == key && identifiers.length">{{service.title}}</h2>
-    <div class="form-group col-sm-12" ng-repeat="identifier in identifiers">
+    <div class="form-group col-sm-12" ng-repeat="identifier in identifiers | object2Array | orderBy:'+weight'">
       <form-item id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.service_identifiers[key]"></form-item>
     </div>
 </div>
-</div>
-<h2>Basic Personal Information</h2>
-<ul>
-<li ng-repeat="identifier in subject.basic_personal_info | object2Array | orderBy:'+weight'">{{identifier.title}}: {{identifier.value}}</li>
-</ul>
-<div ng-repeat="(key, identifiers) in service_identifiers">
-<h2 ng-repeat="service in services" ng-show="service.id == key && identifiers.length">{{service.title}}</h2>
-<ul>
-<li ng-repeat="identifier in subject.service_identifiers[key] | object2Array | orderBy:'+weight'">{{identifier.title}}: {{identifier.value}}</li>
-</ul>
 </div>
 <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!requiredFieldsFilled() || nextIsLoading)}" ng-click="next()">
   <span ng-if="!nextIsLoading">Next</span>

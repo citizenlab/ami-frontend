@@ -10,10 +10,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-var ProgressBarNav = angular.module('ProgressBarNav', [
-  'StateDataManager'
-]);
-ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$timeout', function($rootScope, StateDataManager, $timeout){
+var ProgressBarNav = angular.module('ProgressBarNav', []);
+ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($rootScope, $timeout){
   var navCollection = {};
   navCollection.collection = [];
   navCollection.ordered = true;
@@ -164,7 +162,7 @@ ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$tim
   return navCollection;
 }]);
 
-ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'StateDataManager', 'NavCollection', function ($scope, $location, StateDataManager, NavCollection) {
+ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'NavCollection', function ($scope, $location, NavCollection) {
     $scope.stages = NavCollection.collection;
     
     $scope.stageIcon = function(stage){
