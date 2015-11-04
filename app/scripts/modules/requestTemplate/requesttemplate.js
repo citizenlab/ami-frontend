@@ -8,9 +8,20 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         dataProviderService.getItem(itemPath).then(function (response) {
             element.html(response[0].content);
             $compile(element.contents())(scope);
-            var timer = $timeout(function(){
+        });
+        scope.$watch('pdf.isGenerating', function(newVal, oldVal){
+            if(newVal === true && oldVal === false){
                 makePDF();
-            }, 1000);
+                scope.pdf.isGenerating = false;
+                scope.pdf.isGenerated = true;
+            }
+        });
+        scope.$watch('email.isGenerating', function(newVal, oldVal){
+            if(newVal === true && oldVal === false){
+                scope.email.contents = buildEmail();
+                scope.email.isGenerating = false;
+                scope.email.isGenerated = true;
+            }
         });
 
         var makePDF = function(){
@@ -33,6 +44,38 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
 
             doc.save('Right_to_information_request.pdf');
         }
+
+        var buildEmail = function(){
+            var to, subject, body, email, el;
+            to = scope.operator.meta.privacy_officer_email;
+            subject = "Formal Request for Personal Information Held By Your Company"
+            el = $(element[0]);
+            el.find('li').each(function(){
+              var html;
+              html = this.innerHTML
+              this.innerHTML = "* " + html + "<br/>";
+            });
+
+            body = getInnerText(el.get(0)).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
+
+            email = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+            return email;
+          }
+
+          var getInnerText = function(el) {
+              var sel, range, innerText = "";
+              if (typeof document.selection != "undefined" && typeof document.body.createTextRange != "undefined") {
+                  range = document.body.createTextRange();
+                  range.moveToElementText(el);
+                  innerText = range.text;
+              } else if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+                  sel = window.getSelection();
+                  sel.selectAllChildren(el);
+                  innerText = "" + sel;
+                  sel.removeAllRanges();
+              }
+              return innerText;
+            }
     };
 
     return {
@@ -48,7 +91,9 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             servicelist: '=',
             date: '=',
             componentquestions: '=',
-            componentdata: '='
+            componentdata: '=',
+            pdf: '=',
+            email: '='
         }
     };
 });

@@ -1,5 +1,5 @@
 'use strict';
-AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'components', function ($scope, $location, $window, NavCollection, AMIRequest, components) {
+AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'components', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, components) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   $scope.previous = function(){
@@ -41,6 +41,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'NavCollecti
 
   $scope.componentquestions = [];
   $scope.componentdata = [];
+  $scope.displayInstructions = false;
+  $scope.displayEmailExtras = false;
 
   for(var i=0; i < $scope.components.length; i++){
   	if($scope.components[i].meta.component_type == "Data"){
@@ -51,5 +53,50 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', 'NavCollecti
   	}
   }
 
+  $scope.pdf = {
+    isGenerating: false,
+    isGenerated: false
+  };
+  $scope.email = {
+    isGenerating: false,
+    isGenerated: false
+  }
+  $scope.emailClick = function(){
+      var timer2;
+      var timer = $timeout(function(){
+        $scope.showEmailExtras();
+        $timeout.cancel(timer2);
+        timer2 = $timeout(function(){
+          $($window).unbind('blur');
+        },3000);
+      }, 1500);
+      $($window).blur(function() {
+        $($window).unbind('blur');
+        $timeout.cancel(timer);
+        $scope.setLetterDoneState();
+      });
+    }
+  $scope.generatePDF = function(){
+    $scope.pdf.isGenerating = true;
+  }
+  $scope.$watch('pdf.isGenerated', function(oldVal, newVal){
+    if(newVal === true && oldVal === false){
+      $scope.letterDoneState = true;
+    }
+  });
+  $scope.instructionsDisplayToggle = function(){
+    if($scope.displayInstructions){
+      $scope.displayInstructions = false;
+    }
+    else{
+      $scope.displayInstructions = true;
+    }
+  }
+  $scope.showEmailExtras = function(){
+    $scope.displayEmailExtras = true;
+  }
+  $timeout(function(){
+    $scope.email.isGenerating = true;
+  }, 100);
   NavCollection.finishSelect('request');
 }]);

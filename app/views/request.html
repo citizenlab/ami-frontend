@@ -24,15 +24,15 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-6 visible-xs marb10">
-    <div class="btn btn-lg marb10 marb-xs-5 btn-block generatorBtn" ng-class="{disabled:letter.isGenerating, 'btn-success':letter.isGenerated, 'btn-primary': !letter.isGenerated, faded: (letterDoneState && !displayInstructions)}" ng-click="save()" ng-enter="save()" tabindex="1">
+    <div class="btn btn-lg marb10 marb-xs-5 btn-block generatorBtn" ng-class="{disabled:pdf.isGenerating, 'btn-success':pdf.isGenerated, 'btn-primary': !pdf.isGenerated, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1">
         <span class="fa" ng-class="{'fa-file-pdf-o': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></span> 
-      <span ng-show="!letter.isGenerating && !letter.isGenerated">
+      <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
          &nbsp;Generate Letter (PDF)
         </span>
-        <span ng-show="letter.isGenerating && !letter.isGenerated">
+        <span ng-show="pdf.isGenerating && !pdf.isGenerated">
           &nbsp;Please Wait
         </span>
-        <span ng-show="!letter.isGenerating && letter.isGenerated">
+        <span ng-show="!pdf.isGenerating && pdf.isGenerated">
           &nbsp;Re-save Letter
         </span>
     </div>
@@ -52,15 +52,15 @@
 </div>
 <div class="clearfix row" ng-class="{faded: (letterDoneState && !displayInstructions)}">
   <div class="col-xs-12 col-sm-6 hidden-xs">
-    <div class="btn btn-lg marb10 marb-xs-5 btn-block generatorBtn" ng-class="{disabled:letter.isGenerating, 'btn-success':letter.isGenerated, 'btn-primary': !letter.isGenerated}" ng-click="save()" ng-enter="save()" tabindex="1">
+    <div class="btn btn-lg marb10 marb-xs-5 btn-block generatorBtn" ng-class="{disabled:pdf.isGenerating, 'btn-success':pdf.isGenerated, 'btn-primary': !pdf.isGenerated}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1">
         <span class="fa" ng-class="{'fa-file-pdf-o': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></span> 
-      <span ng-show="!letter.isGenerating && !letter.isGenerated">
+      <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
          &nbsp;Generate Letter (PDF)
         </span>
-        <span ng-show="letter.isGenerating && !letter.isGenerated">
+        <span ng-show="pdf.isGenerating && !pdf.isGenerated">
           &nbsp;Please Wait
         </span>
-        <span ng-show="!letter.isGenerating && letter.isGenerated">
+        <span ng-show="!pdf.isGenerating && pdf.isGenerated">
           &nbsp;Re-save Letter
         </span>
     </div>
@@ -68,7 +68,7 @@
   </div>
   <div class="col-xs-12 col-sm-6">
     <div>
-      <a class="btn marb10 btn-primary btn-lg btn-block" ng-class="{disabled: !operator.meta.privacy_officer_email}" ng-href="{{email}}" target="_parent" tabindex="1" ng-click="emailClick()" ng-mouseenter="emailBtnHover = true" ng-mouseleave="emailBtnHover = false" >
+      <a class="btn marb10 btn-primary btn-lg btn-block" ng-class="{disabled: !operator.meta.privacy_officer_email}" ng-href="{{email.contents}}" target="_parent" tabindex="1" ng-click="emailClick()" ng-mouseenter="emailBtnHover = true" ng-mouseleave="emailBtnHover = false" >
         <span class="fa fa-send"></span>&nbsp;&nbsp;Email Request
       </a>
       <div class="tooltip-container" ng-if="(displayEmailExtras && emailBtnHover)">
@@ -83,5 +83,5 @@
   </div>
 </div>
 <div class="well">
-<request-template jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services"></request-template>
+<request-template jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email"></request-template>
 </div>
