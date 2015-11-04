@@ -30,7 +30,17 @@ formItem.directive('formItem', function ($compile, dataProviderService) {
         }
         element.html(template);
         scope.$watch('val', function(newVal, oldVal){
-          scope.model[scope.id] = {title: scope.label, value: newVal, weight: scope.weight};
+          // Accommodate select objects
+          if(typeof newVal.title !== "undefined"){
+            newVal = newVal.title;
+          }
+          // Handle empty fields
+          if(typeof newVal !== "undefined" && newVal !== ""){
+            scope.model[scope.id] = {title: scope.label, value: newVal, weight: scope.weight};
+          }
+          else{
+            delete scope.model[scope.id];
+          }
         });
         $compile(element.contents())(scope);
     };

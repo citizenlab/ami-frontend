@@ -46,17 +46,26 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         }
 
         var buildEmail = function(){
-            var to, subject, body, email, el;
+            var to, subject, body, email, el, clone;
             to = scope.operator.meta.privacy_officer_email;
             subject = "Formal Request for Personal Information Held By Your Company"
+            
             el = $(element[0]);
+                      
             el.find('li').each(function(){
               var html;
               html = this.innerHTML
               this.innerHTML = "* " + html + "<br/>";
             });
-
+            
             body = getInnerText(el.get(0)).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
+            
+            el.find('li').each(function(){
+              var html;
+              html = this.innerHTML
+              this.innerHTML = html.substring(2);
+              // $(this).find('br').remove();
+            });
 
             email = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
             return email;

@@ -36,7 +36,6 @@
           &nbsp;Re-save Letter
         </span>
     </div>
-
   </div>
   <div class="col-xs-12 col-sm-6">
     <div ng-if="(!letterDoneState || displayInstructions)"><div ng-if="operator.meta.privacy_officer_email"><p  class="p-bg bg-info bigger"><strong>Option 2: </strong> Email your letter using the email button. If that doesn't work, or <strong>if using webmail</strong>, please <u>copy and paste</u> the letter below and send to:</p>
@@ -64,7 +63,6 @@
           &nbsp;Re-save Letter
         </span>
     </div>
-
   </div>
   <div class="col-xs-12 col-sm-6">
     <div>
@@ -81,6 +79,10 @@
       </div>
     </div>
   </div>
+</div>
+<div class="clearfix p-bg p-bg-l bg-success mart10 marb10" ng-if="letterDoneState">
+  <h2 class="mart0 marb10">Thanks for creating your letter!</h2>
+  <a class="btn btn-primary btn-xl btn-block" href="https://openmedia.ca/MyInfo/reminder" target="_parent">Continue on to maximize your impact&nbsp;<i class="fa fa-external-link"></i></a>
 </div>
 <div class="well">
 <request-template jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email"></request-template>

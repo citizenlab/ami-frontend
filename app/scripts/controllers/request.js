@@ -79,8 +79,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $scope.generatePDF = function(){
     $scope.pdf.isGenerating = true;
   }
-  $scope.$watch('pdf.isGenerated', function(oldVal, newVal){
-    if(newVal === true && oldVal === false){
+  $scope.$watch('pdf.isGenerated', function(newVal, oldVal){
+    if(newVal === true && (oldVal === false || typeof oldVal == "undefined")){
       $scope.letterDoneState = true;
     }
   });

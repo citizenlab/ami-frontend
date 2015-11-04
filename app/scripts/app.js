@@ -14,7 +14,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 var AMIApp = angular.module('AMIApp', [
     'ngRoute',
     'ngEnter',
-    'ngJSPDF',
     'dataProviderService',
     'ProgressBarNav',
     'formItem',
@@ -144,15 +143,6 @@ AMIApp.run(function($http, NavCollection, $timeout){
         className: "",
         target: "_self"
       },
-      // {
-      //   name: "Account",
-      //   path: "#/account",
-      //   id: "account",
-      //   icon: "fa fa-barcode",
-      //   restricted: true,
-      //   className: "",
-      //   target: "_self"
-      // },
       {
         name: "Request",
         path: "#/request",
@@ -179,6 +169,6 @@ AMIApp.run(function($http, NavCollection, $timeout){
       $("#loadingScreen").addClass('faded-out');
       $timeout(function(){
         $("#loadingScreen").hide();
-      }, 200);
+      }, 400);
     }, 170);
 });
