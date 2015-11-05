@@ -83,6 +83,30 @@ MOSQUITO wants its sweet, sweet data
                 </ol>
             </nav>
         </div>
+        <div class="row" sticky use-placeholder id="mainNav">
+            <nav class="col-xs-12 centre-xs">
+                <ol class="clearfix flexProgress" ng-controller="ProgressCtrl" ng-class="flexProgress">
+                  <li class="arrow" ng-class="{disabled: (activeIndex < 1 || previous.restricted)}">
+                    <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+                    <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+                  </li>
+                  <li ng-repeat="stage in stages" ng-class="{firstStep: $first, lastStep: $last, disabled: (stage.restricted), active: stage.selected, completedPast: stage.pastSelected, fadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
+                    <a class="{{stage.className}}" ng-show="(stage.restricted)">
+                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
+                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
+                    </a>
+                    <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
+                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
+                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
+                    </a>
+                  </li>
+                  <li class="arrow" ng-class="{disabled: (activeIndex == stages.length - 1 || next.restricted)}">
+                    <a ng-href="{{next.path}}" ng-show="(!next.restricted)"><span><i class="fa fa-arrow-right"></i></span></a>
+                    <a ng-show="(next.restricted)"><span><i ng-class="arrowIcon(next)" class="fa fa-arrow-right"></i></span></a>
+                </li>
+                </ol>
+            </nav>
+        </div>
         <div ng-view="" class="marb10"></div>
         <footer class="small mart10 clearfix">
             <p class="small site-policy p-bg mart10"><strong>Privacy Statement</strong>: This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date &amp; time of access, and several other non-identifying metadata fields.</p>

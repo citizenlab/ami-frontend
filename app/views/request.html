@@ -45,7 +45,7 @@
           <br/><strong>{{operator.meta.privacy_officer_email}}</strong>
         </address>
     </div></div>
-    <span class="marb10 bg-danger p-bg" ng-if="!{{operator.meta.privacy_officer_email}}"><strong>Option 2 Unavailable: </strong> No email listed for company privacy officer.</span>
+    <span class="marb10 bg-danger p-bg" ng-if="!operator.meta.privacy_officer_email"><strong>Option 2 Unavailable: </strong> No email listed for company privacy officer.</span>
     </div>
   </div>
 </div>
@@ -85,5 +85,5 @@
   <a class="btn btn-primary btn-xl btn-block" href="https://openmedia.ca/MyInfo/reminder" target="_parent">Continue on to maximize your impact&nbsp;<i class="fa fa-external-link"></i></a>
 </div>
 <div class="well">
-<request-template jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email"></request-template>
+<request-template jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
 </div>

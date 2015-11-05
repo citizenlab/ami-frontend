@@ -26,6 +26,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
 
         var makePDF = function(){
             var doc = new jsPDF();
+            var filename;
 
             // We'll make our own renderer to skip this editor
             var specialElementHandlers = {
@@ -41,14 +42,14 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
                 'width': 170, 
                 'elementHandlers': specialElementHandlers
             });
-
-            doc.save('Right_to_information_request.pdf');
+            filename = scope.pdffilenameprefix + '_' + scope.operator.title + ".pdf"
+            doc.save(filename);
         }
 
         var buildEmail = function(){
             var to, subject, body, email, el, clone;
             to = scope.operator.meta.privacy_officer_email;
-            subject = "Formal Request for Personal Information Held By Your Company"
+            subject = scope.emailsubject;
             
             el = $(element[0]);
                       
@@ -102,7 +103,9 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             componentquestions: '=',
             componentdata: '=',
             pdf: '=',
-            email: '='
+            email: '=',
+            emailsubject: '=',
+            pdffilenameprefix: '='
         }
     };
 });

@@ -474,7 +474,7 @@ label {
     }
     a {
         padding: 12px 8px;
-        width: 13%;
+        width: auto;
         @media (min-width: $screen-sm-min) {
             width: auto;
             font-size:14px;
@@ -544,7 +544,7 @@ label {
 }
 @keyframes fading {
     0%   { background: lighten($brand-success, 35%); color: darken($brand-success, 15%) }
-    50% { background: saturate(lighten($brand-success, 30%), 25%); color: darken($brand-success, 30%) }
+    50%  { background: saturate(lighten($brand-success, 30%), 25%); color: darken($brand-success, 30%) }
     100% { background: lighten($brand-success, 35%); color: darken($brand-success, 15%) }
 }
 #mainNav {
@@ -677,4 +677,188 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
 .ixmapstar {
     cursor:pointer;
     font-size:1.3em;
+}
+
+.flexProgress {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width:100%;
+    padding:0;
+    margin:40px 0 0 0;
+    height:40px;
+    li {
+        padding:0;
+        list-style-type:none;
+        flex-grow: 1;
+        height:100%;
+        a {
+            height:100%;
+            width:100%;
+            display:table;
+            position: relative;
+            border:1px solid $pagination-border;
+            span {
+                display:table-cell;
+                vertical-align: middle;
+                position:relative;
+                z-index:99;
+                padding-left: 14px;
+            }
+            span.visible-xs {
+                @media (max-width: $screen-xs-max) {
+                    display: table-cell !important;
+                }
+            }
+        }
+        &:first-child {
+          > a,
+          > span {
+            > span {
+                padding-left:0;
+            }
+            &:after {
+                display:none;
+            }
+          }
+        }
+        &:last-child {
+          > a,
+          > span {
+            > span {
+                padding-left:0;
+            }
+            &:after {
+                display:none;
+            }
+          }
+        }
+        > a:after {
+            display:block;
+            position:absolute;
+            background: $pagination-bg;
+            border-top-width:1px;
+            border-top-style:solid;
+            border-right-width:1px;
+            border-right-style:solid;
+            border-color: $pagination-border;
+            position: absolute;
+            z-index: 90;
+            content: ' ';
+            transform: rotate(45deg);
+            width: 26px;
+            height: 26px;
+            top: calc(50% - 13px);
+            right: -14px;
+        }
+        > a:hover {
+            text-decoration: none;
+            background-color: $pagination-hover-bg;
+            &:after {
+                background-color: $pagination-hover-bg;
+                border-color: $pagination-hover-border;
+            }
+        }
+    }
+    > .firstStep {
+        > a {
+            > span {
+                padding-left:7px;
+            }
+        }
+    }
+    > .lastStep {
+        > a {
+            &:after {
+                display:none;
+            }
+            > span {
+                margin-right:0;
+            }
+        }
+        &.active a {
+            background-color:$brand-success;
+            &,
+            &:hover,
+            &:focus {
+                background-color:$brand-success;
+                border-color: darken($brand-success, 10%);
+            }
+        }
+    }
+    > .active {
+        background-color: $pagination-active-bg;
+        border-color: $pagination-active-border;
+        > a {
+            &,
+            &:hover,
+            &:focus {
+              z-index: 2;
+              color: $pagination-active-color;
+              background-color: $pagination-active-bg;
+              border-color: $pagination-active-border;
+        }
+        }
+        > a:after {
+            background-color: $pagination-active-bg;
+            border-color: $pagination-active-border;
+        }
+        > a:hover {
+            &:after {
+                background-color: $pagination-active-bg;
+                border-color: $pagination-active-border;
+            }
+        }
+    }
+    > .completedPast {
+        > a {
+            background-color: darken($pagination-active-bg, 10%);
+                border-color: darken($pagination-active-border, 10%);
+                color: darken($pagination-active-color, 10%);
+            > span {
+                z-index:999;
+            }
+            &:after {
+                z-index:990;
+            }
+            &:hover,
+            &:focus {
+                color: $pagination-active-color;
+                cursor:hover;
+                background-color: darken($pagination-active-bg, 20%);
+                border-color: darken($pagination-active-border, 20%);
+            }
+
+        }
+        > a:after {
+            background-color: darken($pagination-active-bg, 10%);
+            border-color: darken($pagination-active-border, 20%);
+        }
+        > a:hover {
+            &:after {
+                position:absolute;
+                background-color: darken($pagination-active-bg, 20%);
+                border-color: darken($pagination-active-border, 20%);
+            }
+        }
+    }
+
+    > .disabled {
+        a {
+            color: #999999;
+            background-color: #fff;
+            border-color: #ddd;
+            cursor: not-allowed;
+        }
+        a:hover {
+            background: $pagination-disabled-bg;
+            &:after {
+                background-color: $pagination-disabled-bg;
+                border-color: $pagination-disabled-border;
+            }
+        }
+    }   
 }
