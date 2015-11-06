@@ -1,7 +1,7 @@
 'use strict';
 var dataProviderService = angular.module('dataProviderService', []);
 dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', function( $route, $q, $http ) {
-    var baseURL = "http://localhost:8888/amicms/wp-json/amicms/";
+    var baseURL = "http://128.100.127.49:8888/amicms/wp-json/amicms/";
     return {
         getItem: function (itemPath, params) {
             var delay = $q.defer();
@@ -9,7 +9,12 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', fun
             if(typeof params == "undefined"){
               params = {};
             }
-            $http({method: 'GET', url: itemURL, params: params})
+            $http({
+                method: 'GET', 
+                url: itemURL, 
+                params: params,
+                cache: true
+            })
             .success( function(data, status, headers, config) {
                 delay.resolve( data );
             }).error( function(data, status, headers, config) {
