@@ -61,30 +61,6 @@ MOSQUITO wants its sweet, sweet data
     <div class="container">
         <div class="row" sticky use-placeholder id="mainNav">
             <nav class="col-xs-12 centre-xs">
-                <ol class="pagination pagination-sm clearfix" ng-controller="ProgressCtrl" ng-class="flexProgress">
-                  <li class="arrow" ng-class="{disabled: (activeIndex < 1 || previous.restricted)}">
-                    <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
-                    <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
-                  </li>
-                  <li ng-repeat="stage in stages" ng-class="{firstStep: $first, lastStep: $last, disabled: (stage.restricted), active: stage.selected, completedPast: stage.pastSelected, fadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
-                    <a class="{{stage.className}}" ng-show="(stage.restricted)">
-                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
-                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
-                    </a>
-                    <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
-                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
-                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
-                    </a>
-                  </li>
-                  <li class="arrow" ng-class="{disabled: (activeIndex == stages.length - 1 || next.restricted)}">
-                    <a ng-href="{{next.path}}" ng-show="(!next.restricted)"><span><i class="fa fa-arrow-right"></i></span></a>
-                    <a ng-show="(next.restricted)"><span><i ng-class="arrowIcon(next)" class="fa fa-arrow-right"></i></span></a>
-                </li>
-                </ol>
-            </nav>
-        </div>
-        <div class="row" sticky use-placeholder id="mainNav">
-            <nav class="col-xs-12 centre-xs">
                 <ol class="clearfix flexProgress" ng-controller="ProgressCtrl" ng-class="flexProgress">
                   <li class="arrow" ng-class="{disabled: (activeIndex < 1 || previous.restricted)}">
                     <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>

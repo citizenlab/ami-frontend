@@ -310,194 +310,6 @@ label {
     margin-bottom:0px;
 }
 
-.pagination {
-    display: block;
-    width:100%;
-    margin:0;
-    > li {
-        > a > span {
-            display:block;
-            position:relative;
-            z-index:99;
-            margin-left: 10px;
-            margin-right: -5px;
-        }
-        &:first-child {
-          > a,
-          > span {
-            > span {
-                margin:0;
-            }
-            &:after {
-                display:none;
-            }
-          }
-        }
-        &:last-child {
-          > a,
-          > span {
-            > span {
-                margin:0;
-            }
-            &:after {
-                display:none;
-            }
-          }
-        }
-        > a:after {
-            display:block;
-            position:absolute;
-            background: $pagination-bg;
-            border-top-width:1px;
-            border-top-style:solid;
-            border-right-width:1px;
-            border-right-style:solid;
-            border-color: $pagination-border;
-            position: absolute;
-            z-index: 90;
-            content: ' ';
-            transform: rotate(45deg);
-        }
-        > a:hover {
-            &:after {
-                background-color: $pagination-hover-bg;
-                border-color: $pagination-hover-border;
-            }
-        }
-    }
-    > .firstStep {
-        > a {
-            > span {
-                margin-left:0;
-            }
-        }
-    }
-    > .lastStep {
-        > a {
-            &:after {
-                display:none;
-            }
-            > span {
-                margin-right:0;
-            }
-        }
-        &.active a {
-            background-color:$brand-success;
-            &,
-            &:hover,
-            &:focus {
-                background-color:$brand-success;
-                border-color: darken($brand-success, 10%);
-            }
-        }
-    }
-    > .active {
-        background-color: $pagination-active-bg;
-        border-color: $pagination-active-border;
-        > a {
-            &,
-            &:hover,
-            &:focus {
-              z-index: 2;
-              color: $pagination-active-color;
-              background-color: $pagination-active-bg;
-              border-color: $pagination-active-border;
-        }
-        }
-        > a:after {
-            background-color: $pagination-active-bg;
-            border-color: $pagination-active-border;
-        }
-        > a:hover {
-            &:after {
-                background-color: $pagination-active-bg;
-                border-color: $pagination-active-border;
-            }
-        }
-    }
-    > .completedPast {
-        > a {
-            background-color: darken($pagination-active-bg, 10%);
-                border-color: darken($pagination-active-border, 10%);
-                color: darken($pagination-active-color, 10%);
-            > span {
-                z-index:999;
-            }
-            &:after {
-                z-index:990;
-            }
-            &:hover,
-            &:focus {
-                color: $pagination-active-color;
-                cursor:hover;
-                background-color: darken($pagination-active-bg, 20%);
-                border-color: darken($pagination-active-border, 20%);
-            }
-
-        }
-        > a:after {
-            background-color: darken($pagination-active-bg, 10%);
-            border-color: darken($pagination-active-border, 20%);
-        }
-        > a:hover {
-            &:after {
-                position:absolute;
-                background-color: darken($pagination-active-bg, 20%);
-                border-color: darken($pagination-active-border, 20%);
-            }
-        }
-    }
-
-    > .disabled {
-        a:hover {
-            &:after {
-                background-color: $pagination-disabled-bg;
-                border-color: $pagination-disabled-border;
-            }
-        }
-    }
-}
-
-.pagination-sm > li {
-    a:after {
-        width: 21px;
-        height: 21px;
-        top: 7px;
-        right: -11px;
-        
-        @media (min-width: $screen-sm-min) {
-            width: 26px;
-            height: 26px;
-            top: 5px;
-            right: -14px;
-        }
-    }
-    a {
-        padding: 12px 8px;
-        width: auto;
-        @media (min-width: $screen-sm-min) {
-            width: auto;
-            font-size:14px;
-            padding: 8px 13px;
-        }
-        span {
-            @media (min-width: $screen-sm-min) {
-                margin-left: 15px;
-                margin-right: -11px;
-            }
-        }
-    }
-}
-.pagination-sm > li.arrow {
-    a {
-        width: 11%;
-        @media (min-width: $screen-sm-min) {
-            width: auto;
-            padding: 8px 16.5px;
-        }
-    }
-}
-
 .centre-xs {
     @media (max-width: $screen-xs-max) {
         text-align:center;
@@ -522,24 +334,24 @@ label {
     text-align:center;
 }
 
-.prominent, .pagination > li > a.prominent {
+.prominent, .flexProgress > li > a.prominent {
     background-color: lighten($brand-success, 35%);
     color: darken($brand-success, 15%);
     font-weight: bold;
 }
-.pagination > li.active > a.prominent {
+.flexProgress > li.active > a.prominent {
     color: #fff;
 }
-.pagination > li:hover > a.prominent {
+.flexProgress > li:hover > a.prominent {
     background: $pagination-hover-bg;
 }
 .bigger {
     font-size:1.15em;
 }
-.fadeBg, .pagination > li.fadeBg > a.prominent {
+.fadeBg, .flexProgress > li.fadeBg > a.prominent {
     animation: fading 3s infinite ease-in-out;
 }
-.fadeBg, .pagination > li.fadeBg:hover > a.prominent {
+.fadeBg, .flexProgress > li.fadeBg:hover > a.prominent {
     animation: none;
 }
 @keyframes fading {
@@ -549,6 +361,12 @@ label {
 }
 #mainNav {
     z-index:999
+}
+#mainNav.stuck {
+    width:100%;
+    @media screen and (min-width: 768px) {
+        width:730px;
+    }
 }
 .stuck {
   position: fixed;
@@ -688,7 +506,7 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
     text-align: center;
     width:100%;
     padding:0;
-    margin:40px 0 0 0;
+    margin:0;
     height:40px;
     li {
         padding:0;
@@ -700,7 +518,11 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
             width:100%;
             display:table;
             position: relative;
+            background: $pagination-bg;
             border:1px solid $pagination-border;
+            margin-left:-1px;
+            border-left:none;
+            text-decoration: none;
             span {
                 display:table-cell;
                 vertical-align: middle;
@@ -715,6 +537,9 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
             }
         }
         &:first-child {
+          > a {
+            border-left:1px solid $pagination-border;
+          }
           > a,
           > span {
             > span {
