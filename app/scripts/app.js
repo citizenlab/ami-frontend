@@ -153,13 +153,12 @@ AMIApp.run(function($http, NavCollection, $timeout){
         target: "_self"
       },
       {
-        name: "Connect",
-        path: "https://openeffect.ca",
+        name: "Finish",
+        path: "#/finish",
         id: "finish",
-        icon: "fa fa-external-link",
+        icon: "fa fa-share",
         restricted: false,
-        className: "prominent",
-        target: "_parent"
+        target: "_self"
       }
     ]
     angular.forEach(stages, function(item){

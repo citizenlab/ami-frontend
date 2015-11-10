@@ -10,10 +10,19 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', function ($scope, $location, NavCollection) {
+AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataProviderService', 'AMIRequest', function ($scope, $location, NavCollection, dataProviderService, AMIRequest) {
   $scope.previous = function(){
     $location.path('/letter');
   }
-  
+	$scope.statistics = true;
+	$scope.subscribe = false;
+	$scope.anon = AMIRequest.getAnon();
+  $scope.submit = function(){
+  	 dataProviderService.postItem("enroll/", {}, "http://0.0.0.0:3000/", {message: "hi"})
+  	 .then(function(data){
+  	 	$scope.response = data;
+  	 });
+  }
+
   NavCollection.finishSelect('finish');
 }]);

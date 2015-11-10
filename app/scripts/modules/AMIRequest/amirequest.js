@@ -13,6 +13,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 var AMIRequest = angular.module('AMIRequest', []);
 AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   var request = {};
+  request.date = moment().format('MMMM Do, YYYY');
   request.get = function(key){
     return this[key];
   }
@@ -46,6 +47,12 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     };
   }
   request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'letter'];
-
+  request.getAnon = function(){
+    return {
+      jurisdiction: this.jurisdiction,
+      operator: this.operator,
+      date: this.date
+    }
+  }
   return request;
 });

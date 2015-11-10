@@ -17,7 +17,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $scope.services = AMIRequest.get('services');
   $scope.subject = AMIRequest.get('subject');
   $scope.date = moment().format('MMMM Do, YYYY');
-
+  AMIRequest.set('date', $scope.date);
+  
   $scope.servicelist = '';
   for(var i=0; i < $scope.services.length; i++){
   	var dividerChar = "";
