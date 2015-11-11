@@ -13,6 +13,8 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', fun
             var delay = $q.defer();
             var itemURL;
             var options;
+            var cache = true;
+
             if(typeof newBaseURL !== "undefined"){
                 itemURL = newBaseURL + itemPath;
             }
@@ -22,11 +24,14 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', fun
             if(typeof params == "undefined"){
               params = {};
             }
+            if(httpMethod == 'POST'){
+                cache = false;
+            }
             options = {
                 method: httpMethod, 
                 url: itemURL, 
                 params: params,
-                cache: true
+                cache: cache
             }
             if(typeof data !== "undefined"){
                 options.data = data;
@@ -35,7 +40,7 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', fun
             .success( function(data, status, headers, config) {
                 delay.resolve( data );
             }).error( function(data, status, headers, config) {
-                delay.reject( data );
+                delay.reject( {data: data, status: status} );
             });
             return delay.promise;
         }

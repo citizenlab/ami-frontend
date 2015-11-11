@@ -11,7 +11,17 @@
   </div>
   <p class="help-block">This may involve an email sent after several days to check if you've received a response from {{anon.operator.title}}, that includes instructions on what to do if you haven't. You'll also get an invitation to fill out a short questionnaire. We won't share your email with any third parties, other than the email service we use to send the emails themselves.</p>
   </div>
-    <div class="btn btn-primary" ng-click="submit()">Submit</div>
-    {{response}}
+  <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (rateLimited || success || serverIsLoading || serverDown), 'btn-warning': rateLimited, 'btn-danger': serverDown}" ng-click="submit()">
+<span ng-if="!serverIsLoading && !success && !serverError">Enroll</span>
+<span ng-if="serverIsLoading && !success">Please Wait...</span>
+<span ng-if="serverDown">Error.</span>
+<span ng-if="rateLimited">Please wait.</span>
+<span ng-if="success">Thank you.</span>
+&nbsp;
+<i class="fa" ng-class="{'fa-arrow-right': !serverIsLoading && !success, 'fa-check-circle': !serverIsLoading && success, 'fa-spinner': serverIsLoading, 'rotating': serverIsLoading, 'fa-exclamation-triangle': serverDown || rateLimited}"></i>
+</button>
+    <div ng-if="serverDown">Server appears to be down. Please try again later.</div>
+    <div ng-if="rateLimited">You're doing that too much. Please wait and try later.</div>
+    <div ng-if="success">{{response.title}}</div>
   </div>
 </div>

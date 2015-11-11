@@ -14,13 +14,31 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
   $scope.previous = function(){
     $location.path('/letter');
   }
+  	$scope.rateLimited = false;
 	$scope.statistics = true;
 	$scope.subscribe = false;
 	$scope.anon = AMIRequest.getAnon();
   $scope.submit = function(){
+  	 $scope.serverIsLoading = true;
   	 dataProviderService.postItem("enroll/", {}, "http://0.0.0.0:3000/", {message: "hi"})
-  	 .then(function(data){
-  	 	$scope.response = data;
+  	 .then(function(response){
+  	 	$scope.serverIsLoading = false;
+  	 	$scope.serverError = false;
+  	 	$scope.serverDown = false;
+  	 	$scope.response = response;
+  	 	$scope.success = true;
+  	 }, function(response){
+  	 	$scope.serverIsLoading = false;
+  	 	$scope.serverError = true;
+  	 	if(response.status === -1){
+  	 		$scope.serverDown = true;
+  	 	}
+  	 	else{
+  	 		$scope.serverDown = false;
+  	 	}
+  	 	if(response.status === 429){
+  	 		$scope.rateLimited = true;
+  	 	}
   	 });
   }
 
