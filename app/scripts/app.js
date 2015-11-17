@@ -108,7 +108,7 @@ AMIApp.filter('object2Array', function() {
 AMIApp.run(function($http, NavCollection, $timeout){
   var stages = [
       {
-        name: "Start",
+        name: "",
         path: "#/",
         id: "home",
         icon: "fa fa-home",
@@ -126,7 +126,7 @@ AMIApp.run(function($http, NavCollection, $timeout){
         target: "_self"
       },
       {
-        name: "Organization",
+        name: "Org",
         path: "#/operator",
         id: "operator",
         icon: "fa fa-briefcase",
