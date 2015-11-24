@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService) {
+AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService, urls) {
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
     $window.scrollTo(0,0)
     NavCollection.unRestrict('industry');
@@ -49,7 +49,7 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
       jurisdiction = AMIRequest.get('jurisdiction');
       if($scope.jurisdiction !== jurisdiction){
         $scope.jurisdiction = jurisdiction;
-        dataProviderService.getItem("jurisdictions/" + jurisdiction.id + "/industries")
+        dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdiction.id + "/industries")
         .then(function(industries){
           $scope.industries = industries;
           $scope.industry = {};

@@ -10,13 +10,12 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$location', 'jurisdictions', function ($scope, AMIRequest, NavCollection, $location, jurisdictions) {
-    console.log(jurisdictions);
+AMIApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$location', function ($scope, AMIRequest, NavCollection, $location) {
+
     $scope.nextIsLoading = false;
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
     $scope.component = {};
-    // $scope.jurisdiction = {"id": 18};
-    $scope.industry = {"id": 30};
+
     $scope.show = false;
 
     $scope.showToggle = function(){

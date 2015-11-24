@@ -11,7 +11,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 'use strict';
 
-AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataProviderService', 'AMIRequest', function ($scope, $location, NavCollection, dataProviderService, AMIRequest) {
+AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataProviderService', 'urls', 'AMIRequest', function ($scope, $location, NavCollection, dataProviderService, urls, AMIRequest) {
   var findEmail = function(subject){
     var email = null;
     var keys;
@@ -29,11 +29,32 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
   $scope.previous = function(){
     $location.path('/letter');
   }
+  // $scope.token = token.csrf;
   $scope.email = {};
   $scope.rateLimited = false;
 	$scope.statistics = true;
 	$scope.subscribe = false;
 	$scope.anon = AMIRequest.getAnon();
+  $scope.servicelist = '';
+  for(var i=0; i < $scope.anon.services.length; i++){
+    var dividerChar = "";
+    if(i == $scope.anon.services.length - 1){
+      dividerChar = ""
+    }
+    else if(i == $scope.anon.services.length - 2){
+      dividerChar = " and ";
+    }
+    else{
+      dividerChar = ", ";
+    }
+    $scope.servicelist = $scope.servicelist + $scope.anon.services[i].title + dividerChar;
+  }
+  if($scope.anon.services.length > 1){
+    $scope.servicelist += " services";
+  }
+  else{
+  $scope.servicelist += " service";
+  }
   if(AMIRequest.has('subject')){
     $scope.email.address = findEmail(AMIRequest.get('subject'));
   }
@@ -51,13 +72,28 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
     return true;
   }
 
+  $scope.$watch('subscribe', function(newVal){
+    if(newVal){
+      if(AMIRequest.has('subject')){
+        $scope.email.address = findEmail(AMIRequest.get('subject'));
+      }
+      else{
+        $scope.email = {};
+      }
+    }
+    else{
+      $scope.email = {}
+    }
+  })
+
   $scope.submit = function(){
   	 $scope.serverIsLoading = true;
-  	 dataProviderService.postItem("enroll/", {}, "http://0.0.0.0:3000/", 
+  	 dataProviderService.postItem(urls.enrollmentURL, "enroll/", {}, 
   	 	{
         data: $scope.anon,
         subscribe: $scope.subscribe,
         email: $scope.email
+        // ,"_csrf": encodeURIComponent($scope.token)
       })
   	 .then(function(response){
   	 	$scope.serverIsLoading = false;

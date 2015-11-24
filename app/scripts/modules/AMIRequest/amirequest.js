@@ -33,7 +33,7 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     if(key === "jurisdiction"){
       NavCollection.restrict('operator');
       delete this['industry'];
-      $location.path('/');
+      // $location.path('/');
       index+=1;
     }
     for (var i = index+1; i <= this.hierarchy.length; i++) {
@@ -51,6 +51,7 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     return {
       jurisdiction: this.jurisdiction,
       operator: this.operator,
+      services: this.services,
       date: this.date
     }
   }

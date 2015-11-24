@@ -100,4 +100,5 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     $scope.email.isGenerating = true;
   }, 100);
   NavCollection.finishSelect('request');
+  NavCollection.unRestrict('finish');
 }]);

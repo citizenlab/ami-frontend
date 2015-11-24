@@ -1,11 +1,11 @@
 'use strict';
 var requestTemplate = angular.module('requestTemplate', []);
-requestTemplate.directive('requestTemplate', function ($compile, dataProviderService, $timeout) {
+requestTemplate.directive('requestTemplate', function ($compile, dataProviderService, urls, $timeout) {
     var linker = function (scope, element, attrs) {
         var jurisdiction = scope.jurisdiction.id;
         var industry = scope.industry.id;
-        var itemPath = "jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
-        dataProviderService.getItem(itemPath).then(function (response) {
+        var itemPath = "/jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
+        dataProviderService.getItem(urls.apiURL, itemPath).then(function (response) {
             element.html(response[0].content);
             $compile(element.contents())(scope);
         });

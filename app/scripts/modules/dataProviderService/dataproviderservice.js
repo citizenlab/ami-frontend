@@ -1,26 +1,24 @@
 'use strict';
 var dataProviderService = angular.module('dataProviderService', []);
 dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', function( $route, $q, $http ) {
-    var baseURL = "http://128.100.127.49:8888/amicms/wp-json/amicms/";
     return {
-        getItem: function (itemPath, params, newBaseURL) {
-            return this.request(itemPath, params, newBaseURL, 'GET');
+        getItem: function (baseURL, itemPath, params) {
+            return this.request(baseURL, itemPath, params, 'GET');
         },
-        postItem:  function (itemPath, params, newBaseURL, data) {
-            return this.request(itemPath, params, newBaseURL, 'POST', data);
+        postItem:  function (baseURL, itemPath, params, data) {
+            return this.request(baseURL, itemPath, params, 'POST', data);
         },
-        request: function (itemPath, params, newBaseURL, httpMethod, data) {
+        request: function (baseURL, itemPath, params, httpMethod, data, setCache) {
             var delay = $q.defer();
             var itemURL;
             var options;
             var cache = true;
+            if(setCache === false){
+                cache = false;
+            }
 
-            if(typeof newBaseURL !== "undefined"){
-                itemURL = newBaseURL + itemPath;
-            }
-            else{
-                itemURL = baseURL + itemPath;
-            }
+            itemURL = baseURL + itemPath;
+
             if(typeof params == "undefined"){
               params = {};
             }

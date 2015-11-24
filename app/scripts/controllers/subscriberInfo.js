@@ -54,10 +54,8 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
     
   $scope.next = function(){
-    if($scope.requiredFieldsFilled()){
       $scope.nextIsLoading = true;
-      $location.path('account');
-    }
+      $location.path('request');
   }
   
   NavCollection.finishSelect('subject');

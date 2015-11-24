@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService) {
+AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService, urls) {
     $window.scrollTo(0,0)
     NavCollection.unRestrict('operator');
     $scope.previous = function(){
@@ -35,7 +35,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     $scope.$watch('company', function(newCompany, oldCompany){
       if(newCompany !== oldCompany){
         AMIRequest.set('operator', newCompany);
-        dataProviderService.getItem('operators/' + newCompany.id + '/services')
+        dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
         .then(function(services){
           if(services.length){
             if(services.length > 1){

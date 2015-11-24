@@ -22,24 +22,29 @@ var AMIApp = angular.module('AMIApp', [
     'ngSticky',
     'ui.bootstrap'
   ])
+  .constant('apiDomain', 'http://128.100.127.49:8888')
+  .constant('apiPath', "/amicms/wp-json/amicms")
+  .constant('enrollmentDomain', "http://128.100.127.49:3000")
+  .constant('enrollmentApiPath', "/")
+  .constant('jurisdictionID', 18)
+  .service('urls', function(apiDomain, apiPath, enrollmentDomain, enrollmentApiPath){
+    this.apiURL = apiDomain + apiPath
+    this.enrollmentURL = enrollmentDomain + enrollmentApiPath
+    return this;
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        resolve: {
-          jurisdictions: ["dataProviderService", function(dataProviderService) {
-            return dataProviderService.getItem("jurisdictions");
-          }]
-        },
+        controller: 'MainCtrl'
       })
       .when('/industry', {
         templateUrl: 'views/industry.html',
         controller: 'IndustryCtrl',
         resolve: {
-          industries: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+          industries: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem("jurisdictions/" + jurisdiction.id + "/industries");
+            return dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdiction.id + "/industries");
           }]
         },
       })
@@ -47,10 +52,10 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/company.html',
         controller: 'CompanyCtrl',
         resolve: {
-          companies: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+          companies: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem("jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
+            return dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
           }]
         },
       })
@@ -58,7 +63,7 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/subscriber.html',
         controller: 'SubscriberCtrl',
         resolve: {
-          identifiers: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+          identifiers: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var services = AMIRequest.get('services');
             var service_ids = [];
              angular.forEach(services, function(value, key){
@@ -66,7 +71,7 @@ var AMIApp = angular.module('AMIApp', [
                   service_ids.push(value.id);
                 }
               }, service_ids);
-            return dataProviderService.getItem("identifiers/", {"services[]": service_ids});
+            return dataProviderService.getItem(urls.apiURL, "/identifiers/", {"services[]": service_ids});
           }]
         },
       })
@@ -78,7 +83,7 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/request.html',
         controller: 'RequestCtrl',
         resolve: {
-          components: ["dataProviderService", "AMIRequest", function(dataProviderService, AMIRequest) {
+          components: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var services = AMIRequest.get('services');
             var service_ids = [];
              angular.forEach(services, function(value, key){
@@ -86,13 +91,36 @@ var AMIApp = angular.module('AMIApp', [
                   service_ids.push(value.id);
                 }
               }, service_ids);
-            return dataProviderService.getItem("components/", {"services[]": service_ids});
+            return dataProviderService.getItem(urls.apiURL, "/components/", {"services[]": service_ids});
           }]
         },
       })
       .when('/finish', {
         templateUrl: 'views/finish.html',
         controller: 'FinishCtrl'
+        // ,resolve: {
+        //   token: ["dataProviderService", function(dataProviderService) {
+        //     return dataProviderService.getItem("enroll/", {}, "http://0.0.0.0:3000/", null, false);
+        //   }]
+        // },
+      })
+      .when('/verify', {
+        templateUrl: 'views/verify.html',
+        controller: 'VerificationCtrl',
+        resolve: {
+          verificationStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
+            return dataProviderService.getItem(urls.enrollmentURL, "verify/", {"token": $location.search().token}, null, false);
+          }]
+        }
+      })
+      .when('/unsubscribe', {
+        templateUrl: 'views/unsubscribe.html',
+        controller: 'UnsubscribeCtrl',
+        resolve: {
+          unsubscribeStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
+            return dataProviderService.postItem(urls.enrollmentURL, "unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
+          }]
+        }
       })
       .otherwise({
         redirectTo: '/'
@@ -157,7 +185,7 @@ AMIApp.run(function($http, NavCollection, $timeout){
         path: "#/finish",
         id: "finish",
         icon: "fa fa-flag-checkered",
-        restricted: false,
+        restricted: true,
         target: "_self"
       }
     ]

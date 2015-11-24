@@ -17,7 +17,7 @@
     </div>
 </div>
 </div>
-<button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!requiredFieldsFilled() || nextIsLoading)}" ng-click="next()">
+<button class="btn btn-primary" tabindex="1" ng-class="{disabled: nextIsLoading}" ng-click="next()">
   <span ng-if="!nextIsLoading">Next</span>
   <span ng-if="nextIsLoading">Please Wait...</span>
   &nbsp;
