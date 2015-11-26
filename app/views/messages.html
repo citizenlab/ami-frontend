@@ -1,0 +1,45 @@
+<div ng-message="R1">
+	Thank you. There are now {{$parent.response.data.count}} requests created for {{$parent.response.data.operator}} in {{$parent.response.data.jurisdiction}}.
+</div>
+<div ng-message="R2">
+	Sorry, you've created a request to {{$parent.response.data.operator}} too recently.
+</div>
+<div ng-message="R3">
+	System Error. Can't save request.
+</div>
+<div ng-message="D1">
+	Database Error.
+</div>
+<div ng-message="V1">
+	The email address <strong>{{response.data.email_address}}</strong> has been verified and subscribed to notifications.
+</div>
+<div ng-message="V2">
+	This email address has already been verified.
+</div>
+<div ng-message="V3">
+	Verification token expired.
+</div>
+<div ng-message="V4">
+	Invalid token provided.
+</div>
+<div ng-message="V5">
+	No token provided to validate.
+</div>
+<div ng-message="V6">
+	No AMI requests found for <strong>{{response.data.email_address}}</strong>.
+</div>
+<div ng-message="V7">
+	No consent given for email address to be collected.
+</div>
+<div ng-message="M1">
+	Unable to send email at this time.
+</div>
+<div ng-message="M2">
+	You've provided an invalid email address.
+</div>
+<div ng-message="U1">
+	Successfully unsubscribed <strong>{{response.data.email_address}}</strong> from AMI notifications.
+</div>
+<div ng-message="U2">
+	Unable to unsubcribe <strong>{{response.data.email_address}}</strong> from AMI notifications.
+</div>

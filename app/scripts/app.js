@@ -14,6 +14,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 var AMIApp = angular.module('AMIApp', [
     'ngRoute',
     'ngEnter',
+    'ngMessages',
     'dataProviderService',
     'ProgressBarNav',
     'formItem',
@@ -132,7 +133,12 @@ AMIApp.filter('object2Array', function() {
     return _.toArray(input);
   }
 });
-
+AMIApp.run(function ($templateCache, $http) {
+  $http.get('views/messages.html')
+  .then(function(response) {
+    $templateCache.put('status-messages', response.data); 
+  })
+})
 AMIApp.run(function($http, NavCollection, $timeout){
   var stages = [
       {

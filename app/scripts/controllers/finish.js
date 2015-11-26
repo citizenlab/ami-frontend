@@ -99,7 +99,9 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
   	 	$scope.serverIsLoading = false;
   	 	$scope.serverError = false;
   	 	$scope.serverDown = false;
-  	 	$scope.response = response;
+  	 	$scope.response = response.title;
+      $scope.responseStatuses = {};
+      $scope.responseStatuses[response.title.statusCode] = true;
   	 	$scope.success = true;
   	 }, function(response){
   	 	$scope.serverIsLoading = false;

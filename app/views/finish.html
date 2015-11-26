@@ -19,13 +19,17 @@
 <span ng-if="!serverIsLoading && !success && !serverError">Enroll</span>
 <span ng-if="serverIsLoading && !success">Please Wait...</span>
 <span ng-if="serverDown">Error.</span>
-<span ng-if="rateLimited">Please wait.</span>
+<span ng-if="rateLimited">Try again later.</span>
 <span ng-if="success">Thank you.</span>
 &nbsp;
 <i class="fa" ng-class="{'fa-arrow-right': !serverIsLoading && !success, 'fa-check-circle': !serverIsLoading && success, 'fa-spinner': serverIsLoading, 'rotating': serverIsLoading, 'fa-exclamation-triangle': serverDown || rateLimited}"></i>
 </button>
     <div ng-if="serverDown">Server appears to be down. Please try again later.</div>
     <div ng-if="rateLimited">You're doing that too much. Please wait and try later.</div>
-    <div ng-if="success">{{response.title}}</div>
+    <div ng-if="success">
+      <div ng-messages="responseStatuses">
+        <div ng-messages-include="status-messages"></div>
+      </div>
+    </div>
   </div>
 </div>

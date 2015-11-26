@@ -1,5 +1,7 @@
 <h2>Email Verification</h2>
 <div class="well">
 <strong>Status</strong>
-<br/>{{verificationStatus.message}}
+<div ng-messages="responseStatuses">
+	<div ng-messages-include="status-messages"></div>
+</div>
 </div>
