@@ -31,25 +31,29 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       $scope.company = AMIRequest.get('operator');
     }
 
-
+   
     $scope.$watch('company', function(newCompany, oldCompany){
-      if(newCompany !== oldCompany){
+      if(newCompany === null){
+        console.log("drop");
+        AMIRequest.drop('operator');
+        $scope.services = null;
+      }
+      else if(newCompany !== oldCompany){
         AMIRequest.set('operator', newCompany);
         dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
         .then(function(services){
           if(services.length){
             if(services.length > 1){
-              $scope.services = services;
               for (var i =  services.length - 1; i >= 0; i--) {
                  services[i].selected = false;
               };
             }
             else{
-              delete $scope.services;
               services[0].selected = true;
               AMIRequest.set('services', services);
-              $scope.stageComplete();
             }
+            $scope.services = services;
+            $scope.stageComplete();
           }
           else{
             alert("Sorry, no services for this operator.");
@@ -81,6 +85,7 @@ $scope.stageComplete = function(){
         }
         else{
           $scope.IsServiceSelected = false;
+          NavCollection.restrict('subject');
         }
       }
     });
@@ -94,7 +99,6 @@ $scope.stageComplete = function(){
     }
 
     $scope.showService = function(service){
-      console.log(service, $scope.services);
       return (service.selected === true);
     }
     

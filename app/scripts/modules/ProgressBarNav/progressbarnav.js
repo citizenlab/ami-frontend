@@ -48,6 +48,9 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
       console.log(this.previous);
       return this.previous;
     }
+    else{
+      delete this.previous;
+    }
   }
   navCollection.nextItem = function(){
     var nextIndex;
@@ -56,10 +59,13 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
         nextIndex =  this.collection.indexOf(this.selectedNavItem) + 1;
       }
       else{
-        nextIndex =  this.collection.indexOf(this.selectedNavItem);
+        nextIndex = this.collection.indexOf(this.selectedNavItem);
       }
       this.next = this.collection[nextIndex];
       return this.next;
+    }
+    else{
+      delete this.next;
     }
   }
   navCollection.startSelect = function(id){
@@ -118,6 +124,7 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
     var startRestrictingEverythingNow = false;
     if(itemToRestrict){
       itemToRestrict.restricted = true;
+      itemToRestrict.selecting = false;
       angular.forEach(this.collection, function(item, key){
         if(item === itemToRestrict && navCollection.ordered){
           startRestrictingEverythingNow = true;

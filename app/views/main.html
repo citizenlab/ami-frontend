@@ -43,7 +43,7 @@
 		<p>This service was developed by <a href="https://openeffect.ca/">Open Effect</a> and <a href="https://citizenlab.org">The Citizen Lab</a> at the University of Toronto.</p>
 		<hr>
 		<p>
-			<a ng-href="#/companyInfo" class="btn btn-primary" ng-click="next()" ng-class="{disabled:nextIsLoading}">
+			<a ng-href="#/companyInfo" class="btn btn-primary" ng-click="next()" ng-class="{disabled: nextIsLoading}">
 			<i class="fa" ng-class="{'fa-flag': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i> 
 			<span ng-if="!nextIsLoading">&nbsp;Start Now</span>
 			<span ng-if="nextIsLoading">&nbsp;Please Wait...</span>

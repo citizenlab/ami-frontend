@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$location', function ($scope, AMIRequest, NavCollection, $location) {
+AMIApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$location', 'cmsStatus', function ($scope, AMIRequest, NavCollection, $location) {
 
     $scope.nextIsLoading = false;
     $scope.jurisdiction = AMIRequest.get('jurisdiction');

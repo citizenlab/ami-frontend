@@ -27,6 +27,25 @@ var AMIApp = angular.module('AMIApp', [
   .constant('enrollmentDomain', "http://128.100.127.49:3000")
   .constant('enrollmentApiPath', "/")
   .constant('jurisdictionID', 18)
+  .service('cmsStatus', function($location, NavCollection){
+    var online = false;
+    this.isOnline = function(status){
+      if(typeof status === "undefined"){
+        return online;
+      }
+      if(status === true){
+        online = true;
+        NavCollection.unRestrict('industry');
+        NavCollection.unRestrict('home');
+      }
+      else{
+        online = false;
+        NavCollection.restrict('industry');
+        NavCollection.restrict('home');
+        $location.path('/offline');
+      }
+    }
+  })
   .service('urls', function(apiDomain, apiPath, enrollmentDomain, enrollmentApiPath){
     this.apiURL = apiDomain + apiPath
     this.enrollmentURL = enrollmentDomain + enrollmentApiPath
@@ -122,6 +141,9 @@ var AMIApp = angular.module('AMIApp', [
           }]
         }
       })
+      .when('/offline', {
+        templateUrl: 'views/offline.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -132,12 +154,6 @@ AMIApp.filter('object2Array', function() {
     return _.toArray(input);
   }
 });
-AMIApp.run(function ($templateCache, $http) {
-  $http.get('views/messages.html')
-  .then(function(response) {
-    $templateCache.put('status-messages', response.data); 
-  })
-})
 AMIApp.run(function($http, NavCollection, $timeout){
   var stages = [
       {
@@ -201,6 +217,22 @@ AMIApp.run(function($http, NavCollection, $timeout){
       $("#loadingScreen").addClass('faded-out');
       $timeout(function(){
         $("#loadingScreen").hide();
-      }, 400);
-    }, 170);
+      }, 100);
+    }, 300);
+});
+AMIApp.run(function ($templateCache, $http) {
+  $http.get('views/messages.html')
+  .then(function(response) {
+    $templateCache.put('status-messages', response.data); 
+  })
+});
+AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderService) {
+  dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID)
+    .then(function(jurisdiction){
+      AMIRequest.set('jurisdiction', jurisdiction);
+      cmsStatus.isOnline(true);
+    })
+    .catch(function(error){
+      cmsStatus.isOnline(false);
+    })
 });

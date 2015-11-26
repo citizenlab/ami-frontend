@@ -25,6 +25,13 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
       this.resolveHierarchy(key);
     }
   }
+  request.drop = function(key){
+    console.log("Dropping " + key + " from request");
+    delete this[key];
+    if(this.hierarchy.indexOf(key) >= 0){
+      this.resolveHierarchy(key);
+    }
+  }
   request.has = function(key){
     return (typeof this[key] !== "undefined");
   }
@@ -36,17 +43,18 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
       // $location.path('/');
       index+=1;
     }
-    for (var i = index+1; i <= this.hierarchy.length; i++) {
+    for (var i = index+1; i < this.hierarchy.length; i++) {
+      console.log("\tDropping " + this.hierarchy[i] + " from request");
       delete this[this.hierarchy[i]];
       try{
         NavCollection.restrict(this.hierarchy[i]);
       }
       catch(e){
-        console.log("welp");
+        continue;
       }
     };
   }
-  request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'letter'];
+  request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'subject', 'request'];
   request.getAnon = function(){
     return {
       jurisdiction: this.jurisdiction,

@@ -309,7 +309,16 @@ module.exports = function (grunt) {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
-
+    uncss: {
+      dist: {
+        options: {
+          stylesheets: ['../.tmp/styles/main.css']
+        },
+        files: {
+          '.tmp/styles/main.css': ['<%= yeoman.dist %>/**/*.html']
+        }
+      }
+    },
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -441,6 +450,7 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
+    // 'uncss',
     'concat',
     'ngmin',
     'copy:dist',
