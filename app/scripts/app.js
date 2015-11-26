@@ -20,8 +20,7 @@ var AMIApp = angular.module('AMIApp', [
     'formItem',
     'requestTemplate',
     'AMIRequest',
-    'ngSticky',
-    'ui.bootstrap'
+    'ngSticky'
   ])
   .constant('apiDomain', 'http://128.100.127.49:8888')
   .constant('apiPath', "/amicms/wp-json/amicms")

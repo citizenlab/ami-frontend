@@ -4,15 +4,16 @@
   <div class="well">
   <div class="form-group">
   <div class="checkbox">
-    <label><input type="checkbox"  tabindex="1" ng-model="statistics"/>I would like to share the following data with AMI researchers:</label>
+    <label><input type="checkbox"  tabindex="1" ng-model="statistics"/><strong>I would like to share the following data with AMI researchers:</strong></label>
   </div>
-  <p class="help-block">Request made to {{anon.operator.title}} for the {{servicelist}} in {{anon.jurisdiction.title}} on {{anon.date}}.</p>
+  <p class="bg-info p-bg mart10">Request made to {{anon.operator.title}} for the {{servicelist}} in {{anon.jurisdiction.title}} on {{anon.date}}.</p>
+  <hr>
   <div class="checkbox">
     <label>
-    <input type="checkbox" ng-model="subscribe"/>I would like to subscribe to receive email updates to support me throught the request process.</label>
+    <input type="checkbox" ng-model="subscribe"/><strong>I would like to subscribe to receive email updates to support me throught the request process.</strong></label>
   </div>
   <label ng-if="subscribe">Email address <span class="required">*</span></label><input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="subscribe"/>
-  <p class="help-block">This may involve an email sent after several days to check if you've received a response from {{anon.operator.title}}, that includes instructions on what to do if you haven't. You'll also get an invitation to fill out a short questionnaire. We won't share your email with any third parties, other than the email service we use to send the emails themselves.</p>
+  <p class="bg-info p-bg mart10">This may involve an email sent after several days to check if you've received a response from {{anon.operator.title}}, that includes instructions on what to do if you haven't. You'll also get an invitation to fill out a short questionnaire. We won't share your email with any third parties, other than the email service we use to send the emails themselves.</p>
   </div>
   </div>
   <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!requiredFieldsFilled() || rateLimited || success || serverIsLoading || serverDown), 'btn-warning': rateLimited, 'btn-danger': serverDown}" ng-click="submit()" ng-enter="submit()">
