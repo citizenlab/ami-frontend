@@ -1,16 +1,12 @@
-{{responseStatus}}
-<div ng-messages="responseStatus">
-	<div ng-messages-include="status-messages"></div>
-</div>
 <h2>Request access to your personal&nbsp;information: {{jurisdiction.title}}</h2>
 <p>This tool<sup> 1</sup> helps you learn  about the information that your telecom provider collected about you and what it could potentially disclose to third parties. <strong>Under Canadian privacy law, your telecom provider is LEGALLY OBLIGED to respond to requests sent using this tool</strong>.</p>
 <p><strong>To create your request, simply follow these straightforward steps.</strong> This tool will create a formal letter which you can either <strong>print and mail</strong> through the post, or <em>if the company privacy officer's email address is available</em>, <strong>email</strong> it.</p>
 
 <div class="clearfix mart10 marb10">
-	<a class="btn btn-lg btn-primary" ng-click="next()" ng-class="{disabled:nextIsLoading}">
-	<i class="fa" ng-class="{'fa-flag': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i> 
-	<span ng-if="!nextIsLoading">&nbsp;Start Your Request</span>
-	<span ng-if="nextIsLoading">&nbsp;Please Wait...</span>
+	<a ng-href="{{nextStage.path}}" class="btn btn-lg btn-primary" ng-class="{disabled: (nextStage.selecting || nextStage.restricted)}">
+	<i class="fa" ng-class="{'fa-flag': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
+	<span ng-if="!nextStage.selecting">&nbsp;Start Now</span>
+	<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
 	</a>
 </div>
 <div class="well clearfix mart10">
@@ -43,10 +39,10 @@
 		<p>This service was developed by <a href="https://openeffect.ca/">Open Effect</a> and <a href="https://citizenlab.org">The Citizen Lab</a> at the University of Toronto.</p>
 		<hr>
 		<p>
-			<a ng-href="#/companyInfo" class="btn btn-primary" ng-click="next()" ng-class="{disabled: nextIsLoading}">
-			<i class="fa" ng-class="{'fa-flag': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i> 
-			<span ng-if="!nextIsLoading">&nbsp;Start Now</span>
-			<span ng-if="nextIsLoading">&nbsp;Please Wait...</span>
+			<a ng-href="{{nextStage.path}}" class="btn btn-primary" ng-class="{disabled: (nextStage.selecting || nextStage.restricted)}">
+			<i class="fa" ng-class="{'fa-flag': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
+			<span ng-if="!nextStage.selecting">&nbsp;Start Now</span>
+			<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
 			</a>
 		</p>
 	</div>

@@ -12,7 +12,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 'use strict';
 AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService, urls) {
     $window.scrollTo(0,0)
-    NavCollection.unRestrict('operator');
+
     $scope.previous = function(){
       $location.path('/industry');
     }
@@ -40,6 +40,8 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       }
       else if(newCompany !== oldCompany){
         AMIRequest.set('operator', newCompany);
+        AMIRequest.markAsComplete('operator');
+
         dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
         .then(function(services){
           if(services.length){
@@ -53,7 +55,6 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
               AMIRequest.set('services', services);
             }
             $scope.services = services;
-            $scope.stageComplete();
           }
           else{
             alert("Sorry, no services for this operator.");
@@ -62,30 +63,23 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       }
       else{
         if(AMIRequest.has('services')){
+          console.log(AMIRequest.get('services'));
           if(AMIRequest.get('services').length > 1){
             $scope.services = AMIRequest.get('services');
-          }
-          else{
-            $scope.stageComplete();
           }
         }
       }
     });
 
-$scope.stageComplete = function(){
-  $scope.IsServiceSelected = true;
-  NavCollection.unRestrict('subject');
-}
-
     $scope.$watch(function(){
+      $scope.nextStage = NavCollection.nextItem();
       if($scope.services && $scope.services.length > 0){
-        AMIRequest.set('services', $scope.services);
         if($scope.checkServiceSelection()){
-          $scope.stageComplete();
+          AMIRequest.set('services', $scope.services);
+          AMIRequest.markAsComplete('services');
         }
         else{
-          $scope.IsServiceSelected = false;
-          NavCollection.restrict('subject');
+          AMIRequest.drop('services');
         }
       }
     });
@@ -102,17 +96,8 @@ $scope.stageComplete = function(){
       return (service.selected === true);
     }
     
-    $scope.next = function(){
-      if($scope.IsServiceSelected){
-        $scope.nextIsLoading = true;
-        $location.path('subject');
-      }
-    }
-
     $scope.$watch('company', function(newCompany, oldCompany){
       AMIRequest.set('operator', $scope.company);
+      AMIRequest.markAsComplete('operator');
     });
-
-
-    NavCollection.finishSelect('operator');
   }]);

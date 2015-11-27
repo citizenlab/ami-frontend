@@ -13,7 +13,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService, urls) {
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
     $window.scrollTo(0,0)
-    NavCollection.unRestrict('industry');
     $scope.previous = function(){
       $location.path('/');
     }
@@ -26,26 +25,22 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
       $scope.isIndustrySelected = true;
     }
 
-    $scope.next = function(){
-      if($scope.isIndustrySelected){
-        $scope.nextIsLoading = true;
-        $location.path('operator');
-      }
-    }
     $scope.$watch('industry', function(oldIndustry, newIndustry){
       if($scope.industry && $scope.industry.id){
         AMIRequest.set('industry', $scope.industry);
+        AMIRequest.markAsComplete('industry');
         $scope.isIndustrySelected = true;
-        NavCollection.unRestrict('operator');
+        //NavCollection.unRestrict('operator');
       }
       else{
-        AMIRequest.set('industry', {});
+        AMIRequest.drop('industry');
         $scope.isIndustrySelected = false;
-        NavCollection.restrict('operator');
+        //NavCollection.restrict('operator');
       }
     })
     $scope.$watch(function() {
       var jurisdiction;
+      $scope.nextStage = NavCollection.nextItem();
       jurisdiction = AMIRequest.get('jurisdiction');
       if($scope.jurisdiction !== jurisdiction){
         $scope.jurisdiction = jurisdiction;
@@ -53,9 +48,8 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
         .then(function(industries){
           $scope.industries = industries;
           $scope.industry = {};
-          AMIRequest.set('industry', {});
+          AMIRequest.drop('industry');
         });
       }
     });
-    NavCollection.finishSelect('industry');
   }]);

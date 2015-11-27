@@ -51,13 +51,10 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   $scope.$watch('subject', function(newVal, oldVal){
     console.log("subject", newVal);
     AMIRequest.set('subject', newVal);
+    AMIRequest.markAsComplete('subject');
   });
     
-  $scope.next = function(){
-      $scope.nextIsLoading = true;
-      $location.path('request');
-  }
-  
-  NavCollection.finishSelect('subject');
-  NavCollection.unRestrict('request');
+  $scope.$watch(function(){
+    $scope.nextStage = NavCollection.nextItem();
+  })
 }]);

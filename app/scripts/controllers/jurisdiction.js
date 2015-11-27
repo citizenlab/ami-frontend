@@ -1,5 +1,6 @@
 'use strict';
-AMIApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$window', 'AMIRequest', 'dataProviderService', 'urls', 'jurisdictionID', function ($scope, $timeout, $location, $window, AMIRequest, dataProviderService, urls, jurisdictionID) {
+AMIApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$window', 'AMIRequest', function ($scope, $timeout, $location, $window, AMIRequest) {
+
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
     $scope.selectJurisdiction = function(jurisdiction){
       AMIRequest.set('jurisdiction', jurisdiction);
@@ -9,4 +10,5 @@ AMIApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$wind
       jurisdiction = AMIRequest.get('jurisdiction');
       $scope.jurisdiction = jurisdiction;
     });
+    
 }]);

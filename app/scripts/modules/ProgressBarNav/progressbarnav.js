@@ -156,6 +156,7 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
   }
   navCollection.finishSelectByPath = function(path){
     var itemToFind = _.findWhere(this.collection, {'path': path});
+    console.log(itemToFind);
     if(itemToFind){
       this.finishSelect(itemToFind.id);
     }
@@ -169,7 +170,7 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
   return navCollection;
 }]);
 
-ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'NavCollection', function ($scope, $location, NavCollection) {
+ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 'NavCollection', function ($rootScope, $scope, $location, NavCollection) {
     $scope.stages = NavCollection.collection;
     
     $scope.stageIcon = function(stage){
@@ -189,4 +190,9 @@ ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'NavCollection
         var activeLocation = "#" + $location.url();
         NavCollection.startSelectByPath(activeLocation);
      });
+     $rootScope.$on('$routeChangeSuccess', function(event){
+        var path = "#" + $location.path();
+        console.log(path);
+        NavCollection.finishSelectByPath(path);
+      });
 }]);

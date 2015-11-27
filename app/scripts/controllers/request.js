@@ -99,6 +99,6 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $timeout(function(){
     $scope.email.isGenerating = true;
   }, 100);
-  NavCollection.finishSelect('request');
+
   NavCollection.unRestrict('finish');
 }]);

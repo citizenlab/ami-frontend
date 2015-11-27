@@ -26,14 +26,12 @@ AMIApp.controller('MainCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$locati
         $scope.show = true;
       }
     }
-    $scope.next = function(){
-      $scope.nextIsLoading = true;
-      $location.path('industry');
-    }
+    console.log(Object.keys(NavCollection));
+
     $scope.$watch(function() {
+      $scope.nextStage = NavCollection.nextItem();
       var jurisdiction;
       jurisdiction = AMIRequest.get('jurisdiction');
       $scope.jurisdiction = jurisdiction;
     });
-    NavCollection.finishSelect('home');
 }]);

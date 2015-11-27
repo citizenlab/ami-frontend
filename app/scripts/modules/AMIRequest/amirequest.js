@@ -15,14 +15,32 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   var request = {};
   request.date = moment().format('MMMM Do, YYYY');
   request.get = function(key){
-    return this[key];
+    if(this.has(key)){
+      return this[key]['data'];
+    }
+    else{
+      return null;
+    }
+  }
+  request.markAsComplete = function(key){
+    if(this[key] && !this[key].completed){
+      console.log("markingAsComplete");
+      this[key].completed = true;
+      this.resolveHierarchy(key, this[key]);
+    }
   }
   request.set = function(key, value){
     console.log(key, "set", value);
-    var oldValue = this[key];
-    this[key] = value;
-    if(oldValue !== value && this.hierarchy.indexOf(key) >= 0){
-      this.resolveHierarchy(key);
+    var oldValue;
+    if(this[key]){
+      oldValue = this[key].data;
+    }
+    if(oldValue !== value){
+      this[key] = {"data": value, "completed": false}
+
+      if(this.hierarchy.indexOf(key) >= 0){
+        this.resolveHierarchy(key, value);
+      }
     }
   }
   request.drop = function(key){
@@ -35,24 +53,42 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   request.has = function(key){
     return (typeof this[key] !== "undefined");
   }
-  request.resolveHierarchy = function(key){
-    var index = this.hierarchy.indexOf(key);
-    if(key === "jurisdiction"){
-      NavCollection.restrict('operator');
-      delete this['industry'];
-      // $location.path('/');
-      index+=1;
+  request.resolveHierarchy = function(key, value){
+    var index;
+    if(typeof value == "undefined" || !value.completed){
+      index = this.hierarchy.indexOf(key);
     }
-    for (var i = index+1; i < this.hierarchy.length; i++) {
-      console.log("\tDropping " + this.hierarchy[i] + " from request");
-      delete this[this.hierarchy[i]];
-      try{
-        NavCollection.restrict(this.hierarchy[i]);
+    else{
+      index = this.hierarchy.indexOf(key) + 1;
+    }
+
+    for (var i = 0; i < this.hierarchy.length; i++) {
+      if(i > index){
+        try{
+          delete this[this.hierarchy[i]];
+        }
+        catch(e){
+          continue;
+        }
       }
-      catch(e){
-        continue;
+      if(i <= index){
+        try{
+          NavCollection.unRestrict(this.hierarchy[i]);
+        }
+        catch(e){
+          continue;
+        }
       }
-    };
+      else{
+        try{
+          console.log("\tDropping " + this.hierarchy[i] + " from request");
+          NavCollection.restrict(this.hierarchy[i]);
+        }
+        catch(e){
+          continue;
+        }
+      }
+    }
   }
   request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'subject', 'request'];
   request.getAnon = function(){

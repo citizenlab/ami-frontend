@@ -13,11 +13,10 @@
     </div>
   </div>
 </div>
-<button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!isIndustrySelected || nextIsLoading)}" ng-click="next()">
-<span ng-if="!nextIsLoading">Next</span>
-<span ng-if="nextIsLoading">Please Wait...</span>
-&nbsp;
-<i class="fa" ng-class="{'fa-arrow-right': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i>
-</button>
+<a ng-href="{{nextStage.path}}" class="btn btn-primary" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
+<span ng-if="!nextStage.selecting">&nbsp;Next</span>
+<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
+<i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
+</a>
 </fieldset>
 </form>
