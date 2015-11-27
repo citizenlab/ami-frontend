@@ -29,9 +29,20 @@ var AMIApp = angular.module('AMIApp', [
   .constant('jurisdictionID', 18)
   .service('cmsStatus', function($location, NavCollection){
     var online = false;
+    var firstRun = true;
+    var path;
     this.isOnline = function(status){
       if(typeof status === "undefined"){
         return online;
+      }
+      if(!firstRun && !online && status){
+        if(NavCollection.selectedNavItem){
+          path = NavCollection.selectedNavItem.path;
+        }
+        else{
+          path = "#/";
+        }
+        $location.path(path);
       }
       if(status === true){
         online = true;
@@ -44,6 +55,7 @@ var AMIApp = angular.module('AMIApp', [
         NavCollection.restrict('home');
         $location.path('/offline');
       }
+      firstRun = false;
     }
   })
   .service('urls', function(apiDomain, apiPath, enrollmentDomain, enrollmentApiPath){
@@ -224,15 +236,20 @@ AMIApp.run(function ($templateCache, $http) {
   $http.get('views/messages.html')
   .then(function(response) {
     $templateCache.put('status-messages', response.data); 
-  })
+  });
 });
-AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderService) {
-  dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID)
+AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderService, $interval) {
+   dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID)
     .then(function(jurisdiction){
       AMIRequest.set('jurisdiction', jurisdiction);
       cmsStatus.isOnline(true);
+    }).
+    catch(function(err){
+      console.log(err);
     })
-    .catch(function(error){
-      cmsStatus.isOnline(false);
-    })
+  $interval(function(){
+    if(!cmsStatus.isOnline()){
+      dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID);
+    }
+  }, 60000);
 });

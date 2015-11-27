@@ -1,6 +1,6 @@
 'use strict';
 var dataProviderService = angular.module('dataProviderService', []);
-dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', function( $route, $q, $http ) {
+dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'urls', 'cmsStatus', function( $route, $q, $http, urls, cmsStatus ) {
     return {
         getItem: function (baseURL, itemPath, params) {
             return this.request(baseURL, itemPath, params, 'GET');
@@ -36,8 +36,14 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', fun
             }
             $http(options)
             .success( function(data, status, headers, config) {
+                if(urls.apiURL === baseURL){
+                    cmsStatus.isOnline(true);
+                }
                 delay.resolve( data );
             }).error( function(data, status, headers, config) {
+                if(urls.apiURL === baseURL){
+                     cmsStatus.isOnline(false);
+                }
                 delay.reject( {data: data, status: status} );
             });
             return delay.promise;

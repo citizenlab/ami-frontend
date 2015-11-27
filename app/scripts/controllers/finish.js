@@ -117,6 +117,4 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
   	 	}
   	 });
   }
-
-  NavCollection.finishSelect('finish');
 }]);
