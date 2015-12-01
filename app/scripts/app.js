@@ -31,18 +31,13 @@ var AMIApp = angular.module('AMIApp', [
     var online = false;
     var firstRun = true;
     var path;
+    var redirect = false;
     this.isOnline = function(status){
       if(typeof status === "undefined"){
         return online;
       }
       if(!firstRun && !online && status){
-        if(NavCollection.selectedNavItem){
-          path = NavCollection.selectedNavItem.path;
-        }
-        else{
-          path = "#/";
-        }
-        $location.path(path);
+        redirect = true;
       }
       if(status === true){
         online = true;
@@ -54,6 +49,17 @@ var AMIApp = angular.module('AMIApp', [
         NavCollection.restrict('industry');
         NavCollection.restrict('home');
         $location.path('/offline');
+      }
+      if(redirect){
+        if(NavCollection.selectedNavItem){
+          path = NavCollection.selectedNavItem.id;
+          console.log(NavCollection.selectedNavItem);
+          console.log(path);
+        }
+        else{
+          path = "/";
+        }
+        $location.path(path);
       }
       firstRun = false;
     }
@@ -242,14 +248,22 @@ AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderSe
    dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID)
     .then(function(jurisdiction){
       AMIRequest.set('jurisdiction', jurisdiction);
-      cmsStatus.isOnline(true);
+      AMIRequest.markAsComplete('jurisdiction');
     }).
     catch(function(err){
       console.log(err);
     })
   $interval(function(){
     if(!cmsStatus.isOnline()){
-      dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID);
+      var randomInt = Math.floor(Math.random() * (100000000 - 0)) + 0;
+      dataProviderService.request(urls.apiURL, "/jurisdictions/" + jurisdictionID, {"flag": randomInt}, 'GET', null, false)
+        .success( function(data, status, headers, config) {
+          cmsStatus.isOnline(true);
+          AMIRequest.set('jurisdiction', data);
+        })
+        .error( function(data, status, headers, config) {
+          cmsStatus.isOnline(false);
+        });
     }
-  }, 60000);
+  }, 6000);
 });

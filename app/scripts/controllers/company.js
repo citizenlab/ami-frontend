@@ -40,7 +40,6 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       }
       else if(newCompany !== oldCompany){
         AMIRequest.set('operator', newCompany);
-        AMIRequest.markAsComplete('operator');
 
         dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
         .then(function(services){
@@ -52,7 +51,6 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
             }
             else{
               services[0].selected = true;
-              AMIRequest.set('services', services);
             }
             $scope.services = services;
           }
@@ -62,27 +60,35 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         });
       }
       else{
+        if($scope.company && $scope.company.id){
+          AMIRequest.set('operator', $scope.company);
+        }
+        console.log("services~");
         if(AMIRequest.has('services')){
+          console.log("services!");
           console.log(AMIRequest.get('services'));
-          if(AMIRequest.get('services').length > 1){
+          if(AMIRequest.get('services').length >= 1){
             $scope.services = AMIRequest.get('services');
           }
         }
       }
     });
 
-    $scope.$watch(function(){
-      $scope.nextStage = NavCollection.nextItem();
+    $scope.$watch('services', function(newServices, oldServices){
+      $scope.setServices();
+    });
+
+    $scope.setServices = function(){
+      console.log("hiiii");
       if($scope.services && $scope.services.length > 0){
         if($scope.checkServiceSelection()){
-          AMIRequest.set('services', $scope.services);
-          AMIRequest.markAsComplete('services');
+          AMIRequest.set('services', $scope.services, true);
         }
         else{
           AMIRequest.drop('services');
         }
       }
-    });
+    }
 
     $scope.checkServiceSelection = function(){
       for (var i = $scope.services.length - 1; i >= 0; i--) {
@@ -95,9 +101,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     $scope.showService = function(service){
       return (service.selected === true);
     }
-    
-    $scope.$watch('company', function(newCompany, oldCompany){
-      AMIRequest.set('operator', $scope.company);
-      AMIRequest.markAsComplete('operator');
+    $scope.$watch(function(){
+      $scope.nextStage = NavCollection.nextItem();
     });
   }]);

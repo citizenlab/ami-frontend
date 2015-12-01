@@ -119,6 +119,9 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
       throw Error("No item in nav collection by id", id);
     }
   }
+  navCollection.getById = function(id){
+    return _.findWhere(this.collection, {'id': id});
+  }
   navCollection.restrict = function(id){
     var itemToRestrict = _.findWhere(this.collection, {'id': id});
     var startRestrictingEverythingNow = false;

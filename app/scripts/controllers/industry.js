@@ -26,9 +26,11 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
     }
 
     $scope.$watch('industry', function(oldIndustry, newIndustry){
+      if(newIndustry === null){
+        AMIRequest.drop('industry');
+      }
       if($scope.industry && $scope.industry.id){
         AMIRequest.set('industry', $scope.industry);
-        AMIRequest.markAsComplete('industry');
         $scope.isIndustrySelected = true;
         //NavCollection.unRestrict('operator');
       }
@@ -37,19 +39,8 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
         $scope.isIndustrySelected = false;
         //NavCollection.restrict('operator');
       }
-    })
-    $scope.$watch(function() {
-      var jurisdiction;
-      $scope.nextStage = NavCollection.nextItem();
-      jurisdiction = AMIRequest.get('jurisdiction');
-      if($scope.jurisdiction !== jurisdiction){
-        $scope.jurisdiction = jurisdiction;
-        dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdiction.id + "/industries")
-        .then(function(industries){
-          $scope.industries = industries;
-          $scope.industry = {};
-          AMIRequest.drop('industry');
-        });
-      }
     });
+    $scope.$watch(function(){
+      $scope.nextStage = NavCollection.nextItem();
+    })
   }]);

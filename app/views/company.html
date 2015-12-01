@@ -17,7 +17,7 @@
 <h3><label>Service(s) <span class="required">*</span></label></h3>
 <div class="checkbox  clearfix" ng-repeat="service in services">
     <label class="fat col-sm-6" ng-class="{'bg-success': service.selected}" >
-      <input type="checkbox" ng-model="service.selected" ng-true-value="{{true}}" ng-checked="showService(service)" data-ng-false-value="{{false}}"  tabindex="1" ng-disabled="(services.length == 1)"/>
+      <input type="checkbox" ng-model="service.selected" ng-true-value="{{true}}" ng-checked="showService(service)" data-ng-false-value="{{false}}"  tabindex="1" ng-disabled="(services.length == 1)" ng-change="setServices()"/>
       {{service.title}}
     </label>
 </div>

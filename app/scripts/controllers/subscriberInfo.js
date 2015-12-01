@@ -51,7 +51,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   $scope.$watch('subject', function(newVal, oldVal){
     console.log("subject", newVal);
     AMIRequest.set('subject', newVal);
-    AMIRequest.markAsComplete('subject');
   });
     
   $scope.$watch(function(){
