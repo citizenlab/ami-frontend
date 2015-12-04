@@ -22,10 +22,10 @@ var AMIApp = angular.module('AMIApp', [
     'AMIRequest',
     'ngSticky'
   ])
-  .constant('apiDomain', 'http://128.100.127.49:8888')
-  .constant('apiPath', "/amicms/wp-json/amicms")
-  .constant('enrollmentDomain', "http://128.100.127.49:3000")
-  .constant('enrollmentApiPath', "/")
+  .constant('apiDomain', 'https://api.dev.accessmyinfo.org')
+  .constant('apiPath', "/wp-json/amicms")
+  .constant('enrollmentDomain', "https://api.dev.accessmyinfo.org")
+  .constant('enrollmentApiPath', "/notifications")
   .constant('jurisdictionID', 18)
   .service('cmsStatus', function($location, NavCollection){
     var online = false;
