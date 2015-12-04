@@ -128,10 +128,10 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'subject', 'request'];
   request.getAnon = function(){
     return {
-      jurisdiction: this.jurisdiction,
-      operator: this.operator,
-      services: this.services,
-      date: this.date
+      jurisdiction: this.jurisdiction.data,
+      operator: this.operator.data,
+      services: this.services.data,
+      date: this.date.data
     }
   }
   return request;

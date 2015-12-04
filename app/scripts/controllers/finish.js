@@ -88,7 +88,7 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
 
   $scope.submit = function(){
   	 $scope.serverIsLoading = true;
-  	 dataProviderService.postItem(urls.enrollmentURL, "enroll/", {}, 
+  	 dataProviderService.postItem(urls.enrollmentURL, "/enroll/", {}, 
   	 	{
         data: $scope.anon,
         subscribe: $scope.subscribe,

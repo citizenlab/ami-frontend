@@ -146,7 +146,7 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'VerificationCtrl',
         resolve: {
           verificationStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
-            return dataProviderService.getItem(urls.enrollmentURL, "verify/", {"token": $location.search().token}, null, false);
+            return dataProviderService.getItem(urls.enrollmentURL, "/verify/", {"token": $location.search().token}, null, false);
           }]
         }
       })
@@ -155,7 +155,7 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'UnsubscribeCtrl',
         resolve: {
           unsubscribeStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
-            return dataProviderService.postItem(urls.enrollmentURL, "unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
+            return dataProviderService.postItem(urls.enrollmentURL, "/unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
           }]
         }
       })
