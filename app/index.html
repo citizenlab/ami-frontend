@@ -84,7 +84,7 @@ MOSQUITO wants its sweet, sweet data
             </p>
         </footer>
     </div>
-
+<div class="feedback" ng-controller="FeedbackCtrl" ng-include="'views/feedback.html'"></div>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -105,7 +105,8 @@ MOSQUITO wants its sweet, sweet data
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <!-- <script src="scripts/modules/ui-bootstrap-custom-0.14.3.min.js"></script> -->
+    <script src="scripts/modules/ui-bootstrap-custom-0.14.3.min.js"></script>
+    <script src="scripts/modules/ui-bootstrap-custom-tpls-0.14.3.min.js"></script>
     <script src="scripts/license.js"></script>
     <script src="scripts/modules/Enter/enter.js"></script>
     <script src="scripts/modules/dataProviderService/dataproviderservice.js"></script>
@@ -124,6 +125,7 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/controllers/finish.js"></script>
     <script src="scripts/controllers/verify.js"></script>
     <script src="scripts/controllers/unsubscribe.js"></script>
+    <script src="scripts/controllers/feedback.js"></script>
     <!-- endbuild -->
 </body>
 </html>

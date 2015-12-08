@@ -493,9 +493,40 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
     }
 }
 
-.ixmapstar {
-    cursor:pointer;
-    font-size:1.3em;
+.feedback {
+    -ms-transform: rotate(270deg); /* IE 9 */
+    -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+    position:fixed;
+    top:40%;
+    left:0px;
+    margin:0;
+}
+.radio-inline {
+    vertical-align:top;
+    &:first-of-type {
+        margin-left:1em;
+    }
+    &:last-of-type {
+        margin-right:1em
+    }
+}
+
+#feedbackModal {
+    max-height:400px;
+    overflow-y:scroll;
+    form {
+        p, div {
+            padding:0.5em 0.35em;
+        }
+        p:nth-child(even){
+            background-color:#eee;
+        }
+        p span {
+            font-size:0.9em;
+            line-height:1.7
+        }
+    }
 }
 
 .flexProgress {
