@@ -36,6 +36,9 @@ var AMIApp = angular.module('AMIApp', [
       if(!firstRun && !online && status){
         redirect = true;
       }
+      else{
+        redirect = false;
+      }
       if(status === true){
         online = true;
         NavCollection.unRestrict('industry');
@@ -262,5 +265,5 @@ AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderSe
           cmsStatus.isOnline(false);
         });
     }
-  }, 6000);
+  }, 60000);
 });
