@@ -16,6 +16,7 @@ $beige: #EFC1A0;
 $gray-green: #eff4f0;
 $red-muted: #A34D4D;
 $purple-blue: #3A3672;
+$brand-primary: rgba(70, 165, 164, 100);
 
 /*$text-color: $dark-red;*/
 /*$body-bg: $white-green;*/
@@ -500,7 +501,18 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
     position:fixed;
     top:40%;
     left:0px;
+    -ms-transform-origin: 0% 0%; /* IE 9 */
+    -webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
+    transform-origin: 0% 0%;
     margin:0;
+    i {
+        margin-left:0.6rem;
+    }
+}
+@media screen and (max-width: 767px) {
+    .feedback {
+        display:none;
+    }
 }
 .radio-inline {
     vertical-align:top;

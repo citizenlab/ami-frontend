@@ -12,6 +12,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 'use strict';
 
 var AMIApp = angular.module('AMIApp', [
+    'config',
     'ngRoute',
     'ngEnter',
     'ngMessages',
@@ -23,11 +24,6 @@ var AMIApp = angular.module('AMIApp', [
     'ngSticky',
     'ui.bootstrap'
   ])
-  .constant('apiDomain', 'http://128.100.127.49:8888')
-  .constant('apiPath', "/amicms/wp-json/amicms")
-  .constant('enrollmentDomain', "http://128.100.127.49/:3000")
-  .constant('enrollmentApiPath', "/notifications")
-  .constant('jurisdictionID', 18)
   .service('cmsStatus', function($location, NavCollection){
     var online = false;
     var firstRun = true;

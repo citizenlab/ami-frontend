@@ -7,6 +7,10 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+var localConfig = require('./app/scripts/modules/config/localConfig');
+var devConfig = require('./app/scripts/modules/config/devConfig');
+var prodConfig = require('./app/scripts/modules/config/prodConfig');
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -91,6 +95,51 @@ module.exports = function (grunt) {
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
+    ngconstant: {
+      options: {
+        space: '  ',
+        wrap: '"use strict";\n\n {%= __ngModule %}',
+        name: 'config'
+      },
+      // Environment targets
+      local: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js',
+        },
+        constants: {
+          apiDomain: localConfig.apiDomain,
+          apiPath: localConfig.apiPath,
+          enrollmentDomain: localConfig.enrollmentDomain,
+          enrollmentApiPath: localConfig.enrollmentApiPath,
+          jurisdictionID: localConfig.jurisdictionID
+        }
+      },
+      development: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js',
+        },
+        constants: {
+          apiDomain: devConfig.apiDomain,
+          apiPath: devConfig.apiPath,
+          enrollmentDomain: devConfig.enrollmentDomain,
+          enrollmentApiPath: devConfig.enrollmentApiPath,
+          jurisdictionID: devConfig.jurisdictionID
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/config.js',
+        },
+        constants: {
+          apiDomain: prodConfig.apiDomain,
+          apiPath: prodConfig.apiPath,
+          enrollmentDomain: prodConfig.enrollmentDomain,
+          enrollmentApiPath: prodConfig.enrollmentApiPath,
+          jurisdictionID: prodConfig.jurisdictionID
         }
       }
     },
@@ -328,7 +377,6 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            'data.json',
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
@@ -423,6 +471,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:local',
       'bowerInstall',
       'concurrent:server',
       'autoprefixer',
@@ -444,8 +493,28 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
+  grunt.registerTask('build-dev', [
+    'clean:dist',
+    'ngconstant:development',
+    'bowerInstall',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    // 'uncss',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin',
+    'htmlmin'
+  ]);
+
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:production',
     'bowerInstall',
     'useminPrepare',
     'concurrent:dist',

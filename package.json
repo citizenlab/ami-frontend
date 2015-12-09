@@ -21,6 +21,7 @@
     "grunt-google-cdn": "~0.2.0",
     "grunt-karma": "^0.8.3",
     "grunt-newer": "~0.6.1",
+    "grunt-ng-constant": "^1.1.0",
     "grunt-ngmin": "~0.0.2",
     "grunt-purifycss": "^0.1.0",
     "grunt-rev": "~0.1.0",
