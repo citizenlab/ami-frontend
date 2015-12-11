@@ -14,7 +14,8 @@
     "jquery": "~1.11.3",
     "jspdf": "1.1.135",
     "html2canvas": "~0.4.1",
-    "font-awesome": ""
+    "font-awesome": "",
+    "angular-sanitize": "~1.4.8"
   },
   "resolutions": {
     "angular": "1.4.8"

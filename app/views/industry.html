@@ -4,19 +4,24 @@
   <fieldset>
 <div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-industry bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting an industry that provides you a service you're interested in learning more about.</p></div>
 <div class="well">
-  <h3><label for="company">Industry <span class="required">*</span></label></h3>
-  <div class="row">
-    <div class="col-sm-6">
-      <select tabindex="1" name="industry" ng-model="industry" ng-options="industry.title for industry in industries track by industry.id" class="form-control input-lg">
+	<h3><label for="company">Industry <span class="required">*</span></label></h3>
+	<div class="row">
+<!--       <select tabindex="1" name="industry" ng-model="industry" ng-options="industry.title for industry in industries track by industry.id" class="form-control input-lg">
         <option value="" selected>Select industry</option>
-      </select>
+    </select> -->
+    <div class="col-sm-6 mart10" ng-repeat="industry in industries">
+    	<div class="btn btn-blocky" ng-click="selectIndustry(industry)" ng-class="{'btn-success': ($parent.industry.id == industry.id), 'btn-primary': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
+    		<img src="images/placeholder.png" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/>
+    		<div class="marl10" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)">
+    			<h4>{{industry.title}}</h4>
+    			<div ng-bind-html="industry.content"></div>
+    		</div>
+    		<i class="fa big-icon fa-spinner rotating" ng-if="(nextStage.selecting && $parent.industry.id == industry.id)"></i> 
+    		<h4 class="marl10" ng-if="(nextStage.selecting && $parent.industry.id == industry.id)">&nbsp;Please Wait...</h4>
+    	</div>
     </div>
-  </div>
 </div>
-<a ng-href="{{nextStage.path}}" class="btn btn-primary" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-<span ng-if="!nextStage.selecting">&nbsp;Next</span>
-<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
-<i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
-</a>
+</div>
+</div>
 </fieldset>
 </form>

@@ -16,6 +16,7 @@ var AMIApp = angular.module('AMIApp', [
     'ngRoute',
     'ngEnter',
     'ngMessages',
+    'ngSanitize',
     'dataProviderService',
     'ProgressBarNav',
     'formItem',
@@ -79,9 +80,8 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/industry.html',
         controller: 'IndustryCtrl',
         resolve: {
-          industries: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
-            var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdiction.id + "/industries");
+          industries: ["dataProviderService", "urls", "AMIRequest", "jurisdictionID", function(dataProviderService, urls, AMIRequest, jurisdictionID) {
+            return dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID + "/industries");
           }]
         },
       })

@@ -25,6 +25,12 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
       $scope.isIndustrySelected = true;
     }
 
+    $scope.selectIndustry = function(industry){
+      $scope.industry = industry;
+      $scope.isIndustrySelected = true;
+      $location.path(NavCollection.nextItem().id);
+    }
+
     $scope.$watch('industry', function(oldIndustry, newIndustry){
       if(newIndustry === null){
         AMIRequest.drop('industry');

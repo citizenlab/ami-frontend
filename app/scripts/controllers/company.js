@@ -31,6 +31,10 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       $scope.company = AMIRequest.get('operator');
     }
 
+    $scope.selectCompany = function(company){
+      $scope.company = company;
+      // $location.path(NavCollection.nextItem().id);
+    }
    
     $scope.$watch('company', function(newCompany, oldCompany){
       if(newCompany === null){
