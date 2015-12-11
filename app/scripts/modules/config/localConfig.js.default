@@ -1,0 +1,7 @@
+module.exports = {
+	apiDomain: "",
+	apiPath: "",
+	enrollmentDomain: "",
+	enrollmentApiPath: "",
+	jurisdictionID: ""
+}
