@@ -12,10 +12,10 @@
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "momentjs": "~2.6.0",
-    "jquery": "~1.11.3",
     "jspdf": "1.1.135",
     "html2canvas": "~0.4.1",
-    "font-awesome": ""
+    "font-awesome": "",
+    "ngSticky": "~1.8.7"
   },
   "resolutions": {
     "angular": "1.4.8"

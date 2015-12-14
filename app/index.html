@@ -36,12 +36,6 @@ MOSQUITO wants its sweet, sweet data
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="full-screen" id="loadingScreen">
-<!--         <div class="full-screen-child-vertical-center">
-        <i class="fa fa-spinner rotating huge-icon"></i>
-        </div> -->
-    </div>
     <header class="navbar hidden-xs">
         <div class="container">
             <div ng-controller="JurisdictionCtrl" class="pull-right mart10">
@@ -94,7 +88,6 @@ MOSQUITO wants its sweet, sweet data
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -104,6 +97,8 @@ MOSQUITO wants its sweet, sweet data
     <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
     <script src="bower_components/html2canvas/build/html2canvas.js"></script>
+    <script src="bower_components/matchmedia/matchMedia.js"></script>
+    <script src="bower_components/ngSticky/lib/sticky.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -117,7 +112,6 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/modules/requestTemplate/requesttemplate.js"></script>
     <script src="scripts/modules/ProgressBarNav/progressbarnav.js"></script>
     <script src="scripts/modules/AMIRequest/amirequest.js"></script>
-    <script src="scripts/modules/Sticky/sticky.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/config.js"></script>
     <script src="scripts/controllers/jurisdiction.js"></script>

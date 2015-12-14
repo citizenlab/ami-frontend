@@ -1,5 +1,6 @@
 'use strict';
 AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'components', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, components) {
+  var blurListener;
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   $scope.previous = function(){
@@ -62,20 +63,21 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     isGenerating: false,
     isGenerated: false
   }
+  blurListener = function(){
+    $window.removeEventListener('blur', blurListener, false);
+    $timeout.cancel(timer);
+    $scope.setLetterDoneState();
+  }
   $scope.emailClick = function(){
       var timer2;
       var timer = $timeout(function(){
         $scope.showEmailExtras();
         $timeout.cancel(timer2);
         timer2 = $timeout(function(){
-          $($window).unbind('blur');
+          $window.removeEventListener('blur', blurListener, false);
         },3000);
       }, 1500);
-      $($window).blur(function() {
-        $($window).unbind('blur');
-        $timeout.cancel(timer);
-        $scope.setLetterDoneState();
-      });
+      $window.addEventListener('blur', blurListener, false);
     }
   $scope.generatePDF = function(){
     $scope.pdf.isGenerating = true;

@@ -22,7 +22,7 @@ var AMIApp = angular.module('AMIApp', [
     'formItem',
     'requestTemplate',
     'AMIRequest',
-    'ngSticky',
+    'sticky',
     'ui.bootstrap'
   ])
   .service('cmsStatus', function($location, NavCollection){
@@ -231,12 +231,12 @@ AMIApp.run(function($http, NavCollection, $timeout){
     angular.forEach(stages, function(item){
       NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
     });
-    $timeout(function(){
-      $("#loadingScreen").addClass('faded-out');
-      $timeout(function(){
-        $("#loadingScreen").hide();
-      }, 100);
-    }, 300);
+    // $timeout(function(){
+    //   $("#loadingScreen").addClass('faded-out');
+    //   $timeout(function(){
+    //     $("#loadingScreen").hide();
+    //   }, 100);
+    // }, 300);
 });
 AMIApp.run(function ($templateCache, $http) {
   $http.get('views/messages.html')

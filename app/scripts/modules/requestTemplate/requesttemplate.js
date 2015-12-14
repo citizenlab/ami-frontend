@@ -47,24 +47,20 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         }
 
         var buildEmail = function(){
-            var to, subject, body, email, el, clone;
+            var to, subject, body, email, el, clone, listItems;
             to = scope.operator.meta.privacy_officer_email;
             subject = scope.emailsubject;
             
-            el = $(element[0]);
-                      
-            el.find('li').each(function(){
-              var html;
-              html = this.innerHTML
-              this.innerHTML = "* " + html + "<br/>";
+            el = element[0];
+            listItems = el.getElementsByTagName("ins")
+            angular.forEach(listItems, function(value, key){
+              listItems[key].innerHTML = "* " + listItems[key].innerHTML + "<br/>";
             });
             
-            body = getInnerText(el.get(0)).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
+            body = getInnerText(el).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
             
-            el.find('li').each(function(){
-              var html;
-              html = this.innerHTML
-              this.innerHTML = html.substring(2);
+            angular.forEach(listItems, function(value, key){
+              listItems[key].innerHTML = listItems[key].innerHTML.substring(2);
               // $(this).find('br').remove();
             });
 
