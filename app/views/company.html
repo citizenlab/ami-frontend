@@ -22,7 +22,7 @@
     </div>
   </div>
 </div>
-<div class="well clearfix" ng-show="services">
+<div class="well clearfix" ng-show="(services.length > 1)">
 <h3><label>Service(s) <span class="required">*</span></label></h3>
 <div class="checkbox  clearfix" ng-repeat="service in services">
     <label class="fat col-sm-6" ng-class="{'bg-success': service.selected}" >

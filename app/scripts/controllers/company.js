@@ -33,7 +33,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
 
     $scope.selectCompany = function(company){
       $scope.company = company;
-      // $location.path(NavCollection.nextItem().id);
+      $scope.selected = true;
     }
    
     $scope.$watch('company', function(newCompany, oldCompany){
@@ -67,7 +67,6 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         if($scope.company && $scope.company.id){
           AMIRequest.set('operator', $scope.company);
         }
-        console.log("services~");
         if(AMIRequest.has('services')){
           console.log("services!");
           console.log(AMIRequest.get('services'));
@@ -80,26 +79,25 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
 
     $scope.$watch('services', function(newServices, oldServices){
       $scope.setServices();
+      $scope.howManySelectedServices();
     });
 
     $scope.setServices = function(){
-      console.log("hiiii");
       if($scope.services && $scope.services.length > 0){
-        if($scope.checkServiceSelection()){
+        if($scope.howManySelectedServices() > 0){
           AMIRequest.set('services', $scope.services, true);
+          if($scope.services.length === 1 && $scope.selected){
+            $location.path(NavCollection.nextItem().id);
+          }
         }
         else{
           AMIRequest.drop('services');
         }
       }
     }
-
-    $scope.checkServiceSelection = function(){
-      for (var i = $scope.services.length - 1; i >= 0; i--) {
-        if($scope.services[i].selected){
-          return true;
-        }
-      }
+    
+    $scope.howManySelectedServices = function(){
+      return _.where($scope.services, {selected: true}).length;
     }
 
     $scope.showService = function(service){
