@@ -10,7 +10,7 @@
         <option value="" selected>Select industry</option>
     </select> -->
     <div class="col-sm-6 mart10" ng-repeat="industry in industries">
-    	<div class="btn btn-blocky" ng-click="selectIndustry(industry)" ng-class="{'btn-success': ($parent.industry.id == industry.id), 'btn-primary': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
+    	<div class="btn btn-blocky btn-media" ng-click="selectIndustry(industry)" ng-class="{'btn-success': ($parent.industry.id == industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
     		<img src="images/placeholder.png" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/>
     		<div class="marl10" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)">
     			<h4>{{industry.title}}</h4>

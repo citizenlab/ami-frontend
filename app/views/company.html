@@ -10,7 +10,7 @@
         <option value="" selected>Select company</option>
       </select> -->
     <div class="col-sm-6 mart10" ng-repeat="company in companies">
-      <div class="btn btn-blocky" ng-click="selectCompany(company)" ng-class="{'btn-success': ($parent.company.id == company.id), 'btn-primary': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}">
+      <div class="btn btn-blocky btn-media" ng-click="selectCompany(company)" ng-class="{'btn-success': ($parent.company.id == company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}">
         <img ng-src="{{company.meta.operator_logo.url}}" width="100px" ng-if="!(nextStage.selecting && $parent.company.id == company.id)"/>
         <div class="marl10" ng-if="!(nextStage.selecting && $parent.company.id == company.id)">
           <h4>{{company.title}}</h4>

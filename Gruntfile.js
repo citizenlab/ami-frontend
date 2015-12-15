@@ -197,7 +197,7 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath: '<%= yeoman.app %>/',
-        exclude: ['bower_components/bootstrap-sass-official/vendor/assets/javascripts/*']
+        exclude: ['bower_components/bootstrap-sass/assets/javascripts/*']
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -275,12 +275,9 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= yeoman.dist %>'],
         patterns: {
           css: [
-            [/(\/bower_components\/bootstrap\/dist\/fonts)/g, 'god help me', function(match) {
-              return match.replace('/bower_components/bootstrap/dist/fonts', '../fonts');
-            }],
-            [/(\/bower_components\/bootstrap-sass-official\/vendor\/assets\/fonts\/bootstrap)/g, 'god help me', function(match) {
-              return match.replace('/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap', '../fonts');
-            }],
+            [/(\/bower_components\/bootstrap-sass\/assets\/fonts\/bootstrap)/g, 'god help me', function(match) {
+              return match.replace('/bower_components/bootstrap-sass/assets/fonts/bootstrap', '../fonts');
+            }]
             [/(\/bower_components\/font-awesome\/fonts)/g, 'god help me', function(match) {
               return match.replace('/bower_components/font-awesome/fonts', '../fonts');
             }],

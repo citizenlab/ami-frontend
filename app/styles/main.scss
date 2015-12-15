@@ -28,7 +28,7 @@ $fa-font-path: "/fonts/";
 $font-path: "/fonts/";
 
 // bower:scss
-@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../bower_components/font-awesome/scss/font-awesome.scss";
 // endbower
 
@@ -146,6 +146,10 @@ legend {
 
 .container-narrow > hr {
     margin: 30px 0;
+}
+
+.btn-media {
+    @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
 }
 
 /* Main marketing message and sign up button */
