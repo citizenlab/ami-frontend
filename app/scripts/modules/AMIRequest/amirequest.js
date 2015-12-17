@@ -125,7 +125,7 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
       }
     }
   }
-  request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'subject', 'request'];
+  request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'components', 'subject', 'request'];
   request.getAnon = function(){
     return {
       jurisdiction: this.jurisdiction.data,

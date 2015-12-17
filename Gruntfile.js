@@ -197,7 +197,10 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath: '<%= yeoman.app %>/',
-        exclude: ['bower_components/bootstrap-sass/assets/javascripts/*']
+        exclude: [
+          'bower_components/bootstrap-sass/assets/javascripts/*',
+          'bower_components/jquery'
+        ]
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -277,13 +280,10 @@ module.exports = function (grunt) {
           css: [
             [/(\/bower_components\/bootstrap-sass\/assets\/fonts\/bootstrap)/g, 'god help me', function(match) {
               return match.replace('/bower_components/bootstrap-sass/assets/fonts/bootstrap', '../fonts');
-            }]
+            }],
             [/(\/bower_components\/font-awesome\/fonts)/g, 'god help me', function(match) {
               return match.replace('/bower_components/font-awesome/fonts', '../fonts');
-            }],
-            [/(\(\/fonts\/)/g, 'god help me', function(match) {
-              return match.replace('(/fonts', '(../fonts');
-            }],
+            }]
           ],
         }
       }

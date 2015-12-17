@@ -38,10 +38,7 @@ MOSQUITO wants its sweet, sweet data
 
     <header class="navbar hidden-xs">
         <div class="container">
-            <div ng-controller="JurisdictionCtrl" class="pull-right mart10">
-                <img ng-src="{{jurisdiction.meta.flag.url}}" alt="{{jurisdiction.title}}"/>
-            </div>
-            <h1 class="clearfix mobileShrink"><img src="images/ami-logo-small.png" class="pull-left" alt="Access My Info"/><span>Access My Info</span><small>Request access to your personal information</small></h1>
+            <h1 class="clearfix mobileShrink"><span>Access My Info</span></h1>
         </div>
     </header>
     <div class="container">
@@ -88,18 +85,17 @@ MOSQUITO wants its sweet, sweet data
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/matchmedia/matchMedia.js"></script>
+    <script src="bower_components/ngSticky/lib/sticky.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
     <script src="bower_components/html2canvas/build/html2canvas.js"></script>
-    <script src="bower_components/matchmedia/matchMedia.js"></script>
-    <script src="bower_components/ngSticky/lib/sticky.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -119,6 +115,7 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/industry.js"></script>
     <script src="scripts/controllers/company.js"></script>
+    <script src="scripts/controllers/questions.js"></script>
     <script src="scripts/controllers/subscriberInfo.js"></script>
     <script src="scripts/controllers/request.js"></script>
     <script src="scripts/controllers/finish.js"></script>

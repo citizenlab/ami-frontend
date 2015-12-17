@@ -1,0 +1,78 @@
+<!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
+<h2>Ask about your data</h2>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Ask questions</strong> about how your data is collected, used, shared, and stored. Get specific about the data you'd like access to. We may have some helpful defaults.</p></div>
+<div class="well">
+  <div ng-repeat="componentType in components">
+  <h3 ng-show="$index === 0">Questions for {{operator.title}} <span class="required">*</span></h3>
+  <h3 ng-show="$index === 1" class="mart30">Data requested from {{operator.title}} <span class="required">*</span></h3>
+  <ul class="list-unstyled question-list clearfix">
+    <li ng-repeat="component in componentType.items" class="col-sm-12">
+      <div ng-if="!component.editable" class="flexy">
+      <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="component.selected"/>{{component.data}}
+      </label>
+      </div>
+      </div>
+      <div ng-if="(component.editable && componentType.toUpdate !== component)" class="flexy">
+        <div class="checkbox flexy-big">
+        <label>
+        <input type="checkbox" ng-model="component.selected"/>{{component.data}}
+        </label>
+        </div>
+        <div class="flexy-small text-right">
+          <span class="btn btn-info" ng-click="componentType.startUpdate($index)" aria-label="Edit Request Component" title="Edit Request Component">
+            <i class="fa fa-edit"></i>
+          </span>
+          <span class="btn btn-warning" ng-click="componentType.delete($index)" aria-label="Remove Request Component" title="Remove Request Component">
+            <i class="fa fa-close"></i>
+          </span>
+        </div>
+      </div>
+      <div ng-if="(component.editable && componentType.toUpdate == component)" class="flexy form-inline">
+        <div class="flexy-big">
+          <div class="form-group">
+          <input type="text" ng-model="component.data" class="form-control" ng-enter="componentType.update(component, $index)" focus-me="componentType.toUpdate === component">
+          </div>
+        </div>
+        <div class="flexy-small text-right">
+          <span class="btn btn-info" ng-click="componentType.update(component, $index)"  aria-role="button" aria-label="Update Request Component" title="Update Request Component">
+            <i class="fa fa-check"></i>
+          </span>
+          <span class="btn btn-warning" ng-click="componentType.startUpdate(-1)"  aria-role="button" aria-label="Cancel Update to Request Component" title="Cancel Update to Request Component">
+            <i class="fa fa-close"></i>
+          </span>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="mart10" ng-show="$index === 0">
+  <label>New Question</label>
+  <div class="input-group">
+  <input type="text" placeholder="Type a question" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
+  <span class="input-group-btn">
+  <button class="btn btn-default" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Question" title="Add Question">
+    <i class="fa fa-plus-square-o"></i>
+  </button>
+  </div>
+  </span>
+  </div>
+  <div class="mart10" ng-show="$index === 1">
+  <label>New Data Type</label>
+  <div class="input-group">
+  <input type="text" placeholder="Describe the data you want" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
+  <span class="input-group-btn">
+  <button class="btn btn-default" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Data Type" title="Add Data Type">
+    <i class="fa fa-plus-square-o"></i>
+  </button>
+  </span>
+  </div>
+  </div>
+  <hr/>
+  </div>
+  <a ng-href="{{nextStage.path}}" class="btn btn-primary mart30" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
+<span ng-if="!nextStage.selecting">&nbsp;Next</span>
+<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
+<i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
+</a>
+</div>

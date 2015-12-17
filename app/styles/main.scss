@@ -16,7 +16,7 @@ $beige: #EFC1A0;
 $gray-green: #eff4f0;
 $red-muted: #A34D4D;
 $purple-blue: #3A3672;
-$brand-primary: rgba(70, 165, 164, 100);
+$brand-primary: #B04520;
 
 /*$text-color: $dark-red;*/
 /*$body-bg: $white-green;*/
@@ -116,7 +116,6 @@ header {
         font-size: 24px;
         span {
             display:block;
-            margin-top:10px;
         }
         img {
             margin-right:10px;
@@ -125,6 +124,38 @@ header {
     }
 }
 
+.list-unstyled {
+    li {padding:0}
+}
+
+.flexy {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height:3.3em;
+    .flexy-big {
+        flex-grow: 4
+    }
+    .flexy-small {
+        flex-grow: 1;
+    }
+}
+.question-list { 
+    li {
+        &:nth-child(even){
+          background-color:#eee;
+        }
+        .form-group {
+            display:block;
+            input {
+                width:100%;
+            }
+        }
+    }
+    .checkbox {
+        margin:0;
+    }
+}
 legend {
     font-size: 14px;
     border-bottom: none;
@@ -147,9 +178,14 @@ legend {
 .container-narrow > hr {
     margin: 30px 0;
 }
+* > :last-child { margin-bottom: 0}
 
 .btn-media {
-    @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+    @include button-variant($btn-default-color, $btn-default-bg, desaturate($brand-info, 30%));
+}
+.btn-media-select {
+    @include button-variant($btn-default-color, lighten($btn-success-bg, 45%), $brand-success);
+    border-width:2px;
 }
 
 /* Main marketing message and sign up button */
@@ -278,7 +314,7 @@ h2 {
 }
 
 
-label {
+h2, h3, h4, h5 {
     .required {
         color: $brand-danger;
     }

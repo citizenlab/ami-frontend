@@ -1,5 +1,5 @@
 'use strict';
-AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'components', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, components) {
+AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest) {
   var blurListener;
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
@@ -11,7 +11,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     return;
   }
 
-  $scope.components = components;
+  $scope.components = AMIRequest.get('components');
+
   $scope.jurisdiction = AMIRequest.get('jurisdiction');
   $scope.industry = AMIRequest.get('industry');
   $scope.operator = AMIRequest.get('operator');
@@ -41,19 +42,11 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
 	$scope.servicelist += " service";
   }
 
-  $scope.componentquestions = [];
-  $scope.componentdata = [];
   $scope.displayInstructions = false;
   $scope.displayEmailExtras = false;
 
-  for(var i=0; i < $scope.components.length; i++){
-  	if($scope.components[i].meta.component_type == "Data"){
-  		$scope.componentdata.push($scope.components[i].meta);
-  	}
-  	else if($scope.components[i].meta.component_type == "Question"){
-  		$scope.componentquestions.push($scope.components[i].meta);
-  	}
-  }
+  $scope.componentdata = $scope.components['data']['items'];
+  $scope.componentquestions = $scope.components['questions']['items'];
 
   $scope.pdf = {
     isGenerating: false,

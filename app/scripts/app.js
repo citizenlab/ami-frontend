@@ -42,13 +42,11 @@ var AMIApp = angular.module('AMIApp', [
       }
       if(status === true){
         online = true;
-        NavCollection.unRestrict('industry');
-        NavCollection.unRestrict('home');
+        NavCollection.unRestrict('start');
       }
       else{
         online = false;
-        NavCollection.restrict('industry');
-        NavCollection.restrict('home');
+        NavCollection.restrict('start');
         $location.path('/offline');
       }
       if(redirect){
@@ -73,10 +71,6 @@ var AMIApp = angular.module('AMIApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/industry', {
         templateUrl: 'views/industry.html',
         controller: 'IndustryCtrl',
         resolve: {
@@ -118,7 +112,11 @@ var AMIApp = angular.module('AMIApp', [
       })
       .when('/request', {
         templateUrl: 'views/request.html',
-        controller: 'RequestCtrl',
+        controller: 'RequestCtrl'
+      })
+      .when('/components', {
+        templateUrl: 'views/questions.html',
+        controller: 'QuestionsCtrl',
         resolve: {
           components: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var services = AMIRequest.get('services');
@@ -130,7 +128,7 @@ var AMIApp = angular.module('AMIApp', [
               }, service_ids);
             return dataProviderService.getItem(urls.apiURL, "/components/", {"services[]": service_ids});
           }]
-        },
+        }
       })
       .when('/finish', {
         templateUrl: 'views/finish.html',
@@ -172,22 +170,36 @@ AMIApp.filter('object2Array', function() {
     return _.toArray(input);
   }
 });
+AMIApp.directive('focusMe', function($timeout, $parse) {
+  return {
+    //scope: true,   // optionally create a child scope
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.focusMe);
+      scope.$watch(model, function(value) {
+        console.log('value=',value);
+        if(value === true) { 
+          $timeout(function() {
+            element[0].focus();
+            element[0].setSelectionRange(0, element[0].value.length)
+          });
+        }
+      });
+      // to address @blesh's comment, set attribute value to 'false'
+      // on blur event:
+      element.bind('blur', function() {
+         console.log('blur');
+         scope.$apply(model.assign(scope, false));
+      });
+    }
+  };
+});
 AMIApp.run(function($http, NavCollection, $timeout){
   var stages = [
       {
-        name: "",
+        name: "Start",
         path: "#/",
-        id: "home",
+        id: "start",
         icon: "fa fa-home",
-        restricted: false,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: "Industry",
-        path: "#/industry",
-        id: "industry",
-        icon: "fa fa-industry",
         restricted: false,
         className: "",
         target: "_self"
@@ -197,6 +209,15 @@ AMIApp.run(function($http, NavCollection, $timeout){
         path: "#/operator",
         id: "operator",
         icon: "fa fa-briefcase",
+        restricted: true,
+        className: "",
+        target: "_self"
+      },
+      {
+        name: "Ask",
+        path: "#/components",
+        id: "components",
+        icon: "fa fa-question-circle",
         restricted: true,
         className: "",
         target: "_self"

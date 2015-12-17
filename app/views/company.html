@@ -4,13 +4,13 @@
   <fieldset>
 <div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting an organization that provides your services. You're entitled to do this for all organizations that provide you such services.</p></div>
 <div class="well">
-  <h3><label for="company">Organization <span class="required">*</span></label></h3>
+  <h3>Organization</h3>
   <div class="row">
       <!-- <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies track by company.id" class="form-control input-lg">
         <option value="" selected>Select company</option>
       </select> -->
     <div class="col-sm-6 mart10" ng-repeat="company in companies">
-      <div class="btn btn-blocky btn-media" ng-click="selectCompany(company)" ng-class="{'btn-success': ($parent.company.id == company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}">
+      <div class="btn btn-blocky" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
         <img ng-src="{{company.meta.operator_logo.url}}" width="100px" ng-if="!(nextStage.selecting && $parent.company.id == company.id)"/>
         <div class="marl10" ng-if="!(nextStage.selecting && $parent.company.id == company.id)">
           <h4>{{company.title}}</h4>

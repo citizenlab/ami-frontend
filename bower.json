@@ -9,13 +9,13 @@
     "angular-messages": "1.4.8",
     "angular-resource": "1.4.8",
     "angular-sanitize": "1.4.8",
+    "ngSticky": "~1.8.7",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
     "momentjs": "~2.6.0",
     "jspdf": "1.1.135",
     "html2canvas": "~0.4.1",
-    "font-awesome": "",
-    "ngSticky": "~1.8.7"
+    "font-awesome": ""
   },
   "resolutions": {
     "angular": "1.4.8"
