@@ -1,10 +1,12 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <h2>Ask about your data</h2>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Ask questions</strong> about how your data is collected, used, shared, and stored. Get specific about the data you'd like access to. We may have some helpful defaults.</p></div>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Ask questions</strong> about how your data is collected, used, shared, and stored. <strong>Get specific about the data</strong> you'd like access to. We may have some helpful defaults.</p></div>
 <div class="well">
-  <div ng-repeat="componentType in components">
-  <h3 ng-show="$index === 0">Questions for {{operator.title}} <span class="required">*</span></h3>
-  <h3 ng-show="$index === 1" class="mart30">Data requested from {{operator.title}} <span class="required">*</span></h3>
+  <div ng-repeat="componentType in components ">
+  <div ng-show="componentType.activated">
+  <h3 ng-show="componentType.id === 'questions'">Questions for {{operator.title}} <span class="required">*</span></h3>
+  <h3 ng-show="componentType.id === 'data'" class="mart30">Data requested from {{operator.title}} <span class="required">*</span></h3>
+  <h3 ng-show="componentType.id === 'dataBanks'" class="mart30">Data banks for {{operator.title}} <span class="required">*</span></h3>
   <ul class="list-unstyled question-list clearfix">
     <li ng-repeat="component in componentType.items" class="col-sm-12">
       <div ng-if="!component.editable" class="flexy">
@@ -46,29 +48,41 @@
       </div>
     </li>
   </ul>
-  <div class="mart10" ng-show="$index === 0">
+  <div class="mart10" ng-show="componentType.id === 'questions'">
   <label>New Question</label>
   <div class="input-group">
   <input type="text" placeholder="Type a question" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
   <span class="input-group-btn">
-  <button class="btn btn-default" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Question" title="Add Question">
-    <i class="fa fa-plus-square-o"></i>
+  <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Question" title="Add Question">
+    <i class="fa fa-plus"></i>
   </button>
   </div>
   </span>
   </div>
-  <div class="mart10" ng-show="$index === 1">
+  <div class="mart10" ng-show="componentType.id === 'data'">
   <label>New Data Type</label>
   <div class="input-group">
   <input type="text" placeholder="Describe the data you want" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
   <span class="input-group-btn">
-  <button class="btn btn-default" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Data Type" title="Add Data Type">
-    <i class="fa fa-plus-square-o"></i>
+  <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Data Type" title="Add Data Type">
+    <i class="fa fa-plus"></i>
+  </button>
+  </span>
+  </div>
+  </div>
+  <div class="mart10" ng-show="componentType.id === 'dataBanks'">
+  <label>New Data Bank</label>
+  <div class="input-group">
+  <input type="text" placeholder="Describe the data bank you want" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
+  <span class="input-group-btn">
+  <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="Add Data Bank" title="Add Data Bank">
+    <i class="fa fa-plus"></i>
   </button>
   </span>
   </div>
   </div>
   <hr/>
+  </div>
   </div>
   <a ng-href="{{nextStage.path}}" class="btn btn-primary mart30" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
 <span ng-if="!nextStage.selecting">&nbsp;Next</span>

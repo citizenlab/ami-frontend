@@ -32,8 +32,10 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     }
 
     $scope.selectCompany = function(company){
-      $scope.company = company;
-      $scope.selected = true;
+      if($scope.company !== company){
+        $scope.company = company;
+        $scope.selected = true;
+      }
     }
    
     $scope.$watch('company', function(newCompany, oldCompany){
@@ -43,25 +45,35 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         $scope.services = null;
       }
       else if(newCompany !== oldCompany){
-        AMIRequest.set('operator', newCompany);
-
-        dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
-        .then(function(services){
-          if(services.length){
-            if(services.length > 1){
-              for (var i =  services.length - 1; i >= 0; i--) {
-                 services[i].selected = false;
-              };
-            }
-            else{
-              services[0].selected = true;
-            }
-            $scope.services = services;
+        if(AMIRequest.set('operator', newCompany)){
+          if(newCompany.meta.data_management_unit == "services"){
+            dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
+            .then(function(services){
+              if(services.length){
+                if(services.length > 1){
+                  for (var i =  services.length - 1; i >= 0; i--) {
+                     services[i].selected = false;
+                  };
+                }
+                else{
+                  services[0].selected = true;
+                }
+                $scope.services = services;
+              }
+              else{
+                alert("Sorry, no services for this operator.");
+              }
+            });
           }
           else{
-            alert("Sorry, no services for this operator.");
+            //Hack -- we dont' need services here
+            $scope.services = [{"title": "Dummy service", "selected": true}];
           }
-        });
+        }
+        else{
+          // AMIRequest not changed
+          $location.path(NavCollection.nextItem().id);
+        }
       }
       else{
         if($scope.company && $scope.company.id){

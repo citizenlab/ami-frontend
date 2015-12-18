@@ -94,15 +94,28 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/subscriber.html',
         controller: 'SubscriberCtrl',
         resolve: {
-          identifiers: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+          identifiers: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest){
+          var operator = AMIRequest.get('operator');
+          var path;
+          var params;
+
+          if(operator.meta.data_management_unit == "data-banks"){
+            path = "/data_banks/identifiers/"
+            var banks = operator.meta.data_banks;
+            params = {"banks[]": banks};
+          }
+          else{
+            path = "/services/identifiers/";
             var services = AMIRequest.get('services');
             var service_ids = [];
-             angular.forEach(services, function(value, key){
-                if(value.selected){
-                  service_ids.push(value.id);
-                }
-              }, service_ids);
-            return dataProviderService.getItem(urls.apiURL, "/identifiers/", {"services[]": service_ids});
+            angular.forEach(services, function(value, key){
+              if(value.selected){
+                service_ids.push(value.id);
+              }
+            }, service_ids);
+            params = {"services[]": service_ids}
+          }
+            return dataProviderService.getItem(urls.apiURL, path, params);
           }]
         },
       })
@@ -119,14 +132,21 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'QuestionsCtrl',
         resolve: {
           components: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
-            var services = AMIRequest.get('services');
-            var service_ids = [];
-             angular.forEach(services, function(value, key){
-                if(value.selected){
-                  service_ids.push(value.id);
-                }
-              }, service_ids);
-            return dataProviderService.getItem(urls.apiURL, "/components/", {"services[]": service_ids});
+            var operator = AMIRequest.get('operator');
+            console.log("OG", operator);
+            if(operator.meta.data_management_unit == "data-banks"){
+              return dataProviderService.getItem(urls.apiURL, "/operators/" + operator.id + "/data_banks/");
+            }
+            else{
+              var services = AMIRequest.get('services');
+              var service_ids = [];
+               angular.forEach(services, function(value, key){
+                  if(value.selected){
+                    service_ids.push(value.id);
+                  }
+                }, service_ids);
+              return dataProviderService.getItem(urls.apiURL, "/components/", {"services[]": service_ids});
+            }
           }]
         }
       })
@@ -184,16 +204,11 @@ AMIApp.directive('focusMe', function($timeout, $parse) {
           });
         }
       });
-      // to address @blesh's comment, set attribute value to 'false'
-      // on blur event:
-      element.bind('blur', function() {
-         console.log('blur');
-         scope.$apply(model.assign(scope, false));
-      });
     }
   };
 });
-AMIApp.run(function($http, NavCollection, $timeout){
+AMIApp.run(function($http, NavCollection, $timeout, $location){
+  $location.path('/');
   var stages = [
       {
         name: "Start",

@@ -142,6 +142,7 @@ header {
 }
 .question-list { 
     li {
+        padding:0 0 0 1em;
         &:nth-child(even){
           background-color:#eee;
         }
@@ -154,6 +155,11 @@ header {
     }
     .checkbox {
         margin:0;
+    }
+}
+.input-group-btn {
+    i.fa {
+        width: 2em;
     }
 }
 legend {

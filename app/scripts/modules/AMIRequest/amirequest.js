@@ -38,6 +38,8 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     }
   }
   request.set = function(key, value, isComplete){
+    delete value['$$hashKey'];
+    
     console.log(key, "set", value);
     var oldValue = null;
     var isChanged = true;
@@ -56,6 +58,7 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     if(this.hierarchy.indexOf(key) >= 0){
       this.resolveHierarchy(key, this[key], isChanged);
     }
+    return isChanged;
   }
   request.drop = function(key){
     console.log("Dropping " + key + " from request");
