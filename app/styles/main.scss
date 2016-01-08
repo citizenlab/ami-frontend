@@ -16,7 +16,20 @@ $beige: #EFC1A0;
 $gray-green: #eff4f0;
 $red-muted: #A34D4D;
 $purple-blue: #3A3672;
-$brand-primary: #B04520;
+
+$blue-light: #009ff5;
+$blue-dark: #157be5;
+$green: #40ca02;
+$dark-green: darken($green, 20%);
+$green-light: desaturate(lighten($green, 55%),50%);;
+$grey: #f5f7f9;
+$grey-dark: #e0e0e0;
+
+$brand-primary: $blue-dark;
+$brand-success: $green;
+$brand-info: $blue-light;
+$state-info-bg: lighten($blue-light, 45%);
+$state-success-bg: $green-light;
 
 /*$text-color: $dark-red;*/
 /*$body-bg: $white-green;*/
@@ -31,6 +44,17 @@ $font-path: "/fonts/";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../bower_components/font-awesome/scss/font-awesome.scss";
 // endbower
+.bg-info-light{
+    @extend .bg-info;
+    background: desaturate(lighten($blue-light, 45%),40%);
+}
+
+$pagination-active-bg: $green;
+$pagination-active-border: $green;
+$light-success: desaturate(lighten($btn-success-bg, 55%),50%);
+$pagination-active-bg: $light-success;
+$pagination-active-border: darken($light-success, 10%);
+$pagination-active-color: #000000;
 
 @font-face {
   font-family: 'Brandon Bold';
@@ -107,11 +131,12 @@ body {
 
 /* Custom page header */
 header {
-    border-bottom: 1px solid #e5e5e5;
-    background: $gray-green;
+    border-bottom: 1px solid $grey-dark;
+    background: $brand-primary;
+    @include gradient-vertical($brand-primary, $blue-light, 0%, 100%);
     h1 {
         margin:10px 0;
-        color: $purple-blue;
+        color: #ffffff;
         vertical-align: middle;
         font-size: 24px;
         span {
@@ -190,7 +215,7 @@ legend {
     @include button-variant($btn-default-color, $btn-default-bg, desaturate($brand-info, 30%));
 }
 .btn-media-select {
-    @include button-variant($btn-default-color, lighten($btn-success-bg, 45%), $brand-success);
+    @include button-variant($btn-default-color, $light-success, $brand-success);
     border-width:2px;
 }
 
@@ -361,7 +386,7 @@ h2, h3, h4, h5 {
 }
 
 .navbar {
-    margin-bottom:0px;
+    margin-bottom:0.5rem;
 }
 
 .centre-xs {
@@ -472,10 +497,10 @@ h2, h3, h4, h5 {
     z-index:999;
     text-align:center;
     opacity: 1;
-    -webkit-transition: opacity 0.1s ease-in-out;
-    -moz-transition: opacity 0.1s ease-in-out;
-    -ms-transition: opacity 0.1s ease-in-out;
-    -o-transition: opacity 0.1s ease-in-out;
+    -webkit-transition: opacity 0.25s ease-in-out;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -ms-transition: opacity 0.25s ease-in-out;
+    -o-transition: opacity 0.25s ease-in-out;
 }
 .huge-icon {
     font-size:100px;
@@ -493,6 +518,7 @@ h2, h3, h4, h5 {
     top: 30%;
     width: 100%;
 }
+
 .faded-out {
     opacity: 0;
 }
@@ -620,6 +646,7 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
             width:100%;
             display:table;
             position: relative;
+            color: darken($green, 15%);
             background: $pagination-bg;
             border:1px solid $pagination-border;
             margin-left:-1px;
@@ -710,11 +737,13 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
         }
         &.active a {
             background-color:$brand-success;
+            color: #FFF;
             &,
             &:hover,
             &:focus {
                 background-color:$brand-success;
                 border-color: darken($brand-success, 10%);
+                color: #FFF;
             }
         }
     }
@@ -745,8 +774,8 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
     > .completedPast {
         > a {
             background-color: darken($pagination-active-bg, 10%);
-                border-color: darken($pagination-active-border, 10%);
-                color: darken($pagination-active-color, 10%);
+                border-color: darken($pagination-active-border, 20%);
+                color: lighten($pagination-active-color, 40%);
             > span {
                 z-index:999;
             }
@@ -755,7 +784,7 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
             }
             &:hover,
             &:focus {
-                color: $pagination-active-color;
+                color: lighten($pagination-active-color, 20%);
                 cursor:hover;
                 background-color: darken($pagination-active-bg, 20%);
                 border-color: darken($pagination-active-border, 20%);

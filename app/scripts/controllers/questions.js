@@ -21,9 +21,18 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
         toAdd: null,
         toUpdate: null,
         activated: false,
-        add: function(title, description){
+        add: function(title, description, editable, selected){
+          if(typeof selected == "undefined"){
+            selected = true;
+          }
+          if(typeof editable == "undefined"){
+            editable = false;
+          }
           if(this.verify(title)){
-            this.items.push(newComponent(title, description, false, true));
+            this.items.push(newComponent(title, description, editable, selected));
+            if(description){
+              this.isCollapsed = true;
+            }
           }
         },
         new: function(){
@@ -97,7 +106,7 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
         $scope.components['questions'].activate();
       }
       else if(components[i].meta.data_bank_number){
-        $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].body);
+        $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].content, false, false);
         $scope.components['questions'].activate();
         $scope.components['dataBanks'].activate();
       }

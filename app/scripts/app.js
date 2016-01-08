@@ -267,12 +267,6 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
     angular.forEach(stages, function(item){
       NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
     });
-    // $timeout(function(){
-    //   $("#loadingScreen").addClass('faded-out');
-    //   $timeout(function(){
-    //     $("#loadingScreen").hide();
-    //   }, 100);
-    // }, 300);
 });
 AMIApp.run(function ($templateCache, $http) {
   $http.get('views/messages.html')
@@ -280,7 +274,7 @@ AMIApp.run(function ($templateCache, $http) {
     $templateCache.put('status-messages', response.data); 
   });
 });
-AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderService, $interval) {
+AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderService, $interval, $timeout) {
    dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID)
     .then(function(jurisdiction){
       AMIRequest.set('jurisdiction', jurisdiction);
@@ -302,4 +296,10 @@ AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderSe
         });
     }
   }, 60000);
+  $timeout(function(){
+      document.getElementById("loadingScreen").className += ' faded-out';
+      $timeout(function(){
+        document.getElementById("loadingScreen").className.replace('faded-out', '');
+      }, 200);
+    }, 170);
 });

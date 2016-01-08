@@ -1,21 +1,26 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
-<h2>Ask about your data</h2>
+<h2>Customize your request</h2>
 <div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Ask questions</strong> about how your data is collected, used, shared, and stored. <strong>Get specific about the data</strong> you'd like access to. We may have some helpful defaults.</p></div>
 <div class="well">
   <div ng-repeat="componentType in components ">
   <div ng-show="componentType.activated">
   <h3 ng-show="componentType.id === 'questions'">Questions for {{operator.title}} <span class="required">*</span></h3>
   <h3 ng-show="componentType.id === 'data'" class="mart30">Data requested from {{operator.title}} <span class="required">*</span></h3>
-  <h3 ng-show="componentType.id === 'dataBanks'" class="mart30">Data banks for {{operator.title}} <span class="required">*</span></h3>
+  <h3 ng-show="componentType.id === 'dataBanks'" class="mart30">Selected data banks for {{operator.title}} <span class="required">*</span></h3>
+  <p ng-show="componentType.id === 'dataBanks'">Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator.title}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href="{{operator.meta.bankHref}}" target="_blank">here</a> and add any you see fit.</p>
   <ul class="list-unstyled question-list clearfix">
     <li ng-repeat="component in componentType.items" class="col-sm-12">
       <div ng-if="!component.editable" class="flexy">
-      <div class="checkbox">
+      <div class="checkbox flexy-big">
       <label>
         <input type="checkbox" ng-model="component.selected"/>{{component.data}}
       </label>
       </div>
+      <div ng-if="component.description.length" class="flexy-small text-right">
+        <button class="btn btn-sm btn-info" ng-click="component.isCollapsed = !component.isCollapsed">Show description <i class="fa" ng-class="{'fa-caret-down': component.isCollapsed, 'fa-caret-right': !component.isCollapsed}"></i></button>
       </div>
+      </div>
+      <div ng-if="!component.editable && component.description.length" uib-collapse="!component.isCollapsed" ng-bind-html="component.description" class="clearfix"></div>
       <div ng-if="(component.editable && componentType.toUpdate !== component)" class="flexy">
         <div class="checkbox flexy-big">
         <label>
@@ -71,7 +76,7 @@
   </div>
   </div>
   <div class="mart10" ng-show="componentType.id === 'dataBanks'">
-  <label>New Data Bank</label>
+  <label>Add Data Bank to request</label>
   <div class="input-group">
   <input type="text" placeholder="Describe the data bank you want" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
   <span class="input-group-btn">
@@ -80,6 +85,7 @@
   </button>
   </span>
   </div>
+  <p class="help-block">To add another data bank to your request, please consult the full list of {{operator.title}} data banks <a href="{{operator.meta.bankHref}}" target="_blank">here</a>.</p>
   </div>
   <hr/>
   </div>
