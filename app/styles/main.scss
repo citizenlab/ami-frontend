@@ -49,11 +49,9 @@ $font-path: "/fonts/";
     background: desaturate(lighten($blue-light, 45%),40%);
 }
 
-$pagination-active-bg: $green;
-$pagination-active-border: $green;
-$light-success: desaturate(lighten($btn-success-bg, 55%),50%);
+$light-success: desaturate(lighten($btn-success-bg, 50%),50%);
 $pagination-active-bg: $light-success;
-$pagination-active-border: darken($light-success, 10%);
+$pagination-active-border: darken($pagination-active-bg, 20%);
 $pagination-active-color: #000000;
 
 @font-face {
@@ -775,7 +773,7 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
         > a {
             background-color: darken($pagination-active-bg, 10%);
                 border-color: darken($pagination-active-border, 20%);
-                color: lighten($pagination-active-color, 40%);
+                color: darken($pagination-active-color, 40%);
             > span {
                 z-index:999;
             }
@@ -784,7 +782,7 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
             }
             &:hover,
             &:focus {
-                color: lighten($pagination-active-color, 20%);
+                color: darken($pagination-active-color, 20%);
                 cursor:hover;
                 background-color: darken($pagination-active-bg, 20%);
                 border-color: darken($pagination-active-border, 20%);

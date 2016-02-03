@@ -1,0 +1,116 @@
+{
+  "status": {
+  	"wait": "請您稍等⋯⋯",
+  	"next": "下一步",
+  	"thanks": "謝謝。",
+  	"error": "錯誤。",
+  	"tryAgain": "請稍候再試。"
+  },
+  "category": {
+  	"title": "收集資料者的種類",
+  	"callout": "選擇一個您感興趣及為您提供服務的行業，並開始提出您的申請。",
+  	"label": "種類"
+  },
+  "operator": {
+  	"title": "{{industry}}:  選擇一家機構",
+  	"callout": "選擇一家為您提供服務的機構，並開始提出您的申請。對於為您提供該類服務的所有機構，您具有提出此申請的資格。",
+  	"label": "機構",
+  	"label-services": "服務"
+  },
+  "questions": {
+  	"title": "個人資料用途查詢",
+  	"callout": "查詢您的個人資料如何被收集、使用、共享以及儲存。為了協助您知悉您的個人資料被使用的詳情，我們的程式提供了協助您完成此項申請的默認設置。",
+  	"label-questions": "針對{{operator}}的問題",
+  	"label-data": "向{{operator}}申請披露的資料",
+  	"label-databanks": "Selected data banks for {{operator}}"
+  },
+  "subject": {
+  	"title": "個人資料",
+  	"callout": "您的個人資料將用作寫成一封正式信件，並協助{{company}}在該公司的記錄裡識別您的相關資料。請放心，以下表格並不會收集您任何的個人資料；它只為協助您書寫上述正式信件，並由您親自發送。",
+  	"label": "基本個人資料"
+  },
+  "request": {
+  	"title": "您向{{operator}}的申請",
+  	"instructions": {
+  		"show": "顯示操作說明",
+  		"hide": "隱藏操作說明",
+  		"read-careful": "請仔細閱讀這封已完成的信件！",
+  		"post-instructions": "選項一：請按以下按鈕，製成信件的PDF版本並把其列印。請將之放在一個信封內，郵寄至：",
+  		"privacy-officer-title": "{{operator}} 私隱主任",
+  		"post-or-email": "或郵寄至：{{email}}",
+  		"email-instructions": "選項二：按「電郵」按鈕，寄出您的信件。如無法操作，或您使用的是網頁郵件，請複製並貼上如下信件並發送至：",
+  		"email-unavailable": "選項二 無法使用：沒有該公司私隱主任的電子郵件。"
+  	},
+  	"pdfButton": {
+  		"generate": "已完成的信件（PDF）",
+  		"re-save": "現重新儲存信件"
+  	},
+  	"emailButton": "發送申請",
+  	"emailProblem": "遇上問題？請複製或貼上以下文字至您的電郵客戶端，並寄至 {{email}}",
+  	"thanks": "非常感謝您製作這封信件！",
+  	"continue": "請繼續完成下列操作，把信件的影響力全面發揮"
+  },
+  "wrapper": {
+  	"disclaimer":
+  	"本應用程式只為研究和教學用的參考工具，不代表任何法律建議。換言之，使用本應用程式者，須對使用服務時、與由此產生的任何後果負全責。公民實驗室（Citizen Lab）、香港中文大學（The Chinese University of Hong Kong）、開放效應（Open Effect）、獨立媒體（香港）（Hong Kong In-media）及其夥伴團體將不對本應用程式文字中所包含資訊的準確性、完整性和適切性作任何聲明、承諾和保證。本軟件以「現狀」形式提供，且不帶有任何明示或隱含的保證。本應用程式中的信息，不應視為可以取代專門法律顧問的法律建議",
+  	"license": "本應用程式已獲── CC 姓名標示-非商業性-相同方式分享 4.0 授權條款──許可授權。"
+  },
+  "feedback": {
+  	"button-label": "分享您的意見",
+  	"modal": {
+  		"title": "分享您的意見",
+		"desc": "請分享您使用<em>Access My Info</em>的感受。",
+  		"submit": "提交意見",
+		"cancel": "取消",
+		"agree": "非常同意",
+		"disagree": "非常不同意"
+  	},
+  	"questions": {
+		"easyToUse": "<em>Access My Info</em>方便使用。",
+		"quickToLearn": "我很快便學會使用這個網絡應用程式。",
+		"fewSteps": "這個應用程式以最簡便的步驟，完成我需要的程序。",
+		"noInstructions": "我無須使用操作說明，也能使用本應用程式。",
+		"mistakeRecover": "我能快速、簡易地更正錯誤。",
+		"success": "我每次也能成功使用本應用程式。",
+		"satisfied": "我對本應用程式感到滿意。",
+		"recommend": "我打算把本應用程式推薦給一位朋友。",
+		"like": "您喜歡本應用程式的哪些特點？",
+		"challenge": "使用本應用程式時，您曾遇甚麼困難？",
+		"industry": "接下來，您希望AMI支援哪個行業或政府部門？",
+		"general": "您有其他意見嗎？"
+  	}
+  },
+  "offline": {
+  	"title": "我們已離線！",
+  	"sorry": "非常抱歉，<em>Access My Info</em> 應用程式現已離線！",
+  	"soon": "請靜候，我們正盡力重新上線！"
+  },
+  "nav": {
+  	"start": "開始",
+  	"org": "機構",
+  	"ask": "查詢",
+  	"you": "個人",
+  	"request": "的申請",
+  	"finish": "完"
+  },
+  "messages": {
+	"R1": "Thank you. There are now {{count}} requests created for {{operator}} in {{jurisdiction}}.",
+	"R2": "Sorry, you've created a request to {{operator}} too recently.",
+	"R3": "System Error. Can't save request.",
+	"D1": "Database Error.",
+	"V1": "The email address <strong>{{email}}</strong> has been verified and subscribed to notifications.",
+	"V2": "This email address has already been verified.",
+	"V3": "Verification token expired.",
+	"V4": "Invalid token provided.",
+	"V5": "No token provided to validate.",
+	"V6": "No AMI requests found for <strong>{{email}}</strong>.",
+	"V7": "No consent given for email address to be collected.",
+	"M1": "Unable to send email at this time.",
+	"M2": "You've provided an invalid email address.",
+	"U1": "Successfully unsubscribed <strong>{{email}}</strong> from AMI notifications.",
+	"U2": "Unable to unsubcribe <strong>{{email}}</strong> from AMI notifications.",
+	"F1": "Feedback saved.",
+	"F2": "Unable to save feedback.",
+	"F2": "Unable to save feedback. No feedback provided."
+  }
+}

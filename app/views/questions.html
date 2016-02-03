@@ -1,12 +1,12 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
-<h2>Customize your request</h2>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Ask questions</strong> about how your data is collected, used, shared, and stored. <strong>Get specific about the data</strong> you'd like access to. We may have some helpful defaults.</p></div>
+<h2 translate="questions.title"></h2>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><span translate="questions.callout"></span></p></div>
 <div class="well">
   <div ng-repeat="componentType in components ">
   <div ng-show="componentType.activated">
-  <h3 ng-show="componentType.id === 'questions'">Questions for {{operator.title}} <span class="required">*</span></h3>
-  <h3 ng-show="componentType.id === 'data'" class="mart30">Data requested from {{operator.title}} <span class="required">*</span></h3>
-  <h3 ng-show="componentType.id === 'dataBanks'" class="mart30">Selected data banks for {{operator.title}} <span class="required">*</span></h3>
+  <h3 ng-show="componentType.id === 'questions'"><span translate="questions.label-questions" translate-values="{operator: operator.title}"></span> <span class="required">*</span></h3>
+  <h3 ng-show="componentType.id === 'data'" class="mart30"><span translate="questions.label-data" translate-values="{operator: operator.title}"></span> <span class="required">*</span></h3>
+  <h3 ng-show="componentType.id === 'dataBanks'" class="mart30"><span translate="questions.label-databanks" translate-values="{operator: operator.title}"></span> <span class="required">*</span></h3>
   <p ng-show="componentType.id === 'dataBanks'">Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator.title}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href="{{operator.meta.bankHref}}" target="_blank">here</a> and add any you see fit.</p>
   <ul class="list-unstyled question-list clearfix">
     <li ng-repeat="component in componentType.items" class="col-sm-12">
@@ -91,8 +91,8 @@
   </div>
   </div>
   <a ng-href="{{nextStage.path}}" class="btn btn-primary mart30" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-<span ng-if="!nextStage.selecting">&nbsp;Next</span>
-<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
+<span ng-if="!nextStage.selecting">&nbsp;<span translate="status.next"></span></span>
+<span ng-if="nextStage.selecting">&nbsp;<span translate="status.wait"></span></span>
 <i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
 </a>
 </div>

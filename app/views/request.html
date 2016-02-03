@@ -1,16 +1,16 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div>
-  <h2 class="clearfix">Your Request to {{operator.title}}</h2>
+  <h2 class="clearfix" translate="request.title" translate-values="{operator: operator.title}"></h2>
   <div class="clearfix mart10 marb10">
-    <div class="pull-right btn btn-info btn-sm" ng-if="(displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()">Hide Instructions <i class="fa fa-chevron-up"></i></div>
-    <div class="pull-right btn btn-info btn-sm" ng-if="(!displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()">Show Instructions <i class="fa fa-chevron-down"></i></div>
+    <div class="pull-right btn btn-info btn-sm" ng-if="(displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()"><span translate="request.instructions.hide"></span> <i class="fa fa-chevron-up"></i></div>
+    <div class="pull-right btn btn-info btn-sm" ng-if="(!displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()"><span translate="request.instructions.show"></span> <i class="fa fa-chevron-down"></i></div>
   </div>
-  <p ng-if="(!letterDoneState || displayInstructions)" class="bigger"><strong>Please read over the generated letter carefully!</strong></p>
+  <p ng-if="(!letterDoneState || displayInstructions)" class="bigger"><strong translate="request.instructions.read-careful"></strong></p>
 </div>
 <div class="clearfix row">
   <div class="col-xs-12 col-sm-6">
     <div ng-if="(!letterDoneState || displayInstructions)">
-      <p class="p-bg bg-success bigger"><strong>Option 1:</strong> Print your letter by first generating a PDF with the below button. Put it in an envelope and mail to: </p>
+      <p class="p-bg bg-success bigger" translate="request.instructions.post-instructions"></p>
       <div class="clearfix row">
         <address class="small col-xs-12 col-sm-11 col-sm-offset-1">
           <strong>{{operator.title}} Privacy Officer</strong>
@@ -27,25 +27,25 @@
     <div class="btn btn-lg marb10 marb-xs-5 btn-block generatorBtn" ng-class="{disabled:pdf.isGenerating, 'btn-success':pdf.isGenerated, 'btn-primary': !pdf.isGenerated, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1">
         <span class="fa" ng-class="{'fa-file-pdf-o': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></span> 
       <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
-         &nbsp;Generate Letter (PDF)
+         &nbsp;<span translate="request.pdfButton.generate"></span>
         </span>
         <span ng-show="pdf.isGenerating && !pdf.isGenerated">
-          &nbsp;Please Wait
+          &nbsp;<span translate="status.wait"></span>
         </span>
         <span ng-show="!pdf.isGenerating && pdf.isGenerated">
-          &nbsp;Re-save Letter
+          &nbsp;<span translate="request.pdfButton.re-save"></span>
         </span>
     </div>
   </div>
   <div class="col-xs-12 col-sm-6">
-    <div ng-if="(!letterDoneState || displayInstructions)"><div ng-if="operator.meta.privacy_officer_email"><p  class="p-bg bg-info bigger"><strong>Option 2: </strong> Email your letter using the email button. If that doesn't work, or <strong>if using webmail</strong>, please <u>copy and paste</u> the letter below and send to:</p>
+    <div ng-if="(!letterDoneState || displayInstructions)"><div ng-if="operator.meta.privacy_officer_email"><p  class="p-bg bg-info bigger" translate="request.instructions.email-instructions"></p>
     <div class="clearfix row">
         <address class="small col-xs-12 col-sm-11 col-sm-offset-1">
-          {{operator.title}} Privacy Officer
+          <span translate="request.instructions.privacy-officer-title" translate-values="{operator: operator.title}"></span>
           <br/><strong>{{operator.meta.privacy_officer_email}}</strong>
         </address>
     </div></div>
-    <span class="marb10 bg-danger p-bg" ng-if="!operator.meta.privacy_officer_email"><strong>Option 2 Unavailable: </strong> No email listed for company privacy officer.</span>
+    <span class="marb10 bg-danger p-bg" ng-if="!operator.meta.privacy_officer_email" translate="request.email-unavailable"></span>
     </div>
   </div>
 </div>
@@ -54,35 +54,33 @@
     <div class="btn btn-lg marb10 marb-xs-5 btn-block generatorBtn" ng-class="{disabled:pdf.isGenerating, 'btn-success':pdf.isGenerated, 'btn-primary': !pdf.isGenerated}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1">
         <span class="fa" ng-class="{'fa-file-pdf-o': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></span> 
       <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
-         &nbsp;Generate Letter (PDF)
+         &nbsp;<span translate="request.pdfButton.generate"></span>
         </span>
         <span ng-show="pdf.isGenerating && !pdf.isGenerated">
-          &nbsp;Please Wait
+          &nbsp;<span translate="status.wait"></span>
         </span>
         <span ng-show="!pdf.isGenerating && pdf.isGenerated">
-          &nbsp;Re-save Letter
+          &nbsp;<span translate="request.pdfButton.re-save"></span>
         </span>
     </div>
   </div>
   <div class="col-xs-12 col-sm-6">
     <div>
       <a class="btn marb10 btn-primary btn-lg btn-block" ng-class="{disabled: !operator.meta.privacy_officer_email}" ng-href="{{email.contents}}" target="_parent" tabindex="1" ng-click="emailClick()" ng-mouseenter="emailBtnHover = true" ng-mouseleave="emailBtnHover = false" >
-        <span class="fa fa-send"></span>&nbsp;&nbsp;Email Request
+        <span class="fa fa-send"></span>&nbsp;&nbsp;<span translate="request.emailButton"></span>
       </a>
       <div class="tooltip-container" ng-if="(displayEmailExtras && emailBtnHover)">
         <div class="tooltip bottom">
           <div class="tooltip-arrow"></div>
-          <div class="tooltip-inner">
-            Problem? Simply copy &amp; paste the below text into your email client and send to {{operator.meta.privacy_officer_email}}
-          </div>
+          <div class="tooltip-inner" translate="request.emailProblem" translate-values="{email: operator.meta.privacy_officer_email}"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="clearfix p-bg p-bg-l bg-success mart10 marb10" ng-if="letterDoneState">
-  <h2 class="mart0 marb10">Thanks for creating your letter!</h2>
-  <a class="btn btn-primary btn-xl btn-block" href="https://openmedia.ca/MyInfo/reminder" target="_parent">Continue on to maximize your impact&nbsp;<i class="fa fa-external-link"></i></a>
+  <h2 class="mart0 marb10" translate="request.thanks"></h2>
+  <a class="btn btn-primary btn-xl btn-block" href="https://openmedia.ca/MyInfo/reminder" target="_parent"><span translate="request.continue"></span>&nbsp;<i class="fa fa-external-link"></i></a>
 </div>
 <div class="well">
 <request-template jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>

@@ -1,0 +1,115 @@
+{
+  "status": {
+  	"wait": "Please wait...",
+  	"next": "Next",
+  	"thanks": "Thank you.",
+  	"error": "Error.",
+  	"tryAgain": "Try again later."
+  },
+  "category": {
+  	"title": "Data Collector Category",
+  	"callout": "<strong>Begin creating your request</strong> by selecting an industry that provides you a service you're interested in learning more about.",
+  	"label": "Category"
+  },
+  "operator": {
+  	"title": "{{industry}}: Select an organization",
+  	"callout": "<strong>Begin creating your request</strong> by selecting an organization that provides your services. You're entitled to do this for all organizations that provide you such services.",
+  	"label": "Organization",
+  	"label-services": "Services"
+  },
+  "questions": {
+  	"title": "Customize your request",
+  	"callout": "<strong>Ask questions</strong> about how your data is collected, used, shared, and stored. <strong>Get specific about the data</strong> you'd like access to. We may have some helpful defaults.",
+  	"label-questions": "Questions for {{operator}}",
+  	"label-data": "Data requested from {{operator}}",
+  	"label-databanks": "Selected data banks for {{operator}}"
+  },
+  "subject": {
+  	"title": "Identifying information",
+  	"callout": "<strong>Your identifying information</strong> will be used to create a formal letter and also help {{company}} identify you in its records. Remember, this form <strong>does not collect your data</strong> – it creates a letter for you to send yourself.",
+  	"label": "Basic Personal Information"
+  },
+  "request": {
+  	"title": "Your Request to {{operator}}",
+  	"instructions": {
+  		"show": "Show Instructions",
+  		"hide": "Hide Instructions",
+  		"read-careful": "Please read over the generated letter carefully!",
+  		"post-instructions": "<strong>Option 1:</strong> Print your letter by first generating a PDF with the below button. Put it in an envelope and mail to:",
+  		"privacy-officer-title": "{{operator}} Privacy Officer",
+  		"post-or-email": "Or email to: {{email}}",
+  		"email-instructions": "<strong>Option 2:</strong> Email your letter using the email button. If that doesn't work, or if using webmail, please copy and paste the letter below and send to:",
+  		"email-unavailable": "<strong>Option 2 Unavailable:</strong> No email listed for company privacy officer."
+  	},
+  	"pdfButton": {
+  		"generate": "Generate Letter (PDF)",
+  		"re-save": "Re-save Letter"
+  	},
+  	"emailButton": "Email Request",
+  	"emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
+  	"thanks": "Thanks for creating your letter!",
+  	"continue": "Continue on to maximize your impact"
+  },
+  "wrapper": {
+  	"disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
+  	"license": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License."
+  },
+  "feedback": {
+  	"button-label": "Feedback",
+  	"modal": {
+  		"title": "Share your feedback",
+		"desc": "Please share your thoughts on using <em>Access My Info</em>.",
+  		"submit": "Submit Feedback",
+		"cancel": "Cancel",
+		"agree": "Strongly Agree",
+		"disagree": "Strongly Disagree"
+  	},
+  	"questions": {
+		"easyToUse": "<em>Access My Info</em> is easy to use.",
+		"quickToLearn": "I learned to use it quickly.",
+		"fewSteps": "It requires the fewest steps possible to accomplish what I want to do with it.",
+		"noInstructions": "I can use it without written instructions.",
+		"mistakeRecover": "I can recover from mistakes quickly and easily.",
+		"success": "I can use it successfully every time.",
+		"satisfied": "I am satisfied with it.",
+		"recommend": "I would recommend it to a friend.",
+		"like": "What did you like about Access My Info?",
+		"challenge": "What challenges did you face while using Access My Info?",
+		"industry": "What industries or government departments would you like to see AMI support next?",
+		"general": "Do you have any other comments?"
+  	}
+  },
+  "offline": {
+  	"title": "We are offline!",
+  	"sorry": "Sorry about this, but <em>Access My Info</em> is currently offline!",
+  	"soon": "Rest assured, we're working hard to bring it back up as soon as possible."
+  },
+  "nav": {
+  	"start": "Start",
+  	"org": "Org",
+  	"ask": "Ask",
+  	"you": "You",
+  	"request": "Request",
+  	"finish": "Finish"
+  },
+  "messages": {
+	"R1": "Thank you. There are now {{count}} requests created for {{operator}} in {{jurisdiction}}.",
+	"R2": "Sorry, you've created a request to {{operator}} too recently.",
+	"R3": "System Error. Can't save request.",
+	"D1": "Database Error.",
+	"V1": "The email address <strong>{{email}}</strong> has been verified and subscribed to notifications.",
+	"V2": "This email address has already been verified.",
+	"V3": "Verification token expired.",
+	"V4": "Invalid token provided.",
+	"V5": "No token provided to validate.",
+	"V6": "No AMI requests found for <strong>{{email}}</strong>.",
+	"V7": "No consent given for email address to be collected.",
+	"M1": "Unable to send email at this time.",
+	"M2": "You've provided an invalid email address.",
+	"U1": "Successfully unsubscribed <strong>{{email}}</strong> from AMI notifications.",
+	"U2": "Unable to unsubcribe <strong>{{email}}</strong> from AMI notifications.",
+	"F1": "Feedback saved.",
+	"F2": "Unable to save feedback.",
+	"F2": "Unable to save feedback. No feedback provided."
+  }
+}

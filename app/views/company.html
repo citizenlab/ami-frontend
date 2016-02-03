@@ -1,10 +1,10 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
-<h2>{{industry.title}}: Select an organization</h2>
+<h2 translate="operator.title" translate-values="{industry: industry.title}"></h2>
 <form>
   <fieldset>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting an organization that provides your services. You're entitled to do this for all organizations that provide you such services.</p></div>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11" translate="operator.callout"></p></div>
 <div class="well">
-  <h3>Organization</h3>
+  <h3 translate="operator.label">Organization</h3>
   <div class="row">
       <!-- <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies track by company.id" class="form-control input-lg">
         <option value="" selected>Select company</option>
@@ -17,13 +17,13 @@
           <div ng-bind-html="company.content"></div>
         </div>
         <i class="fa big-icon fa-spinner rotating" ng-if="(nextStage.selecting && $parent.company.id == company.id)"></i> 
-        <h4 class="marl10" ng-if="(nextStage.selecting && $parent.company.id == company.id)">&nbsp;Please Wait...</h4>
+        <h4 class="marl10" ng-if="(nextStage.selecting && $parent.company.id == company.id)">&&nbsp;<span translate="status.wait"></span></h4>
       </div>
     </div>
   </div>
 </div>
 <div class="well clearfix" ng-show="(services.length > 1)">
-<h3><label>Service(s) <span class="required">*</span></label></h3>
+<h3><label><span translate="operator.label-services">Service(s)</span> <span class="required">*</span></label></h3>
 <div class="checkbox  clearfix" ng-repeat="service in services">
     <label class="fat col-sm-6" ng-class="{'bg-success': service.selected}" >
       <input type="checkbox" ng-model="service.selected" ng-true-value="{{true}}" ng-checked="showService(service)" data-ng-false-value="{{false}}"  tabindex="1" ng-disabled="(services.length == 1)" ng-change="setServices()"/>
@@ -32,8 +32,8 @@
 </div>
 </div>
 <a ng-href="{{nextStage.path}}" class="btn btn-primary" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-<span ng-if="!nextStage.selecting">&nbsp;Next</span>
-<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
+<span ng-if="!nextStage.selecting">&nbsp;<span translate="status.next"></span>
+<span ng-if="nextStage.selecting">&nbsp;<span translate="status.wait"></span>.</span>
 <i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
 </a>
 </fieldset>

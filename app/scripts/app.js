@@ -23,7 +23,8 @@ var AMIApp = angular.module('AMIApp', [
     'requestTemplate',
     'AMIRequest',
     'sticky',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'pascalprecht.translate'
   ])
   .service('cmsStatus', function($location, NavCollection){
     var online = false;
@@ -68,6 +69,13 @@ var AMIApp = angular.module('AMIApp', [
     this.enrollmentURL = enrollmentDomain + enrollmentApiPath
     return this;
   })
+  .config(['$translateProvider', function($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'translations/locale-',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('cn');
+  }])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -190,6 +198,7 @@ AMIApp.filter('object2Array', function() {
     return _.toArray(input);
   }
 });
+
 AMIApp.directive('focusMe', function($timeout, $parse) {
   return {
     //scope: true,   // optionally create a child scope
@@ -197,7 +206,7 @@ AMIApp.directive('focusMe', function($timeout, $parse) {
       var model = $parse(attrs.focusMe);
       scope.$watch(model, function(value) {
         console.log('value=',value);
-        if(value === true) { 
+        if(value === true) {
           $timeout(function() {
             element[0].focus();
             element[0].setSelectionRange(0, element[0].value.length)
@@ -207,11 +216,13 @@ AMIApp.directive('focusMe', function($timeout, $parse) {
     }
   };
 });
-AMIApp.run(function($http, NavCollection, $timeout, $location){
+AMIApp.run(function($http, NavCollection, $timeout, $location, $translate){
   $location.path('/');
-  var stages = [
+  $translate(["nav.start", "nav.org", "nav.ask", "nav.you", "nav.request", "nav.finish"])
+  .then(function(translations){
+    var stages = [
       {
-        name: "Start",
+        name: translations['nav.start'],
         path: "#/",
         id: "start",
         icon: "fa fa-home",
@@ -220,7 +231,7 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
         target: "_self"
       },
       {
-        name: "Org",
+        name: translations['nav.org'],
         path: "#/operator",
         id: "operator",
         icon: "fa fa-briefcase",
@@ -229,7 +240,7 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
         target: "_self"
       },
       {
-        name: "Ask",
+        name: translations['nav.ask'],
         path: "#/components",
         id: "components",
         icon: "fa fa-question-circle",
@@ -238,7 +249,7 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
         target: "_self"
       },
       {
-        name: "You",
+        name: translations['nav.you'],
         path: "#/subject",
         id: "subject",
         icon: "fa fa-user",
@@ -247,7 +258,7 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
         target: "_self"
       },
       {
-        name: "Request",
+        name: translations['nav.request'],
         path: "#/request",
         id: "request",
         icon: "fa fa-file-text",
@@ -256,7 +267,7 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
         target: "_self"
       },
       {
-        name: "Finish",
+        name: translations['nav.finish'],
         path: "#/finish",
         id: "finish",
         icon: "fa fa-flag-checkered",
@@ -267,6 +278,7 @@ AMIApp.run(function($http, NavCollection, $timeout, $location){
     angular.forEach(stages, function(item){
       NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
     });
+  });
 });
 AMIApp.run(function ($templateCache, $http) {
   $http.get('views/messages.html')
@@ -300,6 +312,7 @@ AMIApp.run(function (urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderSe
       document.getElementById("loadingScreen").className += ' faded-out';
       $timeout(function(){
         document.getElementById("loadingScreen").className.replace('faded-out', '');
+        document.getElementById("loadingScreen").remove();
       }, 200);
     }, 170);
 });

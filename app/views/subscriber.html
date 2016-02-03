@@ -1,12 +1,12 @@
 <!-- <div class="btn btn-default" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span> Back to Services</div> -->
-<h2>Identifying information</h2>
+<h2 translate="subject.title"></h2>
 <form>
 <fieldset>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-user bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Your identifying information</strong> will be used to create a formal letter and also help {{company.name}} identify you in its records. Remember, this form <strong>does not collect your data</strong> – it creates a letter for you to send yourself.</p></div>
+<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-user bigIcon "></i></span><p class="va-mid col-xs-11" translate="subject.callout"></p></div>
 
 <div class="well">
 <div class="row">
-    <h2 class="col-sm-12" ng-if="basic_identifiers">Basic Personal Information</h2>
+    <h2 class="col-sm-12" ng-if="basic_identifiers" translate="subject.label"></h2>
     <div class="form-group col-sm-12" ng-repeat="identifier in basic_identifiers | object2Array | orderBy:'+weight'">
       <form-item id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.basic_personal_info"></form-item>
     </div>
@@ -18,8 +18,8 @@
 </div>
 </div>
 <a ng-href="{{nextStage.path}}" class="btn btn-primary" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-<span ng-if="!nextStage.selecting">&nbsp;Next</span>
-<span ng-if="nextStage.selecting">&nbsp;Please Wait...</span>
+<span ng-if="!nextStage.selecting">&nbsp;<span translate="status.next"></span></span>
+<span ng-if="nextStage.selecting">&nbsp;<span translate="status.wait"></span></span>
 <i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
 </a>
 </fieldset>

@@ -1,54 +1,18 @@
-<div ng-message="R1">
-	Thank you. There are now {{$parent.response.data.count}} requests created for {{$parent.response.data.operator}} in {{$parent.response.data.jurisdiction}}.
-</div>
-<div ng-message="R2">
-	Sorry, you've created a request to {{$parent.response.data.operator}} too recently.
-</div>
-<div ng-message="R3">
-	System Error. Can't save request.
-</div>
-<div ng-message="D1">
-	Database Error.
-</div>
-<div ng-message="V1">
-	The email address <strong>{{response.data.email_address}}</strong> has been verified and subscribed to notifications.
-</div>
-<div ng-message="V2">
-	This email address has already been verified.
-</div>
-<div ng-message="V3">
-	Verification token expired.
-</div>
-<div ng-message="V4">
-	Invalid token provided.
-</div>
-<div ng-message="V5">
-	No token provided to validate.
-</div>
-<div ng-message="V6">
-	No AMI requests found for <strong>{{response.data.email_address}}</strong>.
-</div>
-<div ng-message="V7">
-	No consent given for email address to be collected.
-</div>
-<div ng-message="M1">
-	Unable to send email at this time.
-</div>
-<div ng-message="M2">
-	You've provided an invalid email address.
-</div>
-<div ng-message="U1">
-	Successfully unsubscribed <strong>{{response.data.email_address}}</strong> from AMI notifications.
-</div>
-<div ng-message="U2">
-	Unable to unsubcribe <strong>{{response.data.email_address}}</strong> from AMI notifications.
-</div>
-<div ng-message="F1">
-	Feedback saved.
-</div>
-<div ng-message="F2">
-	Unable to save feedback.
-</div>
-<div ng-message="F2">
-	Unable to save feedback. No feedback provided.
-</div>
+<div ng-message="R1" translate="R1" translate-values="{count: $parent.response.data.count, operator: $parent.response.data.operator, jurisdiction: $parent.response.data.jurisdiction}"></div>
+<div ng-message="R2" translate="R2" translate-values="{operator: $parent.response.data.operator}"></div>
+<div ng-message="R3" translate="R3"></div>
+<div ng-message="D1" translate="D1"></div>
+<div ng-message="V1" translate="V1" translate-values="{email: response.data.email_address}"></div>
+<div ng-message="V2" translate="V2"></div>
+<div ng-message="V3" translate="V3"></div>
+<div ng-message="V4" translate="V4"></div>
+<div ng-message="V5" translate="V5"></div>
+<div ng-message="V6" translate="V6" translate-values="{email: response.data.email_address}"></div>
+<div ng-message="V7" translate="V7"></div>
+<div ng-message="M1" translate="M1"></div>
+<div ng-message="M2" translate="M2"></div>
+<div ng-message="U1" translate="U1" translate-values="{email: response.data.email_address}"></div>
+<div ng-message="U2" translate="U2" translate-values="{email: response.data.email_address}"></div>
+<div ng-message="F1" translate="F1"></div>
+<div ng-message="F2" translate="F2"></div>
+<div ng-message="F2" translate="F2"></div>
