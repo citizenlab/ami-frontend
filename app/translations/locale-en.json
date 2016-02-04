@@ -4,7 +4,9 @@
   	"next": "Next",
   	"thanks": "Thank you.",
   	"error": "Error.",
-  	"tryAgain": "Try again later."
+  	"tryAgain": "Try again later.",
+  	"rateLimited": "You're doing that too much. Please wait and try later.",
+  	"serverDown": "Server appears to be down. Please try again later."
   },
   "category": {
   	"title": "Data Collector Category",
@@ -22,7 +24,23 @@
   	"callout": "<strong>Ask questions</strong> about how your data is collected, used, shared, and stored. <strong>Get specific about the data</strong> you'd like access to. We may have some helpful defaults.",
   	"label-questions": "Questions for {{operator}}",
   	"label-data": "Data requested from {{operator}}",
-  	"label-databanks": "Selected data banks for {{operator}}"
+  	"label-databanks": "Selected data banks for {{operator}}",
+  	"bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
+  	"otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",
+  	"newQuestion": "New Question",
+  	"newData": "New Data Type",
+  	"addDataBank": "Add Data Bank to request",
+	"show-desc": "Show description",
+	"edit-component": "Edit Request Component",
+	"remove-component": "Remove Request Component",
+	"update-component": "Update Request Component",
+	"cancel-component": "Cancel Update to Request Component",
+	"type-question": "Type a question",
+	"add-question": "Add Question",
+	"desc-data": "Describe the data you want",
+	"add-data": "Add Data Type",
+	"desc-bank": "Describe the data bank you want",
+	"add-bank": "Add Data Bank"
   },
   "subject": {
   	"title": "Identifying information",
@@ -49,6 +67,15 @@
   	"emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
   	"thanks": "Thanks for creating your letter!",
   	"continue": "Continue on to maximize your impact"
+  },
+  "finish": {
+  	"title": "Help out with the research",
+  	"label-data": "I would like to share the following data with AMI researchers:",
+  	"text-data": "Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
+  	"label-subscribe": "I would like to subscribe to receive email updates to support me throughout the request process.",
+  	"email": "Email address",
+  	"text-subscribe": "This may involve an email sent after several days to check if you've received a response from {{operator}}, that includes instructions on what to do if you haven't. You'll also get an invitation to fill out a short questionnaire. We won't share your email with any third parties, other than the email service we use to send the emails themselves.",
+  	"enroll": "Enroll"
   },
   "wrapper": {
   	"disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
@@ -83,6 +110,10 @@
   	"title": "We are offline!",
   	"sorry": "Sorry about this, but <em>Access My Info</em> is currently offline!",
   	"soon": "Rest assured, we're working hard to bring it back up as soon as possible."
+  },
+  "unsubscribe": {
+  	"title": "Unsubscribe",
+	"label": "Status"
   },
   "nav": {
   	"start": "Start",

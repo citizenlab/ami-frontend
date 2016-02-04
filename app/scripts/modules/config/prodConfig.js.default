@@ -1,7 +1,9 @@
 module.exports = {
 	apiDomain: "",
-	apiPath: "",
+	apiRoot: "/amicms",
+	apiPath: "/wp-json/amicms",
 	enrollmentDomain: "",
 	enrollmentApiPath: "",
-	jurisdictionID: ""
+	jurisdictionID: "",
+	languageCode: "en"
 }

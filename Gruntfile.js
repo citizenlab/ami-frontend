@@ -113,9 +113,11 @@ module.exports = function (grunt) {
         constants: {
           apiDomain: localConfig.apiDomain,
           apiPath: localConfig.apiPath,
+          apiRoot: localConfig.apiRoot,
           enrollmentDomain: localConfig.enrollmentDomain,
           enrollmentApiPath: localConfig.enrollmentApiPath,
-          jurisdictionID: localConfig.jurisdictionID
+          jurisdictionID: localConfig.jurisdictionID,
+          languageCode: localConfig.languageCode
         }
       },
       development: {
@@ -125,9 +127,11 @@ module.exports = function (grunt) {
         constants: {
           apiDomain: devConfig.apiDomain,
           apiPath: devConfig.apiPath,
+          apiRoot: devConfig.apiRoot,
           enrollmentDomain: devConfig.enrollmentDomain,
           enrollmentApiPath: devConfig.enrollmentApiPath,
-          jurisdictionID: devConfig.jurisdictionID
+          jurisdictionID: devConfig.jurisdictionID,
+          languageCode: devConfig.languageCode
         }
       },
       production: {
@@ -137,9 +141,11 @@ module.exports = function (grunt) {
         constants: {
           apiDomain: prodConfig.apiDomain,
           apiPath: prodConfig.apiPath,
+          apiRoot: prodConfig.apiRoot,
           enrollmentDomain: prodConfig.enrollmentDomain,
           enrollmentApiPath: prodConfig.enrollmentApiPath,
-          jurisdictionID: prodConfig.jurisdictionID
+          jurisdictionID: prodConfig.jurisdictionID,
+          languageCode: prodConfig.languageCode
         }
       }
     },

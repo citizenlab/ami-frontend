@@ -64,9 +64,10 @@ var AMIApp = angular.module('AMIApp', [
       firstRun = false;
     }
   })
-  .service('urls', function(apiDomain, apiPath, enrollmentDomain, enrollmentApiPath){
-    this.apiURL = apiDomain + apiPath
+  .service('urls', function(apiDomain, apiRoot, apiPath, enrollmentDomain, enrollmentApiPath, languageCode){
+    this.apiURL = apiDomain + apiRoot + "/" + languageCode + apiPath
     this.enrollmentURL = enrollmentDomain + enrollmentApiPath
+
     return this;
   })
   .config(['$translateProvider', function($translateProvider) {
@@ -74,7 +75,6 @@ var AMIApp = angular.module('AMIApp', [
       prefix: 'translations/locale-',
       suffix: '.json'
     });
-    $translateProvider.preferredLanguage('cn');
   }])
   .config(function ($routeProvider) {
     $routeProvider
@@ -216,67 +216,73 @@ AMIApp.directive('focusMe', function($timeout, $parse) {
     }
   };
 });
-AMIApp.run(function($http, NavCollection, $timeout, $location, $translate){
+AMIApp.run(function($translate, languageCode){
+  
+})
+AMIApp.run(function($http, NavCollection, $timeout, $location, $translate, languageCode){
   $location.path('/');
-  $translate(["nav.start", "nav.org", "nav.ask", "nav.you", "nav.request", "nav.finish"])
-  .then(function(translations){
-    var stages = [
-      {
-        name: translations['nav.start'],
-        path: "#/",
-        id: "start",
-        icon: "fa fa-home",
-        restricted: false,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: translations['nav.org'],
-        path: "#/operator",
-        id: "operator",
-        icon: "fa fa-briefcase",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: translations['nav.ask'],
-        path: "#/components",
-        id: "components",
-        icon: "fa fa-question-circle",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: translations['nav.you'],
-        path: "#/subject",
-        id: "subject",
-        icon: "fa fa-user",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: translations['nav.request'],
-        path: "#/request",
-        id: "request",
-        icon: "fa fa-file-text",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: translations['nav.finish'],
-        path: "#/finish",
-        id: "finish",
-        icon: "fa fa-flag-checkered",
-        restricted: true,
-        target: "_self"
-      }
-    ]
-    angular.forEach(stages, function(item){
-      NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
+  $translate.use(languageCode)
+  .then(function(){
+    $translate(["nav.start", "nav.org", "nav.ask", "nav.you", "nav.request", "nav.finish"])
+    .then(function(translations){
+      var stages = [
+        {
+          name: translations['nav.start'],
+          path: "#/",
+          id: "start",
+          icon: "fa fa-home",
+          restricted: false,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: translations['nav.org'],
+          path: "#/operator",
+          id: "operator",
+          icon: "fa fa-briefcase",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: translations['nav.ask'],
+          path: "#/components",
+          id: "components",
+          icon: "fa fa-question-circle",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: translations['nav.you'],
+          path: "#/subject",
+          id: "subject",
+          icon: "fa fa-user",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: translations['nav.request'],
+          path: "#/request",
+          id: "request",
+          icon: "fa fa-file-text",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: translations['nav.finish'],
+          path: "#/finish",
+          id: "finish",
+          icon: "fa fa-flag-checkered",
+          restricted: true,
+          target: "_self"
+        }
+      ]
+      angular.forEach(stages, function(item){
+        NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
+      });
     });
   });
 });

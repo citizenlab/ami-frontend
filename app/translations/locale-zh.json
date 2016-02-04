@@ -4,7 +4,9 @@
   	"next": "下一步",
   	"thanks": "謝謝。",
   	"error": "錯誤。",
-  	"tryAgain": "請稍候再試。"
+  	"tryAgain": "請稍候再試。",
+  	"rateLimited": "您過於頻繁使用此項操作。請稍後再試。",
+  	"serverDown": "服務器無法正常運作。請稍後再試。"
   },
   "category": {
   	"title": "收集資料者的種類",
@@ -22,7 +24,24 @@
   	"callout": "查詢您的個人資料如何被收集、使用、共享以及儲存。為了協助您知悉您的個人資料被使用的詳情，我們的程式提供了協助您完成此項申請的默認設置。",
   	"label-questions": "針對{{operator}}的問題",
   	"label-data": "向{{operator}}申請披露的資料",
-  	"label-databanks": "Selected data banks for {{operator}}"
+  	"label-databanks": "Selected data banks for {{operator}}",
+  	"bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
+  	"otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",
+  	"newQuestion": "New Question",
+  	"newData": "New Data Type",
+  	"addDataBank": "Add Data Bank to request",
+	"show-desc": "Show description",
+	"edit-component": "Edit Request Component",
+	"remove-component": "Remove Request Component",
+	"update-component": "Update Request Component",
+	"cancel-component": "Cancel Update to Request Component",
+	"type-question": "Type a question",
+	"add-question": "Add Question",
+	"desc-data": "Describe the data you want",
+	"add-data": "Add Data Type",
+	"desc-bank": "Describe the data bank you want",
+	"add-bank": "Add Data Bank"
+
   },
   "subject": {
   	"title": "個人資料",
@@ -49,6 +68,15 @@
   	"emailProblem": "遇上問題？請複製或貼上以下文字至您的電郵客戶端，並寄至 {{email}}",
   	"thanks": "非常感謝您製作這封信件！",
   	"continue": "請繼續完成下列操作，把信件的影響力全面發揮"
+  },
+  "finish": {
+  	"title": "請協助我們的研究",
+  	"label-data": "我願意分享以下資料給AMI的研究者。",
+  	"text-data": "請求發送{{operator}}的資料給{{servicelist}}在{{title}}在{{jurisdiction}}。",
+  	"label-subscribe": "為了讓我順利完成整個申請流程，我願意透過電郵接收申請的最新情況。",
+  	"email": "電郵地址",
+  	"text-subscribe": "數天後，本應用程式將向您寄出電郵，以確認您是否收到來自{{operator}}的回覆。如您在指定日期後仍未收到對方任何回覆，這封信將指引您該如何處理。您也將收到一個填寫簡短問卷的邀請。請放心，您的電郵內容除了在我們用以收發電郵的客戶端出現外，不會與任何第三方共享。",
+  	"enroll": "登記"
   },
   "wrapper": {
   	"disclaimer":
@@ -85,6 +113,10 @@
   	"sorry": "非常抱歉，<em>Access My Info</em> 應用程式現已離線！",
   	"soon": "請靜候，我們正盡力重新上線！"
   },
+  "unsubscribe": {
+  	"title": "Unsubscribe",
+	"label": "Status"
+  },
   "nav": {
   	"start": "開始",
   	"org": "機構",
@@ -94,23 +126,23 @@
   	"finish": "完"
   },
   "messages": {
-	"R1": "Thank you. There are now {{count}} requests created for {{operator}} in {{jurisdiction}}.",
-	"R2": "Sorry, you've created a request to {{operator}} too recently.",
-	"R3": "System Error. Can't save request.",
-	"D1": "Database Error.",
-	"V1": "The email address <strong>{{email}}</strong> has been verified and subscribed to notifications.",
-	"V2": "This email address has already been verified.",
-	"V3": "Verification token expired.",
-	"V4": "Invalid token provided.",
-	"V5": "No token provided to validate.",
-	"V6": "No AMI requests found for <strong>{{email}}</strong>.",
-	"V7": "No consent given for email address to be collected.",
-	"M1": "Unable to send email at this time.",
-	"M2": "You've provided an invalid email address.",
-	"U1": "Successfully unsubscribed <strong>{{email}}</strong> from AMI notifications.",
-	"U2": "Unable to unsubcribe <strong>{{email}}</strong> from AMI notifications.",
-	"F1": "Feedback saved.",
-	"F2": "Unable to save feedback.",
-	"F2": "Unable to save feedback. No feedback provided."
+	"R1": "謝謝。目前，在{{jurisdiction}}，有申請專門提交給{{operator}}。",
+	"R2": "抱歉，您最近已提交申請給{{operator}}。",
+	"R3": "系統錯誤。無法儲存申請。",
+	"D1": "資料庫錯誤。",
+	"V1": "電郵地址<strong>{{email}}</strong>已被驗證，並已訂閱通知。",
+	"V2": "電郵地址已被驗證。",
+	"V3": "驗證碼過期。",
+	"V4": "所提供的驗證碼無效。",
+	"V5": "沒有提供驗證碼。",
+	"V6": "沒有發現提交給<strong>{{email}}</strong>的AMI申請。",
+	"V7": "沒有獲得將要收集的電郵地址許可。",
+	"M1": "現在未能發送郵件。",
+	"M2": "您提供了一個無效的電郵地址。",
+	"U1": "已成功取消訂閱來自AMI通知的<strong>{{email}}</strong>。",
+	"U2": "無法取消已訂閱來自AMI通知的<strong>{{email}}</strong>。",
+	"F1": "意見已獲儲存。",
+	"F2": "未能儲存意見。",
+	"F2": "未能儲存意見。未能提交意見。"
   }
 }

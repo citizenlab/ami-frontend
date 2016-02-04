@@ -13,7 +13,7 @@
       <p class="p-bg bg-success bigger" translate="request.instructions.post-instructions"></p>
       <div class="clearfix row">
         <address class="small col-xs-12 col-sm-11 col-sm-offset-1">
-          <strong>{{operator.title}} Privacy Officer</strong>
+          <strong translate="request.instructions.privacy-officer-title" translate-values="{operator: operator.title}"></strong>
           <br/>{{operator.meta.privacy_contact_address_1}}
           <br ng-if="operator.meta.privacy_contact_address_2"/>{{operator.meta.privacy_contact_address_2}}
           <br/>{{operator.meta.privacy_contact_city}}, {{operator.meta.privacy_contact_province_state}}

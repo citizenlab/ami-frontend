@@ -1,32 +1,32 @@
 <div class="row">
   <div class="col-xs-12">
-  <h1>Help out with the research</h1>
+  <h1 translate="finish.title"></h1>
   <div class="well">
   <div class="form-group">
   <div class="checkbox">
-    <label><input type="checkbox"  tabindex="1" ng-model="statistics"/><strong>I would like to share the following data with AMI researchers:</strong></label>
+    <label><input type="checkbox"  tabindex="1" ng-model="statistics"/><strong translate="finish.label-data"></strong></label>
   </div>
-  <p class="bg-info-light p-bg mart10">Request made to {{anon.operator.title}} for the {{servicelist}} in {{anon.jurisdiction.title}} on {{anon.date}}.</p>
+  <p class="bg-info-light p-bg mart10" translate="finish.text-data" translate-values="{operator: anon.operator.title, serviceList: serviceList, jurisdiction: anon.jurisdiction.title, date: anon.date}"></p>
   <hr>
   <div class="checkbox">
     <label>
-    <input type="checkbox" ng-model="subscribe"/><strong>I would like to subscribe to receive email updates to support me throught the request process.</strong></label>
+    <input type="checkbox" ng-model="subscribe"/><strong translate="finish.label-subscribe"></strong></label>
   </div>
-  <label ng-if="subscribe">Email address <span class="required">*</span></label><input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="subscribe"/>
-  <p class="bg-info-light p-bg mart10">This may involve an email sent after several days to check if you've received a response from {{anon.operator.title}}, that includes instructions on what to do if you haven't. You'll also get an invitation to fill out a short questionnaire. We won't share your email with any third parties, other than the email service we use to send the emails themselves.</p>
+  <label ng-if="subscribe"><span translate="finish.email"></span> <span class="required">*</span></label><input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="subscribe"/>
+  <p class="bg-info-light p-bg mart10" translate="finish.text-subscribe" translate-values="{operator: anon.operator.title}"></p>
   </div>
   </div>
   <button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!requiredFieldsFilled() || rateLimited || success || serverIsLoading || serverDown), 'btn-warning': rateLimited, 'btn-danger': serverDown}" ng-click="submit()" ng-enter="submit()">
 <span ng-if="!serverIsLoading && !success && !serverError">Enroll</span>
-<span ng-if="serverIsLoading && !success">Please Wait...</span>
-<span ng-if="serverDown">Error.</span>
-<span ng-if="rateLimited">Try again later.</span>
-<span ng-if="success">Thank you.</span>
+<span ng-if="serverIsLoading && !success" translate="status.wait">Please Wait...</span>
+<span ng-if="serverDown" translate="status.error"></span>
+<span ng-if="rateLimited" translate="status.tryAgain"></span>
+<span ng-if="success" translate="status.thanks"></span>
 &nbsp;
 <i class="fa" ng-class="{'fa-arrow-right': !serverIsLoading && !success, 'fa-check-circle': !serverIsLoading && success, 'fa-spinner': serverIsLoading, 'rotating': serverIsLoading, 'fa-exclamation-triangle': serverDown || rateLimited}"></i>
 </button>
-    <div ng-if="serverDown">Server appears to be down. Please try again later.</div>
-    <div ng-if="rateLimited">You're doing that too much. Please wait and try later.</div>
+    <div ng-if="serverDown" translate="status.serverDown"></div>
+    <div ng-if="rateLimited" translate="status.rateLimited"></div>
     <div ng-if="success">
       <div ng-messages="responseStatuses">
         <div ng-messages-include="status-messages"></div>
