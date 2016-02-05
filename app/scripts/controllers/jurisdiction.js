@@ -1,14 +1,24 @@
 'use strict';
-AMIApp.controller('JurisdictionCtrl', ['$scope', '$timeout', '$location', '$window', 'AMIRequest', function ($scope, $timeout, $location, $window, AMIRequest) {
+AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', function ($scope, $timeout, $location, $window, $translate) {
 
-    $scope.jurisdiction = AMIRequest.get('jurisdiction');
-    $scope.selectJurisdiction = function(jurisdiction){
-      AMIRequest.set('jurisdiction', jurisdiction);
+	$scope.languages = {
+		"en": {
+			"title": "English",
+			"languageCode": "en"
+		},
+		"zh": {
+			"title": "中文",
+			"languageCode": "zh"
+		}
+	};
+
+    $scope.lang = $scope.languages[$translate.proposedLanguage()];
+    
+    $scope.selectLanguage = function(lang){
+      $translate.use(lang.languageCode)
     }
     $scope.$watch(function() {
-      var jurisdiction;
-      jurisdiction = AMIRequest.get('jurisdiction');
-      $scope.jurisdiction = jurisdiction;
+      $scope.lang = $scope.languages[$translate.proposedLanguage()];
     });
     
 }]);

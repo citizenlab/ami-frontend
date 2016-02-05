@@ -185,6 +185,11 @@ header {
         width: 2em;
     }
 }
+.xs-block-center {
+    @media (max-width: $screen-xs-max) {
+        margin:0 auto;
+    }
+}
 legend {
     font-size: 14px;
     border-bottom: none;

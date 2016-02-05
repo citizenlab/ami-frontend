@@ -18,6 +18,7 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $scope.operator = AMIRequest.get('operator');
   $scope.services = AMIRequest.get('services');
   $scope.subject = AMIRequest.get('subject');
+  console.log("subject", $scope.subject);
   $scope.date = moment().format('MMMM Do, YYYY');
   AMIRequest.set('date', $scope.date);
   
