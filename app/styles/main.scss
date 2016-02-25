@@ -118,7 +118,11 @@ body {
     padding-bottom: 20px;
     font-family: "Source Sans Pro", "Helvetica Neue", arial, sans-serif;
 }
-
+body.zh {
+    @media (min-width: $screen-sm-min) {
+        font-size:18px;
+    }
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -136,7 +140,7 @@ header {
         margin:10px 0;
         color: #ffffff;
         vertical-align: middle;
-        font-size: 24px;
+        font-size: 1.4em;
         span {
             display:block;
         }
@@ -144,6 +148,37 @@ header {
             margin-right:10px;
             max-height:70px
         }
+    }
+    @media (max-width: $screen-xs-max) {
+        h1 {
+            font-size:1em;
+            margin-top:0;
+            line-height: 22px;
+        }
+        h1 span {
+            display:inline;
+        }
+        .mart10 {
+            margin-top:0 !important;
+        }
+        ul li {
+            list-style:none;
+            display:inline;
+            font-size:1em;
+            &:first-child a {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.btn {
+    font-size:1em;
+}
+    
+.navbar {
+    @media (max-width: $screen-xs-max) {
+        min-height:0;
     }
 }
 
@@ -280,7 +315,10 @@ h1, h2, h3 {
     background: $white-purple;*/
         font-family: "Brandon Bold", "Source Sans Pro", "Helvetica Neue", sans-serif;
         text-transform: uppercase;
-        font-size:2.1rem;
+        font-size:1.4em;
+}
+.btn h4 {
+    font-size:1.2em;
 }
 h1 small {
     font-family: "Source Sans Pro", "Helvetica Neue", arial, sans-serif;
@@ -288,7 +326,7 @@ h1 small {
 }
 h2 {
     @media (max-width: $screen-xs-max) {
-        font-size:24px;
+        font-size:1.2em;
     }
 }
 .padt10 {
@@ -335,18 +373,6 @@ h2 {
         margin-bottom:2px;
     }
 }
-
-@media (max-width: $screen-xs-max) {
-    .mobileShrink {
-        margin-top:0;
-        font-size: 24px;
-
-        img {
-            width: 90px;
-        }
-    }
-}
-
 
 h2, h3, h4, h5 {
     .required {
@@ -455,7 +481,7 @@ h2, h3, h4, h5 {
   top: 0;
 }
 .bigIcon {
-    font-size: 40px;
+    font-size: 2.2em;
     margin: 15px auto;
     width:40px;
 }
@@ -506,12 +532,12 @@ h2, h3, h4, h5 {
     -o-transition: opacity 0.25s ease-in-out;
 }
 .huge-icon {
-    font-size:100px;
+    font-size:4em;
     color: rgba(0, 0, 0, 0.4);
     top:40%;
 }
 .big-icon {
-    font-size: 40px;
+    font-size: 2.2em;
     margin-left:30px;
     margin-right:30px;
 }
@@ -544,7 +570,7 @@ $font-size-xlarge:         ceil(($font-size-base * 1.45));
   // line-height: ensure even-numbered height of button next to large input
   @include button-size($padding-xlarge-vertical, $padding-xlarge-horizontal, $font-size-xlarge, $line-height-xlarge, $border-radius-xlarge);
     @media (max-width: $screen-xs-max) {
-        font-size: 16px;
+        font-size: 1.2em;
     }
 }
 .p-bg-l {

@@ -111,13 +111,7 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.app %>/scripts/config.js',
         },
         constants: {
-          apiDomain: localConfig.apiDomain,
-          apiPath: localConfig.apiPath,
-          apiRoot: localConfig.apiRoot,
-          enrollmentDomain: localConfig.enrollmentDomain,
-          enrollmentApiPath: localConfig.enrollmentApiPath,
-          jurisdictionID: localConfig.jurisdictionID,
-          languageCode: localConfig.languageCode
+          envOptions: localConfig.options
         }
       },
       development: {
@@ -125,13 +119,7 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.app %>/scripts/config.js',
         },
         constants: {
-          apiDomain: devConfig.apiDomain,
-          apiPath: devConfig.apiPath,
-          apiRoot: devConfig.apiRoot,
-          enrollmentDomain: devConfig.enrollmentDomain,
-          enrollmentApiPath: devConfig.enrollmentApiPath,
-          jurisdictionID: devConfig.jurisdictionID,
-          languageCode: devConfig.languageCode
+          envOptions: devConfig.options
         }
       },
       production: {
@@ -139,13 +127,7 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/scripts/config.js',
         },
         constants: {
-          apiDomain: prodConfig.apiDomain,
-          apiPath: prodConfig.apiPath,
-          apiRoot: prodConfig.apiRoot,
-          enrollmentDomain: prodConfig.enrollmentDomain,
-          enrollmentApiPath: prodConfig.enrollmentApiPath,
-          jurisdictionID: prodConfig.jurisdictionID,
-          languageCode: prodConfig.languageCode
+          envOptions: prodConfig.options
         }
       }
     },
@@ -250,7 +232,7 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
             '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
@@ -385,7 +367,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'translations/*'
           ]
         },
         {
@@ -512,7 +495,7 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    // 'htmlmin'
+    'htmlmin'
   ]);
 
   grunt.registerTask('build', [

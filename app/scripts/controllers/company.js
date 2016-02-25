@@ -47,7 +47,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       else if(newCompany !== oldCompany){
         if(AMIRequest.set('operator', newCompany)){
           if(newCompany.meta.data_management_unit == "services"){
-            dataProviderService.getItem(urls.apiURL, '/operators/' + newCompany.id + '/services')
+            dataProviderService.getItem(urls.apiURL(), '/operators/' + newCompany.id + '/services')
             .then(function(services){
               if(services.length){
                 if(services.length > 1){

@@ -159,7 +159,6 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
   }
   navCollection.finishSelectByPath = function(path){
     var itemToFind = _.findWhere(this.collection, {'path': path});
-    console.log(itemToFind);
     if(itemToFind){
       this.finishSelect(itemToFind.id);
     }
@@ -184,18 +183,18 @@ ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 
         return stage.icon;
       }
     };
-     $scope.$watch(function() {
-      $scope.previous = NavCollection.previous;
-      $scope.next = NavCollection.next;
-      $scope.activeIndex = NavCollection.collection.indexOf(NavCollection.selectedNavItem);
-        return $location.path();
-     }, function(){
-        var activeLocation = "#" + $location.url();
-        NavCollection.startSelectByPath(activeLocation);
-     });
-     $rootScope.$on('$routeChangeSuccess', function(event){
-        var path = "#" + $location.path();
-        console.log(path);
-        NavCollection.finishSelectByPath(path);
-      });
+    $scope.$watch(function() {
+    $scope.previous = NavCollection.previousItem();
+    $scope.next = NavCollection.nextItem();
+    $scope.activeIndex = NavCollection.collection.indexOf(NavCollection.selectedNavItem);
+      return $location.path();
+    }, function(){
+      var activeLocation = "#" + $location.url();
+      NavCollection.startSelectByPath(activeLocation);
+    });
+    $rootScope.$on('$routeChangeSuccess', function(event){
+      var path = "#" + $location.path();
+      console.log("navigated to: ", path);
+      NavCollection.finishSelectByPath(path);
+    });
 }]);

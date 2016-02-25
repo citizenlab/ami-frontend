@@ -2,15 +2,15 @@
 var dataProviderService = angular.module('dataProviderService', []);
 dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'urls', 'cmsStatus', function( $route, $q, $http, urls, cmsStatus ) {
     return {
-        getItem: function (baseURL, itemPath, params) {
-            return this.promiseRequest(baseURL, itemPath, params, 'GET');
+        getItem: function (baseURL, itemPath, params, responseType) {
+            return this.promiseRequest(baseURL, itemPath, params, 'GET', responseType);
         },
-        postItem:  function (baseURL, itemPath, params, data) {
-            return this.promiseRequest(baseURL, itemPath, params, 'POST', data);
+        postItem:  function (baseURL, itemPath, params, data, responseType) {
+            return this.promiseRequest(baseURL, itemPath, params, 'POST', data, responseType);
         },
-        promiseRequest: function (baseURL, itemPath, params, httpMethod, data, setCache) {
+        promiseRequest: function (baseURL, itemPath, params, httpMethod, data, setCache, responseType) {
             var delay = $q.defer();
-            this.request(baseURL, itemPath, params, httpMethod, data, setCache)
+            this.request(baseURL, itemPath, params, httpMethod, data, setCache, responseType)
             .success( function(data, status, headers, config) {
                 if(urls.apiURL === baseURL && !cmsStatus.isOnline()){
                     cmsStatus.isOnline(true);
@@ -24,7 +24,7 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
             });
             return delay.promise;
         },
-        request: function (baseURL, itemPath, params, httpMethod, data, setCache) {
+        request: function (baseURL, itemPath, params, httpMethod, data, setCache, responseType) {
             var itemURL;
             var options;
             var cache = true;
@@ -44,10 +44,13 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
                 method: httpMethod, 
                 url: itemURL, 
                 params: params,
-                cache: cache
+                cache: cache,
             }
             if(typeof data !== "undefined"){
                 options.data = data;
+            }
+            if(typeof responseType !== "undefined"){
+                options.responseType = responseType;
             }
             return $http(options);
         }

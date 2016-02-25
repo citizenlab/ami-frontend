@@ -12,7 +12,7 @@
     <div class="col-sm-6 mart10" ng-repeat="industry in industries">
         <ng-if="industry.meta "
     	<div class="btn btn-blocky" ng-click="selectIndustry(industry)" ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}" aria-label="{{industry.title}}" aria-role="button">
-    		<img src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/>
+    		<img ng-src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/>
     		<div class="marl10" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)">
     			<h4>{{industry.title}}</h4>
     			<div ng-bind-html="industry.content"></div>

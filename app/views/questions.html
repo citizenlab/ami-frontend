@@ -1,6 +1,11 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <h2 translate="questions.title"></h2>
 <div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-question-circle bigIcon "></i></span><p class="va-mid col-xs-11"><span translate="questions.callout"></span></p></div>
+ <a ng-href="{{nextStage.path}}" class="btn btn-primary marb10" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
+<span ng-if="!nextStage.selecting">&nbsp;<span translate="questions.skip"></span></span>
+<span ng-if="nextStage.selecting">&nbsp;<span translate="status.wait"></span></span>
+<i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
+</a>
 <div class="well">
   <div ng-repeat="componentType in components ">
   <div ng-show="componentType.activated">

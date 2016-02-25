@@ -1,5 +1,5 @@
 'use strict';
-AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest) {
+AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'pdfOptionEnabled', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, pdfOptionEnabled) {
   var blurListener;
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
@@ -11,6 +11,7 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     return;
   }
 
+  $scope.pdfOptionEnabled = pdfOptionEnabled;
   $scope.components = AMIRequest.get('components');
 
   $scope.jurisdiction = AMIRequest.get('jurisdiction');

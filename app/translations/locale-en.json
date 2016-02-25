@@ -22,6 +22,7 @@
   "questions": {
   	"title": "Customize your request",
   	"callout": "<strong>Ask questions</strong> about how your data is collected, used, shared, and stored. <strong>Get specific about the data</strong> you'd like access to. We may have some helpful defaults.",
+    "skip": "Skip and use default request",
   	"label-questions": "Questions for {{operator}}",
   	"label-data": "Data requested from {{operator}}",
   	"label-databanks": "Selected data banks for {{operator}}",

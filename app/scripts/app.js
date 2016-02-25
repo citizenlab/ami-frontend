@@ -24,7 +24,8 @@ var AMIApp = angular.module('AMIApp', [
     'AMIRequest',
     'sticky',
     'ui.bootstrap',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'ngclipboard'
   ])
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
@@ -64,10 +65,21 @@ var AMIApp = angular.module('AMIApp', [
       firstRun = false;
     }
   }])
-  .service('urls', ['apiDomain', 'apiRoot', 'apiPath', 'enrollmentDomain', 'enrollmentApiPath', 'languageCode', function(apiDomain, apiRoot, apiPath, enrollmentDomain, enrollmentApiPath, languageCode){
-    this.apiURL = apiDomain + apiRoot + "/" + languageCode + apiPath;
-    this.enrollmentURL = enrollmentDomain + enrollmentApiPath;
-
+  .service('urls', ['envOptions', '$translate', function(envOptions, $translate){
+    this.apiURL = function(){
+      var url;
+      var languageCode = envOptions.languageCode;
+      console.log($translate.use());
+      if(typeof $translate.use() !== "undefined"){
+        languageCode = $translate.use();
+      }
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + languageCode + envOptions.apiPath;
+      console.log(url);
+      return url;
+    }
+    this.enrollmentURL = function(){
+      return envOptions.enrollmentDomain + envOptions.enrollmentApiPath;
+    }
     return this;
   }])
   .config(['$translateProvider', function($translateProvider) {
@@ -82,8 +94,8 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/industry.html',
         controller: 'IndustryCtrl',
         resolve: {
-          industries: ["dataProviderService", "urls", "AMIRequest", "jurisdictionID", function(dataProviderService, urls, AMIRequest, jurisdictionID) {
-            return dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID + "/industries");
+          industries: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries");
           }]
         }
       })
@@ -94,7 +106,7 @@ var AMIApp = angular.module('AMIApp', [
           companies: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
           }]
         },
       })
@@ -123,7 +135,7 @@ var AMIApp = angular.module('AMIApp', [
             }, service_ids);
             params = {"services[]": service_ids}
           }
-            return dataProviderService.getItem(urls.apiURL, path, params);
+            return dataProviderService.getItem(urls.apiURL(), path, params);
           }]
         },
       })
@@ -133,7 +145,12 @@ var AMIApp = angular.module('AMIApp', [
       })
       .when('/request', {
         templateUrl: 'views/request.html',
-        controller: 'RequestCtrl'
+        controller: 'RequestCtrl',
+        resolve: {
+          pdfOptionEnabled: ["envOptions", function(envOptions){
+            return envOptions.pdfOption;
+          }]
+        }
       })
       .when('/components', {
         templateUrl: 'views/questions.html',
@@ -143,7 +160,7 @@ var AMIApp = angular.module('AMIApp', [
             var operator = AMIRequest.get('operator');
             console.log("OG", operator);
             if(operator.meta.data_management_unit == "data-banks"){
-              return dataProviderService.getItem(urls.apiURL, "/operators/" + operator.id + "/data_banks/");
+              return dataProviderService.getItem(urls.apiURL(), "/operators/" + operator.id + "/data_banks/");
             }
             else{
               var services = AMIRequest.get('services');
@@ -153,7 +170,7 @@ var AMIApp = angular.module('AMIApp', [
                     service_ids.push(value.id);
                   }
                 }, service_ids);
-              return dataProviderService.getItem(urls.apiURL, "/components/", {"services[]": service_ids});
+              return dataProviderService.getItem(urls.apiURL(), "/components/", {"services[]": service_ids});
             }
           }]
         }
@@ -172,7 +189,7 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'VerificationCtrl',
         resolve: {
           verificationStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
-            return dataProviderService.getItem(urls.enrollmentURL, "/verify/", {"token": $location.search().token}, null, false);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/verify/", {"token": $location.search().token}, null, false);
           }]
         }
       })
@@ -181,7 +198,7 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'UnsubscribeCtrl',
         resolve: {
           unsubscribeStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
-            return dataProviderService.postItem(urls.enrollmentURL, "/unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
+            return dataProviderService.postItem(urls.enrollmentURL(), "/unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
           }]
         }
       })
@@ -216,9 +233,9 @@ AMIApp.directive('focusMe', ['$timeout', '$parse', function($timeout, $parse) {
     }
   };
 }]);
-AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'languageCode', function($http, NavCollection, $timeout, $location, $translate, languageCode){
+AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', function($http, NavCollection, $timeout, $location, $translate, envOptions){
   $location.path('/');
-  $translate.use(languageCode)
+  $translate.use(envOptions.languageCode)
   .then(function(){
     $translate(["nav.start", "nav.org", "nav.ask", "nav.you", "nav.request", "nav.finish"])
     .then(function(translations){
@@ -289,8 +306,8 @@ AMIApp.run(['$templateCache', '$http', function($templateCache, $http) {
     $templateCache.put('status-messages', response.data);
   });
 }]);
-AMIApp.run(['urls', 'jurisdictionID', 'AMIRequest', 'cmsStatus', 'dataProviderService', '$interval', '$timeout', function(urls, jurisdictionID, AMIRequest, cmsStatus, dataProviderService, $interval, $timeout) {
-   dataProviderService.getItem(urls.apiURL, "/jurisdictions/" + jurisdictionID)
+AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderService', '$interval', '$timeout', function(urls, envOptions, AMIRequest, cmsStatus, dataProviderService, $interval, $timeout) {
+   dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID)
     .then(function(jurisdiction){
       AMIRequest.set('jurisdiction', jurisdiction);
       AMIRequest.markAsComplete('jurisdiction');
@@ -301,7 +318,7 @@ AMIApp.run(['urls', 'jurisdictionID', 'AMIRequest', 'cmsStatus', 'dataProviderSe
   $interval(function(){
     if(!cmsStatus.isOnline()){
       var randomInt = Math.floor(Math.random() * (100000000 - 0)) + 0;
-      dataProviderService.request(urls.apiURL, "/jurisdictions/" + jurisdictionID, {"flag": randomInt}, 'GET', null, false)
+      dataProviderService.request(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID, {"flag": randomInt}, 'GET', null, false)
         .success( function(data, status, headers, config) {
           cmsStatus.isOnline(true);
           AMIRequest.set('jurisdiction', data);

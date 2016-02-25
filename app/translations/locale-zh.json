@@ -22,6 +22,7 @@
   "questions": {
   	"title": "個人資料用途查詢",
   	"callout": "查詢您的個人資料如何被收集、使用、共享以及儲存。為了協助您知悉您的個人資料被使用的詳情，我們的程式提供了協助您完成此項申請的默認設置。",
+    "skip": "Skip and use default request",
   	"label-questions": "針對{{operator}}的問題",
   	"label-data": "向{{operator}}申請披露的資料",
   	"label-databanks": "Selected data banks for {{operator}}",
@@ -41,7 +42,6 @@
 	"add-data": "Add Data Type",
 	"desc-bank": "Describe the data bank you want",
 	"add-bank": "Add Data Bank"
-
   },
   "subject": {
   	"title": "個人資料",
