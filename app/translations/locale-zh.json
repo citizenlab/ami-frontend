@@ -9,8 +9,8 @@
   	"serverDown": "服務器無法正常運作。請稍後再試。"
   },
   "category": {
-  	"title": "收集資料者的種類",
-  	"callout": "選擇一個您感興趣及為您提供服務的行業，並開始提出您的申請。",
+  	"title": "資料收集者的種類",
+  	"callout": "選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",
   	"label": "種類"
   },
   "operator": {
@@ -24,7 +24,7 @@
   	"callout": "查詢您的個人資料如何被收集、使用、共享以及儲存。為了協助您知悉您的個人資料被使用的詳情，我們的程式提供了協助您完成此項申請的默認設置。",
     "skip": "Skip and use default request",
   	"label-questions": "針對{{operator}}的問題",
-  	"label-data": "向{{operator}}申請披露的資料",
+  	"label-data": "向{{operator}}提出的查閱資料要求",
   	"label-databanks": "Selected data banks for {{operator}}",
   	"bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
   	"otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",
@@ -49,7 +49,7 @@
   	"label": "基本個人資料"
   },
   "request": {
-  	"title": "您向{{operator}}的申請",
+  	"title": "您向{{operator}}提出的查閱資料要求",
   	"instructions": {
   		"show": "顯示操作說明",
   		"hide": "隱藏操作說明",
@@ -71,8 +71,8 @@
   },
   "finish": {
   	"title": "請協助我們的研究",
-  	"label-data": "我願意分享以下資料給AMI的研究者。",
-  	"text-data": "請求發送{{operator}}的資料給{{servicelist}}在{{title}}在{{jurisdiction}}。",
+  	"label-data": "我願意分享以下資料給AMI的研究人員：",
+  	"text-data": "於{{date}}.在 {{jurisdiction}} 發送給{{operator}}，有關查閱{{servicelist}}資料的要求。",
   	"label-subscribe": "為了讓我順利完成整個申請流程，我願意透過電郵接收申請的最新情況。",
   	"email": "電郵地址",
   	"text-subscribe": "數天後，本應用程式將向您寄出電郵，以確認您是否收到來自{{operator}}的回覆。如您在指定日期後仍未收到對方任何回覆，這封信將指引您該如何處理。您也將收到一個填寫簡短問卷的邀請。請放心，您的電郵內容除了在我們用以收發電郵的客戶端出現外，不會與任何第三方共享。",

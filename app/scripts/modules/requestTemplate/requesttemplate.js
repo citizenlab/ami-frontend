@@ -37,6 +37,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             input.setAttribute('value', html);
             form.appendChild(input);
             form.submit();
+            form.removeChild(input);
             // $element[0].submit();
             // dataProviderService.postItem(urls.enrollmentURL(), '/pdf', {}, {
             //     "html": "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head><body>該保留資料所屬的語言</body></html>"
