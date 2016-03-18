@@ -2,6 +2,7 @@
   "status": {
   	"wait": "Please wait...",
   	"next": "Next",
+    "previous": "Previous", 
   	"thanks": "Thank you.",
   	"error": "Error.",
   	"tryAgain": "Try again later.",
@@ -9,9 +10,11 @@
   	"serverDown": "Server appears to be down. Please try again later."
   },
   "category": {
-  	"title": "Data Collector Category",
-  	"callout": "<strong>Begin creating your request</strong> by selecting an industry that provides you a service you're interested in learning more about.",
-  	"label": "Category"
+  	"title": "Welcome to AMI HK",
+  	"callout": "AMI Hong Kong is about blah blah blah blah blah",
+  	"label": "Category", 
+    "start": "Start", 
+    "sponsorStatement": "Access My Info is a joint initiative created by members of "
   },
   "operator": {
   	"title": "{{industry}}: Select an organization",

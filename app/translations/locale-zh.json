@@ -2,6 +2,7 @@
   "status": {
   	"wait": "請您稍等⋯⋯",
   	"next": "下一步",
+    "previous": "上一步", 
   	"thanks": "謝謝。",
   	"error": "錯誤。",
   	"tryAgain": "請稍候再試。",
@@ -9,9 +10,11 @@
   	"serverDown": "服務器無法正常運作。請稍後再試。"
   },
   "category": {
-  	"title": "資料收集者的種類",
-  	"callout": "選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",
-  	"label": "種類"
+  	"title": "開始",
+  	"callout": "資料收集者的種類：選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",
+  	"label": "種類",
+    "start": "開始",
+    "sponsorStatement": "Access My Info 是來於 "
   },
   "operator": {
   	"title": "{{industry}}:  選擇一家機構",
