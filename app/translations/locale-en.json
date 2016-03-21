@@ -121,9 +121,9 @@
   },
   "nav": {
   	"start": "Start",
-  	"org": "Org",
-  	"ask": "Ask",
-  	"you": "You",
+  	"operator": "Org",
+  	"components": "Ask",
+  	"subject": "You",
   	"request": "Request",
   	"finish": "Finish"
   },

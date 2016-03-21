@@ -45,12 +45,10 @@ MOSQUITO wants its sweet, sweet data
                {{lang.title}} <span class="caret"></span>
              </button>
             -->
-             <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button">
-                <li ng-repeat="lang in languages" role="menuitem" class="list display-inline">
-                    <a ng-click="selectLanguage(lang)" class="cursor-pointer">
-                        <div class="display-inlineblock borderradius-2 marginleft-small padding-small f7 textalign-center backgroundcolor-black20 white80">
-                            {{lang.title}}
-                        </div>
+             <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
+                <li ng-repeat="languageOption in languages" role="menuitem" class="display-inlineblock borderradius-2 marginleft-small padding-small f7 textalign-center backgroundcolor-black20 white80" ng-class="{buttonActive: lang == languageOption}">
+                    <a ng-click="selectLanguage(languageOption)" class="cursor-pointer">
+                            {{languageOption.title}}
                     </a>
                 </li>
              </ul>
@@ -59,7 +57,7 @@ MOSQUITO wants its sweet, sweet data
 
         <header class="navbar">
             <div class="container center textalign-center">
-                <a class="textdecoration-none black" href="/">
+                <a class="textdecoration-none black" href="#/">
                     <h1 class="f-5 margintop-xlarge marginbottom-none"><span class="lightteal"><img class="width-xxxlarge" src="images/ami-logo.svg" alt="Access My Info" /></h1>
                 </a>
             </div>
@@ -68,7 +66,11 @@ MOSQUITO wants its sweet, sweet data
     <div class="container-wide center" use-placeholder id="mainNav">
         <nav>
             <ol class="padding-none margintop-large marginbottom-xlarge clearfix flexProgress" ng-controller="ProgressCtrl" ng-class="flexProgress">
-              <li ng-repeat="stage in stages" class="float-left width-16p66p xsmall textalign-center padding-xsmall" ng-class="{firstStep: $first, lastStep: $last, progressDisabled: (stage.restricted), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
+              <li class="float-left width-16p66p xsmall textalign-center padding-xsmall arrow firstStep" ng-class="{progressDisabled: (!previous || activeIndex < 1 || previous.restricted), progressActive: (previous && activeIndex > 0 && !previous.restricted)}">
+                <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+                <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+              </li>
+              <li ng-repeat="stage in stages" class="float-left width-16p66p xsmall textalign-center padding-xsmall" ng-class="{progressDisabled: (stage.restricted), progressAvailable: (!stage.selected && !stage.restricted && !stage.pastSelected), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
                 <a class="{{stage.className}}" ng-show="(stage.restricted)">
                     <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
                     <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
@@ -78,6 +80,10 @@ MOSQUITO wants its sweet, sweet data
                     <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
                 </a>
               </li>
+              <li class="float-left width-16p66p xsmall textalign-center padding-xsmall arrow lastStep" ng-class="{progressDisabled: (!next || activeIndex == stages.length - 1 || next.restricted), progressActive: (next && activeIndex !== stages.length && !next.restricted)}">
+                <a ng-href="{{next.path}}" ng-show="(!next.restricted)"><span><i class="fa fa-arrow-right"></i></span></a>
+                <a ng-show="(next.restricted)"><span><i ng-class="arrowIcon(next)" class="fa fa-arrow-right"></i></span></a>
+            </li>
             </ol>
         </nav>
     </div>

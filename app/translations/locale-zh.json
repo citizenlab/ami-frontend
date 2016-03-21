@@ -122,9 +122,9 @@
   },
   "nav": {
   	"start": "開始",
-  	"org": "機構",
-  	"ask": "查詢",
-  	"you": "個人",
+  	"operator": "機構",
+  	"components": "查詢",
+  	"subject": "個人",
   	"request": "的申請",
   	"finish": "完"
   },

@@ -46,7 +46,6 @@
 }
 .flexProgress {
 	border-radius: 0.33em;
-	background-color: #BFD9D5;
 }
 .flexProgress a, 
 .flexProgress a:link, 
@@ -55,13 +54,20 @@
 	color: #fff;
 	text-decoration: none;
 }
-.progressActive {
+.progressAvailable {
+	background-color: #4DDFC6;
+}
+.progressActive, .buttonActive {
 	background-color: #27bfa8;
 }
 .progressActive a, 
 .progressActive a:link, 
 .progressActive a:visited, 
-.progressActive a:active {
+.progressActive a:active,
+.buttonActive a, 
+.buttonActive a:link, 
+.buttonActive a:visited, 
+.buttonActive a:active {
 	color: #fff;
 	text-decoration: none;
 }
@@ -75,6 +81,16 @@
 	color: #5ab48a;
 	text-decoration: none;
 }
+.progressDisabled {
+	background-color: #BFD9D5;
+}
+.progressDisabled a, 
+.progressDisabled a:link, 
+.progressDisabled a:visited, 
+.progressDisabled a:active {
+	color: #5ab48a;
+	text-decoration: none;
+} 
 .btn {
 	display: inline-block;
 	border-radius: 0.5rem;
@@ -114,10 +130,33 @@
 	border: 2px solid #F2F2F2;
 	background-color: #fff;
 }
+.btn-media-select {
+	border-color: green;
+}
 .form-item {
 	margin-bottom: 1em;
 	display: block;
 }
 .form-item input {
 	margin-left: 1em;
+}
+
+.full-screen {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: white;
+    z-index:999;
+    text-align:center;
+    opacity: 1;
+    -webkit-transition: opacity 0.25s ease-in-out;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -ms-transition: opacity 0.25s ease-in-out;
+    -o-transition: opacity 0.25s ease-in-out;
+}
+.faded-out {
+    opacity: 0;
+}
+.faded {
+	opacity: 0.7;
 }

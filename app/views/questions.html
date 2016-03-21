@@ -97,17 +97,13 @@
               <p class="help-block" translate="questions.otherBank" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
             </div>
             <div class="margintop-medium clearfix">
-              <a ng-href="{{previous.path}}" class="btn btn-previous float-left" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
+              <button ng-click="previous()" class="btn float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
                   <span translate="status.previous"></span>
-              </a>
-              <a ng-href="{{nextStage.path}}" class="btn btn-next float-right" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-                <!-- <span ng-if="!nextStage.selecting"> -->
-                  <span translate="status.next"></span>
-                <!-- </span> -->
-                <!-- <span ng-if="nextStage.selecting">
-                  <span translate="status.wait"></span>
-                </span> --> 
-              </a>
+              </button>
+              <button ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted)}">
+                <span ng-if="!nextStage.selecting"><span translate="status.next"></span>
+                <span ng-if="nextStage.selecting"><span translate="status.wait"></span>.</span>
+              </button>
             </div>
           </div>
         </div>

@@ -26,8 +26,15 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
     }
     return email;
   }
+  $scope.$watch(function(){
+    $scope.previousStage = NavCollection.previousItem();
+    $scope.nextStage = NavCollection.nextItem();
+  });
   $scope.previous = function(){
-    $location.path('/letter');
+    $location.url($scope.previousStage.id);
+  }
+  $scope.next = function(){
+    $location.url($scope.nextStage.id);
   }
   // $scope.token = token.csrf;
   $scope.email = {};

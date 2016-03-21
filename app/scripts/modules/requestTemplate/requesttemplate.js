@@ -10,21 +10,20 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             pdfForm = '<form method="post" style="display:none" action="' + urls.enrollmentURL() + '/pdf' + '" target="_blank"></form><div class="letter">';
             element.html(pdfForm + response[0].content) + "</div>";
             $compile(element.contents())(scope);
-        });
-        scope.$watch('pdf.isGenerating', function(newVal, oldVal){
-            if(newVal === true && oldVal === false){
-                // makePDF();
-                makeServerPDF(element);
-                scope.pdf.isGenerating = false;
-                scope.pdf.isGenerated = true;
-            }
-        });
-        scope.$watch('email.isGenerating', function(newVal, oldVal){
-            if(newVal === true && oldVal === false){
-                scope.email.contents = buildEmail();
-                scope.email.isGenerating = false;
-                scope.email.isGenerated = true;
-            }
+
+            scope.$watch('pdf.isGenerating', function(newVal, oldVal){
+                if(newVal === true && oldVal === false){
+                    // makePDF();
+                    makeServerPDF(element);
+                    scope.pdf.isGenerating = false;
+                    scope.pdf.isGenerated = true;
+                }
+            });
+            $timeout(function(){
+                    scope.email.contents = buildEmail();
+                    scope.email.isGenerating = false;
+                    scope.email.isGenerated = true;
+            }, 100);
         });
 
         var makeServerPDF = function($element){
@@ -91,7 +90,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
               listItems[key].innerHTML = listItems[key].innerHTML.substring(2);
               // $(this).find('br').remove();
             });
-
+            console.log("body", body, el);
             email = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
             return email;
           }

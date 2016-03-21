@@ -13,9 +13,17 @@ Unless required by applicable law or agreed to in writing, software distributed 
 AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService, urls) {
     $window.scrollTo(0,0)
 
+    $scope.$watch(function(){
+      $scope.previousStage = NavCollection.previousItem();
+      $scope.nextStage = NavCollection.nextItem();
+    });
     $scope.previous = function(){
-      $location.path('/industry');
+      $location.url($scope.previousStage.id);
     }
+    $scope.next = function(){
+      $location.url($scope.nextStage.id);
+    }
+
     $scope.nextIsLoading = false;
     
     if(!AMIRequest.has('industry')){
@@ -72,7 +80,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         }
         else{
           // AMIRequest not changed
-          $location.path(NavCollection.nextItem().id);
+          // $location.path(NavCollection.nextItem().id);
         }
       }
       else{
@@ -98,9 +106,9 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       if($scope.services && $scope.services.length > 0){
         if($scope.howManySelectedServices() > 0){
           AMIRequest.set('services', $scope.services, true);
-          if($scope.services.length === 1 && $scope.selected){
-            $location.path(NavCollection.nextItem().id);
-          }
+          //if($scope.services.length === 1 && $scope.selected){
+            //$location.path(NavCollection.nextItem().id);
+          //}
         }
         else{
           AMIRequest.drop('services');
@@ -115,7 +123,4 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     $scope.showService = function(service){
       return (service.selected === true);
     }
-    $scope.$watch(function(){
-      $scope.nextStage = NavCollection.nextItem();
-    });
   }]);

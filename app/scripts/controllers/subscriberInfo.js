@@ -13,8 +13,15 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   
+  $scope.$watch(function(){
+     $scope.previousStage = NavCollection.previousItem();
+    $scope.nextStage = NavCollection.nextItem();
+  });
   $scope.previous = function(){
-    $location.path('/company');
+    $location.url($scope.previousStage.id);
+  }
+  $scope.next = function(){
+    $location.url($scope.nextStage.id);
   }
   if(!AMIRequest.has('services')){
     $scope.previous();
