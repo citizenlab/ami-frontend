@@ -1,5 +1,10 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div class="container center">
+<div ng-if="serverResponse.success" class="backgroundcolor-lightgrey padding-medium">
+      <div ng-messages="serverResponse.responseStatuses">
+        <div ng-messages-include="status-messages"></div>
+      </div>
+    </div>
   <h2 class="textalign-center clearfix" translate="request.title" translate-values="{operator: operator.title}"></h2>
   <div class="">
     <div class="" ng-if="(displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()"><span translate="request.instructions.hide">!!</span> <i class="fa fa-chevron-up"></i></div>

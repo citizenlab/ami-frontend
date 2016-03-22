@@ -17,7 +17,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     $scope.previous();
     return;
   }
-
+  $scope.serverResponse = AMIRequest.serverResponse;
+  
   $scope.pdfOptionEnabled = pdfOptionEnabled;
   $scope.components = AMIRequest.get('components');
 

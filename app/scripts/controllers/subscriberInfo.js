@@ -9,7 +9,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers) {
+AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'urls', 'dataProviderService', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, urls, dataProviderService) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   
@@ -51,6 +51,38 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
       }
     }
   }
+
+  var findEmail = function(subject){
+    var email = null;
+    var keys;
+    for(var property in subject.basic_personal_info){
+      console.log(subject.basic_personal_info[property]);
+      if(subject.basic_personal_info[property]['title'].match(/email/i)){
+        email = subject.basic_personal_info[property]['value'];
+      }
+      if(email){
+        break;
+      }
+    }
+    return email;
+  }
+  $scope.email = {};
+  $scope.rateLimited = false;
+  $scope.statistics = true;
+  $scope.subscribe = false;
+  $scope.anon = AMIRequest.getAnon();
+  $scope.servicelist = '';  
+  for(var i=0; i < $scope.anon.services.length; i++){
+    var dividerChar = "";
+    if(i == $scope.anon.services.length - 1){
+      dividerChar = ""
+    }
+    else{
+      dividerChar = ", ";
+    }
+    $scope.servicelist = $scope.servicelist + $scope.anon.services[i].title + dividerChar;
+  }
+
   if(AMIRequest.has('operator')){
     $scope.company = AMIRequest.get('operator');
   }
@@ -62,5 +94,46 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     
   $scope.$watch(function(){
     $scope.nextStage = NavCollection.nextItem();
-  })
+        if(AMIRequest.has('subject')){
+      $scope.email.address = findEmail(AMIRequest.get('subject'));
+    }
+  });
+  
+  $scope.submit = function(){
+     $scope.serverIsLoading = true;
+     dataProviderService.postItem(urls.enrollmentURL(), "/enroll/", {}, 
+      {
+        data: $scope.anon,
+        subscribe: $scope.subscribe,
+        email: $scope.email
+        // ,"_csrf": encodeURIComponent($scope.token)
+      })
+     .then(function(response){
+      AMIRequest.serverResponse = {};
+      AMIRequest.serverResponse.serverIsLoading = false;
+      AMIRequest.serverResponse.serverError = false;
+      AMIRequest.serverResponse.serverDown = false;
+      AMIRequest.serverResponse.response = response.title;
+      AMIRequest.serverResponse.responseStatuses = {};
+      AMIRequest.serverResponse.responseStatuses[response.title.statusCode] = true;
+      AMIRequest.serverResponse.success = true;
+     }, function(response){
+      AMIRequest.serverResponse = {};
+      AMIRequest.serverResponse.serverIsLoading = false;
+      AMIRequest.serverResponse.serverError = true;
+      if(response.status === -1){
+        AMIRequest.serverResponse.serverDown = true;
+      }
+      else{
+        AMIRequest.serverResponse.serverDown = false;
+      }
+      if(response.status === 429){
+        AMIRequest.serverResponse.rateLimited = true;
+      }
+     });
+  }
+  $scope.submitAndNext = function(){
+    $scope.submit();
+    $scope.next();
+  }
 }]);
