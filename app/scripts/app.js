@@ -235,13 +235,10 @@ AMIApp.directive('focusMe', ['$timeout', '$parse', function($timeout, $parse) {
 }]);
 AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', function($http, NavCollection, $timeout, $location, $translate, envOptions){
   $location.path('/');
-  $translate.use(envOptions.languageCode)
-  .then(function(){
-    $translate(["nav.start", "nav.org", "nav.ask", "nav.you", "nav.request", "nav.finish"])
-    .then(function(translations){
+  $translate.use(envOptions.languageCode);
       var stages = [
         {
-          name: translations['nav.start'],
+          name: "Start",
           path: "#/",
           id: "start",
           icon: "fa fa-home",
@@ -250,7 +247,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
           target: "_self"
         },
         {
-          name: translations['nav.org'],
+          name: "Operator",
           path: "#/operator",
           id: "operator",
           icon: "fa fa-briefcase",
@@ -259,7 +256,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
           target: "_self"
         },
         {
-          name: translations['nav.ask'],
+          name: "Questions",
           path: "#/components",
           id: "components",
           icon: "fa fa-question-circle",
@@ -268,7 +265,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
           target: "_self"
         },
         {
-          name: translations['nav.you'],
+          name: "Subject",
           path: "#/subject",
           id: "subject",
           icon: "fa fa-user",
@@ -277,7 +274,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
           target: "_self"
         },
         {
-          name: translations['nav.request'],
+          name: "Request",
           path: "#/request",
           id: "request",
           icon: "fa fa-file-text",
@@ -286,7 +283,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
           target: "_self"
         },
         {
-          name: translations['nav.finish'],
+          name: "Finish",
           path: "#/finish",
           id: "finish",
           icon: "fa fa-flag-checkered",
@@ -297,8 +294,6 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
       angular.forEach(stages, function(item){
         NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
       });
-    });
-  });
 }]);
 AMIApp.run(['$templateCache', '$http', function($templateCache, $http) {
   $http.get('views/messages.html')

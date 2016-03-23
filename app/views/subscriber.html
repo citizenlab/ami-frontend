@@ -4,26 +4,69 @@
 	<p class="darkgray lineheight-copy" translate="subject.callout"></p>
 	<form>
 		<fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
-		    <h3 class="margintop-none" ng-if="basic_identifiers" translate="subject.label"></h3>
+		    <!-- <h3 class="margintop-none" ng-if="basic_identifiers" translate="subject.label"></h3> -->
 		    <div ng-repeat="identifier in basic_identifiers | object2Array | orderBy:'+weight'">
 		      	<form-item class="form-item" id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.basic_personal_info">
 		  		</form-item>
 		    </div>
 		    <div ng-repeat="(key, identifiers) in service_identifiers">
+		    
+		    <!-- unncessary title + optional field appears here for some reason
 		    <h3 ng-repeat="service in services" ng-show="service.id == key && identifiers.length">{{service.title}}</h3>
 		    <div class="form-group col-sm-12" ng-repeat="identifier in identifiers | object2Array | orderBy:'+weight'">
 		      <form-item id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.service_identifiers[key]"></form-item>
 		    </div>
-			<div class="margintop-large clearfix">
-				<a ng-href="{{previous.path}}" class="btn btn-previous float-left" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
+			-->
+		    </div>
+
+			<hr />
+			<div class="form-group f6 margintop-medium">
+				<div class="checkbox clearfix">
+					<label>
+						<div class="width-large paddingleft-xsmall float-left">
+							<input type="checkbox"  tabindex="1" ng-model="statistics"/>
+						</div>
+						<div class="width-90p xsmall gray float-right clear-right">
+							<span translate="finish.label-data"></span>
+						</div>
+					</label>
+				</div>
+				<div class="clear-both clearfix">
+					<div class="width-90p xsmall gray float-right">
+						<p class="bg-info-light p-bg mart10" translate="finish.text-data" translate-values="{operator: anon.operator.title, servicelist: servicelist, jurisdiction: anon.jurisdiction.title, date: anon.date}"></p>
+					</div>
+				</div>
+				<div class="checkbox clearfix">
+					<label>
+						<div class="width-large paddingleft-xsmall float-left">
+							<input type="checkbox" ng-model="subscribe"/>
+						</div>
+						<div class="width-90p xsmall gray float-right clear-right">
+							<span translate="finish.label-subscribe"></span>
+						</div>
+					</label>
+				</div>
+				<div class="clear-both clearfix">
+					<div class="width-90p xsmall gray float-right">
+						<label ng-if="subscribe">
+							<span translate="finish.email"></span> <span class="required">*</span>
+						</label>
+						<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="subscribe" />
+						<p translate="finish.text-subscribe" translate-values="{operator: anon.operator.title}"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="margintop-medium clearfix">
+				<button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
 				    <span translate="status.previous"></span>
-				</a>
-				<a ng-href="{{nextStage.path}}" class="btn btn-primary float-right" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-				<!-- <span ng-if="!nextStage.selecting"> -->
+				</button>
+				<button ng-click="submitAndNext()" class="btn float-right btn-primary">
+					<!-- states removed from above since it didn't work/always showed up as disabled
+						ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted)}, 'btn-disabled': (nextStage.selecting || nextStage.restricted)}"
+					-->
 					<span translate="status.next"></span>
-				<!-- </span>
-					<span ng-if="nextStage.selecting"><span translate="status.wait"></span></span> -->
-				</a>
+				</button>
 			</div>
 		</fieldset>
 	</form>

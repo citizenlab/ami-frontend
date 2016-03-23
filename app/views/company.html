@@ -4,22 +4,22 @@
   <p class="darkgray lineheight-copy" translate="operator.callout"></p>
   <form>
     <fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
-      <h3 class="margintop-none" translate="operator.label"></h3>
+      <!-- <h3 class="margintop-none" translate="operator.label"></h3> -->
       <div class="clearfix">
           <!-- <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies track by company.id" class="form-control input-lg">
             <option value="" selected>Select company</option>
           </select> -->
         <div ng-repeat="company in companies">
-          <div class="btn btn-select width-33p float-left" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
+          <div class="btn btn-select width-33p height-xxlarge float-left" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
             <img ng-src="{{company.meta.operator_logo.url}}" width="100px" alt="{{company.title}}">
-            <div class="marl10 hidden-xs">
-              <h4 class="margin-none">{{company.title}}</h4>
+              <h4 class="margin-none">
+                {{company.title}}
+              </h4>
               <div ng-bind-html="company.content"></div>
-            </div> 
           </div>
         </div>
       </div>
-      <div class="well clearfix" ng-show="(services.length > 1)">
+      <div class="clearfix" ng-show="(services.length > 1)">
         <h3><label><span translate="operator.label-services">Service(s)</span> <span class="required">*</span></label></h3>
         <div class="checkbox  clearfix" ng-repeat="service in services">
           <label ng-class="{'bg-success': service.selected}" >
@@ -29,13 +29,12 @@
         </div>
       </div>
       <div class="margintop-medium clearfix">
-        <a ng-href="{{previous.path}}" class="btn btn-previous float-left" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
+        <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
             <span translate="status.previous"></span>
-        </a>
-        <!-- <a ng-href="{{nextStage.path}}" class="btn btn-primary float-right" ng-class="{btn-disabled:  (nextStage.selecting || nextStage.restricted)}">
-          <span ng-if="!nextStage.selecting"><span translate="status.next"></span>
-          <span ng-if="nextStage.selecting"><span translate="status.wait"></span>.</span>
-        </a> -->
+        </button>
+        <button ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
+          <span translate="status.next"></span>
+        </button>
       </div>
     </fieldset>
   </form>

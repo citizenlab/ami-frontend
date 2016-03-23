@@ -3,14 +3,22 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   var blurListener;
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
+  $scope.$watch(function(){
+    $scope.previousStage = NavCollection.previousItem();
+    $scope.nextStage = NavCollection.nextItem();
+  });
   $scope.previous = function(){
-    $location.path('/account');
+    $location.url($scope.previousStage.id);
+  }
+  $scope.next = function(){
+    $location.url($scope.nextStage.id);
   }
   if(!AMIRequest.has('subject') || !AMIRequest.has('operator') || !AMIRequest.has('services' || !(typeof _.findWhere(AMIRequest.get('services'), {selected: true}) !== "undefined")) || AMIRequest.has('')){
     $scope.previous();
     return;
   }
-
+  $scope.serverResponse = AMIRequest.serverResponse;
+  
   $scope.pdfOptionEnabled = pdfOptionEnabled;
   $scope.components = AMIRequest.get('components');
 
@@ -44,11 +52,12 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
 	$scope.servicelist += " service";
   }
 
-  $scope.displayInstructions = false;
+  $scope.displayInstructions = true;
   $scope.displayEmailExtras = false;
 
   $scope.componentdata = $scope.components['data']['items'];
   $scope.componentquestions = $scope.components['questions']['items'];
+  $scope.letterDoneState = false;
 
   $scope.pdf = {
     isGenerating: false,
@@ -61,7 +70,6 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   blurListener = function(){
     $window.removeEventListener('blur', blurListener, false);
     $timeout.cancel(timer);
-    $scope.setLetterDoneState();
   }
   $scope.emailClick = function(){
       var timer2;
@@ -77,8 +85,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $scope.generatePDF = function(){
     $scope.pdf.isGenerating = true;
   }
-  $scope.$watch('pdf.isGenerated', function(newVal, oldVal){
-    if(newVal === true && (oldVal === false || typeof oldVal == "undefined")){
+  $scope.$watch('pdf', function(newVal, oldVal){
+    if(newVal.isGenerated === true){
       $scope.letterDoneState = true;
     }
   });

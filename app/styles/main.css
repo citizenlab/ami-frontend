@@ -8,22 +8,38 @@
   .container {max-width: 30em;}
 }
 @media screen and (min-width: 42em) and (max-width: 64em) {
-  html {font-size: 112.5%;}
+  html {font-size: 105%;}
 }
 @media screen and (min-width: 64em) and (max-width: 86em) {
-  html {font-size: 126.6%;}
+  html {font-size: 110.25%;}
 }
 @media screen and (min-width: 86em) and (max-width: 108em) {
-  html {font-size: 142.4%;}
+  html {font-size: 115.76%;}
 }
 @media screen and (min-width: 108em) and (max-width: 130em) {
-  html {font-size: 160.2%;}
+  html {font-size: 121.55%;}
 }
 @media screen and (min-width: 130em) and (max-width: 152em) {
-  html {font-size: 180.2%;}
+  html {font-size: 134.01%;}
 }
 @media screen and (min-width: 152em) {
-  html {font-size: 202.7%;}
+  html {font-size: 140.71%;}
+}
+a, a:link, a:visited, a:active, a:hover {
+	color: #008876;
+	text-decoration: none;
+}
+hr {
+	border-top: 1px solid #ccc;
+	border-bottom: 0;
+	margin: 0.5em 0;
+}
+.width-titleimage {
+	width: 24rem;
+}
+.borderleft-thick {
+	border-left-style: solid;
+	border-left-width: 0.25rem;
 }
 .xxxsmall {
 	font-size: 0.5rem;
@@ -34,19 +50,8 @@
 .width-16p66p {
 	width: 16.66%;
 }
-.firstStepActive {
-}
-.firstStep {
-	border-top-left-radius: 0.33em;
-	border-bottom-left-radius: 0.33em;
-}
-.lastStep {
-	border-bottom-right-radius: 0.33em;
-	border-top-right-radius: 0.33em;
-}
 .flexProgress {
 	border-radius: 0.33em;
-	background-color: #BFD9D5;
 }
 .flexProgress a, 
 .flexProgress a:link, 
@@ -55,13 +60,17 @@
 	color: #fff;
 	text-decoration: none;
 }
-.progressActive {
+.progressActive, .buttonActive {
 	background-color: #27bfa8;
 }
 .progressActive a, 
 .progressActive a:link, 
 .progressActive a:visited, 
-.progressActive a:active {
+.progressActive a:active,
+.buttonActive a, 
+.buttonActive a:link, 
+.buttonActive a:visited, 
+.buttonActive a:active {
 	color: #fff;
 	text-decoration: none;
 }
@@ -74,6 +83,24 @@
 .progressCompletedPast a:active {
 	color: #5ab48a;
 	text-decoration: none;
+}
+/*
+.progressAvailable {
+	background-color: #4DDFC6;
+}
+*/
+.progressDisabled, .progressAvailable {
+	background-color: #BFD9D5;
+}
+.progressDisabled a, 
+.progressDisabled a:link, 
+.progressDisabled a:visited, 
+.progressDisabled a:active {
+	color: #fff;
+	text-decoration: none;
+} 
+.backgroundcolor-pastelteal {
+	background-color: #CFFCF3;
 }
 .btn {
 	display: inline-block;
@@ -106,13 +133,16 @@
 .btn-disabled {
 	border-style: none;
 	border: 0;
-	background-color: #999;
-	color: #eee;
+	background-color: #ccc;
+	color: #999;
 }
 .btn-select {
 	border-radius: 0;
 	border: 2px solid #F2F2F2;
 	background-color: #fff;
+}
+.btn-media-select {
+	border: 2px solid #27bfa8;
 }
 .form-item {
 	margin-bottom: 1em;
@@ -120,4 +150,28 @@
 }
 .form-item input {
 	margin-left: 1em;
+}
+.fill-white {
+	fill: #ffffff;
+	color: #ffffff;
+}
+
+.full-screen {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: white;
+    z-index:999;
+    text-align:center;
+    opacity: 1;
+    -webkit-transition: opacity 0.25s ease-in-out;
+    -moz-transition: opacity 0.25s ease-in-out;
+    -ms-transition: opacity 0.25s ease-in-out;
+    -o-transition: opacity 0.25s ease-in-out;
+}
+.faded-out {
+    opacity: 0;
+}
+.faded {
+	opacity: 0.7;
 }

@@ -12,7 +12,16 @@ Unless required by applicable law or agreed to in writing, software distributed 
 'use strict';
 AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'components', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, components, AMIRequest, dataProviderService, urls) {
     $window.scrollTo(0,0)
-
+    $scope.$watch(function(){
+      $scope.previousStage = NavCollection.previousItem();
+      $scope.nextStage = NavCollection.nextItem();
+    });
+    $scope.previous = function(){
+      $location.url($scope.previousStage.id);
+    }
+    $scope.next = function(){
+      $location.url($scope.nextStage.id);
+    }
     var componentType = function(id){
       return {
         id: id,

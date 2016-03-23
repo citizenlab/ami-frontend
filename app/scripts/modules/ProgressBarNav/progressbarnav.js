@@ -169,12 +169,14 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
       this.errorSelect(itemToFind.id);
     }
   }
+  navCollection.getItemKeys = function(){
+    return _.pluck(this.collection, 'id')
+  }
   return navCollection;
 }]);
 
-ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 'NavCollection', function ($rootScope, $scope, $location, NavCollection) {
+ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 'NavCollection', '$translate', function ($rootScope, $scope, $location, NavCollection, $translate) {
     $scope.stages = NavCollection.collection;
-    
     $scope.stageIcon = function(stage){
       if(stage.selecting){
         return "fa fa-spinner rotating";
@@ -183,10 +185,28 @@ ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 
         return stage.icon;
       }
     };
+    $rootScope.$on('$translateChangeSuccess', function () {
+      var keys = NavCollection.getItemKeys();
+      var translateKeys = [];
+      for (var i = keys.length - 1; i >= 0; i--) {
+         translateKeys.push("nav." + keys[i]);
+      }
+      keys = keys.reverse();
+      $translate(translateKeys).then(function(translations){
+        for (var i = translateKeys.length - 1; i >= 0; i--) {
+          if(typeof translations[translateKeys[i]] !== "undefined"){
+            var item;
+            item = NavCollection.getById(keys[i]);
+            item.name = translations[translateKeys[i]];
+          }
+        }
+        $scope.stages = NavCollection.collection;
+      });
+    });
     $scope.$watch(function() {
-    $scope.previous = NavCollection.previousItem();
-    $scope.next = NavCollection.nextItem();
-    $scope.activeIndex = NavCollection.collection.indexOf(NavCollection.selectedNavItem);
+      $scope.previous = NavCollection.previousItem();
+      $scope.next = NavCollection.nextItem();
+      $scope.activeIndex = NavCollection.collection.indexOf(NavCollection.selectedNavItem);
       return $location.path();
     }, function(){
       var activeLocation = "#" + $location.url();

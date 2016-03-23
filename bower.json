@@ -18,7 +18,8 @@
     "momentjs": "~2.6.0",
     "jspdf": "1.1.135",
     "html2canvas": "~0.4.1",
-    "font-awesome": ""
+    "font-awesome": "",
+    "share-buttons": "~1.0.1"
   },
   "resolutions": {
     "angular": "1.4.8"
