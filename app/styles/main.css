@@ -175,3 +175,10 @@ hr {
 .faded {
 	opacity: 0.7;
 }
+.ng-hide:not(.ng-hide-animate) {
+  /* this is just another form of hiding an element */
+  display: block!important;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
