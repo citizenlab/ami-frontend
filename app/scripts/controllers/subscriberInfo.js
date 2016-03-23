@@ -100,7 +100,8 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
   
   $scope.submit = function(){
-     $scope.serverIsLoading = true;
+     AMIRequest.serverResponse = {};
+     AMIRequest.serverResponse.serverIsLoading = true;
      dataProviderService.postItem(urls.enrollmentURL(), "/enroll/", {}, 
       {
         data: $scope.anon,
@@ -109,7 +110,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
         // ,"_csrf": encodeURIComponent($scope.token)
       })
      .then(function(response){
-      AMIRequest.serverResponse = {};
       AMIRequest.serverResponse.serverIsLoading = false;
       AMIRequest.serverResponse.serverError = false;
       AMIRequest.serverResponse.serverDown = false;

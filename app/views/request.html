@@ -1,8 +1,14 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div class="container center">
-<div ng-if="serverResponse.success" class="backgroundcolor-lightgrey padding-medium">
-      <div ng-messages="serverResponse.responseStatuses">
-        <div ng-messages-include="status-messages"></div>
+
+<div class="backgroundcolor-lightgrey padding-medium">
+      <span ng-if="serverResponse.serverIsLoading && !serverResponse.success" translate="status.saving"></span>
+      <div ng-if="serverResponse.serverDown" translate="status.serverDown"></div>
+      <div ng-if="serverResponse.rateLimited" translate="status.rateLimited"></div>
+      <div ng-if="serverResponse.success">
+        <div ng-messages="serverResponse.responseStatuses">
+          <div ng-messages-include="status-messages"></div>
+        </div>
       </div>
     </div>
   <h2 class="textalign-center clearfix" translate="request.title" translate-values="{operator: operator.title}"></h2>
@@ -82,14 +88,12 @@
     </div>
   </div>
   <div class="margintop-large clearfix">
-    <a ng-href="{{previous.path}}" class="btn btn-previous float-left" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-        <span translate="status.previous"></span>
-    </a>
-    <a ng-href="{{nextStage.path}}" class="btn btn-primary float-right" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-    <!-- <span ng-if="!nextStage.selecting"> -->
-      <span translate="status.next"></span>
-    <!-- </span>
-      <span ng-if="nextStage.selecting"><span translate="status.wait"></span></span> -->
-    </a>
-  </div>
+        <button ng-click="previous()" class="btn float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+            <span translate="status.previous"></span>
+        </button>
+        <button ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted)}">
+          <span ng-if="!nextStage.selecting"><span translate="status.next"></span></span>
+          <span ng-if="nextStage.selecting"><span translate="status.wait"></span></span>
+        </button>
+      </div>
 </div>

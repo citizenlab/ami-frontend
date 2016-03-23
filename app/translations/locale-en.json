@@ -7,7 +7,8 @@
   	"error": "Error.",
   	"tryAgain": "Try again later.",
   	"rateLimited": "You're doing that too much. Please wait and try later.",
-  	"serverDown": "Server appears to be down. Please try again later."
+  	"serverDown": "Server appears to be down. Please try again later.",
+    "saving": "Sending statistics about your request to server..."
   },
   "category": {
   	"title": "Welcome to AMI HK",

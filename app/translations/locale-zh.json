@@ -7,7 +7,8 @@
   	"error": "錯誤。",
   	"tryAgain": "請稍候再試。",
   	"rateLimited": "您過於頻繁使用此項操作。請稍後再試。",
-  	"serverDown": "服務器無法正常運作。請稍後再試。"
+  	"serverDown": "服務器無法正常運作。請稍後再試。",
+    "saving": "Sending statistics about your request to server..."
   },
   "category": {
   	"title": "開始",

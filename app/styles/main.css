@@ -107,6 +107,9 @@
 	background-color: #008876;
 	color: #fff;
 }
+.btn-primary:hover {
+	background-color: #27bfa8;
+}
 .btn-next {
 	border-style: none;
 	border: 0;
@@ -119,7 +122,8 @@
 	background-color: #999;
 	color: #fff;
 }
-.btn-disabled {
+.btn-disabled,
+.btn:disabled {
 	border-style: none;
 	border: 0;
 	background-color: #999;
