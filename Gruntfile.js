@@ -367,18 +367,18 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {}
+    },
 
     uglify: {
       options: {
@@ -452,7 +452,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     // 'uncss',
-    // 'concat',
+    'concat',
     'ngmin',
     'copy:dist',
     'cdnify',
