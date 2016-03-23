@@ -20,8 +20,6 @@
                     <option value="" selected>Select industry</option>
                 </select> -->
                     <div class="margintop-large textalign-center" ng-repeat="industry in industries">
-                        <ng-if="industry.meta "
-                        
                         <div class="btn btn-primary" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button">
                         <!-- took out ng-class from above because no selection for this campaign
                          ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}" -->
@@ -34,7 +32,6 @@
                             <!-- </div> -->
                         </div>
                 </div>
-            </div>
             </div>
             </div>
     </fieldset>
