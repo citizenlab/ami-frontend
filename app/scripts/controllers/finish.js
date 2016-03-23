@@ -23,6 +23,7 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
     $location.url($scope.nextStage.id);
   }
 
+  $scope.url = window.location.origin;
   $scope.serverResponse = AMIRequest.serverResponse;
   
   $scope.$watch('AMIRequest.serverResponse', function(){
