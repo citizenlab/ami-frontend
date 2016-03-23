@@ -15,7 +15,6 @@
                     <option value="" selected>Select industry</option>
                 </select> -->
                     <div class="margintop-large textalign-center" ng-repeat="industry in industries">
-                        <ng-if="industry.meta "
                     	<div class="btn btn-primary" ng-click="selectIndustry(industry)" ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}" aria-label="{{industry.title}}" aria-role="button">
                     		<!-- <img ng-src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/> -->
                     		<div ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)">
@@ -26,7 +25,6 @@
                     		<h4 class="marl10" ng-if="(nextStage.selecting && $parent.industry.id == industry.id)">&nbsp;<span translate="status.wait"></span></h4>
                     	</div>
                 </div>
-            </div>
             </div>
             </div>
     </fieldset>
