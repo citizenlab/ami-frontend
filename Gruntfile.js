@@ -452,7 +452,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     // 'uncss',
-    // 'concat',
+    'concat',
     'ngmin',
     'copy:dist',
     'cdnify',
