@@ -141,7 +141,7 @@
     "finish": "Finish"
   },
   "messages": {
-  "R1": "Thank you. There are now {{count}} requests created for {{operator}} in {{jurisdiction}}.",
+  "R1": "Thanks to you, there are now {{count}} requests created for {{operator}}.",
   "R2": "Sorry, you've created a request to {{operator}} too recently.",
   "R3": "System Error. Can't save request.",
   "D1": "Database Error.",

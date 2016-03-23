@@ -22,4 +22,10 @@ AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataPr
   $scope.next = function(){
     $location.url($scope.nextStage.id);
   }
+
+  $scope.serverResponse = AMIRequest.serverResponse;
+  
+  $scope.$watch('AMIRequest.serverResponse', function(){
+    $scope.serverResponse = AMIRequest.serverResponse;
+  });
 }]);

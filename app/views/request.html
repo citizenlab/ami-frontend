@@ -52,21 +52,11 @@
       <h2 class="mart0 marb10" translate="request.thanks"></h2>
     </div>
     <div class="margintop-medium">
-
-      <!-- can't get this jquery to work -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script>
-        $( "#copypaste-click" ).click(function() {
-          $( "#copypaste-box" ).show();
-        });
-      </script>
-      <!-- end jquery snippet -->
-
-      <a id="copypaste-click" class="display-block f5 margintop-none cursor-pointer">
+      <a ng-click="instructionsDisplayToggle()" class="display-block f5 margintop-none cursor-pointer">
         <span class="b" translate="request.instructions.email-empty-prompt"></span>
       </a>
       <!-- reveals if click above -->
-      <div id="copypaste-box" class="margintop-medium backgroundcolor-white xsmall black60 paddingvertical-small paddinghorizontal-large ">
+      <div ng-show="displayInstructions" class="margintop-medium backgroundcolor-white xsmall black60 paddingvertical-small paddinghorizontal-large ">
         <div class="textalign-center margintop-medium marginbottom-large">
           <button class="btn btn-primary xsmall" ngclipboard data-clipboard-target="#request">
             <span translate="request.instructions.email-empty-instructions"></span>

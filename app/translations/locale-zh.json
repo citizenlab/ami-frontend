@@ -142,7 +142,7 @@
     "finish": "完"
   },
   "messages": {
-  "R1": "謝謝。目前，在{{jurisdiction}}，有申請專門提交給{{operator}}。",
+  "R1": "謝謝。目前，在{{jurisdiction}}，有申請專門提交給{{operator}}。 {{count}} ",
   "R2": "抱歉，您最近已提交申請給{{operator}}。",
   "R3": "系統錯誤。無法儲存申請。",
   "D1": "資料庫錯誤。",

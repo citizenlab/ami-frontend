@@ -316,7 +316,6 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
       dataProviderService.request(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID, {"flag": randomInt}, 'GET', null, false)
         .success( function(data, status, headers, config) {
           cmsStatus.isOnline(true);
-          AMIRequest.set('jurisdiction', data);
         })
         .error( function(data, status, headers, config) {
           cmsStatus.isOnline(false);

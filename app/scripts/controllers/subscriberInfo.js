@@ -68,8 +68,18 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   }
   $scope.email = {};
   $scope.rateLimited = false;
-  $scope.statistics = true;
-  $scope.subscribe = false;
+  if(AMIRequest.has('statistics')){
+    $scope.statistics = AMIRequest.statistics;
+  }
+  else{
+    $scope.statistics = true;
+  }
+  if(AMIRequest.has('subscribe')){
+    $scope.subscribe = AMIRequest.subscribe;
+  }
+  else{
+    $scope.subscribe = false;
+  }
   $scope.anon = AMIRequest.getAnon();
   $scope.servicelist = '';  
   for(var i=0; i < $scope.anon.services.length; i++){
@@ -93,14 +103,23 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
     
   $scope.$watch(function(){
+    AMIRequest.statistics = $scope.statistics;
+    AMIRequest.subscribe = $scope.subscribe;
     $scope.nextStage = NavCollection.nextItem();
-        if(AMIRequest.has('subject')){
-      $scope.email.address = findEmail(AMIRequest.get('subject'));
+    if(AMIRequest.has('subject')){
+      if(findEmail(AMIRequest.get('subject'))){
+        $scope.hasEmail = true;
+        $scope.email.address = findEmail(AMIRequest.get('subject'));
+      }
+    }
+    else{
+      $scope.hasEmail = false;
     }
   });
   
   $scope.submit = function(){
-     $scope.serverIsLoading = true;
+     AMIRequest.serverResponse = {};
+     AMIRequest.serverIsLoading = true;
      dataProviderService.postItem(urls.enrollmentURL(), "/enroll/", {}, 
       {
         data: $scope.anon,
@@ -109,7 +128,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
         // ,"_csrf": encodeURIComponent($scope.token)
       })
      .then(function(response){
-      AMIRequest.serverResponse = {};
       AMIRequest.serverResponse.serverIsLoading = false;
       AMIRequest.serverResponse.serverError = false;
       AMIRequest.serverResponse.serverDown = false;
@@ -118,7 +136,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
       AMIRequest.serverResponse.responseStatuses[response.title.statusCode] = true;
       AMIRequest.serverResponse.success = true;
      }, function(response){
-      AMIRequest.serverResponse = {};
       AMIRequest.serverResponse.serverIsLoading = false;
       AMIRequest.serverResponse.serverError = true;
       if(response.status === -1){
@@ -133,7 +150,9 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
      });
   }
   $scope.submitAndNext = function(){
-    $scope.submit();
+    if($scope.statistics){
+      $scope.submit();
+    }
     $scope.next();
   }
 }]);

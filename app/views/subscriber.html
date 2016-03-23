@@ -36,23 +36,25 @@
 						<p class="bg-info-light p-bg mart10" translate="finish.text-data" translate-values="{operator: anon.operator.title, servicelist: servicelist, jurisdiction: anon.jurisdiction.title, date: anon.date}"></p>
 					</div>
 				</div>
-				<div class="checkbox clearfix">
-					<label>
-						<div class="width-large paddingleft-xsmall float-left">
-							<input type="checkbox" ng-model="subscribe"/>
-						</div>
-						<div class="width-90p xsmall gray float-right clear-right">
-							<span translate="finish.label-subscribe"></span>
-						</div>
-					</label>
-				</div>
-				<div class="clear-both clearfix">
-					<div class="width-90p xsmall gray float-right">
-						<label ng-if="subscribe">
-							<span translate="finish.email"></span> <span class="required">*</span>
+				<div ng-if="statistics">
+					<div class="checkbox clearfix">
+						<label>
+							<div class="width-large paddingleft-xsmall float-left">
+								<input type="checkbox" ng-model="subscribe"/>
+							</div>
+							<div class="width-90p xsmall gray float-right clear-right">
+								<span translate="finish.label-subscribe"></span>
+							</div>
 						</label>
-						<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="subscribe" />
-						<p translate="finish.text-subscribe" translate-values="{operator: anon.operator.title}"></p>
+					</div>
+					<div class="clear-both clearfix">
+						<div class="width-90p xsmall gray float-right">
+							<label ng-if="!hasEmail && subscribe">
+								<span translate="finish.email"></span> <span class="required">*</span>
+							</label>
+							<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="!hasEmail && subscribe" />
+							<p translate="finish.text-subscribe" translate-values="{operator: anon.operator.title}"></p>
+						</div>
 					</div>
 				</div>
 			</div>
