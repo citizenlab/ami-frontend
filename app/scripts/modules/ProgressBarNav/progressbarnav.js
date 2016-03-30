@@ -10,10 +10,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-var ProgressBarNav = angular.module('ProgressBarNav', [
-  'StateDataManager'
-]);
-ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$timeout', function($rootScope, StateDataManager, $timeout){
+var ProgressBarNav = angular.module('ProgressBarNav', []);
+ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($rootScope, $timeout){
   var navCollection = {};
   navCollection.collection = [];
   navCollection.ordered = true;
@@ -50,6 +48,9 @@ ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$tim
       console.log(this.previous);
       return this.previous;
     }
+    else{
+      delete this.previous;
+    }
   }
   navCollection.nextItem = function(){
     var nextIndex;
@@ -58,10 +59,13 @@ ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$tim
         nextIndex =  this.collection.indexOf(this.selectedNavItem) + 1;
       }
       else{
-        nextIndex =  this.collection.indexOf(this.selectedNavItem);
+        nextIndex = this.collection.indexOf(this.selectedNavItem);
       }
       this.next = this.collection[nextIndex];
       return this.next;
+    }
+    else{
+      delete this.next;
     }
   }
   navCollection.startSelect = function(id){
@@ -115,11 +119,15 @@ ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$tim
       throw Error("No item in nav collection by id", id);
     }
   }
+  navCollection.getById = function(id){
+    return _.findWhere(this.collection, {'id': id});
+  }
   navCollection.restrict = function(id){
     var itemToRestrict = _.findWhere(this.collection, {'id': id});
     var startRestrictingEverythingNow = false;
     if(itemToRestrict){
       itemToRestrict.restricted = true;
+      itemToRestrict.selecting = false;
       angular.forEach(this.collection, function(item, key){
         if(item === itemToRestrict && navCollection.ordered){
           startRestrictingEverythingNow = true;
@@ -161,12 +169,14 @@ ProgressBarNav.service('NavCollection', ['$rootScope', 'StateDataManager', '$tim
       this.errorSelect(itemToFind.id);
     }
   }
+  navCollection.getItemKeys = function(){
+    return _.pluck(this.collection, 'id')
+  }
   return navCollection;
 }]);
 
-ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'StateDataManager', 'NavCollection', function ($scope, $location, StateDataManager, NavCollection) {
+ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 'NavCollection', '$translate', function ($rootScope, $scope, $location, NavCollection, $translate) {
     $scope.stages = NavCollection.collection;
-    
     $scope.stageIcon = function(stage){
       if(stage.selecting){
         return "fa fa-spinner rotating";
@@ -175,14 +185,36 @@ ProgressBarNav.controller('ProgressCtrl', ['$scope', '$location', 'StateDataMana
         return stage.icon;
       }
     };
-
-     $scope.$watch(function() {
-      $scope.previous = NavCollection.previous;
-      $scope.next = NavCollection.next;
+    $rootScope.$on('$translateChangeSuccess', function () {
+      var keys = NavCollection.getItemKeys();
+      var translateKeys = [];
+      for (var i = keys.length - 1; i >= 0; i--) {
+         translateKeys.push("nav." + keys[i]);
+      }
+      keys = keys.reverse();
+      $translate(translateKeys).then(function(translations){
+        for (var i = translateKeys.length - 1; i >= 0; i--) {
+          if(typeof translations[translateKeys[i]] !== "undefined"){
+            var item;
+            item = NavCollection.getById(keys[i]);
+            item.name = translations[translateKeys[i]];
+          }
+        }
+        $scope.stages = NavCollection.collection;
+      });
+    });
+    $scope.$watch(function() {
+      $scope.previous = NavCollection.previousItem();
+      $scope.next = NavCollection.nextItem();
       $scope.activeIndex = NavCollection.collection.indexOf(NavCollection.selectedNavItem);
-        return $location.path();
-     }, function(){
-        var activeLocation = "#" + $location.url();
-        NavCollection.startSelectByPath(activeLocation);
-     });
+      return $location.path();
+    }, function(){
+      var activeLocation = "#" + $location.url();
+      NavCollection.startSelectByPath(activeLocation);
+    });
+    $rootScope.$on('$routeChangeSuccess', function(event){
+      var path = "#" + $location.path();
+      console.log("navigated to: ", path);
+      NavCollection.finishSelectByPath(path);
+    });
 }]);

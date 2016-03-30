@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -11,173 +11,322 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 'use strict';
 
-var pirsApp = angular.module('pirsApp', [
+var AMIApp = angular.module('AMIApp', [
+    'config',
     'ngRoute',
     'ngEnter',
-    'ngJSPDF',
+    'ngMessages',
+    'ngSanitize',
+    'dataProviderService',
     'ProgressBarNav',
-    'StateDataManager',
-    'ngSticky',
-    'ui.bootstrap'
+    'formItem',
+    'requestTemplate',
+    'AMIRequest',
+    'sticky',
+    'ui.bootstrap',
+    'pascalprecht.translate',
+    'ngclipboard'
   ])
-  .config(function ($routeProvider) {
+  .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
+    var online = false;
+    var firstRun = true;
+    var path;
+    var redirect = false;
+    this.isOnline = function(status){
+      if(typeof status === "undefined"){
+        return online;
+      }
+      if(!firstRun && !online && status){
+        redirect = true;
+      }
+      else{
+        redirect = false;
+      }
+      if(status === true){
+        online = true;
+        NavCollection.unRestrict('start');
+      }
+      else{
+        online = false;
+        NavCollection.restrict('start');
+        $location.path('/offline');
+      }
+      if(redirect){
+        if(NavCollection.selectedNavItem){
+          path = NavCollection.selectedNavItem.id;
+          console.log(NavCollection.selectedNavItem);
+          console.log(path);
+        }
+        else{
+          path = "/";
+        }
+        $location.path(path);
+      }
+      firstRun = false;
+    }
+  }])
+  .service('urls', ['envOptions', '$translate', function(envOptions, $translate){
+    this.apiURL = function(){
+      var url;
+      var languageCode = envOptions.languageCode;
+      console.log($translate.use());
+      if(typeof $translate.use() !== "undefined"){
+        languageCode = $translate.use();
+      }
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + languageCode + envOptions.apiPath;
+      console.log(url);
+      return url;
+    }
+    this.enrollmentURL = function(){
+      return envOptions.enrollmentDomain + envOptions.enrollmentApiPath;
+    }
+    return this;
+  }])
+  .config(['$translateProvider', function($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'translations/locale-',
+      suffix: '.json'
+    });
+  }])
+  .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/industry.html',
+        controller: 'IndustryCtrl',
+        resolve: {
+          industries: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries");
+          }]
+        }
       })
-      .when('/companyInfo', {
+      .when('/operator', {
         templateUrl: 'views/company.html',
-        controller: 'CompanyCtrl'
+        controller: 'CompanyCtrl',
+        resolve: {
+          companies: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
+          }]
+        },
       })
-      .when('/subscriberInfo', {
+      .when('/subject', {
         templateUrl: 'views/subscriber.html',
-        controller: 'SubscriberCtrl'
+        controller: 'SubscriberCtrl',
+        resolve: {
+          identifiers: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest){
+          var operator = AMIRequest.get('operator');
+          var path;
+          var params;
+
+          if(operator.meta.data_management_unit == "data-banks"){
+            path = "/data_banks/identifiers/"
+            var banks = operator.meta.data_banks;
+            params = {"banks[]": banks};
+          }
+          else{
+            path = "/services/identifiers/";
+            var services = AMIRequest.get('services');
+            var service_ids = [];
+            angular.forEach(services, function(value, key){
+              if(value.selected){
+                service_ids.push(value.id);
+              }
+            }, service_ids);
+            params = {"services[]": service_ids}
+          }
+            return dataProviderService.getItem(urls.apiURL(), path, params);
+          }]
+        },
       })
-      .when('/accountInfo', {
+      .when('/account', {
         templateUrl: 'views/accountInfo.html',
         controller: 'AccountCtrl'
       })
-      .when('/letter', {
-        templateUrl: 'views/letter.html',
-        controller: 'LetterCtrl'
+      .when('/request', {
+        templateUrl: 'views/request.html',
+        controller: 'RequestCtrl',
+        resolve: {
+          pdfOptionEnabled: ["envOptions", function(envOptions){
+            return envOptions.pdfOption;
+          }]
+        }
+      })
+      .when('/components', {
+        templateUrl: 'views/questions.html',
+        controller: 'QuestionsCtrl',
+        resolve: {
+          components: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var operator = AMIRequest.get('operator');
+            console.log("OG", operator);
+            if(operator.meta.data_management_unit == "data-banks"){
+              return dataProviderService.getItem(urls.apiURL(), "/operators/" + operator.id + "/data_banks/");
+            }
+            else{
+              var services = AMIRequest.get('services');
+              var service_ids = [];
+               angular.forEach(services, function(value, key){
+                  if(value.selected){
+                    service_ids.push(value.id);
+                  }
+                }, service_ids);
+              return dataProviderService.getItem(urls.apiURL(), "/components/", {"services[]": service_ids});
+            }
+          }]
+        }
       })
       .when('/finish', {
         templateUrl: 'views/finish.html',
         controller: 'FinishCtrl'
+        // ,resolve: {
+        //   token: ["dataProviderService", function(dataProviderService) {
+        //     return dataProviderService.getItem("enroll/", {}, "http://0.0.0.0:3000/", null, false);
+        //   }]
+        // },
+      })
+      .when('/verify', {
+        templateUrl: 'views/verify.html',
+        controller: 'VerificationCtrl',
+        resolve: {
+          verificationStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
+            return dataProviderService.getItem(urls.enrollmentURL(), "/verify/", {"token": $location.search().token}, null, false);
+          }]
+        }
+      })
+      .when('/unsubscribe', {
+        templateUrl: 'views/unsubscribe.html',
+        controller: 'UnsubscribeCtrl',
+        resolve: {
+          unsubscribeStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
+            return dataProviderService.postItem(urls.enrollmentURL(), "/unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
+          }]
+        }
+      })
+      .when('/offline', {
+        templateUrl: 'views/offline.html'
       })
       .otherwise({
         redirectTo: '/'
       });
+  }]);
+
+AMIApp.filter('object2Array', function() {
+  return function(input) {
+    return _.toArray(input);
+  }
+});
+
+AMIApp.directive('focusMe', ['$timeout', '$parse', function($timeout, $parse) {
+  return {
+    //scope: true,   // optionally create a child scope
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.focusMe);
+      scope.$watch(model, function(value) {
+        console.log('value=',value);
+        if(value === true) {
+          $timeout(function() {
+            element[0].focus();
+            element[0].setSelectionRange(0, element[0].value.length)
+          });
+        }
+      });
+    }
+  };
+}]);
+AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', function($http, NavCollection, $timeout, $location, $translate, envOptions){
+  $location.path('/');
+  $translate.use(envOptions.languageCode);
+      var stages = [
+        {
+          name: "Start",
+          path: "#/",
+          id: "start",
+          icon: "fa fa-home",
+          restricted: false,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: "Operator",
+          path: "#/operator",
+          id: "operator",
+          icon: "fa fa-briefcase",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: "Questions",
+          path: "#/components",
+          id: "components",
+          icon: "fa fa-question-circle",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: "Subject",
+          path: "#/subject",
+          id: "subject",
+          icon: "fa fa-user",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: "Request",
+          path: "#/request",
+          id: "request",
+          icon: "fa fa-file-text",
+          restricted: true,
+          className: "",
+          target: "_self"
+        },
+        {
+          name: "Finish",
+          path: "#/finish",
+          id: "finish",
+          icon: "fa fa-flag-checkered",
+          restricted: true,
+          target: "_self"
+        }
+      ];
+      angular.forEach(stages, function(item){
+        NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
+      });
+}]);
+AMIApp.run(['$templateCache', '$http', function($templateCache, $http) {
+  $http.get('views/messages.html')
+  .then(function(response) {
+    $templateCache.put('status-messages', response.data);
   });
-
-function validateEmail(email) { 
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-pirsApp.run(function($http, StateDataManager, NavCollection, $timeout){
-  $http({method: 'GET', url: 'data.json'})
-  .success(function(data, status, headers, config){
-    var results, piiQuestions, serviceTypes = {}, companies = [];
-    results = data.results;
-    piiQuestions = results.piiQuestions;
-
-    // Build Service Types with PII question defaults
-    angular.forEach(results.serviceTypes, function(value, key){
-      var serviceType = new PIRS_ServiceType(key);
-      angular.forEach(value.piiQuestions, function(piiTypeId){
-        serviceType.addPiiType(piiQuestions[piiTypeId]);
-      }, serviceType);
-      serviceTypes[key] = serviceType;
-    }, serviceTypes);
-    
-    // Build Companies
-    angular.forEach(results.companies, function(companyInfo, companyId){
-      var company = new PIRS_Company();
-      var ixMapStars, starData, companyStars = [];
-      
-      company.setName(companyInfo.name)
-      company.setAddress(companyInfo.address);
-      company.setContactActor(companyInfo.contactActor);
-
-      // Build Company Services
-      angular.forEach(companyInfo.services, function(serviceInfo, serviceId){
-        var service = new PIRS_Service(serviceId);
-        service.setServiceType(serviceTypes[serviceInfo.serviceType]);
-        service.setName(serviceInfo.name);
-        company.addService(service);
-      }, company);
-
-      // Include Linked data
-      if(typeof companyInfo.linkedData !== "undefined"){
-        // angular.forEach(companyInfo.linkedData, function(value, key){
-          // if(key == "ixMapStars"){
-            ixMapStars = results.linkedData["ixMapStarsLegend"];
-            starData = results.linkedData["ixMapStars"][companyInfo.linkedData['ixMapStars']];
-            for(var i in results.linkedData["ixMapStarsLegend"]){
-              companyStars.push({
-                "score": starData[i],
-                "star_short_name": results.linkedData["ixMapStarsLegend"][i]["star_short_name"],
-                "star_long_des": results.linkedData["ixMapStarsLegend"][i]["star_long_des"]
-              });
-            }
-            companyStars = _.sortBy(companyStars, "score").reverse();
-            company.addLinkedDataSet('ixMapStars', companyStars);
-        //   }
-        // }, company);
-        console.log(company);
-      }
-      companies.push(company);
-    }, companies);
-    StateDataManager.stash('companies', companies);
-  })
-  .error(function(data, status, headers, config){
-
-  });
-  var stages = [
-      {
-        name: "Overview",
-        path: "#/",
-        id: "home",
-        icon: "fa fa-home",
-        restricted: false,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: "Company",
-        path: "#/companyInfo",
-        id: "companyInfo",
-        icon: "fa fa-briefcase",
-        restricted: false,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: "Contact",
-        path: "#/subscriberInfo",
-        id: "subscriberInfo",
-        icon: "fa fa-user",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: "Account",
-        path: "#/accountInfo",
-        id: "accountInfo",
-        icon: "fa fa-barcode",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: "Letter",
-        path: "#/letter",
-        id: "letter",
-        icon: "fa fa-file-text",
-        restricted: true,
-        className: "",
-        target: "_self"
-      },
-      {
-        name: "Connect",
-        path: "https://openmedia.ca/MyInfo/reminder",
-        id: "finish",
-        icon: "fa fa-external-link",
-        restricted: false,
-        className: "prominent",
-        target: "_parent"
-      }
-    ]
-    angular.forEach(stages, function(item){
-      NavCollection.addNavItem(item.id, item.path, item.name, item.icon, item.restricted, item.className, item.target);
-    });
-    $timeout(function(){
-      $("#loadingScreen").addClass('faded-out');
+}]);
+AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderService', '$interval', '$timeout', function(urls, envOptions, AMIRequest, cmsStatus, dataProviderService, $interval, $timeout) {
+   dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID)
+    .then(function(jurisdiction){
+      AMIRequest.set('jurisdiction', jurisdiction);
+      AMIRequest.markAsComplete('jurisdiction');
+    }).
+    catch(function(err){
+      console.log(err);
+    })
+  $interval(function(){
+    if(!cmsStatus.isOnline()){
+      var randomInt = Math.floor(Math.random() * (100000000 - 0)) + 0;
+      dataProviderService.request(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID, {"flag": randomInt}, 'GET', null, false)
+        .success( function(data, status, headers, config) {
+          cmsStatus.isOnline(true);
+        })
+        .error( function(data, status, headers, config) {
+          cmsStatus.isOnline(false);
+        });
+    }
+  }, 60000);
+  $timeout(function(){
+      document.getElementById("loadingScreen").className += ' faded-out';
       $timeout(function(){
-        $("#loadingScreen").hide();
+        document.getElementById("loadingScreen").className.replace('faded-out', '');
+        document.getElementById("loadingScreen").remove();
       }, 200);
     }, 170);
-});
+}]);

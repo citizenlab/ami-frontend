@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -10,19 +10,23 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('FinishCtrl', ['$scope', '$location', 'StateDataManager', 'NavCollection', function ($scope, $location, StateDataManager, NavCollection) {
+
+AMIApp.controller('FinishCtrl', ['$scope', '$location', 'NavCollection', 'dataProviderService', 'urls', 'AMIRequest', function ($scope, $location, NavCollection, dataProviderService, urls, AMIRequest) {
+    $scope.$watch(function(){
+     $scope.previousStage = NavCollection.previousItem();
+    $scope.nextStage = NavCollection.nextItem();
+  });
   $scope.previous = function(){
-    $location.path('/letter');
+    $location.url($scope.previousStage.id);
   }
+  $scope.next = function(){
+    $location.url($scope.nextStage.id);
+  }
+
+  $scope.url = window.location.origin;
+  $scope.serverResponse = AMIRequest.serverResponse;
   
-  $scope.startOver = function(){
-    StateDataManager.pop('company');
-    StateDataManager.pop('services');
-    StateDataManager.pop('piiTypes');
-    StateDataManager.pop('singleAccount');
-    StateDataManager.pop('servicesUnderOneAccount');
-    StateDataManager.pop('alreadyDone');
-    $location.path('/companyInfo');
-  }
-  NavCollection.finishSelect('finish');
+  $scope.$watch('AMIRequest.serverResponse', function(){
+    $scope.serverResponse = AMIRequest.serverResponse;
+  });
 }]);

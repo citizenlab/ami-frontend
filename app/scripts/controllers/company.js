@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -10,98 +10,117 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-pirsApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'StateDataManager', 'NavCollection', function ($scope, $timeout, $location, $window, StateDataManager, NavCollection) {
+AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService, urls) {
     $window.scrollTo(0,0)
-    NavCollection.unRestrict('companyInfo');
+
+    $scope.$watch(function(){
+      $scope.previousStage = NavCollection.previousItem();
+      $scope.nextStage = NavCollection.nextItem();
+    });
     $scope.previous = function(){
-      $location.path('/');
-    }
-    $scope.nextIsLoading = false;
-    // $scope.companies = companies;
-    $scope.companies = StateDataManager.get('companies');
-    if(StateDataManager.has('company')){
-      $scope.company = StateDataManager.get('company');
-    }
-    if(StateDataManager.has('services')){
-      $scope.services = StateDataManager.get('services');
-    }
-    else{
-      $scope.services = [];
-    }
-    $scope.prepServices = function(){
-      $scope.services = [];
-      angular.forEach($scope.company.getServices(), function(service, key){
-        this.push({
-          selected: false,
-          serviceObj: service
-        })
-      }, $scope.services);
-      StateDataManager.stash('services', $scope.services);
-    }
-    $scope.showService = function(service){
-      return (service.selected === true);
-    }
-    $scope.getPiiTypes = function(){
-      var piiTypes = [];
-      angular.forEach($scope.services, function(service, key){
-        if($scope.showService(service)){
-          piiTypes = piiTypes.concat(service.serviceObj.getServicePiiTypes());
-        }
-      }, piiTypes);
-      $scope.piiTypes = _.uniq(piiTypes);
-      if($scope.piiTypes.length > 0){
-        $scope.IsServiceSelected = true;
-        NavCollection.unRestrict('subscriberInfo');
-      }
-      else{
-        $scope.IsServiceSelected = false;
-        NavCollection.restrict('subscriberInfo');
-      }
+      $location.url($scope.previousStage.id);
     }
     $scope.next = function(){
-      if($scope.IsServiceSelected){
-        $scope.nextIsLoading = true;
-        $location.path('subscriberInfo');
-      }
+      $location.url($scope.nextStage.id);
     }
 
-    // $scope.customer = {address:{}};
-    // $scope.pii = $scope.services.getAddress();
+    $scope.nextIsLoading = false;
+    
+    if(!AMIRequest.has('industry')){
+      $scope.previous();
+      return;
+    }
+
+    $scope.industry = AMIRequest.get('industry');
+    // $scope.companies = companies;
+    $scope.companies = companies;
+
+    if(AMIRequest.has('operator')){
+      $scope.company = AMIRequest.get('operator');
+    }
+
+    $scope.selectCompany = function(company){
+      if($scope.company !== company){
+        $scope.company = company;
+        $scope.selected = true;
+      }
+    }
+   
     $scope.$watch('company', function(newCompany, oldCompany){
-      var customer;
-      if(typeof $scope.company !== "undefined"){
-        console.log(newCompany);
-        StateDataManager.stash('company', $scope.company);
-        if(StateDataManager.get('company') !== oldCompany){
-          $scope.prepServices();
-          if(StateDataManager.has('customer')){
-            customer = StateDataManager.get('customer');
-            customer.accountNo = null;
-            customer.phone = null;
-            customer.email = null;
-            StateDataManager.stash('customer', customer);
+      if(newCompany === null){
+        console.log("drop");
+        AMIRequest.drop('operator');
+        $scope.services = null;
+      }
+      else if(newCompany !== oldCompany){
+        if(AMIRequest.set('operator', newCompany)){
+          if(newCompany.meta.data_management_unit == "services"){
+            dataProviderService.getItem(urls.apiURL(), '/operators/' + newCompany.id + '/services')
+            .then(function(services){
+              if(services.length){
+                if(services.length > 1){
+                  for (var i =  services.length - 1; i >= 0; i--) {
+                     services[i].selected = false;
+                  };
+                }
+                else{
+                  services[0].selected = true;
+                }
+                $scope.services = services;
+              }
+              else{
+                alert("Sorry, no services for this operator.");
+              }
+            });
           }
-          if(StateDataManager.has('servicesUnderOneAccount')){
-            StateDataManager.pop('servicesUnderOneAccount')
+          else{
+            //Hack -- we dont' need services here
+            $scope.services = [{"title": "Dummy service", "selected": true}];
           }
-          if(StateDataManager.has('singleAccount')){
-            StateDataManager.pop('singleAccount');
-          }
-          if(StateDataManager.has('alreadyDone')){
-            StateDataManager.pop('alreadyDone');
-          }
-          if(StateDataManager.has('letterDoneState')){
-            StateDataManager.pop('letterDoneState');
+        }
+        else{
+          // AMIRequest not changed
+          // $location.path(NavCollection.nextItem().id);
+        }
+      }
+      else{
+        if($scope.company && $scope.company.id){
+          AMIRequest.set('operator', $scope.company);
+        }
+        if(AMIRequest.has('services')){
+          console.log("services!");
+          console.log(AMIRequest.get('services'));
+          if(AMIRequest.get('services').length >= 1){
+            $scope.services = AMIRequest.get('services');
           }
         }
       }
     });
-    $scope.$watch('services', function(newServices, oldServices){
-      $scope.getPiiTypes();
-    }, true)
-    $scope.$watch('piiTypes', function(newPiiTypes, oldPiiTypes){
-      StateDataManager.stash('piiTypes', $scope.piiTypes);
-    }, true);
 
-    NavCollection.finishSelect('companyInfo');
+    $scope.$watch('services', function(newServices, oldServices){
+      $scope.setServices();
+      $scope.howManySelectedServices();
+    });
+
+    $scope.setServices = function(){
+      if($scope.services && $scope.services.length > 0){
+        if($scope.howManySelectedServices() > 0){
+          AMIRequest.set('services', $scope.services, true);
+          //if($scope.services.length === 1 && $scope.selected){
+            //$location.path(NavCollection.nextItem().id);
+          //}
+        }
+        else{
+          AMIRequest.drop('services');
+        }
+      }
+    }
+    
+    $scope.howManySelectedServices = function(){
+      return _.where($scope.services, {selected: true}).length;
+    }
+
+    $scope.showService = function(service){
+      return (service.selected === true);
+    }
   }]);

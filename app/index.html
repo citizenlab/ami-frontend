@@ -20,70 +20,88 @@ MOSQUITO wants its sweet, sweet data
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Access My Info</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="styles/tachyons.min.css"/>
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="pirsApp">
+  <body ng-app="AMIApp" ng-controller="LangStyle" ng-class="lang" class="backgroundcolor-white">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <div class="full-screen" id="loadingScreen">
-<!--         <div class="full-screen-child-vertical-center">
-        <i class="fa fa-spinner rotating huge-icon"></i>
-        </div> -->
-    </div>
-    <header class="navbar hidden-xs">
-        <div class="container">
-            <h1 class="clearfix mobileShrink"><img src="images/ami-logo-small.png" class="pull-left" alt="Access My Info"/><span>Access My Info</span><small>Request access to your personal information</small></h1>
-        </div>
-    </header>
-    <div class="container">
-        <div class="row" sticky use-placeholder id="mainNav">
-            <nav class="col-xs-12 centre-xs">
-                <ol class="pagination pagination-sm clearfix" ng-controller="ProgressCtrl" ng-class="flexProgress">
-                  <li class="arrow" ng-class="{disabled: (activeIndex < 1 || previous.restricted)}">
-                    <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
-                    <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
-                  </li>
-                  <li ng-repeat="stage in stages" ng-class="{firstStep: $first, lastStep: $last, disabled: (stage.restricted), active: stage.selected, completedPast: stage.pastSelected, fadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
-                    <a class="{{stage.className}}" ng-show="(stage.restricted)">
-                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
-                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
+    <div class="full-screen" id="loadingScreen"></div>
+    <div class="backgroundcolor-darkestteal clearfix">
+        <div ng-controller="LanguageCtrl" class="position-absolute top-1 right-1">
+           <!-- <div class="btn-group" uib-dropdown is-open="status.isopen"> -->
+                <!-- <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" title="Select language">
+                    {{lang.title}} <span class="caret"></span>
+                </button>
+            -->
+             <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
+                <li ng-repeat="languageOption in languages" role="menuitem" class="list display-inlineblock" >
+                    <a ng-click="selectLanguage(languageOption)" class="borderradius-2 marginleft-small lineheight-1 padding-small f7 textalign-center backgroundcolor-black20 white80 cursor-pointer" ng-class="{buttonActive: lang == languageOption}">
+                            {{languageOption.title}}
                     </a>
-                    <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
-                        <span class="hidden-xs"><i ng-class="stageIcon(stage)"></i> {{stage.name}}</span>
-                        <span class="visible-xs"><i ng-class="stageIcon(stage)"></i> <strong>{{$index+1}}</strong></span>
-                    </a>
-                  </li>
-                  <li class="arrow" ng-class="{disabled: (activeIndex == stages.length - 1 || next.restricted)}">
-                    <a ng-href="{{next.path}}" ng-show="(!next.restricted)"><span><i class="fa fa-arrow-right"></i></span></a>
-                    <a ng-show="(next.restricted)"><span><i ng-class="arrowIcon(next)" class="fa fa-arrow-right"></i></span></a>
                 </li>
-                </ol>
-            </nav>
+             </ul>
+            <!-- </div> -->
         </div>
-        <div ng-view="" class="marb10"></div>
-        <footer class="small mart10 clearfix">
-            <p class="small site-policy p-bg mart10"><strong>Privacy Statement</strong>: This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date &amp; time of access, and several other non-identifying metadata fields.</p>
-            <p class="small site-policy p-bg"><strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. The Digital Stewardship Initiative (DSI) partners and contributors make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.</p>
-            <p class="small p-bg site-policy">
-                <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="images/creativecommons.png" /></a>&nbsp;This work is licensed under a <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-            </p>
-        </footer>
+
+        <header class="navbar">
+            <div class="container center textalign-center">
+                <a class="textdecoration-none black" href="#/">
+                    <h1 class="f-5 margintop-xlarge marginbottom-none"><span class="lightteal"><img class="width-titleimage" src="images/ami-logo.svg" alt="Access My Info" /></h1>
+                </a>
+            </div>
+        </header>
+    </div>
+    <div class="container-wide center" use-placeholder id="mainNav">
+        <nav>
+            <ol class="padding-none margintop-large marginbottom-xlarge clearfix flexProgress" ng-controller="ProgressCtrl" ng-class="flexProgress">
+              <!-- 
+              <li class="float-left width-16p66p xsmall textalign-center padding-xsmall arrow firstStep" ng-class="{progressDisabled: (!previous || activeIndex < 1 || previous.restricted), progressActive: (previous && activeIndex > 0 && !previous.restricted)}">
+                <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+                <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
+              </li>
+                -->
+              <li ng-repeat="stage in stages" class="float-left width-16p66p xsmall textalign-center padding-xsmall" ng-class="{progressDisabled: (stage.restricted), progressAvailable: (!stage.selected && !stage.restricted && !stage.pastSelected), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
+                <a class="{{stage.className}}" ng-show="(stage.restricted)">
+                    <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
+                    <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
+                </a>
+                <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
+                    <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
+                    <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
+                </a>
+              </li>
+              <!--
+              <li class="float-left width-16p66p xsmall textalign-center padding-xsmall arrow lastStep" ng-class="{progressDisabled: (!next || activeIndex == stages.length - 1 || next.restricted), progressActive: (next && activeIndex !== stages.length && !next.restricted)}">
+                <a ng-href="{{next.path}}" ng-show="(!next.restricted)"><span><i class="fa fa-arrow-right"></i></span></a>
+                <a ng-show="(next.restricted)"><span><i ng-class="arrowIcon(next)" class="fa fa-arrow-right"></i></span></a>
+              </li>
+                -->
+            </ol>
+        </nav>
     </div>
 
+    <!-- OTHER PAGES GET INSERTED HERE -->
+    <div ng-view="" class="marb10"></div>
+    
+    <footer class="mart10 backgroundcolor-black80 white margintop-xlarge paddingvertical-large clearfix">
+        <div class="container center">
+            <p class="xxxsmall white50 site-policy" translate="wrapper.disclaimer"></p>
+            <p class="xxxsmall white50 site-policy" translate="wrapper.license"></p>
+        </div>
+    </footer>
+<!-- <div class="feedback" ng-controller="FeedbackCtrl" ng-include="'views/feedback.html'"></div> -->
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -91,47 +109,47 @@ MOSQUITO wants its sweet, sweet data
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/momentjs/moment.js"></script>
-    <script src="bower_components/html2canvas/build/html2canvas.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/clipboard/dist/clipboard.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/matchmedia/matchMedia.js"></script>
+    <script src="bower_components/ngSticky/lib/sticky.js"></script>
+    <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
+    <script src="bower_components/html2canvas/build/html2canvas.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/modules/ui-bootstrap-custom-1.1.2.min.js"></script>
+    <script src="scripts/modules/ui-bootstrap-custom-tpls-1.1.2.min.js"></script>
     <script src="scripts/license.js"></script>
     <script src="scripts/modules/Enter/enter.js"></script>
-    <script src="scripts/modules/ngJSPDF/ngjspdf.js"></script>
+    <script src="scripts/modules/dataProviderService/dataproviderservice.js"></script>
+    <script src="scripts/modules/formItem/formitem.js"></script>
+    <script src="scripts/modules/requestTemplate/requesttemplate.js"></script>
     <script src="scripts/modules/ProgressBarNav/progressbarnav.js"></script>
-    <script src="scripts/modules/StateDataManager/statedatamanager.js"></script>
-    <script src="scripts/modules/Sticky/sticky.js"></script>
-    <script src="scripts/modules/ngTooltip/ui-bootstrap-custom-0.10.0.min.js"></script>
-    <script src="scripts/modules/PIRSDataModel/company.js"></script>
-    <script src="scripts/modules/PIRSDataModel/service.js"></script>
-    <script src="scripts/modules/PIRSDataModel/serviceType.js"></script>
+    <script src="scripts/modules/AMIRequest/amirequest.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/controllers/jurisdiction.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/industry.js"></script>
     <script src="scripts/controllers/company.js"></script>
+    <script src="scripts/controllers/questions.js"></script>
     <script src="scripts/controllers/subscriberInfo.js"></script>
-    <script src="scripts/controllers/accountInfo.js"></script>
-    <script src="scripts/controllers/letter.js"></script>
+    <script src="scripts/controllers/request.js"></script>
     <script src="scripts/controllers/finish.js"></script>
+    <script src="scripts/controllers/verify.js"></script>
+    <script src="scripts/controllers/unsubscribe.js"></script>
+    <!-- <script src="scripts/controllers/feedback.js"></script> -->
     <!-- endbuild -->
 </body>
 </html>

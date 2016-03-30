@@ -1,59 +1,23 @@
-<!-- <div class="row">
-  <div class="col-xs-12 col-sm-4 marb-xs-5">
-    <div class="btn btn-default btn-sm btn-block" tabindex="3" ng-enter="previous()" ng-click="previous()"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to your {{company.name}} Letter</div>
-  </div>
-</div> -->
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Thank you <span class="small">for standing up for your privacy.</span></h2>
-    <p>Exercising your rights is an important activity! If you saved your letter as a PDF, please mail it to your service provider through the postal service. By law, you are enttitled to receive a response within 30 days.</p>
-  </div>
+<div class="container center textalign-center">
+	<h2 ng-if="!serverResponse || (!serverResponse.success && !serverResponse.serverIsLoading)" class="textalign-center" translate="finish.title"></h2>
+	<h2 ng-if="serverResponse.serverIsLoading && !serverResponse.success" translate="status.saving" class="textalign-center" ></h2>
+	<h2 ng-if="serverResponse.success" class="textalign-center" translate="messages.R1" translate-values="{count: serverResponse.response.data.count, operator: serverResponse.response.data.operator}"></h2>
+  	<div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
+	  	<p>
+	  		<span translate="finish.share-prompt"></span>
+	  	</p>
+	  	<div>
+	  		<a class="btn btn-primary fill-white" href="https://www.facebook.com/sharer/sharer.php?u={{url}}">
+	  		<div class="width-xlarge paddingtop-small paddinghorizontal-small" ng-include="'images/facebook.svg'"></div>
+		  	</a>
+		  	<a class="btn btn-primary fill-white" href="https://twitter.com/home?status={{url}}">
+		  		<div class="width-xlarge paddingtop-small paddinghorizontal-small" ng-include="'images/twitter.svg'"></div>
+		  	</a>
+	  	</div>
+	  	<div class="margintop-large">
+		  	<button ng-click="previous()" class="btn btn-previous center" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+		  	    <span translate="status.previous"></span>
+	  		</button>
+	  	</div>
+	</div>
 </div>
-<div class="row">
-  <div class="col-xs-12 col-sm-5 marb-xs-5">
-    <div ng-click="startOver()" tabindex="2" ng-enter="startOver()" class="btn btn-sm btn-info pull-right btn-block"><span class="fa fa-flag"></span>&nbsp;Request From Another Company</div>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Contribute to the cause</h2>
-    <p>Visit the external page below to contribute to the research.</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12 col-sm-5 marb-xs-5">
-    <a href="" tabindex="2" target="_blank" class="btn btn-lg btn-primary pull-right btn-block">Help out&nbsp;<span class="fa fa-external-link-square"></span></a>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Partners</h2>
-    <p>The following groups contributed to the design, development, and promotion of this service.</p>
-  </div>
-</div>
-<div class="row text-center">
-  <div class="col-xs-12 col-sm-6 mart10">
-    <a href="https://digitalstewards.ca"><img src="images/dsi-logo.png" alt="Digital Stewardship Initiative" height="100px"/></a>
-  </div>
-  <div class="col-xs-12 col-sm-6 mart10">
-    <a href="https://citizenlab.org" target="_blank" class="lead"><img src="images/citizen_lab_logo.png" width="100px" alt="The Citizen Lab"/></a>
-    <br><span class="small">@ The Munk School of Global Affairs,<br/> University of Toronto</span>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Call for Participation</h2>
-    <p>If you would like to get involved by helping to <strong>translate</strong> this tool's user interface and content to French, porting this tool to a <strong>new legal jurisdiction</strong>, or by providing additional <strong>service provider categories</strong> to choose from, please get in touch by contacting <a href="mailto:andrew@digitalstewards.ca">Andrew Hilts</a> or getting involved on <a href="https://github.com/digitalstewards/pirs" target="_blank">Github</a>.</p>
-  </div>
-</div>
-<hr>
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Technology</h2>
-    <p>Built using <a href="https://angularjs.org/" target="_blank">Angular JS</a>, <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>, <a href="http://parall.ax/products/jspdf" target="_blank">JSPDF</a>, <a href="http://fontawesome.io/" target="_blank">Font Awesome</a>, and <a href="http://yeoman.io/" target="_blank">Yeoman</a>. Code available on <a href="https://github.com" target="_blank">Github</a>.</p>
-  </div>
-</div>
-<hr>
