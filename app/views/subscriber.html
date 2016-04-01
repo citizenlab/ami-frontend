@@ -1,7 +1,7 @@
 <!-- <div class="btn btn-default" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span> Back to Services</div> -->
 <div class="container center">
-	<h2 class="textalign-center" translate="subject.title"></h2>
-	<p class="darkgray lineheight-copy" translate="subject.callout"></p>
+	<h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.title"></h2>
+	<p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.callout"></p>
 	<form>
 		<fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
 		    <!-- <h3 class="margintop-none" ng-if="basic_identifiers" translate="subject.label"></h3> -->
@@ -20,35 +20,38 @@
 		    </div>
 
 			<hr />
-			<div class="form-group f6 margintop-medium">
+			<div class="form-group margintop-medium">
 				<div class="checkbox clearfix">
 					<label>
-						<div class="width-large paddingleft-xsmall float-left">
+						<div class="width-10p textalign-center float-left">
 							<input type="checkbox"  tabindex="1" ng-model="statistics"/>
 						</div>
-						<div class="width-90p xsmall gray float-right clear-right">
-							<span translate="finish.label-data"></span>
+						<div class="width-90p float-left clear-right">
+							<span translate="finish.label-data"></span>*
 						</div>
 					</label>
 				</div>
-				<div class="clear-both clearfix">
-					<div class="width-90p xsmall gray float-right">
-						<p class="bg-info-light p-bg mart10" translate="finish.text-data" translate-values="{operator: anon.operator.title, servicelist: servicelist, jurisdiction: anon.jurisdiction.title, date: anon.date}"></p>
+				<!-- hide/delete below? -->
+				<div class="clear-both clearfix" style="position: absolute; left:-9999px; top:-9999px;">
+					<div class="width-90p gray float-right">
+						<p translate="finish.text-data" translate-values="{operator: anon.operator.title, servicelist: servicelist, jurisdiction: anon.jurisdiction.title, date: anon.date}"></p>
 					</div>
 				</div>
-				<div ng-if="statistics">
+				<!-- end hide delete -->
+				<div ng-if="statistics" class="margintop-medium marginbottom-large">
 					<div class="checkbox clearfix">
 						<label>
-							<div class="width-large paddingleft-xsmall float-left">
+							<div class="width-10p textalign-center float-left">
 								<input type="checkbox" ng-model="subscribe"/>
 							</div>
-							<div class="width-90p xsmall gray float-right clear-right">
-								<span translate="finish.label-subscribe"></span>
+							<div class="width-90p float-left clear-right">
+								<span translate="finish.label-subscribe"></span> **
 							</div>
 						</label>
 					</div>
-					<div class="clear-both clearfix">
-						<div class="width-90p xsmall gray float-right">
+					<!-- hide/delete below? -->
+					<div class="clear-both clearfix" style="position: absolute; left:-9999px; top:-9999px;">
+						<div class="width-90p gray float-right">
 							<label ng-if="!hasEmail && subscribe">
 								<span translate="finish.email"></span> <span class="required">*</span>
 							</label>
@@ -56,6 +59,7 @@
 							<p translate="finish.text-subscribe" translate-values="{operator: anon.operator.title}"></p>
 						</div>
 					</div>
+					<!-- end hide delete -->
 				</div>
 			</div>
 
@@ -72,4 +76,12 @@
 			</div>
 		</fieldset>
 	</form>
+	<div class="margintop-large small gray paddinghorizontal-medium paddinghorizontal-none-ns">
+		<p>
+			* <span translate="finish.text-data"></span>
+		</p>
+		<p>
+			** <span translate="finish.text-subscribe"></span>
+		</p>
+	</div>
 </div>

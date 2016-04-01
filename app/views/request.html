@@ -1,23 +1,17 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div class="container center">
-  <h2 class="textalign-center clearfix" translate="request.title" translate-values="{operator: operator.title}"></h2>
-  <p class="darkgray lineheight-copy" translate="request.callout"></p>
-  <p class="darkgray b lineheight-copy" translate="request.callout-hkid"></p>
- <!--
-  Move to thank you page
-  <div ng-if="serverResponse.success" class="backgroundcolor-pastelteal padding-medium">
-    <div ng-messages="serverResponse.responseStatuses">
-      <div ng-messages-include="status-messages"></div>
-    </div>
+  <h2 class="textalign-center clearfix paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.title" translate-values="{operator: operator.title}"></h2>
+  <p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.callout"></p>
+  <p ng-if="(!letterDoneState || displayInstructions)" class="paddinghorizontal-medium paddinghorizontal-none-ns"><span translate="request.instructions.read-careful"></span></p>
+
+  <div class="backgroundcolor-black05 f5 paddingvertical-medium paddinghorizontal-large lineheight-1p5 clearfix">
+    <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
   </div>
-  -->
-  <div>
-    <div class="" ng-if="(displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()"><span translate="request.instructions.hide">!!</span> <i class="fa fa-chevron-up"></i></div>
-    <div class="" ng-if="(!displayInstructions && letterDoneState)" ng-click="instructionsDisplayToggle()"><span translate="request.instructions.show"></span> <i class="fa fa-chevron-down"></i></div>
-  </div>
-  <p ng-if="(!letterDoneState || displayInstructions)" class="bigger"><span translate="request.instructions.read-careful"></span></p>
+
+  <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro"></h3>
 
   <!-- EMAIL OPTION BEGIN -->
+  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.email-title"></p>
   <div class="backgroundcolor-lightgrey padding-medium clearfix">
     <div ng-if="(!letterDoneState || displayInstructions)">
       <div ng-if="operator.meta.privacy_officer_email">
@@ -31,11 +25,19 @@
       </div>
       <span class="marb10 bg-danger p-bg" ng-if="!operator.meta.privacy_officer_email" translate="request.email-unavailable"></span>
     </div>
+    <div class="clear-both clearfix">
+      <div class="width-80p-ns float-left">
+        <p class="darkred f5 b lineheight-copy margintop-none paddingright-medium-ns" translate="request.callout-hkid"></p>
+      </div>
+      <div class="width-20p-ns float-left textalign-right">
+        <img class="width-xlarge maxwidth-100p" src="images/hkid-sample.jpg" />
+      </div>      
+    </div>
     <div class="clearfix" ng-class="{faded: (letterDoneState && !displayInstructions)}">
       <div>
         <a ng-href="{{email.contents}}" target="_blank" tabindex="1" ng-click="emailClick()" ng-mouseenter="emailBtnHover = true" ng-mouseleave="emailBtnHover = false" >
           <button class="btn btn-primary" ng-class="{disabled: !operator.meta.privacy_officer_email}">
-            <span class="fa fa-send"></span>&nbsp;&nbsp;<span translate="request.emailButton"></span>
+            <span translate="request.emailButton"></span>
           </button>
         </a>
         <!--
@@ -51,26 +53,17 @@
     <div class="clearfix p-bg p-bg-l bg-success mart10 marb10" ng-if="letterDoneState">
       <h2 class="mart0 marb10" translate="request.thanks"></h2>
     </div>
-    <div class="margintop-medium">
-      <a ng-click="instructionsDisplayToggle()" class="display-block f5 margintop-none cursor-pointer">
-        <span class="b" translate="request.instructions.email-empty-prompt"></span>
-      </a>
-      <!-- reveals if click above -->
-      <div ng-show="displayInstructions" class="margintop-medium backgroundcolor-white xsmall black60 paddingvertical-small paddinghorizontal-large ">
-        <div class="textalign-center margintop-medium marginbottom-large">
-          <button class="btn btn-primary xsmall" ngclipboard data-clipboard-target="#request">
-            <span translate="request.instructions.email-empty-instructions"></span>
-          </button>
-        </div>
-        <div>
-          <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
-        </div>
+    <div class="b f5 margintop-medium">
+      <span translate="request.instructions.email-empty-prompt"></span>
+      <div class="margintop-none cursor-pointer darkteal" ngclipboard data-clipboard-target="#request">
+        <span translate="request.instructions.email-empty-instructions"></span>
       </div>
     </div>
   </div>
   <!-- EMAIL OPTION END -->
 
-  <div class="backgroundcolor-lightgrey margintop-large padding-medium clearfix">
+  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large" translate="request.instructions.post-title"></p>
+  <div class="backgroundcolor-lightgrey padding-medium clearfix">
     <div ng-show="pdfOptionEnabled">
       <div ng-if="(!letterDoneState || displayInstructions)">
         <p class="lineheight-copy margintop-none" translate="request.instructions.post-instructions"></p>
@@ -88,9 +81,16 @@
         </div>
       </div>
     </div>
+    <div class="clear-both clearfix">
+      <div class="width-80p-ns float-left">
+        <p class="darkred f5 b lineheight-copy margintop-none paddingright-medium-ns" translate="request.callout-hkid"></p>
+      </div>
+      <div class="width-20p-ns float-left textalign-right">
+        <img class="width-xlarge maxwidth-100p" src="images/hkid-sample.jpg" />
+      </div>      
+    </div>
     <div class="marb10" ng-show="pdfOptionEnabled">
-      <div class="btn btn-lg btn-primary generatorBtn" ng-class="{disabled:pdf.isGenerating, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1">
-          <span class="fa" ng-class="{'fa-file-pdf-o': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></span> 
+      <div class="btn btn-lg btn-primary generatorBtn" ng-class="{disabled:pdf.isGenerating, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1"> 
         <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
            &nbsp;<span translate="request.pdfButton.generate"></span>
           </span>
@@ -103,12 +103,10 @@
       </div>
     </div>
   </div>
-  <div class="margintop-large clearfix">
+  <p class="darkgray b lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.thanks"></p>
+  <div class="margintop-large clearfix paddinghorizontal-medium paddinghorizontal-none-ns">
     <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
         <span translate="status.previous"></span>
-    </button>
-    <button ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
-      <span translate="status.next"></span>
     </button>
   </div>
 </div>

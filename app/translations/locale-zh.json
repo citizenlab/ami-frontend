@@ -13,6 +13,7 @@
     "title": "開始",
     "callout": "資料收集者的種類：選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",
     "label": "種類",
+    "requestsProcessed": "Join <strong>231</strong> others who have created a request on this system.", 
     "instruction": "阿This application will only take five minutes of your time!", 
     "start": "開始",
     "info-1-title": "About this project", 
@@ -22,7 +23,8 @@
     "press-release": "Press release", 
     "article": "InmediaHK feature article", 
     "law": "Hong Kong Data Privacy Ordinance", 
-    "sponsorStatement": "Access My Info 是來於 "
+    "sponsorStatement": "Access My Info 是來於 ",
+    "socialMediaMessage": "Spread the word about <strong>Access My Info</strong>"
   },
   "operator": {
     "title": "{{industry}}:  選擇一家機構",

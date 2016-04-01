@@ -1,7 +1,7 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div class="container center">
-  <h2 class="textalign-center" translate="operator.title" translate-values="{industry: industry.title}"></h2>
-  <p class="darkgray lineheight-copy" translate="operator.callout"></p>
+  <h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="operator.title" translate-values="{industry: industry.title}"></h2>
+  <p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="operator.callout"></p>
   <form>
     <fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
       <!-- <h3 class="margintop-none" translate="operator.label"></h3> -->
@@ -10,9 +10,9 @@
             <option value="" selected>Select company</option>
           </select> -->
         <div ng-repeat="company in companies">
-          <div class="btn btn-select width-33p height-xxlarge float-left" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
-            <img ng-src="{{company.meta.operator_logo.url}}" width="100px" alt="{{company.title}}">
-              <h4 class="margin-none">
+          <div class="btn btn-select width-100p clearfix" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
+            <img class="float-left height-xlarge width-auto" ng-src="{{company.meta.operator_logo.url}}" alt="{{company.title}}">
+              <h4 class="f5 fontweight-normal marginbottom-none margintop-medium paddingtop-small float-right">
                 {{company.title}}
               </h4>
               <div ng-bind-html="company.content"></div>

@@ -28,7 +28,6 @@ MOSQUITO wants its sweet, sweet data
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="styles/tachyons.min.css"/>
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -58,28 +57,31 @@ MOSQUITO wants its sweet, sweet data
         <header class="navbar">
             <div class="container center textalign-center">
                 <a class="textdecoration-none black" href="#/">
-                    <h1 class="f-5 margintop-xlarge marginbottom-none"><span class="lightteal"><img class="width-titleimage" src="images/ami-logo.svg" alt="Access My Info" /></h1>
+                    <h1 class="f-5 paddinghorizontal-small margintop-xlarge marginbottom-none"><span class="lightteal">
+                        <img class="width-xxxlarge width-titleimage-ns maxwidth-100p" src="images/ami-logo.svg" alt="Access My Info" />
+                    </h1>
                 </a>
             </div>
         </header>
     </div>
     <div class="container-wide center" use-placeholder id="mainNav">
         <nav>
-            <ol class="padding-none margintop-large marginbottom-xlarge clearfix flexProgress" ng-controller="ProgressCtrl" ng-class="flexProgress">
+            <ol class="padding-none margintop-none margintop-large-ns marginbottom-large marginbottom-xlarge-ns clearfix flexProgress overflow-hidden" ng-controller="ProgressCtrl" ng-class="flexProgress">
               <!-- 
               <li class="float-left width-16p66p xsmall textalign-center padding-xsmall arrow firstStep" ng-class="{progressDisabled: (!previous || activeIndex < 1 || previous.restricted), progressActive: (previous && activeIndex > 0 && !previous.restricted)}">
                 <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
                 <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
               </li>
                 -->
-              <li ng-repeat="stage in stages" class="float-left width-16p66p xsmall textalign-center padding-xsmall" ng-class="{progressDisabled: (stage.restricted), progressAvailable: (!stage.selected && !stage.restricted && !stage.pastSelected), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
+              <li ng-repeat="stage in stages" class="float-left position-relative width-20p xsmall textalign-center padding-xsmall" ng-class="{progressDisabled: (stage.restricted), progressAvailable: (!stage.selected && !stage.restricted && !stage.pastSelected), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1), progressLastStep: ($last)}"><!-- bad hiding last step hack on the left! please remove ASAP! -->
+
                 <a class="{{stage.className}}" ng-show="(stage.restricted)">
                     <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
-                    <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
+                    <span class="margintop-xsmall lineheight-1p5 display-none-ns"><strong>{{$index+1}}</strong></span>
                 </a>
                 <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
                     <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
-                    <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
+                    <span class="margintop-xsmall lineheight-1p5 display-none-ns"><strong>{{$index+1}}</strong></span>
                 </a>
               </li>
               <!--
@@ -93,10 +95,19 @@ MOSQUITO wants its sweet, sweet data
     </div>
 
     <!-- OTHER PAGES GET INSERTED HERE -->
-    <div ng-view="" class="marb10"></div>
+    <div ng-view=""></div>
     
-    <footer class="mart10 backgroundcolor-black80 white margintop-xlarge paddingvertical-large clearfix">
-        <div class="container center">
+    <footer class="backgroundcolor-black80 white margintop-xlarge paddinghorizontal-medium paddinghorizontal-none-ns paddingvertical-large clearfix">
+        <div class="container center textalign-center">
+            <p class="white90" translate="category.socialMediaMessage"></p>
+            <a class="btn btn-footer fill-white" href="https://www.facebook.com/sharer/sharer.php?u={{url}}">
+                <div class="width-large paddingtop-xsmall paddinghorizontal-xsmall" ng-include="'images/facebook.svg'"></div>
+            </a>
+            <a class="btn btn-footer fill-white" href="https://twitter.com/home?status={{url}}">
+                <div class="width-large paddingtop-xsmall paddinghorizontal-xsmall" ng-include="'images/twitter.svg'"></div>
+            </a>
+        </div>
+        <div class="container center margintop-large">
             <p class="xxxsmall white50 site-policy" translate="wrapper.disclaimer"></p>
             <p class="xxxsmall white50 site-policy" translate="wrapper.license"></p>
         </div>

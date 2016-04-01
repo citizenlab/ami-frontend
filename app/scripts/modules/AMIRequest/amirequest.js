@@ -13,7 +13,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 var AMIRequest = angular.module('AMIRequest', []);
 AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   var request = {};
-  request.date = moment().format('YYYY-MM-DD');
+  request.date = moment().format('MMMM Do, YYYY');
   request.get = function(key){
     if(this.has(key)){
       return this[key]['data'];

@@ -1,7 +1,7 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div class="container center">
-  <h2 class="textalign-center" translate="questions.title"></h2>
-  <p class="darkgray lineheight-copy" translate="questions.callout"></p>
+  <h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="questions.title"></h2>
+  <p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="questions.callout"></p>
     <!-- <a ng-href="{{nextStage.path}}" class="btn btn-primary marb10" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
     <span ng-if="!nextStage.selecting">&nbsp;<span translate="questions.skip"></span></span>
     <span ng-if="nextStage.selecting">&nbsp;<span translate="status.wait"></span></span>
@@ -24,11 +24,11 @@
             <li ng-repeat="component in componentType.items" class="marginbottom-medium">
               <div ng-if="!component.editable">
                 <label class="clearfix">
-                  <div class="width-large paddingleft-xsmall float-left">
+                  <div class="width-10p textalign-center float-left">
                     <input type="checkbox" ng-model="component.selected"/>
                   </div>
-                  <div class="width-90p xsmall gray float-left clear-right">
-                    {{component.data}}
+                  <div class="width-90p f5 float-left clear-right">
+                    <span class="questionsCustom" translate="{{component.data}}"></span>
                   </div>
                 </label>
               <div ng-if="component.description.length" class="flexy-small text-right">

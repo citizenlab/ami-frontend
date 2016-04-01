@@ -4,27 +4,6 @@
 .container-wide {
   max-width: 49.5em;
 }
-@media screen and (min-width: 42em) {
-  .container {max-width: 30em;}
-}
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  html {font-size: 105%;}
-}
-@media screen and (min-width: 64em) and (max-width: 86em) {
-  html {font-size: 110.25%;}
-}
-@media screen and (min-width: 86em) and (max-width: 108em) {
-  html {font-size: 115.76%;}
-}
-@media screen and (min-width: 108em) and (max-width: 130em) {
-  html {font-size: 121.55%;}
-}
-@media screen and (min-width: 130em) and (max-width: 152em) {
-  html {font-size: 134.01%;}
-}
-@media screen and (min-width: 152em) {
-  html {font-size: 140.71%;}
-}
 a, a:link, a:visited, a:active, a:hover {
 	color: #008876;
 	text-decoration: none;
@@ -34,8 +13,22 @@ hr {
 	border-bottom: 0;
 	margin: 0.5em 0;
 }
-.width-titleimage {
-	width: 24rem;
+.progressActive:after {
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 1.33rem solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 1.33rem solid transparent;
+	border-left: 1.33rem solid #27bfa8;
+	position: absolute;
+	top: 50%;
+	margin-top: -1.33rem; 
+	left: 100%;
+	z-index: 2; 
+}
+.progressLastStep {
+	display: none;
 }
 .borderleft-thick {
 	border-left-style: solid;
@@ -49,9 +42,6 @@ hr {
 }
 .width-16p66p {
 	width: 16.66%;
-}
-.flexProgress {
-	border-radius: 0.33em;
 }
 .flexProgress a, 
 .flexProgress a:link, 
@@ -74,8 +64,8 @@ hr {
 	color: #fff;
 	text-decoration: none;
 }
-.progressCompletedPast {
-	background-color: #008876;
+.progressCompletedPast, .backgroundcolor-customdarkteal {
+	background-color: #007566;
 }
 .progressCompletedPast a, 
 .progressCompletedPast a:link, 
@@ -111,6 +101,13 @@ hr {
 	min-width: 4rem;
 	text-align: center;
 	cursor: pointer;
+}
+.btn-footer {
+	border-style: none;
+	border: 0;
+	background-color: #444444;
+	color: #fff;
+	min-width: 0;
 }
 .btn-primary {
 	border-style: none;
@@ -149,7 +146,13 @@ hr {
 	display: block;
 }
 .form-item input {
-	margin-left: 1em;
+	margin-top: 0.25rem;
+	margin-bottom: 0.5rem;
+	display: block;
+	width: 100%;
+}
+.letter ul {
+	padding-left: 1rem;
 }
 .fill-white {
 	fill: #ffffff;
@@ -181,4 +184,40 @@ hr {
   position: absolute;
   top: -9999px;
   left: -9999px;
+}
+.questionsCustom {
+	font-size: 0.85em;
+	color: #666;
+}
+.questionsCustom strong {
+	display: block;
+	font-size: 1.176em;
+	color: #222;
+}
+@media screen and (min-width: 48em) {
+  .container {max-width: 30em;}
+  .width-titleimage-ns {
+  	width: 24rem;
+  }
+  .flexProgress {
+  	border-radius: 0.33em;
+  }
+}
+@media screen and (min-width: 48em) and (max-width: 64em) {
+  html {font-size: 105%;}
+}
+@media screen and (min-width: 64em) and (max-width: 86em) {
+  html {font-size: 110.25%;}
+}
+@media screen and (min-width: 86em) and (max-width: 108em) {
+  html {font-size: 115.76%;}
+}
+@media screen and (min-width: 108em) and (max-width: 130em) {
+  html {font-size: 121.55%;}
+}
+@media screen and (min-width: 130em) and (max-width: 152em) {
+  html {font-size: 134.01%;}
+}
+@media screen and (min-width: 152em) {
+  html {font-size: 140.71%;}
 }
