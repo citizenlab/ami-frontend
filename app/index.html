@@ -45,40 +45,40 @@ MOSQUITO wants its sweet, sweet data
                     {{lang.title}} <span class="caret"></span>
                 </button>
             -->
-             <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
+             <!-- <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
                 <li ng-repeat="languageOption in languages" role="menuitem" class="list display-inlineblock" >
                     <a ng-click="selectLanguage(languageOption)" class="borderradius-2 marginleft-small lineheight-1 padding-small f7 textalign-center backgroundcolor-black20 white80 cursor-pointer" ng-class="{buttonActive: lang == languageOption}">
                             {{languageOption.title}}
                     </a>
                 </li>
-             </ul>
+             </ul> -->
             <!-- </div> -->
         </div>
 
         <header class="navbar">
             <div class="container center textalign-center">
                 <a class="textdecoration-none black" href="#/">
-                    <h1 class="f-5 margintop-xlarge marginbottom-none"><span class="lightteal"><img class="width-titleimage" src="images/ami-logo.svg" alt="Access My Info" /></h1>
+                    <h1 class="f-5 marginbottom-medium"><span class="lightteal">Access My Info</h1>
                 </a>
             </div>
         </header>
     </div>
     <div class="container-wide center" use-placeholder id="mainNav">
         <nav>
-            <ol class="padding-none margintop-large marginbottom-xlarge clearfix flexProgress" ng-controller="ProgressCtrl" ng-class="flexProgress">
+            <ol class="padding-none margintop-large marginbottom-xlarge clearfix breadcrumb" ng-controller="ProgressCtrl" ng-class="flexProgress">
               <!-- 
               <li class="float-left width-16p66p xsmall textalign-center padding-xsmall arrow firstStep" ng-class="{progressDisabled: (!previous || activeIndex < 1 || previous.restricted), progressActive: (previous && activeIndex > 0 && !previous.restricted)}">
                 <a ng-href="{{previous.path}}" ng-show="(!previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
                 <a ng-show="(previous.restricted)"><span><i class="fa fa-arrow-left"></i></span></a>
               </li>
                 -->
-              <li ng-repeat="stage in stages" class="float-left width-16p66p xsmall textalign-center padding-xsmall" ng-class="{progressDisabled: (stage.restricted), progressAvailable: (!stage.selected && !stage.restricted && !stage.pastSelected), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
-                <a class="{{stage.className}}" ng-show="(stage.restricted)">
-                    <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
+              <li ng-repeat="stage in stages" class="" ng-class="{progressDisabled: (stage.restricted), progressAvailable: (!stage.selected && !stage.restricted && !stage.pastSelected), progressActive: (stage.selected && !stage.restricted), progressCompletedPast: (stage.pastSelected && !stage.restricted), progressFadeBg: ($last && next === stage && activeIndex !== stages.length - 1)}">
+                <a clarss="{{stage.className}}" ng-show="(stage.restricted)">
+                    <span class="display-none display-inlineblock-ns" clarss="margintop-xsmall lineheight-1p5">{{stage.name}}</span>
                     <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
                 </a>
-                <a class="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
-                    <span class="display-none display-inlineblock-ns margintop-xsmall lineheight-1p5">{{stage.name}}</span>
+                <a clarss="{{stage.className}}" ng-href="{{stage.path}}" target="{{stage.target}}" ng-show="(!stage.restricted)">
+                    <span class="display-none display-inlineblock-ns" clarss="margintop-xsmall lineheight-1p5">{{stage.name}}</span>
                     <span class="display-none-ns"><strong>{{$index+1}}</strong></span>
                 </a>
               </li>

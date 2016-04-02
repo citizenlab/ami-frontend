@@ -29,10 +29,18 @@ a, a:link, a:visited, a:active, a:hover {
 	color: #008876;
 	text-decoration: none;
 }
+h1 {
+	font-weight:400;
+}
 hr {
 	border-top: 1px solid #ccc;
 	border-bottom: 0;
 	margin: 0.5em 0;
+}
+.industry.btn {
+	margin:10px;
+	width:45%;
+	padding-top:0.8rem !important;
 }
 .width-titleimage {
 	width: 24rem;
@@ -74,14 +82,18 @@ hr {
 	color: #fff;
 	text-decoration: none;
 }
-.progressCompletedPast {
+.breadcrumb .progressCompletedPast a {
 	background-color: #008876;
 }
+.breadcrumb .progressCompletedPast a:after {
+	border-left-color: #008876 !important;
+}
+
 .progressCompletedPast a, 
 .progressCompletedPast a:link, 
 .progressCompletedPast a:visited, 
 .progressCompletedPast a:active {
-	color: #5ab48a;
+	color: #fff;
 	text-decoration: none;
 }
 /*
@@ -89,8 +101,25 @@ hr {
 	background-color: #4DDFC6;
 }
 */
-.progressDisabled, .progressAvailable {
+.breadcrumb .progressDisabled a, 
+.breadcrumb .progressDisabled a:hover { 
 	background-color: #BFD9D5;
+}
+.breadcrumb .progressDisabled a:after, 
+.breadcrumb .progressDisabled a:hover:after {
+	border-left-color: #BFD9D5 !important;
+}
+.breadcrumb .progressAvailable a {
+	background-color: #99D3CA
+}
+.breadcrumb .progressAvailable a:after {
+	border-left-color: #99D3CA !important;
+}
+.breadcrumb .progressAvailable a:hover {
+	background-color: #4DC6B3
+}
+.breadcrumb .progressAvailable a:hover:after {
+	border-left-color: #4DC6B3 !important;
 }
 .progressDisabled a, 
 .progressDisabled a:link, 
@@ -113,8 +142,7 @@ hr {
 	cursor: pointer;
 }
 .btn-primary {
-	border-style: none;
-	border: 0;
+	border: 2px solid #008876;
 	background-color: #008876;
 	color: #fff;
 }
@@ -181,4 +209,80 @@ hr {
   position: absolute;
   top: -9999px;
   left: -9999px;
+}
+
+.breadcrumb { 
+	display: inline-block;
+			list-style: none; 
+			overflow: hidden; 
+			font: 18px Helvetica, Arial, Sans-Serif;
+		}
+		.breadcrumb li { 
+			float: left; 
+		}
+		.breadcrumb li a {
+			color: white;
+			text-decoration: none; 
+			padding: 10px 0 10px 55px;
+			background: brown;                   /* fallback color */
+			background: #27bfa8; 
+			position: relative; 
+			display: block;
+			float: left;
+		}
+		.breadcrumb li a:after { 
+			content: " "; 
+			display: block; 
+			width: 0; 
+			height: 0;
+			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+			border-bottom: 50px solid transparent;
+			border-left: 30px solid #27bfa8;
+			position: absolute;
+			top: 50%;
+			margin-top: -50px; 
+			left: 100%;
+			z-index: 2; 
+		}	
+		.breadcrumb li a:before { 
+			content: " "; 
+			display: block; 
+			width: 0; 
+			height: 0;
+			border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+			border-bottom: 50px solid transparent;
+			border-left: 30px solid white;
+			position: absolute;
+			top: 50%;
+			margin-top: -50px; 
+			margin-left: 1px;
+			left: 100%;
+			z-index: 1; 
+		}	
+		.breadcrumb li:first-child a {
+			padding-left: 25px;
+		}
+		.breadcrumb li:last-child a {
+			padding-right: 25px;
+		}
+		/*.breadcrumb li:nth-child(2) a       { background:        hsla(34,85%,45%,1); }
+		.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(34,85%,45%,1); }
+		.breadcrumb li:nth-child(3) a       { background:        hsla(34,85%,55%,1); }
+		.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(34,85%,55%,1); }
+		.breadcrumb li:nth-child(4) a       { background:        hsla(34,85%,65%,1); }
+		.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(34,85%,65%,1); }
+		.breadcrumb li:nth-child(5) a       { background:        hsla(34,85%,75%,1); }
+		.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(34,85%,75%,1); }
+		.breadcrumb li:last-child a {
+			background: transparent !important;
+			color: black;
+			pointer-events: none;
+			cursor: default;
+		}*/
+		.breadcrumb li:last-child a:after { border: 0; }
+		.breadcrumb li a:hover { background: #008876; }
+		.breadcrumb li a:hover:after { border-left-color: #008876 !important; }
+
+#mainNav {
+	text-align: center;
 }

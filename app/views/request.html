@@ -2,7 +2,7 @@
 <div class="container center">
   <h2 class="textalign-center clearfix" translate="request.title" translate-values="{operator: operator.title}"></h2>
   <p class="darkgray lineheight-copy" translate="request.callout"></p>
-  <p class="darkgray b lineheight-copy" translate="request.callout-hkid"></p>
+  <!-- <p class="darkgray b lineheight-copy" translate="request.callout-hkid"></p> -->
  <!--
   Move to thank you page
   <div ng-if="serverResponse.success" class="backgroundcolor-pastelteal padding-medium">
@@ -77,10 +77,10 @@
         <div class="clearfix row">
           <address class="fontstyle-normal f5 paddingleft-medium borderleft-thick bordercolor-white marginbottom-medium lineheight-1p5">
             <strong translate="request.instructions.privacy-officer-title" translate-values="{operator: operator.title}"></strong>
-            <br/>{{operator.meta.privacy_contact_address_1}}
+            <br ng-if="operator.meta.privacy_contact_city">{{operator.meta.privacy_contact_address_1}}
             <br ng-if="operator.meta.privacy_contact_address_2"/>{{operator.meta.privacy_contact_address_2}}
-            <br/>{{operator.meta.privacy_contact_city}}, {{operator.meta.privacy_contact_province_state}}
-            <br/>{{operator.meta.privacy_contact_postal_code}}
+            <br ng-if="operator.meta.privacy_contact_city">{{operator.meta.privacy_contact_city}}, {{operator.meta.privacy_contact_province_state}}
+            <br ng-if="operator.meta.privacy_contact_city">{{operator.meta.privacy_contact_postal_code}}
             <!--
             <div ng-if="operator.meta.privacy_officer_email" class="mart5">Or email to: {{operator.meta.privacy_officer_email}}</div>
             -->

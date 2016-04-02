@@ -12,7 +12,6 @@
         <div ng-show="componentType.activated">
           <h3 ng-show="componentType.id === 'questions'">
             <span translate="questions.label-questions" translate-values="{operator: operator.title}"></span>
-            <span class="required">*</span>
           </h3>
           <h3 ng-show="componentType.id === 'data'" class="mart30">
             <span translate="questions.label-data" translate-values="{operator: operator.title}"></span>
@@ -68,17 +67,17 @@
             </div>
             </li>
           </ul>
-          <div class="mart10" ng-show="componentType.id === 'questions'">
-            <label translate="questions.newQuestion"></label>
-            <div class="input-group">
-              <input type="text" placeholder="{{'questions.type-question' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
+          <!-- <div class="mart10" ng-show="componentType.id === 'questions'"> -->
+            <!-- <label translate="questions.newQuestion"></label> -->
+            <!-- <div class="input-group"> -->
+              <!-- <input type="text" placeholder="{{'questions.type-question' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
               <span class="input-group-btn">
                 <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-question' | translate}}" title="{{'questions.add-question' | translate}}">
                   <i class="fa fa-plus"></i>
-                </button>
-              </div> <!-- ??? -->
-              </span>
-            </div>
+                </button> -->
+              <!-- </div> ??? -->
+              <!-- </span> -->
+            <!-- </div> -->
             <!-- <div class="mart10" ng-show="componentType.id === 'data'">
             <label translate="questions.newData"></label>
             <div class="input-group">
@@ -102,6 +101,8 @@
               </div>
               <p class="help-block" translate="questions.otherBank" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
             </div>
+          </div>
+        </div>
             <div class="margintop-medium clearfix">
               <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
                   <span translate="status.previous"></span>
@@ -110,8 +111,6 @@
                 <span translate="status.next"></span>
               </button>
             </div>
-          </div>
-        </div>
       </div>
     </div>
 </div>
