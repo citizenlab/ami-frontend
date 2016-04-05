@@ -92,10 +92,11 @@
   "finish": {
     "title": "Thank you for submitting your request!", 
     "share-prompt": "Share this campaign with your friends:", 
-    "label-data": "Notify the Access My Info organizers that you've created a request (no personal data transferred)",
-    "text-data": "Share the following data with Access My Info Hong Kong: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
-    "label-subscribe": "Subscribe to email updates from Access My Info",
+    "consent-clause": "I consent and authorise: ",
+    "label-data": "Access My Info Hong Kong may collect the number of my data access request made via this programme for the statistics and research purposes.",
+    "label-subscribe": "Access My Info Hong Kong may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
     "email": "Email address",
+    "text-data": "Share the following data with Access My Info Hong Kong: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
     "text-subscribe": "I agree that Access My Info Hong Kong may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info Hong Kong to store my email address in a server located in Canada.  Access My Info Hong Kong may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info Hong Kong may send me an email invitation to complete a short survey. I understand that Access My Info Hong Kong will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
     "enroll": "Enroll"
   },

@@ -89,10 +89,11 @@
   "finish": {
     "title": "阿Thank you for submitting your request for information",
     "share-prompt": "阿Share this campaign with your friends on:", 
-    "label-data": "我願意分享以下資料給AMI的研究人員：",
-    "text-data": "於{{date}}.在 {{jurisdiction}} 發送給{{operator}}，有關查閱{{servicelist}}資料的要求。",
-    "label-subscribe": "為了讓我順利完成整個申請流程，我願意透過電郵接收申請的最新情況。",
+    "consent-clause": "我同意及授權：",
+    "label-data": "「我D資料」收集我透過本程式查閱資料要求的次數，以作統計及研究用途。",
+    "label-subscribe": "「我D資料」可使用我的電郵地址定期提示我這次查閱資料要求的進展及邀請我完成簡短的問卷，並儲存我的電郵地址於加拿大的伺服器內。",
     "email": "電郵地址",
+    "text-data": "於{{date}}.在 {{jurisdiction}} 發送給{{operator}}，有關查閱{{servicelist}}資料的要求。",
     "text-subscribe": "數天後，本應用程式將向您寄出電郵，以確認您是否收到來自{{operator}}的回覆。如您在指定日期後仍未收到對方任何回覆，這封信將指引您該如何處理。您也將收到一個填寫簡短問卷的邀請。請放心，您的電郵內容除了在我們用以收發電郵的客戶端出現外，不會與任何第三方共享。",
     "enroll": "登記"
   },
