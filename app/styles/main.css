@@ -28,7 +28,7 @@ hr {
 	z-index: 2; 
 }
 .progressLastStep {
-	display: none;
+	/*display: none;*/
 }
 .borderleft-thick {
 	border-left-style: solid;

@@ -281,14 +281,6 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
           restricted: true,
           className: "",
           target: "_self"
-        },
-        {
-          name: "Finish",
-          path: "#/finish",
-          id: "finish",
-          icon: "fa fa-flag-checkered",
-          restricted: true,
-          target: "_self"
         }
       ];
       angular.forEach(stages, function(item){

@@ -51,6 +51,9 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
       }
     }
   }
+  $scope.$on("$destroy", function(){
+     $scope.submit(); 
+  });
 
   var findEmail = function(subject){
     var email = null;
@@ -69,13 +72,13 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   $scope.email = {};
   $scope.rateLimited = false;
   if(AMIRequest.has('statistics')){
-    $scope.statistics = AMIRequest.statistics;
+    $scope.statistics = AMIRequest.get('statistics');
   }
   else{
     $scope.statistics = true;
   }
   if(AMIRequest.has('subscribe')){
-    $scope.subscribe = AMIRequest.subscribe;
+    $scope.subscribe = AMIRequest.get('subscribe');
   }
   else{
     $scope.subscribe = false;
@@ -103,8 +106,8 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
     
   $scope.$watch(function(){
-    AMIRequest.statistics = $scope.statistics;
-    AMIRequest.subscribe = $scope.subscribe;
+    AMIRequest.set('statistics', $scope.statistics);
+    AMIRequest.set('subscribe', $scope.subscribe);
     $scope.nextStage = NavCollection.nextItem();
     if(AMIRequest.has('subject')){
       if(findEmail(AMIRequest.get('subject'))){
@@ -118,15 +121,20 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
   
   $scope.submit = function(){
+     if(!AMIRequest.get('statistics')){
+       return;
+     }
+     var payload = {
+        data: $scope.anon,
+        subscribe: AMIRequest.get('subscribe'),
+        email: false
+     }
+     if(AMIRequest.get('subscribe')){
+       payload.email = $scope.email;
+     }
      AMIRequest.serverResponse = {};
      AMIRequest.serverIsLoading = true;
-     dataProviderService.postItem(urls.enrollmentURL(), "/enroll/", {}, 
-      {
-        data: $scope.anon,
-        subscribe: $scope.subscribe,
-        email: $scope.email
-        // ,"_csrf": encodeURIComponent($scope.token)
-      })
+     dataProviderService.postItem(urls.enrollmentURL(), "/enroll/", {}, payload)
      .then(function(response){
       AMIRequest.serverResponse.serverIsLoading = false;
       AMIRequest.serverResponse.serverError = false;
@@ -151,8 +159,7 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   }
   $scope.submitAndNext = function(){
     if($scope.statistics){
-      $scope.submit();
+      $scope.next();
     }
-    $scope.next();
   }
 }]);
