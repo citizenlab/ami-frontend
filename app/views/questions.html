@@ -28,7 +28,7 @@
                     <input type="checkbox" ng-model="component.selected"/>
                   </div>
                   <div class="width-90p f5 float-left clear-right">
-                    <span class="questionsCustom" translate="{{component.data}}"></span>
+                    <span class="questionsCustom" ng-bind-html="component.data"></span>
                   </div>
                 </label>
               <div ng-if="component.description.length" class="flexy-small text-right">

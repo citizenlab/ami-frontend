@@ -1,5 +1,5 @@
 'use strict';
-AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', function ($scope, $timeout, $location, $window, $translate) {
+AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', 'AMIRequest', function ($scope, $timeout, $location, $window, $translate, AMIRequest) {
 
 	$scope.languages = {
 		"en": {
@@ -15,9 +15,11 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
     $scope.lang = $scope.languages[$translate.use()];
     
     $scope.selectLanguage = function(lang){
-      $translate.use(lang.languageCode)
+      $translate.use(lang.languageCode);
+      AMIRequest.drop('operator');
     }
     $scope.$watch(function() {
+      $scope.showControls = ($location.path() === '/' || $location.path() === '/industry');
       $scope.lang = $scope.languages[$translate.use()];
     });
     

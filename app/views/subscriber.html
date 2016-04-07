@@ -25,7 +25,7 @@
 				<div class="checkbox clearfix">
 					<label>
 						<div class="width-10p textalign-center float-left">
-							<input type="checkbox"  tabindex="1" ng-model="statistics"/>
+							<input type="checkbox"  tabindex="1" ng-model="statistics" ng-true-value="true" ng-false-value="false"/>
 						</div>
 						<div class="width-90p float-left clear-right">
 							<span translate="finish.label-data"></span>
@@ -43,7 +43,7 @@
 					<div class="checkbox clearfix">
 						<label>
 							<div class="width-10p textalign-center float-left">
-								<input type="checkbox" ng-model="subscribe"/>
+								<input type="checkbox" ng-model="$parent.subscribe" ng-true-value="true" ng-false-value="false"/>
 							</div>
 							<div class="width-90p float-left clear-right">
 								<span translate="finish.label-subscribe"></span>
@@ -51,13 +51,12 @@
 						</label>
 					</div>
 					<!-- hide/delete below? -->
-					<div class="clear-both clearfix" style="position: absolute; left:-9999px; top:-9999px;">
+					<div class="clear-both clearfix">
 						<div class="width-90p gray float-right">
-							<label ng-if="!hasEmail && subscribe">
+							<label ng-if="!hasEmail && $parent.subscribe">
 								<span translate="finish.email"></span> <span class="required">*</span>
 							</label>
-							<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="!hasEmail && subscribe" />
-							<p translate="finish.text-subscribe" translate-values="{operator: anon.operator.title}"></p>
+							<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="!hasEmail && $parent.subscribe" />
 						</div>
 					</div>
 					<!-- end hide delete -->
