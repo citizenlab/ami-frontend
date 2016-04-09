@@ -1,5 +1,5 @@
 {
-  "pagetitle": "Access My Info",
+  "pagetitle": "Access My Info Hong Kong",
   "status": {
     "wait": "Please wait...",
     "next": "Next",
@@ -15,7 +15,9 @@
     "callout": "Want to know what your mobile operator or internet provider knows about you? What do they keep on file? Who do they share it with? According to the HK government's Personal Data (Privacy) Ordinance, companies are required to disclose this information to their customers upon request. We can help with that request.",
     "label": "Category", 
     "requestsProcessed": "Join the <strong>231</strong> other people who have created a request on this system.", 
-    "instruction": "Start now – it only takes five minutes!", 
+    "instruction1": "Do you know what kind of information your telecom or internet service provider collects from you?", 
+    "instruction2": "Access My Info helps you make a legal request for your personal data.", 
+    "instruction3": "It only takes five minutes – let's get started!", 
     "start": "Start", 
     "info-1-title": "About this project", 
     "info-1": "Using Hong Kong commercial privacy legislation, XYZXX, Hong Kong residents can learn what information their telecommunications companies hold about them, for how long, for what purposes, and when they disclose that information. In effect, the law empowers Hong Kong people to understand how telecom companies manage the personal information entrusted to them and then make informed decisions about whether they want to maintain that commercial relationship. However, enforcing these rights can be challenging.", 
