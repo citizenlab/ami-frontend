@@ -10,6 +10,9 @@
     "rateLimited": "您過於頻繁使用此項操作。請稍後再試。",
     "serverDown": "服務器無法正常運作。請稍後再試。"
   },
+  "presskit": {
+    "title": "Press kit"
+  },
   "category": {
     "title": "歡迎到「誰手可得」",
     "callout": "資料收集者的種類：選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",

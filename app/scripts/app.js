@@ -146,6 +146,9 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/accountInfo.html',
         controller: 'AccountCtrl'
       })
+      .when('/press-kit', {
+        templateUrl: 'views/presskit.html'
+      })
       .when('/request', {
         templateUrl: 'views/request.html',
         controller: 'RequestCtrl',

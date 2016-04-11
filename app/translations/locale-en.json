@@ -10,6 +10,9 @@
     "rateLimited": "You're doing that too much. Please wait and try later.",
     "serverDown": "Server appears to be down. Please try again later."
   },
+  "presskit": {
+    "title": "Press kit"
+  },
   "category": {
     "title": "Welcome to Access My Info",
     "callout": "Want to know what your mobile operator or internet provider knows about you? What do they keep on file? Who do they share it with? According to the HK government's Personal Data (Privacy) Ordinance, companies are required to disclose this information to their customers upon request. We can help with that request.",
