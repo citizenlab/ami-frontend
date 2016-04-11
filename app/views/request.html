@@ -11,7 +11,10 @@
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro"></h3>
 
   <!-- EMAIL OPTION BEGIN -->
-  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.email-title"></p>
+  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
+    <img class="display-none display-inline-ns width-large verticalalign-middle marginright-small" src="images/illustrations/EmailOption.png" />
+    <span translate="request.instructions.email-title"></span>
+  </p>
   <div class="backgroundcolor-lightgrey padding-medium clearfix">
     <div ng-if="(!letterDoneState || displayInstructions)">
       <div ng-if="operator.meta.privacy_officer_email">
@@ -27,10 +30,10 @@
     </div>
     <div class="clear-both clearfix">
       <div class="width-80p-ns float-left">
-        <p class="darkred f5 b lineheight-copy margintop-none paddingright-medium-ns" translate="request.callout-hkid"></p>
+        <p class="darkred f5 b lineheight-copy margintop-none paddingright-medium-ns" translate="request.callout-hkid-email"></p>
       </div>
       <div class="width-20p-ns float-left textalign-right">
-        <img class="width-xlarge maxwidth-100p" src="images/hkid-sample.png" />
+        <img class="width-xlarge maxwidth-100p marginbottom-medium" src="images/hkid-sample.png" />
       </div>      
     </div>
     <div class="clearfix" ng-class="{faded: (letterDoneState && !displayInstructions)}">
@@ -62,7 +65,10 @@
   </div>
   <!-- EMAIL OPTION END -->
 
-  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large" translate="request.instructions.post-title"></p>
+  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
+    <img class="display-none display-inline-ns width-large verticalalign-middle marginright-small" src="images/illustrations/PostalOption.png" />
+    <span translate="request.instructions.post-title"></span>
+  </p>
   <div class="backgroundcolor-lightgrey padding-medium clearfix">
     <div ng-show="pdfOptionEnabled">
       <div ng-if="(!letterDoneState || displayInstructions)">
@@ -83,13 +89,13 @@
     </div>
     <div class="clear-both clearfix">
       <div class="width-80p-ns float-left">
-        <p class="darkred f5 b lineheight-copy margintop-none paddingright-medium-ns" translate="request.callout-hkid"></p>
+        <p class="darkred f5 b lineheight-copy margintop-none paddingright-medium-ns" translate="request.callout-hkid-postal"></p>
       </div>
       <div class="width-20p-ns float-left textalign-right">
-        <img class="width-xlarge maxwidth-100p" src="images/hkid-sample.png" />
+        <img class="width-xlarge maxwidth-100p marginbottom-medium" src="images/hkid-sample.png" />
       </div>      
     </div>
-    <div class="marb10" ng-show="pdfOptionEnabled">
+    <div ng-show="pdfOptionEnabled">
       <div class="btn btn-lg btn-primary generatorBtn" ng-class="{disabled:pdf.isGenerating, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1"> 
         <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
            &nbsp;<span translate="request.pdfButton.generate"></span>
@@ -103,7 +109,26 @@
       </div>
     </div>
   </div>
+
+  <hr class="marginvertical-large" />
+
   <p class="darkgray b lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.thanks"></p>
+
+  <p class="paddinghorizontal-medium paddinghorizontal-none-ns" translate="category.socialMediaMessage"></p>
+  <div class="paddinghorizontal-medium paddinghorizontal-none-ns">
+    <a class="btn btn-social fill-white" href="https://www.facebook.com/sharer/sharer.php?u={{url}}">
+      <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/facebook.svg'"></div>
+    </a>
+    <a class="btn btn-social fill-white" href="https://twitter.com/home?status={{url}}">
+      <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/twitter.svg'"></div>
+    </a>
+    <span class="display-none-ns"> <!-- quick fix for disabling Whataspp button on desktop -->
+        <a class="btn btn-social fill-white" href="whatsapp://send?text={{category.whatsapp-share-text}} {{url}}" data-action="share/whatsapp/share">
+            <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/whatsapp.svg'"></div>
+        </a>
+    </span>
+  </div>
+
   <div class="margintop-large clearfix paddinghorizontal-medium paddinghorizontal-none-ns">
     <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
         <span translate="status.previous"></span>
