@@ -39,11 +39,11 @@
 					</div>
 				</div>
 				<!-- end hide delete -->
-				<div ng-if="statistics" class="margintop-medium marginbottom-large">
+				<div class="margintop-medium marginbottom-large">
 					<div class="checkbox clearfix">
 						<label>
 							<div class="width-10p textalign-center float-left">
-								<input type="checkbox" ng-model="$parent.subscribe" ng-true-value="true" ng-false-value="false"/>
+								<input type="checkbox" ng-disabled="!statistics" ng-model="subscribe" ng-true-value="true" ng-false-value="false" readonly="false"/>
 							</div>
 							<div class="width-90p float-left clear-right">
 								<span translate="finish.label-subscribe"></span>
@@ -53,10 +53,10 @@
 					<!-- hide/delete below? -->
 					<div class="clear-both clearfix">
 						<div class="width-90p gray float-right">
-							<label ng-if="!hasEmail && $parent.subscribe">
+							<label ng-if="!hasEmail && subscribe">
 								<span translate="finish.email"></span> <span class="required">*</span>
 							</label>
-							<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="!hasEmail && $parent.subscribe" />
+							<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="!hasEmail && subscribe" />
 						</div>
 					</div>
 					<!-- end hide delete -->

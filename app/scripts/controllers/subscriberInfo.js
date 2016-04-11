@@ -107,6 +107,9 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     
   $scope.$watch(function(){
     AMIRequest.set('statistics', $scope.statistics);
+    if($scope.statistics === false){
+      $scope.subscribe = false;
+    }
     AMIRequest.set('subscribe', $scope.subscribe);
     $scope.nextStage = NavCollection.nextItem();
     if(AMIRequest.has('subject')){
