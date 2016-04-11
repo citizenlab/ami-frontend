@@ -69,6 +69,8 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     }
     return email;
   }
+  $scope.hasEmailField = (typeof findEmail($scope.service_identifiers) !== "undefined");
+
   $scope.email = {};
   $scope.rateLimited = false;
   if(AMIRequest.has('statistics')){

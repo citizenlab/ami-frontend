@@ -53,10 +53,10 @@
 					<!-- hide/delete below? -->
 					<div class="clear-both clearfix">
 						<div class="width-90p gray float-right">
-							<label ng-if="!hasEmail && subscribe">
+							<label ng-if="(!hasEmailField && !hasEmail) && subscribe">
 								<span translate="finish.email"></span> <span class="required">*</span>
 							</label>
-							<input type="email" name="email" tabindex="1" class="form-control" ng-model="email.address" ng-if="!hasEmail && subscribe" />
+							<input type="email" name="email" tabindex="1" class="form-control" ng-disabled="!subscribe || !statistics" ng-model="email.address" ng-if="(!hasEmailField && !hasEmail) && subscribe" />
 						</div>
 					</div>
 					<!-- end hide delete -->
