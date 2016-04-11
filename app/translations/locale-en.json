@@ -24,10 +24,11 @@
     "more-info-title": "For more information", 
     "press-kit": "Press kit", 
     "press-release": "Press release", 
-    "article": "InmediaHK feature article", 
+    "article": "Hong Kong In-Media feature article", 
     "law": "Hong Kong Data Privacy Ordinance", 
     "sponsorStatement": "Access My Info is a joint initiative created by members of ",
-    "socialMediaMessage": "Spread the word about <strong>Access My Info</strong>"
+    "socialMediaMessage": "Spread the word about our project:",
+    "whatsapp-share-text": "Access My Info Hong Kong"
   },
   "operator": {
     "title": "Select your service provider",

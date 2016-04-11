@@ -27,7 +27,8 @@
     "article": "InmediaHK feature article", 
     "law": "Hong Kong Data Privacy Ordinance", 
     "sponsorStatement": "Access My Info 是來於 ",
-    "socialMediaMessage": "Spread the word about <strong>Access My Info</strong>"
+    "socialMediaMessage": "Spread the word about <strong>Access My Info</strong>",
+    "whatsapp-share-text": "誰手可得"
   },
   "operator": {
     "title": "{{industry}}:  選擇一家機構",

@@ -18,12 +18,12 @@ hr {
 	display: block; 
 	width: 0; 
 	height: 0;
-	border-top: 1.33rem solid transparent;           /* Go big on the size, and let overflow hide */
-	border-bottom: 1.33rem solid transparent;
-	border-left: 1.33rem solid #27bfa8;
+	border-top: 1rem solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 1rem solid transparent;
+	border-left: 1rem solid #27bfa8;
 	position: absolute;
 	top: 50%;
-	margin-top: -1.33rem; 
+	margin-top: -1rem; 
 	left: 100%;
 	z-index: 2; 
 }
@@ -102,10 +102,10 @@ hr {
 	text-align: center;
 	cursor: pointer;
 }
-.btn-footer {
+.btn-social {
 	border-style: none;
 	border: 0;
-	background-color: #444444;
+	background-color: #008876;
 	color: #fff;
 	min-width: 0;
 }
