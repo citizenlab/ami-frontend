@@ -7,14 +7,12 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         var pdfForm;
         var itemPath = "/jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
         dataProviderService.getItem(urls.apiURL(), itemPath).then(function (response) {
-            pdfForm = '<form method="post" style="display:none" action="' + urls.enrollmentURL() + '/pdf' + '" target="_blank"></form><div class="letter">';
-            element.html(pdfForm + response[0].content) + "</div>";
+            element.html(response[0].content);
             $compile(element.contents())(scope);
 
             scope.$watch('pdf.isGenerating', function(newVal, oldVal){
                 if(newVal === true && oldVal === false){
-                    // makePDF();
-                    makeServerPDF(element);
+                    makePDF(element);
                     scope.pdf.isGenerating = false;
                     scope.pdf.isGenerated = true;
                 }
@@ -26,51 +24,15 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             }, 100);
         });
 
-        var makeServerPDF = function($element){
-            var form = angular.element($element).find('form')[0];
-            var letter = angular.element($element).find('div')[0].innerHTML
-            var input = document.createElement('input');
-            var html = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>' + letter + '</body></html>';
-            console.log(html);
-            input.setAttribute('name', 'html');
-            input.setAttribute('value', html);
-            form.appendChild(input);
-            form.submit();
-            form.removeChild(input);
-            // $element[0].submit();
-            // dataProviderService.postItem(urls.enrollmentURL(), '/pdf', {}, {
-            //     "html": "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head><body>該保留資料所屬的語言</body></html>"
-            //     },
-            //     "binary"
-            // )
-            // .then(function(response){
-            //     var blob = new Blob([ response ], { type : 'application/pdf' });
-            //     console.log(blob);
-            //     var file = (window.URL || window.webkitURL).createObjectURL(response);
-            //     // console.log(file);
-            // });
-        };
+        var makePDF = function($element){
+            var requestLetter = new Document("A4", [11.7647, 11.7647, 11.7647, 11.7647], 'ideograph');
 
-        var makePDF = function(){
-            var doc = new jsPDF();
-            var filename;
+            // convert HTML in #request element to canvas-based document
+            requestLetter.writeHTMLtoDoc($element[0]);
 
-            // We'll make our own renderer to skip this editor
-            var specialElementHandlers = {
-                '#editor': function(element, renderer){
-                    return true;
-                }
-            };
-
-            // All units are in the set measurement for the document
-            // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
-            console.log(element[0].innerHTML);
-            doc.fromHTML(element[0].innerHTML, 15, 15, {
-                'width': 170, 
-                'elementHandlers': specialElementHandlers
-            });
-            filename = scope.pdffilenameprefix + '_' + scope.operator.title + ".pdf"
-            doc.save(filename);
+            // convert series of canvases into PDF
+            requestLetter.createPDF();
+            requestLetter.openPDF();
         }
 
         var buildEmail = function(){
