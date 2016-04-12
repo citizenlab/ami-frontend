@@ -96,6 +96,9 @@ var AMIApp = angular.module('AMIApp', [
         resolve: {
           industries: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
             return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries");
+          }],
+          links: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/links");
           }]
         }
       })
@@ -142,6 +145,9 @@ var AMIApp = angular.module('AMIApp', [
       .when('/account', {
         templateUrl: 'views/accountInfo.html',
         controller: 'AccountCtrl'
+      })
+      .when('/press-kit', {
+        templateUrl: 'views/presskit.html'
       })
       .when('/request', {
         templateUrl: 'views/request.html',

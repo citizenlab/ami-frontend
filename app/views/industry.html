@@ -89,25 +89,8 @@
             <span translate="category.more-info-title"></span>
         </h3>
         <ul class="lineheight-1p5 f6-ns paddingleft-medium">
-            <li>
-                <a href="">
-                    <span translate="category.article"></span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span translate="category.press-release"></span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span translate="category.press-kit"></span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span translate="category.law"></span>
-                </a>
+            <li ng-repeat="link in links">
+                <a href="{{link.meta.link_url}}">{{link.title}}</a>
             </li>
         </ul>
     </div>

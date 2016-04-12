@@ -69,6 +69,8 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     }
     return email;
   }
+  $scope.hasEmailField = (typeof findEmail($scope.service_identifiers) !== "undefined");
+
   $scope.email = {};
   $scope.rateLimited = false;
   if(AMIRequest.has('statistics')){
@@ -107,6 +109,9 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     
   $scope.$watch(function(){
     AMIRequest.set('statistics', $scope.statistics);
+    if($scope.statistics === false){
+      $scope.subscribe = false;
+    }
     AMIRequest.set('subscribe', $scope.subscribe);
     $scope.nextStage = NavCollection.nextItem();
     if(AMIRequest.has('subject')){

@@ -38,7 +38,7 @@ MOSQUITO wants its sweet, sweet data
     <![endif]-->
     <div class="full-screen" id="loadingScreen"></div>
     <div ng-controller="LanguageCtrl" class="backgroundcolor-darkestteal clearfix">
-        <div class="position-absolute top-1 right-1" ng-class="{'display-block': showControls, 'display-none display-block-ns': !showControls}">
+        <div class="position-absolute top-1 right-1" ng-class="{'display-block': showControls, 'display-none': !showControls}">
            <!-- <div class="btn-group" uib-dropdown is-open="status.isopen"> -->
                 <!-- <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" title="Select language">
                     {{lang.title}} <span class="caret"></span>
@@ -123,9 +123,9 @@ MOSQUITO wants its sweet, sweet data
     <script src="bower_components/matchmedia/matchMedia.js"></script>
     <script src="bower_components/ngSticky/lib/sticky.js"></script>
     <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
+    <script src="bower_components/pdfmake/build/pdfmake.js"></script>
+    <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
-    <script src="bower_components/jspdf/dist/jspdf.min.js"></script>
-    <script src="bower_components/html2canvas/build/html2canvas.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -133,6 +133,7 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/modules/ui-bootstrap-custom-1.1.2.min.js"></script>
     <script src="scripts/modules/ui-bootstrap-custom-tpls-1.1.2.min.js"></script>
     <script src="scripts/license.js"></script>
+    <script src="scripts/modules/canvasDoc/canvasdoc.js"></script>
     <script src="scripts/modules/Enter/enter.js"></script>
     <script src="scripts/modules/dataProviderService/dataproviderservice.js"></script>
     <script src="scripts/modules/formItem/formitem.js"></script>

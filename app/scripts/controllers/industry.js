@@ -10,8 +10,10 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService, urls) {
+AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', 'urls', 'links', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService, urls, links) {
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
+    $scope.links = links;
+    console.log($scope.links);
     $window.scrollTo(0,0)
     $scope.previous = function(){
       $location.path('/');
