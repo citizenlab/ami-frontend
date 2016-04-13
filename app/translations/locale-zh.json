@@ -29,8 +29,8 @@
     "press-release": "Press release", 
     "article": "InmediaHK feature article", 
     "law": "Hong Kong Data Privacy Ordinance", 
-    "sponsorStatement": "Access My Info 是來於 ",
-    "socialMediaMessage": "Spread the word about <strong>Access My Info</strong>",
+    "sponsorStatement": "「誰手可得」由以下團體協力制作",
+    "socialMediaMessage": "廣傳「誰手可得」俾朋友",
     "whatsapp-share-text": "誰手可得"
   },
   "operator": {
@@ -65,7 +65,8 @@
   },
   "subject": {
     "title": "個人資料",
-    "callout": "請提供以下資料，以協助該公司識別你的相關資料。請放心，以下提供的資料只為協助你撰寫信件，並由你親自發送。「誰手可得」並不會儲存以下資料。",
+    "callout": "請提供以下資料，以協助該公司識別你的相關資料。",
+    "callout-not-store": "「誰手可得」並不儲收集及儲存你以下得個人資料。",
     "label": "基本個人資料"
   },
   "request": {

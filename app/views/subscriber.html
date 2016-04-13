@@ -2,6 +2,7 @@
 <div class="container center">
 	<h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.title"></h2>
 	<p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.callout"></p>
+	<p class="darkteal b lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.callout-not-store"></p>
 	<form>
 		<fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
 		    <!-- <h3 class="margintop-none" ng-if="basic_identifiers" translate="subject.label"></h3> -->
@@ -45,7 +46,7 @@
 							<div class="width-10p textalign-center float-left">
 								<input type="checkbox" ng-disabled="!statistics" ng-model="subscribe" ng-true-value="true" ng-false-value="false" readonly="false"/>
 							</div>
-							<div class="width-90p float-left clear-right">
+							<div class="width-90p float-left clear-right" ng-class="{'silver': !statistics}">
 								<span translate="finish.label-subscribe"></span>
 							</div>
 						</label>

@@ -65,7 +65,8 @@
   },
   "subject": {
     "title": "Identifying information",
-    "callout": "Enter your information so {{company}} can identify you in their records. (What you enter will not be collected or stored by our system – it is only used to generate the letter.)",
+    "callout": "Enter your information so {{company}} can identify you in their records.",
+    "callout-not-store": "Access My Info will not collect or store any of the personal information below.",
     "label": "Your Personal Information"
   },
   "request": {
