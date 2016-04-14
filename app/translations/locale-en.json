@@ -93,7 +93,7 @@
       "generate": "Create PDF Letter",
       "re-save": "Re-save Letter"
     },
-    "emailButton": "Email Request",
+    "emailButton": "Open email client",
     "emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
     "thanks": "That's it! Thank you for participating in the Access My Info Hong Kong project.",
     "continue": "Continue on to maximize your impact"
@@ -110,6 +110,8 @@
     "enroll": "Enroll"
   },
   "wrapper": {
+    "privacy": 
+    "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.", 
     "disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
     "license": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License."
   },
