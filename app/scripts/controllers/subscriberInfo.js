@@ -163,8 +163,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
      });
   }
   $scope.submitAndNext = function(){
-    if($scope.statistics){
       $scope.next();
-    }
   }
 }]);
