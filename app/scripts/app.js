@@ -15,6 +15,7 @@ var AMIApp = angular.module('AMIApp', [
     'config',
     'ngRoute',
     'ngEnter',
+    'ngCookies',
     'ngMessages',
     'ngSanitize',
     'dataProviderService',
@@ -239,9 +240,17 @@ AMIApp.directive('focusMe', ['$timeout', '$parse', function($timeout, $parse) {
     }
   };
 }]);
-AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', function($http, NavCollection, $timeout, $location, $translate, envOptions){
+AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', '$cookies', function($http, NavCollection, $timeout, $location, $translate, envOptions, $cookies){
   $location.path('/');
-  $translate.use(envOptions.languageCode);
+  var langCookie = $cookies.get('languageCode');
+    console.log("cookie", langCookie);
+  if(langCookie){  
+    $translate.use(langCookie);
+  }
+  else{
+    $translate.use(envOptions.languageCode);
+  }
+
       var stages = [
         {
           name: "Start",
