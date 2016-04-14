@@ -184,12 +184,13 @@ function Document(paperType, margins){
 	}
 
 	self.parseHTMLBlockLevelElements = function(containerEl, selector){
-		// strip out spans, the non-regex way
-		spans = containerEl.getElementsByTagName('span');
-		for(var i=spans.length-1; i >= 0; i--){
-			var span = spans[i];
-			text = document.createTextNode(span.innerText);
-			span.parentNode.replaceChild(text, span);
+		// strip out inline elements, the non-regex way
+		els = containerEl.querySelectorAll('span, strong, i, em, bold, big, small, tt, abbr, acronym, cite, code, dfn, em, kbd, strong, samp, time, var, a, bdo, br, img, map, object, q, script, span, sub, sup, button, input, label, select, textarea');
+
+		for(var i=els.length-1; i >= 0; i--){
+			var el = els[i];
+			text = document.createTextNode(el.innerText);
+			el.parentNode.replaceChild(text, el);
 		}
 
 		nodes = self.getDescendants(containerEl);
