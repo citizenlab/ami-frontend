@@ -262,7 +262,7 @@ function Document(paperType, margins){
 		self.pdf.open();
 	}
 	self.savePDF = function(){
-		self.pdf.download();
+		self.pdf.download('request_letter');
 	}
 }
 function textToWords(text){
