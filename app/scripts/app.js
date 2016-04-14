@@ -247,6 +247,9 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
   if(langCookie){  
     $translate.use(langCookie);
   }
+  else if(navigator.language){
+    $translate.use(navigator.language.substr(0,2))
+  }
   else{
     $translate.use(envOptions.languageCode);
   }
