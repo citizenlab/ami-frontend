@@ -84,7 +84,7 @@ var AMIApp = angular.module('AMIApp', [
     return this;
   }])
   .config(['$translateProvider', function($translateProvider) {
-    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
     $translateProvider.useStaticFilesLoader({
       prefix: 'translations/locale-',
       suffix: '.json'
