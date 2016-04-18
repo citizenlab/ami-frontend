@@ -152,11 +152,11 @@
   },
   "unsubscribe": {
     "title": "取消訂閱",
-    "label": "Status"
+    "label": "進程"
   },
   "verifyemail": {
     "title": "驗證電郵地址",
-    "label": "Status"
+    "label": "進程"
   },
   "nav": {
     "start": "開始",
