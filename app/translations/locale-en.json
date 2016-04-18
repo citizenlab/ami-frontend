@@ -67,7 +67,8 @@
     "title": "Identifying information",
     "callout": "Enter your information so {{company}} can identify you in their records.",
     "callout-not-store": "Access My Info will not collect or store any of the personal information below.",
-    "label": "Your Personal Information"
+    "label": "Your Personal Information",
+    "emailField": "email"
   },
   "request": {
     "title": "Your request is ready",

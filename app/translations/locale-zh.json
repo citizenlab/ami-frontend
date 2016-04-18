@@ -67,7 +67,8 @@
     "title": "個人資料",
     "callout": "請提供以下資料，以協助該公司識別你的相關資料。",
     "callout-not-store": "「誰手可得」並不儲收集及儲存你以下得個人資料。",
-    "label": "基本個人資料"
+    "label": "基本個人資料",
+    "emailField": "email"
   },
   "request": {
     "title": "您向{{operator}}提出的查閱資料要求",
