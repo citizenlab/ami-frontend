@@ -95,7 +95,7 @@ var AMIApp = angular.module('AMIApp', [
     return this;
   }])
   .config(['$compileProvider', function($compileProvider){
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https|mailto|whatsapp):/);
   }])
   .config(['$translateProvider', function($translateProvider) {
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');

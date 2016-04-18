@@ -118,15 +118,15 @@
   
   <p class="paddinghorizontal-medium paddinghorizontal-none-ns" translate="category.socialMediaMessage"></p>
   <div class="paddinghorizontal-medium paddinghorizontal-none-ns">
-    <a class="btn btn-social fill-white" href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
-      <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/facebook.svg'"></div>
+    <a class="btn btn-social fill-white" ng-href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
+      <img ng-src="images/facebook.svg" class="width-large paddingvertical-xsmall paddinghorizontal-xsmall"/>
     </a>
-    <a class="btn btn-social fill-white" href="https://twitter.com/home?status={{shareURL}}">
-      <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/twitter.svg'"></div>
+    <a class="btn btn-social fill-white" ng-href="https://twitter.com/home?status={{shareURL}}">
+      <img ng-src="images/twitter.svg" class="width-large paddingvertical-xsmall paddinghorizontal-xsmall"/>
     </a>
     <span class="display-none-ns">
-        <a class="btn btn-social fill-white" href="whatsapp://send?text={{shareURL}}" data-action="share/whatsapp/share">
-            <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/whatsapp.svg'"></div>
+        <a class="btn btn-social fill-white" ng-href="whatsapp://send?text={{shareURL}}" data-action="share/whatsapp/share">
+            <img class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-src="images/whatsapp.svg"/>
         </a>
     </span>
   </div>
