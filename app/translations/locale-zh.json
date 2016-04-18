@@ -116,7 +116,7 @@
   },
   "wrapper": {
     "privacy":
-    "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.", 
+    "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.<p>如你提供你的電郵地址給我們聯絡你，我們只會用作你同意了的特定目的上。我們不會使用、披露或轉移你的電郵地址予第三方作牟利用途。", 
     "disclaimer":
     "本應用程式只為研究和教學用的參考工具，不代表任何法律建議。換言之，使用本應用程式者，須對使用服務時、與由此產生的任何後果負全責。公民實驗室（Citizen Lab）、香港中文大學（The Chinese University of Hong Kong）、開放效應（Open Effect）、獨立媒體（香港）（Hong Kong In-media）及其夥伴團體將不對本應用程式文字中所包含資訊的準確性、完整性和適切性作任何聲明、承諾和保證。本軟件以「現狀」形式提供，且不帶有任何明示或隱含的保證。本應用程式中的信息，不應視為可以取代專門法律顧問的法律建議",
     "license": "本應用程式已獲── CC 姓名標示-非商業性-相同方式分享 4.0 授權條款──許可授權。"

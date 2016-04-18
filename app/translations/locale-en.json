@@ -19,7 +19,7 @@
     "label": "Category", 
     "requestsProcessed": "Join the <strong>231</strong> other people who have created a request on this system.", 
     "instruction1": "What does your mobile phone or internet provider know about you?", 
-    "instruction2": "Find out by requesting access to your personal data. This website will help you write a legally binding letter.", 
+    "instruction2": "Find out by requesting access to your personal data. This website will help you write a letter that your telco must respond to, by law.", 
     "instruction3": "It only takes 5 easy steps. Let’s get started!", 
     "start": "Start", 
     "info-1-title": "About this project", 
@@ -116,7 +116,7 @@
   },
   "wrapper": {
     "privacy": 
-    "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.", 
+    "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be goverened by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.<p>In the event you provides us your email address to contact you, we will only use it for the specific purposes agreed by you. We will not use, disclose, transfer your email address to any third parties beyond the purposes of administering the Access My Info service.", 
     "disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
     "license": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License."
   },
