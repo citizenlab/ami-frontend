@@ -116,22 +116,21 @@
 
   <p class="darkgray b lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.thanks"></p>
   
-  <!-- DISABLING SOCIAL MEDIA FOR NOW
   <p class="paddinghorizontal-medium paddinghorizontal-none-ns" translate="category.socialMediaMessage"></p>
   <div class="paddinghorizontal-medium paddinghorizontal-none-ns">
-    <a class="btn btn-social fill-white" href="https://www.facebook.com/sharer/sharer.php?u={{url}}">
+    <a class="btn btn-social fill-white" href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
       <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/facebook.svg'"></div>
     </a>
-    <a class="btn btn-social fill-white" href="https://twitter.com/home?status={{url}}">
+    <a class="btn btn-social fill-white" href="https://twitter.com/home?status={{shareURL}}">
       <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/twitter.svg'"></div>
     </a>
     <span class="display-none-ns">
-        <a class="btn btn-social fill-white" href="whatsapp://send?text={{category.whatsapp-share-text}} {{url}}" data-action="share/whatsapp/share">
+        <a class="btn btn-social fill-white" href="whatsapp://send?text={{shareURL}}" data-action="share/whatsapp/share">
             <div class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-include="'images/whatsapp.svg'"></div>
         </a>
     </span>
   </div>
-  -->
+ 
 
   <div class="margintop-large clearfix paddinghorizontal-medium paddinghorizontal-none-ns">
     <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">

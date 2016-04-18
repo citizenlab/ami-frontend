@@ -2,6 +2,7 @@
 AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'pdfOptionEnabled', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, pdfOptionEnabled) {
   var blurListener;
   $window.scrollTo(0,0);
+  $scope.shareURL = encodeURIComponent($window.location.origin);
   $scope.nextIsLoading = false;
   $scope.$watch(function(){
     $scope.previousStage = NavCollection.previousItem();
