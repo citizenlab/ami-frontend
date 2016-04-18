@@ -1,9 +1,14 @@
 'use strict';
 var dataProviderService = angular.module('dataProviderService', []);
-dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'urls', 'cmsStatus', function( $route, $q, $http, urls, cmsStatus ) {
-    return {
+dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'urls', 'cmsStatus', '$translate', function( $route, $q, $http, urls, cmsStatus, $translate ) {
+    var self = {
         getItem: function (baseURL, itemPath, params, responseType) {
-            return this.promiseRequest(baseURL, itemPath, params, 'GET', responseType);
+            return $translate.onReady().then(function(){
+                if(typeof baseURL === 'function'){
+                    baseURL = baseURL();
+                }
+                return self.promiseRequest(baseURL, itemPath, params, 'GET', responseType);
+            });
         },
         postItem:  function (baseURL, itemPath, params, data, responseType) {
             return this.promiseRequest(baseURL, itemPath, params, 'POST', data, responseType);
@@ -55,4 +60,5 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
             return $http(options);
         }
     };
+    return self;
 }]);

@@ -170,7 +170,7 @@ var AMIApp = angular.module('AMIApp', [
           pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiPagesURL(), "/2");
+            return dataProviderService.getItem(urls.apiPagesURL, "/2");
           }]
         },
       })
@@ -308,6 +308,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     console.log("cookie", langCookie);
   if(langCookie){  
     $translate.use(langCookie);
+    console.log($translate.use());
   }
   else if(navigator.language){
     $translate.use(navigator.language.substr(0,2))
