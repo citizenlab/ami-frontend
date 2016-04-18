@@ -176,7 +176,7 @@
   "M1": "Unable to send email at this time.",
   "M2": "You've provided an invalid email address.",
   "U1": "Successfully unsubscribed <strong>{{email}}</strong> from AMI notifications.",
-  "U2": "Unable to unsubcribe <strong>{{email}}</strong> from AMI notifications.",
+  "U2": "Unable to unsubscribe <strong>{{email}}</strong> from AMI notifications.",
   "F1": "Feedback saved.",
   "F2": "Unable to save feedback.",
   "F2": "Unable to save feedback. No feedback provided."
