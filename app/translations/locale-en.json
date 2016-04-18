@@ -151,7 +151,11 @@
   },
   "unsubscribe": {
     "title": "Unsubscribe",
-  "label": "Status"
+    "label": "Status"
+  },
+  "verifyemail": {
+    "title": "Email Verification",
+    "label": "Status"
   },
   "nav": {
     "start": "Start",

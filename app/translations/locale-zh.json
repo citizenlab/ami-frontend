@@ -151,8 +151,12 @@
     "soon": "請靜候，我們正盡力重新上線！"
   },
   "unsubscribe": {
-    "title": "Unsubscribe",
-  "label": "Status"
+    "title": "取消訂閱",
+    "label": "Status"
+  },
+  "verifyemail": {
+    "title": "驗證電郵地址",
+    "label": "Status"
   },
   "nav": {
     "start": "開始",
