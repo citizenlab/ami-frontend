@@ -9,7 +9,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'urls', 'dataProviderService', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, urls, dataProviderService) {
+AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'urls', 'dataProviderService', '$translate', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, urls, dataProviderService, $translate) {
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   
@@ -132,6 +132,7 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
      var payload = {
         data: $scope.anon,
         subscribe: AMIRequest.get('subscribe'),
+        language: $translate.use(),
         email: false
      }
      if(AMIRequest.get('subscribe')){
@@ -163,8 +164,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
      });
   }
   $scope.submitAndNext = function(){
-    if($scope.statistics){
       $scope.next();
-    }
   }
 }]);

@@ -11,9 +11,11 @@
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro"></h3>
 
   <!-- EMAIL OPTION BEGIN -->
+  <div ng-if="operator.meta.privacy_officer_email">
   <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
     <img class="display-none display-inline-ns width-large verticalalign-middle marginright-small" src="images/illustrations/EmailOption.png" />
-    <span translate="request.instructions.email-title"></span>
+    <span ng-if="!(pdfOptionEnabled && operator.meta.privacy_contact_address_1)" translate="request.instructions.email-title"></span>
+    <span ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1" translate="request.instructions.email-title-option-1"></span>
   </p>
   <div class="backgroundcolor-lightgrey padding-medium clearfix">
     <div ng-if="(!letterDoneState || displayInstructions)">
@@ -63,29 +65,29 @@
       </div>
     </div>
   </div>
+  </div>
   <!-- EMAIL OPTION END -->
-
+  <div ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1">
   <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
     <img class="display-none display-inline-ns width-large verticalalign-middle marginright-small" src="images/illustrations/PostalOption.png" />
-    <span translate="request.instructions.post-title"></span>
+    <span ng-if="!operator.meta.privacy_officer_email" translate="request.instructions.post-title"></span>
+    <span ng-if="operator.meta.privacy_officer_email" translate="request.instructions.post-title-option-2"></span>
   </p>
   <div class="backgroundcolor-lightgrey padding-medium clearfix">
-    <div ng-show="pdfOptionEnabled">
-      <div ng-if="(!letterDoneState || displayInstructions)">
-        <p class="lineheight-copy margintop-none" translate="request.instructions.post-instructions"></p>
-        <div class="clearfix row">
-          <address class="fontstyle-normal f5 paddingleft-medium borderleft-thick bordercolor-white marginbottom-medium lineheight-1p5">
-            <!-- <strong translate="request.instructions.privacy-officer-title" translate-values="{operator: operator.title}"></strong>
-            <br/> -->
-            {{operator.meta.privacy_contact_address_1}}
-            <br ng-if="operator.meta.privacy_contact_address_2"/>{{operator.meta.privacy_contact_address_2}}
-            <br/>{{operator.meta.privacy_contact_city}}, {{operator.meta.privacy_contact_province_state}}
-            <br/>{{operator.meta.privacy_contact_postal_code}}
-            <!--
-            <div ng-if="operator.meta.privacy_officer_email" class="mart5">Or email to: {{operator.meta.privacy_officer_email}}</div>
-            -->
-          </address>
-        </div>
+    <div ng-if="(!letterDoneState || displayInstructions)">
+      <p class="lineheight-copy margintop-none" translate="request.instructions.post-instructions"></p>
+      <div class="clearfix row">
+        <address class="fontstyle-normal f5 paddingleft-medium borderleft-thick bordercolor-white marginbottom-medium lineheight-1p5">
+          <!-- <strong translate="request.instructions.privacy-officer-title" translate-values="{operator: operator.title}"></strong>
+          <br/> -->
+          {{operator.meta.privacy_contact_address_1}}
+          <br ng-if="operator.meta.privacy_contact_address_2"/>{{operator.meta.privacy_contact_address_2}}
+          <br/>{{operator.meta.privacy_contact_city}}, {{operator.meta.privacy_contact_province_state}}
+          <br/>{{operator.meta.privacy_contact_postal_code}}
+          <!--
+          <div ng-if="operator.meta.privacy_officer_email" class="mart5">Or email to: {{operator.meta.privacy_officer_email}}</div>
+          -->
+        </address>
       </div>
     </div>
     <div class="clear-both clearfix">
@@ -96,19 +98,18 @@
         <img class="width-xlarge maxwidth-100p marginbottom-medium" src="images/hkid-sample.png" />
       </div>      
     </div>
-    <div ng-show="pdfOptionEnabled">
-      <div class="btn btn-lg btn-primary generatorBtn" ng-class="{disabled:pdf.isGenerating, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1"> 
-        <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
-           &nbsp;<span translate="request.pdfButton.generate"></span>
-          </span>
-          <span ng-show="pdf.isGenerating && !pdf.isGenerated">
-            &nbsp;<span translate="status.wait"></span>
-          </span>
-          <span ng-show="!pdf.isGenerating && pdf.isGenerated">
-            &nbsp;<span translate="request.pdfButton.re-save"></span>
-          </span>
-      </div>
+    <div class="btn btn-lg btn-primary generatorBtn" ng-class="{disabled:pdf.isGenerating, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1"> 
+      <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
+         &nbsp;<span translate="request.pdfButton.generate"></span>
+        </span>
+        <span ng-show="pdf.isGenerating && !pdf.isGenerated">
+          &nbsp;<span translate="status.wait"></span>
+        </span>
+        <span ng-show="!pdf.isGenerating && pdf.isGenerated">
+          &nbsp;<span translate="request.pdfButton.re-save"></span>
+        </span>
     </div>
+  </div>
   </div>
 
   <hr class="marginvertical-large" />

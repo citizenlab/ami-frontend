@@ -49,12 +49,10 @@ function Page(pageSize, margins, dpiFactor){
 	page.canvas.style.height = pageSize.height/dpiFactor/4 + 'px';
 	}
 
-	page.wrapText = function(text, options, langStyle) {
+	page.wrapText = function(text, options) {
 		var continuing = false;
 		if(typeof text == "string"){
-			var re = /([\s.!?:;\\/-_\(\)][\w\d]*|[\w\d]*[\s.!?:;\\/-_\(\)]|.)/g;
-
-			var words = text.match(re);
+			var words = textToWords(text);
 		}
 		else if(typeof text[0] !== "undefined"){
 			var words = text;
@@ -63,12 +61,9 @@ function Page(pageSize, margins, dpiFactor){
 
 		var maxWidth = page.maxPaintPosition.x;
 		var xPos = this.paintPosition.x;
-		if(langStyle == "latin"){
-			var line = ' ';
-		}
-		else{
-			var line = '';
-		}
+
+		var line = '';
+
 		var bulletItem = false;
 		var bottomMargin = page.lineHeight*2;
 
@@ -102,7 +97,7 @@ function Page(pageSize, margins, dpiFactor){
 					xPos += 42;
 					firstNewLineDone = true;
 				}
-				line = words[n] + ' ';
+				line = words[n] + '';
 				this.paintPosition.y += page.lineHeight;
 				if(this.paintPosition.y >= page.maxPaintPosition.y){
 					return words.slice(n);
@@ -120,7 +115,7 @@ function Page(pageSize, margins, dpiFactor){
 	return page;
 }
 
-function Document(paperType, margins, langStyle){
+function Document(paperType, margins){
 	var self = this;
 	self.pages = [];
 
@@ -130,10 +125,7 @@ function Document(paperType, margins, langStyle){
 	// 	"legal": {width: 2550, height: 4200},
 	// 	"A4": {width: 2480, height: 3508}
 	// }
-	self.langStyle = 'en';
-	if(typeof langStyle !== "undefined"){
-		self.langStyle = langStyle;
-	}
+
 	self.paperTypes = {
 		"letter": {width: 2550/(3.125/2), height: 3300/(3.125/2), pdfSize: {width: 612, height: 792}},
 		"legal": {width: 2550/(3.125/2), height: 4200/(3.125/2), pdfSize: {width: 612, height: 1008}},
@@ -178,7 +170,7 @@ function Document(paperType, margins, langStyle){
 
 	self.writeText = function(text, options){
 		activePage = self.pages[self.getActivePageIndex()];
-		text = activePage.wrapText(text, options, self.langStyle);
+		text = activePage.wrapText(text, options);
 		if(text == null){
 			return;
 		}
@@ -192,8 +184,14 @@ function Document(paperType, margins, langStyle){
 	}
 
 	self.parseHTMLBlockLevelElements = function(containerEl, selector){
-		// strip out spans
-		containerEl.innerHTML = containerEl.innerHTML.replace(/<\/?span[^>]*>/g,"");
+		// strip out inline elements, the non-regex way
+		els = containerEl.querySelectorAll('span, strong, i, em, bold, big, small, tt, abbr, acronym, cite, code, dfn, em, kbd, strong, samp, time, var, a, bdo, br, img, map, object, q, script, span, sub, sup, button, input, label, select, textarea');
+
+		for(var i=els.length-1; i >= 0; i--){
+			var el = els[i];
+			text = document.createTextNode(el.innerText);
+			el.parentNode.replaceChild(text, el);
+		}
 
 		nodes = self.getDescendants(containerEl);
 		return nodes;
@@ -213,6 +211,7 @@ function Document(paperType, margins, langStyle){
 		nodes = self.parseHTMLBlockLevelElements(el);
 
 		for(var i=0; i < nodes.length; i++){
+			// Check if leaf node
 			if(nodes[i].el.children.length === 0 && nodes[i].el.innerText.length > 0){
 				pdfContent.push({
 					'tag': nodes[i].el.tagName,
@@ -224,12 +223,12 @@ function Document(paperType, margins, langStyle){
 			pdfContent[i].options = {};
 			if(pdfContent[i].tag == "LI"){
 				pdfContent[i].options.bulletItem = true;
-				if(pdfContent[i+1].tag == "LI"){
+				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "LI"){
 					pdfContent[i].options.noBottomMargin = true;
 				}
 			}
 		}
-		return pdfContent
+		return pdfContent;
 	}
 	self.writeHTMLtoDoc = function(el){
 		pdfContent = self.parseEl(el);
@@ -263,6 +262,40 @@ function Document(paperType, margins, langStyle){
 		self.pdf.open();
 	}
 	self.savePDF = function(){
-		self.pdf.download();
+		self.pdf.download('request_letter');
 	}
+}
+function textToWords(text){
+ 	var re = /[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/g
+	var characters = text.match(re);
+
+	var el = document.createElement('div');
+	el.style.width = 0;
+	el.style.position = 'absolute';
+	el.style.visibility = 'hidden';
+	var oldHeight = 0;
+	var newHeight;
+	var words = [];
+	var currentWordIndex = -1;
+
+	document.body.appendChild(el);
+
+	for (var i = 0; i < characters.length; i++) {
+		char = characters[i];
+		oldHeight = el.offsetHeight;
+		el.innerHTML += char;
+		newHeight = el.offsetHeight;
+		if(newHeight > oldHeight){
+			//new array item
+			words.push(char)
+			currentWordIndex++;
+			el.innerText = char;
+			newHeight = 0;
+		}
+		else{
+			//append to same word
+			words[currentWordIndex] += char;
+		}
+	}
+	return words;
 }

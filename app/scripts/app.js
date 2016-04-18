@@ -15,6 +15,7 @@ var AMIApp = angular.module('AMIApp', [
     'config',
     'ngRoute',
     'ngEnter',
+    'ngCookies',
     'ngMessages',
     'ngSanitize',
     'dataProviderService',
@@ -83,6 +84,7 @@ var AMIApp = angular.module('AMIApp', [
     return this;
   }])
   .config(['$translateProvider', function($translateProvider) {
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
     $translateProvider.useStaticFilesLoader({
       prefix: 'translations/locale-',
       suffix: '.json'
@@ -195,7 +197,9 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'VerificationCtrl',
         resolve: {
           verificationStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
-            return dataProviderService.getItem(urls.enrollmentURL(), "/verify/", {"token": $location.search().token}, null, false);
+            var token = $location.search().token;
+            console.log(token);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/verify/", {"token": token}, null, false);
           }]
         }
       })
@@ -204,7 +208,7 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'UnsubscribeCtrl',
         resolve: {
           unsubscribeStatus: ["dataProviderService", "urls", "$location", function(dataProviderService, urls, $location) {
-            return dataProviderService.postItem(urls.enrollmentURL(), "/unsubscribe/", {}, {"email_address": $location.search().md_email}, false);
+            return dataProviderService.postItem(urls.enrollmentURL(), "/unsubscribe/", {}, {"email_address": $location.search().email_address}, false);
           }]
         }
       })
@@ -239,9 +243,23 @@ AMIApp.directive('focusMe', ['$timeout', '$parse', function($timeout, $parse) {
     }
   };
 }]);
-AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', function($http, NavCollection, $timeout, $location, $translate, envOptions){
-  $location.path('/');
-  $translate.use(envOptions.languageCode);
+AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', '$cookies', 'AMIRequest', function($http, NavCollection, $timeout, $location, $translate, envOptions, $cookies, AMIRequest){
+  // Redirect to landing page if on a dependant stage path
+  if(AMIRequest.hierarchy.indexOf($location.path().substring(1)) > -1){
+    $location.path('/');
+  }
+  var langCookie = $cookies.get('languageCode');
+    console.log("cookie", langCookie);
+  if(langCookie){  
+    $translate.use(langCookie);
+  }
+  else if(navigator.language){
+    $translate.use(navigator.language.substr(0,2))
+  }
+  else{
+    $translate.use(envOptions.languageCode);
+  }
+
       var stages = [
         {
           name: "Start",

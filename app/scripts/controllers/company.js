@@ -65,6 +65,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
                 }
                 else{
                   services[0].selected = true;
+                  $location.path(NavCollection.nextItem().id);
                 }
                 $scope.services = services;
               }
@@ -80,7 +81,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         }
         else{
           // AMIRequest not changed
-          // $location.path(NavCollection.nextItem().id);
+          $location.path(NavCollection.nextItem().id);
         }
       }
       else{
