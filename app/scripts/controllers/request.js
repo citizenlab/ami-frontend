@@ -1,8 +1,10 @@
 'use strict';
-AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'pdfOptionEnabled', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, pdfOptionEnabled) {
+AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'pdfOptionEnabled', '$translate', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, pdfOptionEnabled, $translate) {
   var blurListener;
   $window.scrollTo(0,0);
-  $scope.shareURL = encodeURIComponent($window.location.origin);
+  $translate('finish.share-text', {shareURL: $window.location.origin }).then(function (translation) {
+    $scope.shareText = encodeURIComponent(translation);
+  });
   $scope.nextIsLoading = false;
   $scope.$watch(function(){
     $scope.previousStage = NavCollection.previousItem();

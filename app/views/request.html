@@ -8,7 +8,9 @@
     <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
   </div>
 
-  <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro"></h3>
+  <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro" ng-if="operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>
+  <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.emailonly-intro" ng-if="!operator.meta.privacy_contact_address_1 && operator.meta.privacy_officer_email"></h3>
+  <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.postalonly-intro" ng-if="!operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>
 
   <!-- EMAIL OPTION BEGIN -->
   <div ng-if="operator.meta.privacy_officer_email">
@@ -118,14 +120,14 @@
   
   <p class="paddinghorizontal-medium paddinghorizontal-none-ns" translate="category.socialMediaMessage"></p>
   <div class="paddinghorizontal-medium paddinghorizontal-none-ns">
-    <a class="btn btn-social fill-white" ng-href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}">
+    <a class="btn btn-social fill-white" ng-href="https://www.facebook.com/sharer/sharer.php?u={{shareText}}" target="blank">
       <img ng-src="images/facebook.svg" class="width-large paddingvertical-xsmall paddinghorizontal-xsmall"/>
     </a>
-    <a class="btn btn-social fill-white" ng-href="https://twitter.com/home?status={{shareURL}}">
+    <a class="btn btn-social fill-white" ng-href="https://twitter.com/home?status={{shareText}}" target="blank">
       <img ng-src="images/twitter.svg" class="width-large paddingvertical-xsmall paddinghorizontal-xsmall"/>
     </a>
     <span class="display-none-ns">
-        <a class="btn btn-social fill-white" ng-href="whatsapp://send?text={{shareURL}}" data-action="share/whatsapp/share">
+        <a class="btn btn-social fill-white" ng-href="whatsapp://send?text={{shareText}}" data-action="share/whatsapp/share">
             <img class="width-large paddingvertical-xsmall paddinghorizontal-xsmall" ng-src="images/whatsapp.svg"/>
         </a>
     </span>

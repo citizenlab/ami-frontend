@@ -77,6 +77,8 @@
     "callout-hkid-postal": "Important: Attach a photocopy or printout of your HKID or passport to your letter. Your request may not be accepted without proof of identity.", 
     "instructions": {
       "choice-intro": "How would you like to send your letter?", 
+      "postalonly-intro": "This company currently only accepts requests by postal mail.", 
+      "emailonly-intro": "This company currently only accepts requests by email.", 
       "show": "Show Instructions",
       "hide": "Hide Instructions",
       "read-careful": "Read over the letter carefully, then follow the instructions below.",
@@ -105,6 +107,7 @@
   },
   "finish": {
     "title": "Thank you for submitting your request!", 
+    "share-text": "Do you know you have the right to access your own personal info? Find out what your ISP or telco knows about you at {{shareURL}}",
     "share-prompt": "Share this campaign with your friends:", 
     "consent-clause": "I consent and authorise: ",
     "label-data": "Access My Info Hong Kong may collect the number of my data access request made via this programme for the statistics and research purposes.",

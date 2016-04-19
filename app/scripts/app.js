@@ -207,6 +207,17 @@ var AMIApp = angular.module('AMIApp', [
           }]
         },
       })
+      .when('/know-your-rights', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem(urls.apiPagesURL, "/203");
+          }]
+        },
+      })
       .when('/request', {
         templateUrl: 'views/request.html',
         controller: 'RequestCtrl',
