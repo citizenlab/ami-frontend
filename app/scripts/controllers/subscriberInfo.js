@@ -27,6 +27,7 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     $scope.previous();
     return;
   }
+  $scope.operator = AMIRequest.get('operator');
   $scope.services = AMIRequest.get('services');
   if(identifiers){
     if(AMIRequest.has('subject')){
@@ -112,7 +113,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
     
   $scope.$watch(function(){
-    console.log('!!', AMIRequest.get('subject'));
     AMIRequest.set('statistics', $scope.statistics);
     if($scope.statistics === false){
       $scope.subscribe = false;
