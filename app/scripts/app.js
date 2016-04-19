@@ -78,10 +78,24 @@ var AMIApp = angular.module('AMIApp', [
       console.log(url);
       return url;
     }
+    this.apiPagesURL = function(){
+      var url;
+      var languageCode = envOptions.languageCode;
+      console.log($translate.use());
+      if(typeof $translate.use() !== "undefined"){
+        languageCode = $translate.use();
+      }
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + languageCode + "/wp-json/pages";
+      console.log(url);
+      return url;
+    }
     this.enrollmentURL = function(){
       return envOptions.enrollmentDomain + envOptions.enrollmentApiPath;
     }
     return this;
+  }])
+  .config(['$compileProvider', function($compileProvider){
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https|mailto|whatsapp):/);
   }])
   .config(['$translateProvider', function($translateProvider) {
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
@@ -98,10 +112,11 @@ var AMIApp = angular.module('AMIApp', [
         resolve: {
           industries: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
             return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries");
-          }],
-          links: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
-            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/links");
           }]
+          // ,
+          // links: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+          //   return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/links");
+          // }]
         }
       })
       .when('/operator', {
@@ -149,7 +164,48 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'AccountCtrl'
       })
       .when('/press-kit', {
-        templateUrl: 'views/presskit.html'
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem(urls.apiPagesURL, "/2");
+          }]
+        },
+      })
+      .when('/faq', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem(urls.apiPagesURL(), "/171");
+          }]
+        },
+      })
+      .when('/about', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem(urls.apiPagesURL(), "/168");
+          }]
+        },
+      })
+      .when('/contact', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            return dataProviderService.getItem(urls.apiPagesURL(), "/165");
+          }]
+        },
       })
       .when('/request', {
         templateUrl: 'views/request.html',
@@ -252,6 +308,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     console.log("cookie", langCookie);
   if(langCookie){  
     $translate.use(langCookie);
+    console.log($translate.use());
   }
   else if(navigator.language){
     $translate.use(navigator.language.substr(0,2))

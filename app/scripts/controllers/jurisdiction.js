@@ -20,7 +20,7 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
       AMIRequest.drop('operator');
     }
     $scope.$watch(function() {
-      $scope.showControls = ($location.path() === '/' || $location.path() === '/industry');
+      $scope.showControls = (AMIRequest.hierarchy.indexOf($location.path().substring(1)) <= 1);
       $scope.lang = $scope.languages[$translate.use()];
     });
     

@@ -54,13 +54,17 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   $scope.$on("$destroy", function(){
      $scope.submit(); 
   });
+  var emailFieldREGEX;
+  $translate('status.emailField').then(function (emailField) {
+    emailFieldREGEX = new RegExp("/" + emailField + "/i");
+  });
 
   var findEmail = function(subject){
     var email = null;
     var keys;
     for(var property in subject.basic_personal_info){
       console.log(subject.basic_personal_info[property]);
-      if(subject.basic_personal_info[property]['title'].match(/email/i)){
+      if(subject.basic_personal_info[property]['title'].match(emailFieldREGEX)){
         email = subject.basic_personal_info[property]['value'];
       }
       if(email){
@@ -108,6 +112,7 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
     
   $scope.$watch(function(){
+    console.log('!!', AMIRequest.get('subject'));
     AMIRequest.set('statistics', $scope.statistics);
     if($scope.statistics === false){
       $scope.subscribe = false;
