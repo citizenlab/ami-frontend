@@ -78,7 +78,7 @@ var AMIApp = angular.module('AMIApp', [
       console.log(url);
       return url;
     }
-    this.apiPagesURL = function(){
+    this.apiPagesURL = function(lang){
       var url;
       var languageCode = envOptions.languageCode;
       console.log($translate.use());
@@ -181,7 +181,7 @@ var AMIApp = angular.module('AMIApp', [
           pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiPagesURL(), "/171");
+            return dataProviderService.getItem(urls.apiPagesURL, "/171");
           }]
         },
       })
@@ -192,7 +192,7 @@ var AMIApp = angular.module('AMIApp', [
           pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiPagesURL(), "/168");
+            return dataProviderService.getItem(urls.apiPagesURL, "/168");
           }]
         },
       })
@@ -203,7 +203,7 @@ var AMIApp = angular.module('AMIApp', [
           pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiPagesURL(), "/165");
+            return dataProviderService.getItem(urls.apiPagesURL, "/165");
           }]
         },
       })

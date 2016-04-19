@@ -5,7 +5,7 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
         getItem: function (baseURL, itemPath, params, responseType) {
             return $translate.onReady().then(function(){
                 if(typeof baseURL === 'function'){
-                    baseURL = baseURL();
+                    baseURL = baseURL($translate.use());
                 }
                 return self.promiseRequest(baseURL, itemPath, params, 'GET', responseType);
             });
