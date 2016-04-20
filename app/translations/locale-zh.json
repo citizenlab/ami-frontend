@@ -15,7 +15,7 @@
   },
   "category": {
     "title": "歡迎到「誰手可得」",
-    "callout": "想知道您的電訊公司及網絡供應商存有多少您的個人資料？他們又與誰人分享這些個人資料？據本港的《個人資料（私隱）條例》，當用戶向電訊公司查詢時，他們須向用戶透露上述資料。我們可以協助您製作這「查閱資料要求」。",
+    "callout": "資料收集者的種類：選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",
     "label": "種類",
     "requestsProcessed": "Join <strong>231</strong> others who have created a request on this system.", 
     "instruction1": " 到底網絡或電訊供應商知道你啲咩？", 
@@ -72,7 +72,7 @@
   },
   "request": {
     "title": "您向{{operator}}提出的查閱資料要求",
-    "callout": "以下是你查閱資料要求的草稿", 
+    "callout": "以下是你查閱資料要求的草稿. <strong>在你的同意下，該公司可就依從查閱資料的要求徵收費用。</strong>", 
     "callout-hkid-email": "請緊記在電郵附上你的身份證或護照，以作身份證明。", 
     "callout-hkid-postal": "請緊記在信件附上你身份證或護照的副本，以作身份證明。", 
     "instructions": {
