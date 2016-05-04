@@ -316,6 +316,12 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     $location.path('/');
   }
   var langCookie = $cookies.get('languageCode');
+
+  // Sanitize langCookie
+  if(langCookie){
+    langCookie = langCookie.replace(/\W/g, '');
+  }
+
     console.log("cookie", langCookie);
   if(langCookie){  
     $translate.use(langCookie);
