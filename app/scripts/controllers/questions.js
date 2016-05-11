@@ -30,6 +30,7 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
         toUpdate: null,
         activated: false,
         add: function(title, description, editable, selected){
+          var isCollapsed = false;
           if(typeof selected == "undefined"){
             selected = true;
           }
@@ -37,10 +38,10 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
             editable = false;
           }
           if(this.verify(title)){
-            this.items.push(newComponent(title, description, editable, selected));
             if(description){
-              this.isCollapsed = true;
+              isCollapsed = true;
             }
+            this.items.push(newComponent(title, description, editable, selected, isCollapsed));
           }
         },
         new: function(){
@@ -83,12 +84,13 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
       }
     }
 
-    var newComponent = function(data, description, editable, selected){
+    var newComponent = function(data, description, editable, selected, isCollapsed){
       var component = {
         data: data,
         description: description,
         editable: editable,
-        selected: selected
+        selected: selected, 
+        isCollapsed: isCollapsed
       }
       return component;
     }

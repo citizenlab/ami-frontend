@@ -36,16 +36,14 @@
                     <option value="" selected>Select industry</option>
                 </select> -->
                     <div class="margintop-large textalign-center" ng-repeat="industry in industries">
-                        <div class="btn btn-primary" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button">
-                        <!-- took out ng-class from above because no selection for this campaign
-                         ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}" -->
-
-                            <!-- <img ng-src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/> -->
-                            <!-- <div ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"> -->
-                                <!-- <h4>{{industry.title}}</h4>
-                                <div ng-bind-html="industry.content"></div> -->
-                                <span translate="category.start"></span>
-                            <!-- </div> -->
+                        <div class="btn btn-primary" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
+                         ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
+                            <img ng-src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/>
+                            <div ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)">
+                                <h4>{{industry.title}}</h4>
+                                <div ng-bind-html="industry.content"></div>
+                                <!-- <span translate="category.start"></span> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,15 +56,6 @@
     <div>
         <p class="f5 b display-inlineblock marginbottom-medium" translate="category.sponsorStatement"></p>
     </div>
-    <a href="http://www.com.cuhk.edu.hk">
-        <img class="display-block display-inline-ns height-large marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns paddingvertical-medium" src="images/cuhk-logo.png" />
-    </a>
-    <a href="http://inmediahk.net/">
-        <img class="display-block display-inline-ns height-xlarge marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns" src="images/inmedia-logo.png" />
-    </a>
-    <a href="https://kbfl.org">
-        <img class="display-block display-inline-ns height-xlarge marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns" src="images/keyboardfrontline-logo.png" />
-    </a>
     <a href="https://openeffect.ca/">
         <img class="display-block display-inline-ns height-large marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns paddingvertical-medium" src="images/open-effect-logo.png" />
     </a>

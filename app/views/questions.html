@@ -35,7 +35,7 @@
                 <button class="btn btn-sm btn-info" ng-click="component.isCollapsed = !component.isCollapsed"><span translate="questions.show-desc"></span> <i class="fa" ng-class="{'fa-caret-down': component.isCollapsed, 'fa-caret-right': !component.isCollapsed}"></i></button>
               </div>
             </div>
-            <div ng-if="!component.editable && component.description.length" uib-collapse="!component.isCollapsed" ng-bind-html="component.description" class="clearfix"></div>
+            <div ng-if="!component.editable && component.description.length" ng-class="{'dn': component.isCollapsed}" ng-bind-html="component.description" class="clearfix"></div>
             <div ng-if="(component.editable && componentType.toUpdate !== component)" class="flexy">
               <div class="checkbox flexy-big">
                 <label>

@@ -6,9 +6,9 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
 			"title": "English",
 			"languageCode": "en"
 		},
-		"zh": {
-			"title": "中文",
-			"languageCode": "zh"
+		"fr": {
+			"title": "Français",
+			"languageCode": "fr"
 		}
 	};
 

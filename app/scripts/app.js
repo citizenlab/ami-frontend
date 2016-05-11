@@ -23,8 +23,6 @@ var AMIApp = angular.module('AMIApp', [
     'formItem',
     'requestTemplate',
     'AMIRequest',
-    'sticky',
-    'ui.bootstrap',
     'pascalprecht.translate',
     'ngclipboard'
   ])

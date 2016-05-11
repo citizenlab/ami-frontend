@@ -13,6 +13,7 @@ hr {
 	border-bottom: 0;
 	margin: 0.5em 0;
 }
+.dn {display:none;}
 .progressActive:after {
 	content: " "; 
 	display: block; 
