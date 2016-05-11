@@ -93,7 +93,7 @@ var AMIApp = angular.module('AMIApp', [
     return this;
   }])
   .config(['$compileProvider', function($compileProvider){
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https|mailto|whatsapp):/);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https|mailto|whatsapp|http):/);
   }])
   .config(['$cookiesProvider', function($cookiesProvider){
     $cookiesProvider.defaults.secure = true;
