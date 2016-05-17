@@ -106,6 +106,9 @@ hr {
 	text-align: center;
 	cursor: pointer;
 }
+.btn-sm {
+	min-width: 2rem;
+}
 .btn-social {
 	border-style: none;
 	border: 0;
@@ -119,6 +122,9 @@ hr {
 	background-color: #008876;
 	color: #fff;
 }
+.btn-primary .icon path {
+	fill: #fff;
+}
 .btn-next {
 	border-style: none;
 	border: 0;
@@ -131,11 +137,27 @@ hr {
 	background-color: #999;
 	color: #fff;
 }
-.btn-disabled {
+.btn-info {
+	border-style: none;
+	border: 0;
+	background-color: #27bfa8;
+	color: #fff;
+}
+.btn-info .icon path {
+	fill: #fff;
+}
+.btn:disabled {
 	border-style: none;
 	border: 0;
 	background-color: #ccc;
 	color: #999;
+}
+.btn-sm, .btn-sm:hover {
+	border:none;
+	background: none;
+}
+.btn-sm:disabled .icon path {
+	fill: #999;
 }
 .btn-select {
 	border-radius: 0;
@@ -144,6 +166,10 @@ hr {
 }
 .btn-media-select {
 	border: 2px solid #27bfa8;
+}
+.icon {
+	height:12px;
+	width:12px;
 }
 .form-item {
 	margin-bottom: 1em;
@@ -157,6 +183,13 @@ hr {
 }
 .letter ul {
 	padding-left: 1rem;
+}
+.infoBox {
+	background: rgba(39, 191, 168, 0.18);
+    padding: 0 30px;
+    font-size: 14px;
+    max-height: 200px;
+    overflow-y: scroll;
 }
 .fill-white {
 	fill: #ffffff;
@@ -198,6 +231,17 @@ hr {
 	font-size: 1.176em;
 	color: #222;
 }
+.flexy {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flexy-big {
+    flex-grow: 4
+}
+.flexy-small {
+    flex-grow: 1;
+}
 @media screen and (min-width: 48em) {
   .container {max-width: 30em;}
   .width-titleimage-ns {
@@ -206,6 +250,9 @@ hr {
   .flexProgress {
   	border-radius: 0.33em;
   }
+}
+.text-right {
+	text-align: right;
 }
 @media screen and (min-width: 48em) and (max-width: 64em) {
   html {font-size: 105%;}

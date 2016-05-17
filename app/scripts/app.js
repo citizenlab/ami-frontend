@@ -142,16 +142,24 @@ var AMIApp = angular.module('AMIApp', [
 
           if(operator.meta.data_management_unit == "data-banks"){
             path = "/data_banks/identifiers/"
-            var banks = operator.meta.data_banks;
-            params = {"banks[]": banks};
+            var banks = AMIRequest.get('components')['dataBanks'].items;
+            console.log("bank", banks);
+            var bank_ids = [];
+            angular.forEach(banks, function(bank, key){
+              if(bank && bank.selected && bank.serverID){
+                console.log("bank", bank.serverID);
+                bank_ids.push(bank.serverID);
+              }
+            }, bank_ids);
+            params = {"banks[]": bank_ids};
           }
           else{
             path = "/services/identifiers/";
             var services = AMIRequest.get('services');
             var service_ids = [];
-            angular.forEach(services, function(value, key){
-              if(value.selected){
-                service_ids.push(value.id);
+            angular.forEach(services, function(service, key){
+              if(service.selected){
+                service_ids.push(service.id);
               }
             }, service_ids);
             params = {"services[]": service_ids}
@@ -311,6 +319,43 @@ AMIApp.directive('focusMe', ['$timeout', '$parse', function($timeout, $parse) {
     }
   };
 }]);
+AMIApp.factory('nagSvgHelper', [
+  '$timeout',
+  function($timeout) {
+    var svgHelper = {
+      /**
+       * Passes in a DOM element to use to inject SVG.
+       *
+       * @todo: add example
+       *
+       * @method getAsyncTemplate
+       *
+       * @param {DOMElement|[DOMElement]} elements Remote path to the template file
+       */
+      inject: function(elements) {
+        if(window.IconicJS) {
+            window.IconicJS().inject(elements);
+        } else if(window.SVGInjector ) {
+            window.SVGInjector(elements);
+        }
+      }
+    }
+
+    return svgHelper;
+  }
+]);
+AMIApp.directive('nagSvg', ['$compile',
+  'nagSvgHelper',
+  function($compile, nagSvgHelper) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+        window.SVGInjector(element[0]);
+        $compile(element.contents())(scope);
+      }
+    }
+  }
+]);
 AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', '$cookies', 'AMIRequest', function($http, NavCollection, $timeout, $location, $translate, envOptions, $cookies, AMIRequest){
   // Redirect to landing page if on a dependant stage path
   if(AMIRequest.hierarchy.indexOf($location.path().substring(1)) > -1){

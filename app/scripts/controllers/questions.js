@@ -29,7 +29,7 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
         toAdd: null,
         toUpdate: null,
         activated: false,
-        add: function(title, description, editable, selected){
+        add: function(title, description, editable, selected, serverID){
           var isCollapsed = false;
           if(typeof selected == "undefined"){
             selected = true;
@@ -41,7 +41,7 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
             if(description){
               isCollapsed = true;
             }
-            this.items.push(newComponent(title, description, editable, selected, isCollapsed));
+            this.items.push(newComponent(title, description, editable, selected, isCollapsed, serverID));
           }
         },
         new: function(){
@@ -84,13 +84,14 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
       }
     }
 
-    var newComponent = function(data, description, editable, selected, isCollapsed){
+    var newComponent = function(data, description, editable, selected, isCollapsed, serverID){
       var component = {
         data: data,
         description: description,
         editable: editable,
         selected: selected, 
-        isCollapsed: isCollapsed
+        isCollapsed: isCollapsed,
+        serverID: serverID
       }
       return component;
     }
@@ -107,23 +108,24 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
         dataBanks: new componentType('dataBanks')
       };
       for(var i=0; i < components.length; i++){
+        console.log("component!", components[i].id);
       if(components[i].meta.component_type == "Data"){
-        $scope.components['data'].add(components[i].meta.component_value, null);
+        $scope.components['data'].add(components[i].meta.component_value, null, false, false, components[i].id);
         $scope.components['data'].activate();
       }
       else if(components[i].meta.component_type == "Question"){
-        $scope.components['questions'].add(components[i].meta.component_value, null);
+        $scope.components['questions'].add(components[i].meta.component_value, null, false, false, components[i].id);
         $scope.components['questions'].activate();
       }
       else if(components[i].meta.data_bank_number){
-        $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].content, false, false);
+        $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].content, false, false, components[i].id);
         $scope.components['questions'].activate();
         $scope.components['dataBanks'].activate();
       }
     }
 
     var validateComponentSelection = function(){
-      if(($scope.components['data'].hasSelectedItems()) || !$scope.components['data'].activated && ($scope.components['questions'].hasSelectedItems() || !$scope.components['questions'].activated) && ($scope.components['dataBanks'].hasSelectedItems() || !$scope.components['dataBanks'].activated)){
+      if(($scope.components['data'].hasSelectedItems() || !$scope.components['data'].activated) && ($scope.components['questions'].hasSelectedItems() || !$scope.components['questions'].activated) && ($scope.components['dataBanks'].hasSelectedItems() || !$scope.components['dataBanks'].activated)){
         AMIRequest.set('components', $scope.components);
       }
       else{

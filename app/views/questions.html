@@ -3,8 +3,8 @@
   <h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="questions.title"></h2>
   <p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="questions.callout"></p>
     <!-- <a ng-href="{{nextStage.path}}" class="btn btn-primary marb10" ng-class="{disabled:  (nextStage.selecting || nextStage.restricted)}">
-    <span ng-if="!nextStage.selecting">&nbsp;<span translate="questions.skip"></span></span>
-    <span ng-if="nextStage.selecting">&nbsp;<span translate="status.wait"></span></span>
+    <span ng-show="!nextStage.selecting">&nbsp;<span translate="questions.skip"></span></span>
+    <span ng-show="nextStage.selecting">&nbsp;<span translate="status.wait"></span></span>
     <i class="fa" ng-class="{'fa-arrow-right': !nextStage.selecting, 'fa-spinner': nextStage.selecting, rotating: nextStage.selecting}"></i> 
     </a> -->
     <div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none clearfix">
@@ -21,50 +21,52 @@
           <h3 ng-show="componentType.id === 'dataBanks'" class="mart30"><span translate="questions.label-databanks" translate-values="{operator: operator.title}"></span> <span class="required">*</span></h3>
           <p ng-show="componentType.id === 'dataBanks'" translate="questions.bank-desc" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
           <ul class="list margin-none padding-none clearfix">
-            <li ng-repeat="component in componentType.items" class="marginbottom-medium">
-              <div ng-if="!component.editable">
-                <label class="clearfix">
-                  <div class="width-10p textalign-center float-left">
-                    <input type="checkbox" ng-model="component.selected"/>
-                  </div>
-                  <div class="width-90p f5 float-left clear-right">
+            <li ng-repeat="component in componentType.items" class="marginbottom-medium clearfix">
+              <div ng-show="!component.editable">
+                  <label><span class="width-10p textalign-center float-left">
+                    <input type="checkbox" id="component-{{$index}}" ng-model="component.selected"/>
+                  </span>
+                  <span class="width-80p f5 float-left">
                     <span class="questionsCustom" ng-bind-html="component.data"></span>
+                  </span></label>
+                  <div ng-show="component.description.length" class="float-left text-right clear-right width-10p">
+                    <span ng-click="component.isCollapsed = !component.isCollapsed">  <img nag-svg data-src="images/iconic/info.svg" alt="i" class="icon" />
+                      <span ng-show="component.isCollapsed">
+                        <img nag-svg data-src="images/iconic/caret-bottom.svg" alt="v" class="icon" />
+                      </span>
+                      <span ng-show="!component.isCollapsed">
+                        <img nag-svg data-src="images/iconic/caret-top.svg" alt="^" class="icon" />
+                      </span>
+                    </span>
                   </div>
-                </label>
-              <div ng-if="component.description.length" class="flexy-small text-right">
-                <button class="btn btn-sm btn-info" ng-click="component.isCollapsed = !component.isCollapsed"><span translate="questions.show-desc"></span> <i class="fa" ng-class="{'fa-caret-down': component.isCollapsed, 'fa-caret-right': !component.isCollapsed}"></i></button>
-              </div>
             </div>
-            <div ng-if="!component.editable && component.description.length" ng-class="{'dn': component.isCollapsed}" ng-bind-html="component.description" class="clearfix"></div>
-            <div ng-if="(component.editable && componentType.toUpdate !== component)" class="flexy">
-              <div class="checkbox flexy-big">
+            <div ng-show="!component.editable && component.description.length && !component.isCollapsed" ng-bind-html="component.description" class="clear-left infoBox"></div>
+            <div ng-show="(component.editable && componentType.toUpdate !== component)" class="clear-left">
                 <label>
-                  <input type="checkbox" ng-model="component.selected"/>{{component.data}}
+                  <div class="width-10p textalign-center float-left"><input type="checkbox" ng-model="component.selected"/></div>
+                  <div class="f5 float-left width-80p">{{component.data}}</div>
                 </label>
-              </div>
-              <div class="flexy-small text-right">
-                <span class="btn btn-info" ng-click="componentType.startUpdate($index)" aria-label="{{'questions.edit-component' | translate}}" title="{{'questions.edit-component' | translate}}">
-                  <i class="fa fa-edit"></i>
+                <span class="float-left width-10p text-right">
+                <span ng-click="componentType.startUpdate($index)" aria-label="{{'questions.edit-component' | translate}}" title="{{'questions.edit-component' | translate}}">
+                  <img nag-svg data-src="images/iconic/pencil.svg" alt="pencil" class="icon" />
                 </span>
-                <span class="btn btn-warning" ng-click="componentType.delete($index)" aria-label="{{'questions.remove-component' | translate}}" title="{{'questions.remove-component' | translate}}">
-                  <i class="fa fa-close"></i>
+                <span" ng-click="componentType.delete($index)" aria-label="{{'questions.remove-component' | translate}}" title="{{'questions.remove-component' | translate}}">
+                  <!-- <img src="images/iconic/trash.svg" alt="x" class="icon"/> -->
+                  <img nag-svg data-src="images/iconic/trash.svg" alt="x" class="icon" />
                 </span>
-              </div>
+                </span>
             </div>
-            <div ng-if="(component.editable && componentType.toUpdate == component)" class="flexy form-inline">
-              <div class="flexy-big">
-                <div class="form-group">
-                  <input type="text" ng-model="component.data" class="form-control" ng-enter="componentType.update(component, $index)" focus-me="componentType.toUpdate === component">
-                </div>
-              </div>
-              <div class="flexy-small text-right">
-                <span class="btn btn-info" ng-click="componentType.update(component, $index)"  aria-role="button" aria-label="{{'questions.update-component' | translate}}" title="{{'questions.update-component' | translate}}">
-                  <i class="fa fa-check"></i>
-                </span>
-                <span class="btn btn-warning" ng-click="componentType.startUpdate(-1)"  aria-role="button" aria-label="{{'questions.cancel-component' | translate}}" title="{{'questions.cancel-component' | translate}}">
-                  <i class="fa fa-close"></i>
-                </span>
-              </div>
+            <div ng-show="(component.editable && componentType.toUpdate == component)" class="clearfix">
+              <label>
+                  <div class="width-10p textalign-center float-left"><input type="checkbox" ng-model="component.selected"/></div>
+                  <div class="f5 float-left width-80p"><input type="text" ng-model="component.data" class="form-control" ng-enter="componentType.update(component, $index)" focus-me="componentType.toUpdate === component"></div>
+                </label>
+              <span class="width-10p float-left text-right"><span ng-click="componentType.update(component, $index)"  aria-role="button" aria-label="{{'questions.update-component' | translate}}" title="{{'questions.update-component' | translate}}">
+                              <img nag-svg data-src="images/iconic/check.svg" alt="check" class="icon" />
+                            </span>
+                            <span ng-click="componentType.startUpdate(-1)"  aria-role="button" aria-label="{{'questions.cancel-component' | translate}}" title="{{'questions.cancel-component' | translate}}"></span>
+                <img nag-svg data-src="images/iconic/x.svg" alt="x" class="icon" />
+              </span>
             </div>
             </li>
           </ul>
@@ -73,42 +75,42 @@
             <div class="input-group">
               <input type="text" placeholder="{{'questions.type-question' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
               <span class="input-group-btn">
-                <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-question' | translate}}" title="{{'questions.add-question' | translate}}">
-                  <i class="fa fa-plus"></i>
+                <button class="btn-sm" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-question' | translate}}" title="{{'questions.add-question' | translate}}">
+                  <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
                 </button>
               </div> <!-- ??? -->
               </span>
             </div>
-            <!-- <div class="mart10" ng-show="componentType.id === 'data'">
+            <div class="mart10" ng-show="componentType.id === 'data'">
             <label translate="questions.newData"></label>
             <div class="input-group">
             <input type="text" placeholder="{{'questions.desc-data' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
             <span class="input-group-btn">
-            <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-data' | translate}}" title="{{'questions.add-data' | translate}}">
-              <i class="fa fa-plus"></i>
-            </button>
+            <span class="" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-data' | translate}}" title="{{'questions.add-data' | translate}}">
+              <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
+            </span>
             </span>
             </div>
-            </div> -->
+            </div>
             <div class="mart10" ng-show="componentType.id === 'dataBanks'">
               <label translate="questions.addDataBank"></label>
               <div class="input-group">
                 <input type="text" placeholder="{{'questions.desc-bank' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
                 <span class="input-group-btn">
-                  <button class="btn btn-info" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-bank' | translate}}" title="{{'questions.add-bank' | translate}}">
-                    <i class="fa fa-plus"></i>
-                  </button>
+                  <span class="" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-bank' | translate}}" title="{{'questions.add-bank' | translate}}">
+                    <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
+                  </span>
                 </span>
               </div>
               <p class="help-block" translate="questions.otherBank" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
             </div>
-            <div class="margintop-medium clearfix">
-              <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+            <div class="margintop-medium clearfix" ng-show="$last">
+              <span ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
                   <span translate="status.previous"></span>
-              </button>
-              <button ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
+              </span>
+              <span ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
                 <span translate="status.next"></span>
-              </button>
+              </span>
             </div>
           </div>
         </div>

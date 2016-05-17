@@ -25,7 +25,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         });
 
         var makePDF = function($element){
-            var requestLetter = new Document("A4", [11.7647, 11.7647, 11.7647, 11.7647]);
+            var requestLetter = new Document("letter", [11.7647, 11.7647, 11.7647, 11.7647]);
 
             // convert HTML in #request element to canvas-based document
             requestLetter.writeHTMLtoDoc($element[0]);
