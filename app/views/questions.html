@@ -72,9 +72,9 @@
           </ul>
           <div class="mart10" ng-show="componentType.id === 'questions'">
             <label translate="questions.newQuestion"></label>
-            <div class="input-group">
-              <input type="text" placeholder="{{'questions.type-question' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
-              <span class="input-group-btn">
+            <div class="input-group clearfix">
+              <textarea type="text" placeholder="{{'questions.type-question' | translate}}" class="form-control width-90p float-left" ng-model="componentType.toAdd" ng-enter="componentType.new()"></textarea>
+              <span class="input-group-btn width-10p float-left text-right">
                 <button class="btn-sm" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-question' | translate}}" title="{{'questions.add-question' | translate}}">
                   <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
                 </button>
@@ -83,23 +83,23 @@
             </div>
             <div class="mart10" ng-show="componentType.id === 'data'">
             <label translate="questions.newData"></label>
-            <div class="input-group">
-            <input type="text" placeholder="{{'questions.desc-data' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
-            <span class="input-group-btn">
-            <span class="" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-data' | translate}}" title="{{'questions.add-data' | translate}}">
+            <div class="input-group clearfix">
+            <textarea type="text" placeholder="{{'questions.desc-data' | translate}}" class="form-control width-90p float-left" ng-model="componentType.toAdd" ng-enter="componentType.new()"></textarea>
+            <span class="input-group-btn width-10p float-left text-right">
+            <button class="btn-sm" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-data' | translate}}" title="{{'questions.add-data' | translate}}">
               <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
-            </span>
+            </button>
             </span>
             </div>
             </div>
             <div class="mart10" ng-show="componentType.id === 'dataBanks'">
               <label translate="questions.addDataBank"></label>
-              <div class="input-group">
-                <input type="text" placeholder="{{'questions.desc-bank' | translate}}" class="form-control" ng-model="componentType.toAdd" ng-enter="componentType.new()">
-                <span class="input-group-btn">
-                  <span class="" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-bank' | translate}}" title="{{'questions.add-bank' | translate}}">
+              <div class="input-group clearfix">
+                <textarea placeholder="{{'questions.desc-bank' | translate}}" class="form-control width-90p float-left" ng-model="componentType.toAdd" ng-enter="componentType.new()"></textarea>
+                <span class="input-group-btn width-10p float-left text-right">
+                  <button class="btn-sm" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-bank' | translate}}" title="{{'questions.add-bank' | translate}}">
                     <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
-                  </span>
+                  </button>
                 </span>
               </div>
               <p class="help-block" translate="questions.otherBank" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>

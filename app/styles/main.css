@@ -242,6 +242,13 @@ hr {
 .flexy-small {
     flex-grow: 1;
 }
+.input-group {
+	position: relative;
+}
+.input-group-btn {
+	position: absolute;
+	top: calc(50% - 0.525em);
+}
 @media screen and (min-width: 48em) {
   .container {max-width: 30em;}
   .width-titleimage-ns {
