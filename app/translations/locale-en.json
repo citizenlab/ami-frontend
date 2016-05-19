@@ -15,15 +15,15 @@
   },
   "category": {
     "title": "Welcome to Access My Info",
-    "callout": "Want to know what your mobile operator or internet provider knows about you? What do they keep on file? Who do they share it with? According to the HK government's Personal Data (Privacy) Ordinance, companies are required to disclose this information to their customers upon request. We can help with that request.",
+    "callout": "What do companies and government know about you? What do they keep on file? Who do they share it with? Organizations are required by Canadian privacy laws to disclose this information to their customers upon request. We can help with that.",
     "label": "Category", 
     "requestsProcessed": "Join the <strong>231</strong> other people who have created a request on this system.", 
-    "instruction1": "What does your mobile phone or internet provider know about you?", 
-    "instruction2": "Find out by requesting access to your personal data. This website will help you write a letter that your telco must respond to, by law.", 
-    "instruction3": "It only takes 5 easy steps. Let’s get started!", 
+    "instruction1": "What do organizations know about you?", 
+    "instruction2": "Find out by requesting access to your personal data. This website will help you write your request.", 
+    "instruction3": "It only takes 5 easy steps. Start by choosing a category below.", 
     "start": "Start", 
     "info-1-title": "About this project", 
-    "info-1": "Access My Info (AMI) is a web application that enables you to find out what your telecommunication or internet service providers (ISP) know about you. It guides you via a step-by-step wizard to generate a formal letter that requests access to your personal information. This letter can then be sent via postal mail or email to the respective company’s privacy officer.  ", 
+    "info-1": "Access My Info (AMI) is a web application that enables you to find out what a variety of different companies and government departments know about you. It guides you via a step-by-step wizard to generate a formal letter that requests access to your personal information. This letter can then be sent via postal mail or email to the respective company’s privacy officer, or attached to the federal government's Access to Information request tool.", 
     "more-info-title": "For more information", 
     "press-kit": "Press kit", 
     "press-release": "Press release", 
@@ -31,7 +31,7 @@
     "law": "Hong Kong Data Privacy Ordinance", 
     "sponsorStatement": "Access My Info is a joint initiative created by members of ",
     "socialMediaMessage": "Spread the word about our project:",
-    "whatsapp-share-text": "Access My Info Hong Kong"
+    "whatsapp-share-text": "Access My Info"
   },
   "operator": {
     "title": "Select your service provider",
@@ -110,11 +110,11 @@
     "share-text": "Do you know you have the right to access your own personal info? Find out what your ISP or telco knows about you at {{shareURL}}",
     "share-prompt": "Share this campaign with your friends:", 
     "consent-clause": "I consent and authorise: ",
-    "label-data": "Access My Info Hong Kong may collect the number of my data access request made via this programme for the statistics and research purposes.",
-    "label-subscribe": "Access My Info Hong Kong may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
+    "label-data": "Access My Info may collect the number of my data access request made via this programme for the statistics and research purposes.",
+    "label-subscribe": "Access My Info may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
     "email": "Email address",
-    "text-data": "Share the following data with Access My Info Hong Kong: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
-    "text-subscribe": "I agree that Access My Info Hong Kong may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info Hong Kong to store my email address in a server located in Canada.  Access My Info Hong Kong may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info Hong Kong may send me an email invitation to complete a short survey. I understand that Access My Info Hong Kong will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
+    "text-data": "Share the following data with Access My Info: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
+    "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info Hong Kong to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
     "enroll": "Enroll"
   },
   "wrapper": {

@@ -35,12 +35,12 @@
             <!--       <select tabindex="1" name="industry" ng-model="industry" ng-options="industry.title for industry in industries track by industry.id" class="form-control input-lg">
                     <option value="" selected>Select industry</option>
                 </select> -->
-                    <div class="margintop-large textalign-center" ng-repeat="industry in industries">
-                        <div class="btn btn-primary" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
+                    <div class="margintop-medium" ng-repeat="industry in industries">
+                        <div class="btn btn-primary btn-icon" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
                          ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
-                            <img ng-src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/>
-                            <div ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)">
-                                <h4>{{industry.title}}</h4>
+                            <img nag-svg svgpath="images/categories/{{industry.id}}.svg" width="100px" class="icon icon-big left-1-ns" />
+                            <div class="marginleft-xlarge-ns">
+                                <h4 class="margin-none">{{industry.title}}</h4>
                                 <div ng-bind-html="industry.content"></div>
                                 <!-- <span translate="category.start"></span> -->
                             </div>

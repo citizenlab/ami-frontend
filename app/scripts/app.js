@@ -112,7 +112,8 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'IndustryCtrl',
         resolve: {
           industries: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
-            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries");
+            var params = {"per_page": 100}
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries", params);
           }]
           // ,
           // links: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
@@ -127,7 +128,8 @@ var AMIApp = angular.module('AMIApp', [
           companies: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
             var industry = AMIRequest.get('industry');
             var jurisdiction = AMIRequest.get('jurisdiction');
-            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators");
+            var params = {"per_page": 100}
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators", params);
           }]
         },
       })
@@ -348,10 +350,16 @@ AMIApp.directive('nagSvg', ['$compile',
   'nagSvgHelper',
   function($compile, nagSvgHelper) {
     return {
-      restrict: 'A',
       link: function(scope, element, attrs) {
-        window.SVGInjector(element[0]);
-        $compile(element.contents())(scope);
+        scope.$watch('svgpath', function(value){
+            if(scope.svgpath){
+              element[0].setAttribute('data-src', scope.svgpath);
+            }
+            window.SVGInjector(element[0]);
+        });
+      },
+      scope: {
+        svgpath: '@'
       }
     }
   }
