@@ -1,17 +1,10 @@
-.container {
-  max-width: 33em;
-}
-.container-wide {
-  max-width: 49.5em;
-}
+/* THEME COLORS */
 a, a:link, a:visited, a:active, a:hover {
-	color: #008876;
+	color: #d82c2c;
 	text-decoration: none;
 }
-hr {
-	border-top: 1px solid #ccc;
-	border-bottom: 0;
-	margin: 0.5em 0;
+.progressActive, .buttonActive {
+	background-color: #d82c2c;
 }
 .dn {display:none;}
 .progressActive:after {
@@ -21,12 +14,79 @@ hr {
 	height: 0;
 	border-top: 1rem solid transparent;           /* Go big on the size, and let overflow hide */
 	border-bottom: 1rem solid transparent;
-	border-left: 1rem solid #27bfa8;
+	border-left: 1rem solid #d82c2c;
 	position: absolute;
 	top: 50%;
 	margin-top: -1rem; 
 	left: 100%;
 	z-index: 2; 
+}
+.progressCompletedPast, .backgroundcolor-customdarkteal {
+	background-color: #750000;
+}
+.progressCompletedPast a, 
+.progressCompletedPast a:link, 
+.progressCompletedPast a:visited, 
+.progressCompletedPast a:active {
+	color: #5ab48a;
+	text-decoration: none;
+}
+/*
+.progressAvailable {
+	background-color: #4DDFC6;
+}
+*/
+.progressDisabled, .progressAvailable {
+	background-color: #E69999;
+}
+.backgroundcolor-pastelteal {
+	background-color: #CFFCF3;
+}
+.btn-social {
+	border-style: none;
+	border: 0;
+	background-color: #d82c2c;
+	color: #fff;
+	min-width: 0;
+}
+.btn-primary {
+	border-style: none;
+	border: 0;
+	background-color: #d82c2c;
+	color: #fff;
+}
+.btn-primary .icon path {
+	fill: #fff;
+}
+.btn-next {
+	border-style: none;
+	border: 0;
+	background-color: #d82c2c;
+	color: #fff;
+}
+.btn-info {
+	border-style: none;
+	border: 0;
+	background-color: #27bfa8;
+	color: #fff;
+}
+.btn-media-select {
+	border: 2px solid #27bfa8;
+}
+
+/* GENERAL */
+
+.container {
+  max-width: 33em;
+}
+.container-wide {
+  max-width: 49.5em;
+}
+
+hr {
+	border-top: 1px solid #ccc;
+	border-bottom: 0;
+	margin: 0.5em 0;
 }
 .progressLastStep {
 	/*display: none;*/
@@ -54,9 +114,6 @@ hr {
 	color: #fff;
 	text-decoration: none;
 }
-.progressActive, .buttonActive {
-	background-color: #27bfa8;
-}
 .progressActive a, 
 .progressActive a:link, 
 .progressActive a:visited, 
@@ -68,24 +125,6 @@ hr {
 	color: #fff;
 	text-decoration: none;
 }
-.progressCompletedPast, .backgroundcolor-customdarkteal {
-	background-color: #007566;
-}
-.progressCompletedPast a, 
-.progressCompletedPast a:link, 
-.progressCompletedPast a:visited, 
-.progressCompletedPast a:active {
-	color: #5ab48a;
-	text-decoration: none;
-}
-/*
-.progressAvailable {
-	background-color: #4DDFC6;
-}
-*/
-.progressDisabled, .progressAvailable {
-	background-color: #BFD9D5;
-}
 .progressDisabled a, 
 .progressDisabled a:link, 
 .progressDisabled a:visited, 
@@ -93,9 +132,7 @@ hr {
 	color: #fff;
 	text-decoration: none;
 } 
-.backgroundcolor-pastelteal {
-	background-color: #CFFCF3;
-}
+
 .btn {
 	display: inline-block;
 	border-radius: 0.5rem;
@@ -109,38 +146,10 @@ hr {
 .btn-sm {
 	min-width: 2rem;
 }
-.btn-social {
-	border-style: none;
-	border: 0;
-	background-color: #008876;
-	color: #fff;
-	min-width: 0;
-}
-.btn-primary {
-	border-style: none;
-	border: 0;
-	background-color: #008876;
-	color: #fff;
-}
-.btn-primary .icon path {
-	fill: #fff;
-}
-.btn-next {
-	border-style: none;
-	border: 0;
-	background-color: #008876;
-	color: #fff;
-}
-.btn-previous {
+.btn-previous, .btn-secondary {
 	border-style: none;
 	border: 0;
 	background-color: #999;
-	color: #fff;
-}
-.btn-info {
-	border-style: none;
-	border: 0;
-	background-color: #27bfa8;
 	color: #fff;
 }
 .btn-info .icon path {
@@ -163,9 +172,6 @@ hr {
 	border-radius: 0;
 	border: 2px solid #F2F2F2;
 	background-color: #fff;
-}
-.btn-media-select {
-	border: 2px solid #27bfa8;
 }
 .btn p {
 	margin:0;
@@ -261,7 +267,7 @@ hr {
 	position:relative;
 	text-align:left;
 }
-/* Just experimenting with svg css styling */
+/* Just experimenting with svg css styling
 .btn-icon:hover {
 	background: #00A892;
 	color: #FCFDEC;
@@ -270,6 +276,7 @@ hr {
 .btn-icon:hover .icon polygon {
 	fill: #FCFDEC;
 }
+*/
 .btn-icon .icon {
 	position: absolute;
 }
@@ -299,9 +306,6 @@ hr {
  .maxheight-xxxxxxlarge-ns { max-height: 64rem; }
  .maxheight-xxxxxxxlarge-ns { max-height: 96rem; }
  .maxheight-none-ns { max-height: none; }
-}
-.text-right {
-	text-align: right;
 }
 @media screen and (min-width: 48em) and (max-width: 64em) {
   html {font-size: 105%;}

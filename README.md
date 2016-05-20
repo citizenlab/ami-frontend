@@ -1,4 +1,4 @@
-# Access My Info HK
+# Access My Info: Canada
 This is a fork of the Access My Info project that is a work-in-progress. For more information about Access My Info, [please see here](https://github.com/digitalstewards/ami).
 
 
