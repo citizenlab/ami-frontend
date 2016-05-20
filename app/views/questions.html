@@ -50,7 +50,7 @@
                 <span ng-click="componentType.startUpdate($index)" aria-label="{{'questions.edit-component' | translate}}" title="{{'questions.edit-component' | translate}}">
                   <img nag-svg data-src="images/iconic/pencil.svg" alt="pencil" class="icon" />
                 </span>
-                <span" ng-click="componentType.delete($index)" aria-label="{{'questions.remove-component' | translate}}" title="{{'questions.remove-component' | translate}}">
+                <span ng-click="componentType.delete($index)" aria-label="{{'questions.remove-component' | translate}}" title="{{'questions.remove-component' | translate}}">
                   <!-- <img src="images/iconic/trash.svg" alt="x" class="icon"/> -->
                   <img nag-svg data-src="images/iconic/trash.svg" alt="x" class="icon" />
                 </span>
@@ -70,24 +70,24 @@
             </div>
             </li>
           </ul>
-          <div class="mart10" ng-show="componentType.id === 'questions'">
+          <div ng-show="componentType.id === 'questions'">
             <label translate="questions.newQuestion"></label>
             <div class="input-group clearfix">
               <textarea type="text" placeholder="{{'questions.type-question' | translate}}" class="form-control width-90p float-left" ng-model="componentType.toAdd" ng-enter="componentType.new()"></textarea>
-              <span class="input-group-btn width-10p float-left text-right">
-                <button class="btn-sm" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-question' | translate}}" title="{{'questions.add-question' | translate}}">
+              <span class="input-group-btn width-10p float-left textalign-right">
+                <button class="btn btn-secondary" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-question' | translate}}" title="{{'questions.add-question' | translate}}">
                   <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
                 </button>
               </div> <!-- ??? -->
               </span>
             </div>
-            <div class="mart10" ng-show="componentType.id === 'data'">
+            <div ng-show="componentType.id === 'data'">
             <label translate="questions.newData"></label>
             <div class="input-group clearfix">
             <textarea type="text" placeholder="{{'questions.desc-data' | translate}}" class="form-control width-90p float-left" ng-model="componentType.toAdd" ng-enter="componentType.new()"></textarea>
             <span class="input-group-btn width-10p float-left text-right">
-            <button class="btn-sm" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-data' | translate}}" title="{{'questions.add-data' | translate}}">
-              <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" />
+            <button class="btn btn-secondary" ng-disabled="!componentType.verify(componentType.toAdd)" ng-click="componentType.new()" aria-role="button" aria-label="{{'questions.add-data' | translate}}" title="{{'questions.add-data' | translate}}">
+              <!-- <img nag-svg data-src="images/iconic/plus.svg" alt="+" class="icon" /> -->+
             </button>
             </span>
             </div>
