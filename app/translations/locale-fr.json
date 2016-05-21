@@ -103,7 +103,9 @@
     "emailButton": "Open email client",
     "emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
     "thanks": "That's it! Thank you for participating in the Access My Info Hong Kong project.",
-    "continue": "Continue on to maximize your impact"
+    "continue": "Continue on to maximize your impact",
+    "ami-again-prompt": "Still curious? You can submit multiple requests within Access My Info:",
+    "ami-again-button": "Create another request"
   },
   "finish": {
     "title": "Thank you for submitting your request!", 

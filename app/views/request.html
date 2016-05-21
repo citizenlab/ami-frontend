@@ -14,8 +14,7 @@
 
   <!-- EMAIL OPTION BEGIN -->
   <div ng-if="operator.meta.privacy_officer_email">
-  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
-    <img class="display-none display-inline-ns width-large verticalalign-middle marginright-small" src="images/illustrations/EmailOption.png" />
+  <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
     <span ng-if="!(pdfOptionEnabled && operator.meta.privacy_contact_address_1)" translate="request.instructions.email-title"></span>
     <span ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1" translate="request.instructions.email-title-option-1"></span>
   </p>
@@ -54,7 +53,7 @@
     </div>
     <div class="b f5 margintop-medium">
       <span translate="request.instructions.email-empty-prompt"></span>
-      <div class="margintop-none cursor-pointer darkteal" ngclipboard data-clipboard-target="#request">
+      <div class="margintop-none cursor-pointer darkestred" ngclipboard data-clipboard-target="#request">
         <span translate="request.instructions.email-empty-instructions"></span>
       </div>
     </div>
@@ -62,8 +61,7 @@
   </div>
   <!-- EMAIL OPTION END -->
   <div ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1">
-  <p class="darkgray darkteal f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
-    <img class="display-none display-inline-ns width-large verticalalign-middle marginright-small" src="images/illustrations/PostalOption.png" />
+  <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
     <span ng-if="!operator.meta.privacy_officer_email" translate="request.instructions.post-title"></span>
     <span ng-if="operator.meta.privacy_officer_email" translate="request.instructions.post-title-option-2"></span>
   </p>
@@ -116,7 +114,17 @@
         </a>
     </span>
   </div>
- 
+
+  <p class="margintop-medium">
+    <span translate="request.ami-again-prompt"></span>
+  </p>
+  <p class="margintop-medium">
+    <a class="btn btn-primary" href="/#">
+      <span class="white b f5" translate="request.ami-again-button"></span>
+    </a>
+  </p>
+
+  <hr class="marginvertical-large" />
 
   <div class="margintop-large clearfix paddinghorizontal-medium paddinghorizontal-none-ns">
     <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">

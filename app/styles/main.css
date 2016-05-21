@@ -1,10 +1,11 @@
+/********************************************************************/
 /* THEME COLORS */
-a, a:link, a:visited, a:active, a:hover {
-	color: #d82c2c;
+a, a:link, a:visited, a:active {
+	color: #bd001a;
 	text-decoration: none;
 }
 .progressActive, .buttonActive {
-	background-color: #d82c2c;
+	background-color: #bd001a;
 }
 .dn {display:none;}
 .progressActive:after {
@@ -14,7 +15,7 @@ a, a:link, a:visited, a:active, a:hover {
 	height: 0;
 	border-top: 1rem solid transparent;           /* Go big on the size, and let overflow hide */
 	border-bottom: 1rem solid transparent;
-	border-left: 1rem solid #d82c2c;
+	border-left: 1rem solid #bd001a;
 	position: absolute;
 	top: 50%;
 	margin-top: -1rem; 
@@ -45,14 +46,14 @@ a, a:link, a:visited, a:active, a:hover {
 .btn-social {
 	border-style: none;
 	border: 0;
-	background-color: #d82c2c;
+	background-color: #bd001a;
 	color: #fff;
 	min-width: 0;
 }
 .btn-primary {
 	border-style: none;
 	border: 0;
-	background-color: #d82c2c;
+	background-color: #bd001a;
 	color: #fff;
 }
 .btn-primary .icon path {
@@ -61,7 +62,7 @@ a, a:link, a:visited, a:active, a:hover {
 .btn-next {
 	border-style: none;
 	border: 0;
-	background-color: #d82c2c;
+	background-color: #bd001a;
 	color: #fff;
 }
 .btn-info {
@@ -71,9 +72,10 @@ a, a:link, a:visited, a:active, a:hover {
 	color: #fff;
 }
 .btn-media-select {
-	border: 2px solid #27bfa8;
+	border: 2px solid #f94f44;
 }
 
+/********************************************************************/
 /* GENERAL */
 
 .container {
@@ -144,7 +146,15 @@ hr {
 	cursor: pointer;
 }
 .btn-sm {
-	min-width: 2rem;
+	display: inline-block;
+	border-radius: 0.25rem;
+	padding: 0.67rem;
+	text-decoration: none;
+	line-height: 1;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	text-align: center;
+	cursor: pointer;
 }
 .btn-previous, .btn-secondary {
 	border-style: none;
@@ -155,15 +165,11 @@ hr {
 .btn-info .icon path {
 	fill: #fff;
 }
-.btn:disabled {
+.btn-disabled {
 	border-style: none;
 	border: 0;
 	background-color: #ccc;
 	color: #999;
-}
-.btn-sm, .btn-sm:hover {
-	border:none;
-	background: none;
 }
 .btn-sm:disabled .icon path {
 	fill: #999;
@@ -176,14 +182,6 @@ hr {
 .btn p {
 	margin:0;
 }
-.icon {
-	height:12px;
-	width:12px;
-}
-.icon-big {
-	height:3rem;
-	width:3rem;
-}
 .form-item {
 	margin-bottom: 1em;
 	display: block;
@@ -194,13 +192,15 @@ hr {
 	display: block;
 	width: 100%;
 }
+.form-item select {
+	margin-top: 0.25rem;
+	margin-bottom: 0.5rem;
+	display: block;
+}
 .letter ul {
 	padding-left: 1rem;
 }
 .infoBox {
-	background: rgba(39, 191, 168, 0.18);
-    padding: 0 30px;
-    font-size: 14px;
     max-height: 200px;
     overflow-y: scroll;
 }
@@ -235,15 +235,6 @@ hr {
   top: -9999px;
   left: -9999px;
 }
-.questionsCustom {
-	font-size: 0.85em;
-	color: #666;
-}
-.questionsCustom strong {
-	display: block;
-	font-size: 1.176em;
-	color: #222;
-}
 .flexy {
     display:flex;
     justify-content: space-between;
@@ -255,18 +246,6 @@ hr {
 .flexy-small {
     flex-grow: 1;
 }
-.input-group {
-	position: relative;
-}
-.input-group-btn {
-	position: absolute;
-	top: calc(50% - 0.525em);
-}
-
-.btn-icon {
-	position:relative;
-	text-align:left;
-}
 /* Just experimenting with svg css styling
 .btn-icon:hover {
 	background: #00A892;
@@ -277,12 +256,6 @@ hr {
 	fill: #FCFDEC;
 }
 */
-.btn-icon .icon {
-	position: absolute;
-}
-.btn-icon .icon-big {
-	top: calc(50% - 1.5rem);
-}
 
 @media screen and (min-width: 48em) {
   .container {max-width: 30em;}
@@ -292,7 +265,7 @@ hr {
   .flexProgress {
   	border-radius: 0.33em;
   }
-   .maxheight-100p-ns { max-height: 100%; }
+ .maxheight-100p-ns { max-height: 100%; }
  .maxheight-75p-ns { max-height: 75%; }
  .maxheight-50p-ns { max-height: 50%; }
  .maxheight-25p-ns { max-height: 25%; }
@@ -307,6 +280,24 @@ hr {
  .maxheight-xxxxxxxlarge-ns { max-height: 96rem; }
  .maxheight-none-ns { max-height: none; }
 }
+
+/********************************************************************/
+/* DEFAULT/GENERIC PAGE STYLES */ 
+
+.pagecontent ul {
+	padding-left: 1em;
+}
+.pagecontent ul > li {
+	padding-left: 0.5em;
+}
+.pagecontent h2 {
+	font-size: 1.25rem;
+}
+
+
+/********************************************************************/
+/* ZOOMING FOR LARGE SCREENS */
+
 @media screen and (min-width: 48em) and (max-width: 64em) {
   html {font-size: 105%;}
 }
