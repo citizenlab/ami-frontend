@@ -43,37 +43,7 @@ a, a:link, a:visited, a:active {
 .backgroundcolor-pastelteal {
 	background-color: #CFFCF3;
 }
-.btn-social {
-	border-style: none;
-	border: 0;
-	background-color: #bd001a;
-	color: #fff;
-	min-width: 0;
-}
-.btn-primary {
-	border-style: none;
-	border: 0;
-	background-color: #bd001a;
-	color: #fff;
-}
-.btn-primary .icon path {
-	fill: #fff;
-}
-.btn-next {
-	border-style: none;
-	border: 0;
-	background-color: #bd001a;
-	color: #fff;
-}
-.btn-info {
-	border-style: none;
-	border: 0;
-	background-color: #27bfa8;
-	color: #fff;
-}
-.btn-media-select {
-	border: 2px solid #f94f44;
-}
+
 
 /********************************************************************/
 /* GENERAL */
@@ -136,7 +106,7 @@ hr {
 } 
 
 .btn {
-	display: inline-block;
+	/*display: inline-block;*/
 	border-radius: 0.5rem;
 	padding: 0.625rem 0.75rem 0.5rem 0.75rem;
 	text-decoration: none;
@@ -165,6 +135,10 @@ hr {
 .btn-info .icon path {
 	fill: #fff;
 }
+.btn-select .icon path,
+.btn-select .icon polygon {
+	fill: #9d0003;
+}
 .btn-disabled {
 	border-style: none;
 	border: 0;
@@ -175,12 +149,47 @@ hr {
 	fill: #999;
 }
 .btn-select {
+	text-align: left;
 	border-radius: 0;
 	border: 2px solid #F2F2F2;
 	background-color: #fff;
 }
 .btn p {
 	margin:0;
+}
+.btn-social {
+	border-style: none;
+	border: 0;
+	background-color: #bd001a;
+	color: #fff;
+	min-width: 0;
+}
+.btn-primary {
+	border-style: none;
+	border: 0;
+	background-color: #bd001a;
+	color: #fff;
+}
+.btn-primary .icon path {
+	fill: #fff;
+}
+.btn-next {
+	border-style: none;
+	border: 0;
+	background-color: #bd001a;
+	color: #fff;
+}
+.btn-info {
+	border-style: none;
+	border: 0;
+	background-color: #27bfa8;
+	color: #fff;
+}
+.btn-media-select {
+	border: 2px solid #f94f44;
+}
+.lineheight-xlarge-ns {
+	line-height: 4rem;
 }
 .form-item {
 	margin-bottom: 1em;
@@ -235,6 +244,13 @@ hr {
   top: -9999px;
   left: -9999px;
 }
+.display-flex-center { display: flex; align-items: center; justify-content: space-between;}
+.flexgrow-1 {
+	flex-grow:1;
+}
+.flexgrow-2 {
+	flex-grow:2;
+}
 .flexy {
     display:flex;
     justify-content: space-between;
@@ -245,6 +261,9 @@ hr {
 }
 .flexy-small {
     flex-grow: 1;
+}
+.content-box {
+	box-sizing: content-box;
 }
 /* Just experimenting with svg css styling
 .btn-icon:hover {

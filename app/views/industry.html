@@ -21,11 +21,11 @@
             <!--       <select tabindex="1" name="industry" ng-model="industry" ng-options="industry.title for industry in industries track by industry.id" class="form-control input-lg">
                     <option value="" selected>Select industry</option>
                 </select> -->
-                    <div class="marginvertical-medium" ng-repeat="industry in industries">
-                        <div class="btn btn-primary width-100p btn-icon" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
+                    <div ng-repeat="industry in industries">
+                        <div class="btn btn-select height-xlarge-ns btn-icon display-flex-center content-box" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
                          ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
-                            <img nag-svg svgpath="images/categories/{{industry.id}}.svg" class="width-large height-large margin-small width-xlarge-ns height-xlarge-ns float-left-ns marginright-large-ns" />
-                            <div class="padding-small textalign-left-ns">
+                            <div class="flexgrow-1 textalign-center"><img nag-svg svgpath="images/categories/{{industry.id}}.svg" class="marginright-medium-ns width-large height-large width-xlarge-ns height-xlarge-ns icon" /></div>
+                            <div class="flexgrow-2 textalign-left-ns">
                                 <h4 class="f4 margintop-none marginbottom-small">{{industry.title}}</h4>
                                 <div class="f5 lineheight-1p3" ng-bind-html="industry.content"></div>
                                 <!-- <span translate="category.start"></span> -->

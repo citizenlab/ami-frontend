@@ -10,12 +10,11 @@
             <option value="" selected>Select company</option>
           </select> -->
         <div ng-repeat="company in companies | orderBy:'title'">
-          <div class="btn btn-select width-100p clearfix" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
-            <img class="float-left maxheight-xlarge-ns maxwidth-xxlarge-ns" ng-src="{{company.meta.operator_logo.url}}" alt="{{company.title}}">
-              <h4 class="f5 fontweight-normal marginbottom-none margintop-medium paddingtop-small float-right">
+          <div class="btn btn-select height-xlarge-ns display-flex-center content-box" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
+              <div class="flexgrow-1"><img class="maxheight-xlarge-ns maxwidth-xxlarge-ns" ng-src="{{company.meta.operator_logo.url}}" alt="{{company.title}}"></div>
+              <h4 class="flexgrow-2 f4 marginbottom-none margintop-none textalign-right">
                 {{company.title}}
               </h4>
-              <div ng-bind-html="company.content"></div>
           </div>
         </div>
       </div>

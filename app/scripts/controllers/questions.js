@@ -110,16 +110,15 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
       for(var i=0; i < components.length; i++){
         console.log("component!", components[i].id);
       if(components[i].meta.component_type == "Data"){
-        $scope.components['data'].add(components[i].meta.component_value, null, false, false, components[i].id);
+        $scope.components['data'].add(components[i].meta.component_value, null, false, true, components[i].id);
         $scope.components['data'].activate();
       }
       else if(components[i].meta.component_type == "Question"){
-        $scope.components['questions'].add(components[i].meta.component_value, null, false, false, components[i].id);
+        $scope.components['questions'].add(components[i].meta.component_value, null, false, true, components[i].id);
         $scope.components['questions'].activate();
       }
       else if(components[i].meta.data_bank_number){
         $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].content, false, false, components[i].id);
-        $scope.components['questions'].activate();
         $scope.components['dataBanks'].activate();
       }
     }

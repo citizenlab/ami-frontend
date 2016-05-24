@@ -22,7 +22,7 @@
           <p class="f5" ng-show="componentType.id === 'dataBanks'" translate="questions.bank-desc" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
           <ul class="list margintop-large padding-none clearfix">
             <li ng-repeat="component in componentType.items" class="marginbottom-medium clearfix">
-              <div ng-show="!component.editable">
+              <div ng-show="!component.editable" class="clearfix">
                   <label><span class="width-10p textalign-center float-left">
                     <input type="checkbox" id="component-{{$index}}" ng-model="component.selected"/>
                   </span>

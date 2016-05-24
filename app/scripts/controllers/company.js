@@ -77,6 +77,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
           else{
             //Hack -- we dont' need services here
             $scope.services = [{"title": "Dummy service", "selected": true}];
+            $location.path(NavCollection.nextItem().id);
           }
         }
         else{
