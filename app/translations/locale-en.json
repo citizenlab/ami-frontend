@@ -18,8 +18,8 @@
     "callout": "What do companies and government know about you? What do they keep on file? Who do they share it with? Organizations are required by Canadian privacy laws to disclose this information to their customers upon request. We can help with that.",
     "label": "Category", 
     "requestsProcessed": "Join the <strong>231</strong> other people who have created a request on this system.", 
-    "instruction1": "What do organizations know about you?", 
-    "instruction2": "Find out by requesting access to your personal data. This website will help you write your request.", 
+    "instruction1": "Request information from:", 
+    "instruction2": "You may make multiple request with our website.", 
     "instruction3": "It only takes 5 easy steps. Start by choosing a category below.", 
     "start": "Start", 
     "info-1-title": "About this project", 
@@ -48,19 +48,19 @@
     "label-databanks": "Selected data banks for {{operator}}",
     "bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
     "otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",
-    "newQuestion": "New Question",
-    "newData": "New Data Type",
-    "addDataBank": "Add Data Bank to request",
+    "newQuestion": "Other questions (describe below)",
+    "newData": "Other data (describe below)",
+    "addDataBank": "Add another data bank to your request",
   "show-desc": "Show description",
   "edit-component": "Edit Request Component",
   "remove-component": "Remove Request Component",
   "update-component": "Update Request Component",
   "cancel-component": "Cancel Update to Request Component",
-  "type-question": "Type a question",
+  "type-question": "",
   "add-question": "Add Question",
-  "desc-data": "Describe the data you want",
+  "desc-data": "",
   "add-data": "Add Data Type",
-  "desc-bank": "Describe the data bank you want",
+  "desc-bank": "",
   "add-bank": "Add Data Bank"
   },
   "subject": {
@@ -102,8 +102,10 @@
     },
     "emailButton": "Open email client",
     "emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
-    "thanks": "That's it! Thank you for participating in the Access My Info Hong Kong project.",
-    "continue": "Continue on to maximize your impact"
+    "thanks": "That's it! Thank you for participating in the Access My Info project.",
+    "continue": "Continue on to maximize your impact", 
+    "ami-again-prompt": "Still curious? You can submit multiple requests within Access My Info:",
+    "ami-again-button": "Create another request"
   },
   "finish": {
     "title": "Thank you for submitting your request!", 
@@ -114,7 +116,7 @@
     "label-subscribe": "Access My Info may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
     "email": "Email address",
     "text-data": "Share the following data with Access My Info: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
-    "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info Hong Kong to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
+    "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
     "enroll": "Enroll"
   },
   "wrapper": {
