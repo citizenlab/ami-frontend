@@ -126,15 +126,15 @@
                 </span>
               </div>
             </div>
-            <div class="margintop-medium clearfix" ng-show="$last">
-              <span ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
-                  <span translate="status.previous"></span>
-              </span>
-              <span ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
-                <span translate="status.next"></span>
-              </span>
-            </div>
           </div>
+          <div class="margintop-medium clearfix" ng-show="$last">
+            <span ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+                <span translate="status.previous"></span>
+            </span>
+            <span ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
+              <span translate="status.next"></span>
+            </span>
+           </div>
         </div>
       </div>
     </div>
