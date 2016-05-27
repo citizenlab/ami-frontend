@@ -1,5 +1,5 @@
 {
-  "name": "Access My Info",
+  "name": "accessmyinfo",
   "version": "0.0.1",
   "dependencies": {
     "underscore": "",
@@ -12,12 +12,12 @@
     "angular-cookies": "1.4.8",
     "angular-translate": "~2.9.0",
     "angular-translate-loader-static-files": "~2.9.0",
-    "ngSticky": "~1.8.7",
     "ngclipboard": "~1.1.0",
     "json3": "~3.2.6",
     "pdfmake": "^0.1.20",
     "es5-shim": "~2.1.0",
-    "momentjs": "~2.6.0"
+    "momentjs": "~2.6.0",
+    "angular-chart.js": "^0.10.2"
   },
   "resolutions": {
     "angular": "1.4.8"
