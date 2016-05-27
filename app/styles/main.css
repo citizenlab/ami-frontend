@@ -197,6 +197,9 @@ hr {
 	font-size: 1.176em;
 	color: #222;
 }
+canvas.chart {
+	height:500px;
+}
 @media screen and (min-width: 48em) {
   .container {max-width: 30em;}
   .width-titleimage-ns {
