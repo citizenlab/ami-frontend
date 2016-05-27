@@ -265,6 +265,9 @@ hr {
 .content-box {
 	box-sizing: content-box;
 }
+canvas.chart {
+	height:500px;
+}
 /* Just experimenting with svg css styling
 .btn-icon:hover {
 	background: #00A892;
