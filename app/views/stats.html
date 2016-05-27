@@ -1,0 +1,13 @@
+<div class="container center">
+<h2>There have been <u>{{total}}</u> total requests.</h2>
+<section ng-if="(total > 0)"><h3>Requests by data operator</h3>
+<hr>
+ <canvas class="chart chart-bar" chart-data="byCompany.data"
+   chart-labels="byCompany.labels" chart-options="options">
+ </canvas></section> 
+<section ng-if="(total > 0)"><h3>Requests by date</h3>
+<hr>
+<canvas class="chart chart-bar" chart-data="byDate.data"
+  chart-labels="byDate.labels" chart-options="options">
+</canvas> </section>
+</div>

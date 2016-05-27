@@ -24,7 +24,8 @@ var AMIApp = angular.module('AMIApp', [
     'requestTemplate',
     'AMIRequest',
     'pascalprecht.translate',
-    'ngclipboard'
+    'ngclipboard',
+    'chart.js'
   ])
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
@@ -168,6 +169,29 @@ var AMIApp = angular.module('AMIApp', [
             params = {"services[]": service_ids}
           }
             return dataProviderService.getItem(urls.apiURL(), path, params);
+          }]
+        },
+      })
+      .when('/stats', {
+        templateUrl: 'views/stats.html',
+        controller: 'StatsCtrl',
+        resolve: {
+          operators: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            var params = {"per_page": 100}
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction + "/operators", params);
+          }],
+          total: ["dataProviderService", "urls", "$location", "envOptions", function(dataProviderService, urls, $location, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/stats/getTotal/" + jurisdiction, {}, {}, false);
+          }],
+          byCompany: ["dataProviderService", "urls", "$location", "envOptions", function(dataProviderService, urls, $location, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/stats/getByCompany/" + jurisdiction, {}, {}, false);
+          }],
+          byDate: ["dataProviderService", "urls", "$location", "envOptions", function(dataProviderService, urls, $location, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/stats/getByDate/" + jurisdiction, {}, {}, false);
           }]
         },
       })
