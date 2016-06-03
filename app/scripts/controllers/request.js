@@ -59,6 +59,8 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
 
   $scope.componentdata = $scope.components['data']['items'];
   $scope.componentquestions = $scope.components['questions']['items'];
+  $scope.componentbanks = $scope.components['dataBanks']['items'];
+  console.log($scope.componentbanks);
   $scope.letterDoneState = false;
 
   $scope.pdf = {

@@ -87,6 +87,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             date: '=',
             componentquestions: '=',
             componentdata: '=',
+            componentbanks: '=',
             pdf: '=',
             email: '=',
             emailsubject: '=',

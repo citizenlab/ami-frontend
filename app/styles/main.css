@@ -268,16 +268,15 @@ hr {
 canvas.chart {
 	height:500px;
 }
-/* Just experimenting with svg css styling
-.btn-icon:hover {
-	background: #00A892;
-	color: #FCFDEC;
+/*.btn-icon:hover {
+	background: #eee;
+	color: #000;
 }
 .btn-icon:hover .icon path,
 .btn-icon:hover .icon polygon {
-	fill: #FCFDEC;
-}
-*/
+	fill: #000;
+}*/
+
 
 @media screen and (min-width: 48em) {
   .container {max-width: 30em;}
