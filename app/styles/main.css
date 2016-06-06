@@ -286,21 +286,21 @@ canvas.chart {
   .flexProgress {
   	border-radius: 0.33em;
   }
- .maxheight-100p-ns { max-height: 100%; }
- .maxheight-75p-ns { max-height: 75%; }
- .maxheight-50p-ns { max-height: 50%; }
- .maxheight-25p-ns { max-height: 25%; }
- .maxheight-medium-ns { max-height: 1rem; }
- .maxheight-large-ns { max-height: 2rem; }
- .maxheight-xlarge-ns { max-height: 4rem; }
- .maxheight-xxlarge-ns { max-height: 8rem; }
- .maxheight-xxxlarge-ns { max-height: 16rem; }
- .maxheight-xxxxlarge-ns { max-height: 32rem; }
- .maxheight-xxxxxlarge-ns { max-height: 48rem; }
- .maxheight-xxxxxxlarge-ns { max-height: 64rem; }
- .maxheight-xxxxxxxlarge-ns { max-height: 96rem; }
- .maxheight-none-ns { max-height: none; }
-}
+ }
+ .maxheight-100p { max-height: 100%; }
+ .maxheight-75p { max-height: 75%; }
+ .maxheight-50p { max-height: 50%; }
+ .maxheight-25p { max-height: 25%; }
+ .maxheight-medium { max-height: 1rem; }
+ .maxheight-large { max-height: 2rem; }
+ .maxheight-xlarge { max-height: 4rem; }
+ .maxheight-xxlarge { max-height: 8rem; }
+ .maxheight-xxxlarge { max-height: 16rem; }
+ .maxheight-xxxxlarge { max-height: 32rem; }
+ .maxheight-xxxxxlarge { max-height: 48rem; }
+ .maxheight-xxxxxxlarge { max-height: 64rem; }
+ .maxheight-xxxxxxxlarge { max-height: 96rem; }
+ .maxheight-none { max-height: none; }
 
 /********************************************************************/
 /* DEFAULT/GENERIC PAGE STYLES */ 
