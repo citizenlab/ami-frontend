@@ -248,9 +248,34 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'ContentCtrl',
         resolve: {
           pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
-            var industry = AMIRequest.get('industry');
-            var jurisdiction = AMIRequest.get('jurisdiction');
             return dataProviderService.getItem(urls.apiPagesURL, "/203");
+          }]
+        },
+      })
+      .when('/why-is-access-important', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            return dataProviderService.getItem(urls.apiPagesURL, "/319");
+          }]
+        },
+      })
+      .when('/i-requested-what-now', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            return dataProviderService.getItem(urls.apiPagesURL, "/316");
+          }]
+        },
+      })
+      .when('/what-can-i-get', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            return dataProviderService.getItem(urls.apiPagesURL, "/314");
           }]
         },
       })

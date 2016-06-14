@@ -12,7 +12,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 'use strict';
 AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService, urls) {
     $window.scrollTo(0,0)
-
+    $scope.showCustomOperator = false;
     $scope.$watch(function(){
       $scope.previousStage = NavCollection.previousItem();
       $scope.nextStage = NavCollection.nextItem();
@@ -23,7 +23,6 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     $scope.next = function(){
       $location.url($scope.nextStage.id);
     }
-
     $scope.nextIsLoading = false;
     
     if(!AMIRequest.has('industry')){
@@ -32,11 +31,34 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     }
 
     $scope.industry = AMIRequest.get('industry');
+
     // $scope.companies = companies;
     $scope.companies = companies;
+    console.log(companies);
+    var customCompanyTemplate = {"custom": true}
+    customCompanyTemplate['meta'] = angular.copy(companies[0]['meta']);
+    customCompanyTemplate['meta']['operator_logo'] = {};
+    customCompanyTemplate['meta']['privacy_officer_email'] = '';
+    customCompanyTemplate['meta']['privacy_contact_address_1'] = '';
+    customCompanyTemplate['meta']['privacy_contact_address_2'] = '';
+    customCompanyTemplate['meta']['privacy_contact_city'] = '';
+    customCompanyTemplate['meta']['privacy_contact_province_state'] = '';
+    customCompanyTemplate['meta']['privacy_contact_postal_code'] = '';
+    customCompanyTemplate['meta']['privacy_contact_country'] = '';
+    customCompanyTemplate.phony_id = angular.copy(companies[0].id);
+    customCompanyTemplate.id = parseInt($scope.industry.id.toString() + "000000");
+    if(customCompanyTemplate.meta.data_management_unit == "services"){
+      $scope.customOperator = customCompanyTemplate;
+    }
+
+
 
     if(AMIRequest.has('operator')){
       $scope.company = AMIRequest.get('operator');
+      if($scope.company.custom){
+        $scope.customOperator = $scope.company;
+        $scope.showCustomOperator = true;
+      }
     }
 
     $scope.selectCompany = function(company){
@@ -45,6 +67,65 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         $scope.selected = true;
       }
     }
+
+    $scope.$watch('customOperator', function(newOperator, oldOperator){
+      if(oldOperator !== $scope.company && newOperator !== oldOperator){
+        AMIRequest.drop('operator');
+        AMIRequest.drop('services');
+        $scope.selected = false;
+        delete $scope.company;
+        $scope.services = null;
+      }
+      if(
+        newOperator.title && 
+        (
+          newOperator.meta.privacy_officer_email
+          || (
+            newOperator.meta.privacy_contact_address_1
+            && newOperator.meta.privacy_contact_address_2
+            && newOperator.meta.privacy_contact_city
+            && newOperator.meta.privacy_contact_province_state
+            && newOperator.meta.privacy_contact_postal_code
+          )
+        )
+      ){
+        console.log(newOperator);
+        // Operator is valid
+        if(AMIRequest.set('operator', newOperator)){
+          if(newOperator.meta.data_management_unit == "services"){
+            dataProviderService.getItem(urls.apiURL(), '/operators/' + newOperator.phony_id + '/services')
+            .then(function(services){
+              if(services.length){
+                if(services.length > 1){
+                  for (var i =  services.length - 1; i >= 0; i--) {
+                     services[i].selected = false;
+                  };
+                }
+                else{
+                  services[0].selected = true;
+                }
+                $scope.services = services;
+              }
+              else{
+                alert("Sorry, no services for this operator.");
+              }
+            });
+          }
+          else{
+            $scope.services = [{"title": "Dummy service", "selected": true}];
+          }
+        }
+        else{
+          if(oldOperator == $scope.company){
+            AMIRequest.drop('operator');
+            AMIRequest.drop('services');
+            $scope.selected = false;
+            delete $scope.company;
+            $scope.services = null;
+          }
+        }
+      }
+    }, true)
    
     $scope.$watch('company', function(newCompany, oldCompany){
       if(newCompany === null){
@@ -52,7 +133,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         AMIRequest.drop('operator');
         $scope.services = null;
       }
-      else if(newCompany !== oldCompany){
+      else if(newCompany && newCompany !== oldCompany && !newCompany.custom){
         if(AMIRequest.set('operator', newCompany)){
           if(newCompany.meta.data_management_unit == "services"){
             dataProviderService.getItem(urls.apiURL(), '/operators/' + newCompany.id + '/services')
