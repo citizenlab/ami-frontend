@@ -11,13 +11,9 @@
 		  		</form-item>
 		    </div>
 		    <div ng-repeat="(key, identifiers) in service_identifiers">
-		    
-		    <!-- unncessary title + optional field appears here for some reason
-		    <h3 ng-repeat="service in services" ng-show="service.id == key && identifiers.length">{{service.title}}</h3>
 		    <div class="form-group col-sm-12" ng-repeat="identifier in identifiers | object2Array | orderBy:'+weight'">
-		      <form-item id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.service_identifiers[key]"></form-item>
+		      <form-item class="form-item" id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.service_identifiers[key]"></form-item>
 		    </div>
-			-->
 		    </div>
 
 			<hr />

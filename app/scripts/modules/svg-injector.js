@@ -140,7 +140,7 @@
             // the the raw XML responseText.
             //
             // :NOTE: IE8 and older doesn't have DOMParser, but they can't do SVG either, so...
-            else if (DOMParser && (DOMParser instanceof Function)) {
+            else if (DOMParser) {
               var xmlDoc;
               try {
                 var parser = new DOMParser();

@@ -43,37 +43,7 @@ a, a:link, a:visited, a:active {
 .backgroundcolor-pastelteal {
 	background-color: #CFFCF3;
 }
-.btn-social {
-	border-style: none;
-	border: 0;
-	background-color: #bd001a;
-	color: #fff;
-	min-width: 0;
-}
-.btn-primary {
-	border-style: none;
-	border: 0;
-	background-color: #bd001a;
-	color: #fff;
-}
-.btn-primary .icon path {
-	fill: #fff;
-}
-.btn-next {
-	border-style: none;
-	border: 0;
-	background-color: #bd001a;
-	color: #fff;
-}
-.btn-info {
-	border-style: none;
-	border: 0;
-	background-color: #27bfa8;
-	color: #fff;
-}
-.btn-media-select {
-	border: 2px solid #f94f44;
-}
+
 
 /********************************************************************/
 /* GENERAL */
@@ -136,7 +106,7 @@ hr {
 } 
 
 .btn {
-	display: inline-block;
+	/*display: inline-block;*/
 	border-radius: 0.5rem;
 	padding: 0.625rem 0.75rem 0.5rem 0.75rem;
 	text-decoration: none;
@@ -165,6 +135,10 @@ hr {
 .btn-info .icon path {
 	fill: #fff;
 }
+.btn-select .icon path,
+.btn-select .icon polygon {
+	fill: #9d0003;
+}
 .btn-disabled {
 	border-style: none;
 	border: 0;
@@ -175,12 +149,47 @@ hr {
 	fill: #999;
 }
 .btn-select {
+	text-align: left;
 	border-radius: 0;
 	border: 2px solid #F2F2F2;
 	background-color: #fff;
 }
 .btn p {
 	margin:0;
+}
+.btn-social {
+	border-style: none;
+	border: 0;
+	background-color: #bd001a;
+	color: #fff;
+	min-width: 0;
+}
+.btn-primary {
+	border-style: none;
+	border: 0;
+	background-color: #bd001a;
+	color: #fff;
+}
+.btn-primary .icon path {
+	fill: #fff;
+}
+.btn-next {
+	border-style: none;
+	border: 0;
+	background-color: #bd001a;
+	color: #fff;
+}
+.btn-info {
+	border-style: none;
+	border: 0;
+	background-color: #27bfa8;
+	color: #fff;
+}
+.btn-media-select {
+	border: 2px solid #f94f44;
+}
+.lineheight-xlarge-ns {
+	line-height: 4rem;
 }
 .form-item {
 	margin-bottom: 1em;
@@ -235,6 +244,13 @@ hr {
   top: -9999px;
   left: -9999px;
 }
+.display-flex-center { display: flex; align-items: center; justify-content: space-between;}
+.flexgrow-1 {
+	flex-grow:1;
+}
+.flexgrow-2 {
+	flex-grow:2;
+}
 .flexy {
     display:flex;
     justify-content: space-between;
@@ -246,16 +262,21 @@ hr {
 .flexy-small {
     flex-grow: 1;
 }
-/* Just experimenting with svg css styling
-.btn-icon:hover {
-	background: #00A892;
-	color: #FCFDEC;
+.content-box {
+	box-sizing: content-box;
+}
+canvas.chart {
+	height:500px;
+}
+/*.btn-icon:hover {
+	background: #eee;
+	color: #000;
 }
 .btn-icon:hover .icon path,
 .btn-icon:hover .icon polygon {
-	fill: #FCFDEC;
-}
-*/
+	fill: #000;
+}*/
+
 
 @media screen and (min-width: 48em) {
   .container {max-width: 30em;}
@@ -265,21 +286,21 @@ hr {
   .flexProgress {
   	border-radius: 0.33em;
   }
- .maxheight-100p-ns { max-height: 100%; }
- .maxheight-75p-ns { max-height: 75%; }
- .maxheight-50p-ns { max-height: 50%; }
- .maxheight-25p-ns { max-height: 25%; }
- .maxheight-medium-ns { max-height: 1rem; }
- .maxheight-large-ns { max-height: 2rem; }
- .maxheight-xlarge-ns { max-height: 4rem; }
- .maxheight-xxlarge-ns { max-height: 8rem; }
- .maxheight-xxxlarge-ns { max-height: 16rem; }
- .maxheight-xxxxlarge-ns { max-height: 32rem; }
- .maxheight-xxxxxlarge-ns { max-height: 48rem; }
- .maxheight-xxxxxxlarge-ns { max-height: 64rem; }
- .maxheight-xxxxxxxlarge-ns { max-height: 96rem; }
- .maxheight-none-ns { max-height: none; }
-}
+ }
+ .maxheight-100p { max-height: 100%; }
+ .maxheight-75p { max-height: 75%; }
+ .maxheight-50p { max-height: 50%; }
+ .maxheight-25p { max-height: 25%; }
+ .maxheight-medium { max-height: 1rem; }
+ .maxheight-large { max-height: 2rem; }
+ .maxheight-xlarge { max-height: 4rem; }
+ .maxheight-xxlarge { max-height: 8rem; }
+ .maxheight-xxxlarge { max-height: 16rem; }
+ .maxheight-xxxxlarge { max-height: 32rem; }
+ .maxheight-xxxxxlarge { max-height: 48rem; }
+ .maxheight-xxxxxxlarge { max-height: 64rem; }
+ .maxheight-xxxxxxxlarge { max-height: 96rem; }
+ .maxheight-none { max-height: none; }
 
 /********************************************************************/
 /* DEFAULT/GENERIC PAGE STYLES */ 

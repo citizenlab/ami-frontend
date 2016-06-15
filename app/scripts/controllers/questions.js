@@ -29,7 +29,7 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
         toAdd: null,
         toUpdate: null,
         activated: false,
-        add: function(title, description, editable, selected, serverID){
+        add: function(title, description, editable, selected, serverID, weight){
           var isCollapsed = false;
           if(typeof selected == "undefined"){
             selected = true;
@@ -41,7 +41,7 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
             if(description){
               isCollapsed = true;
             }
-            this.items.push(newComponent(title, description, editable, selected, isCollapsed, serverID));
+            this.items.push(newComponent(title, description, editable, selected, isCollapsed, serverID, weight));
           }
         },
         new: function(){
@@ -84,14 +84,15 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
       }
     }
 
-    var newComponent = function(data, description, editable, selected, isCollapsed, serverID){
+    var newComponent = function(data, description, editable, selected, isCollapsed, serverID, weight){
       var component = {
         data: data,
         description: description,
         editable: editable,
         selected: selected, 
         isCollapsed: isCollapsed,
-        serverID: serverID
+        serverID: serverID,
+        weight: weight
       }
       return component;
     }
@@ -110,16 +111,15 @@ AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window'
       for(var i=0; i < components.length; i++){
         console.log("component!", components[i].id);
       if(components[i].meta.component_type == "Data"){
-        $scope.components['data'].add(components[i].meta.component_value, null, false, false, components[i].id);
+        $scope.components['data'].add(components[i].meta.component_value, null, false, true, components[i].id, components[i].weight);
         $scope.components['data'].activate();
       }
       else if(components[i].meta.component_type == "Question"){
-        $scope.components['questions'].add(components[i].meta.component_value, null, false, false, components[i].id);
+        $scope.components['questions'].add(components[i].meta.component_value, null, false, true, components[i].id, components[i].weight);
         $scope.components['questions'].activate();
       }
       else if(components[i].meta.data_bank_number){
-        $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].content, false, false, components[i].id);
-        $scope.components['questions'].activate();
+        $scope.components['dataBanks'].add(components[i].title + " (" + components[i].meta.data_bank_number + ")", components[i].content, false, false, components[i].id, components[i].weight);
         $scope.components['dataBanks'].activate();
       }
     }

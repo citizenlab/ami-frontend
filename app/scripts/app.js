@@ -24,7 +24,8 @@ var AMIApp = angular.module('AMIApp', [
     'requestTemplate',
     'AMIRequest',
     'pascalprecht.translate',
-    'ngclipboard'
+    'ngclipboard',
+    'chart.js'
   ])
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
@@ -94,6 +95,7 @@ var AMIApp = angular.module('AMIApp', [
   }])
   .config(['$compileProvider', function($compileProvider){
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https|mailto|whatsapp|http):/);
+    $compileProvider.debugInfoEnabled(false);
   }])
   .config(['$cookiesProvider', function($cookiesProvider){
     $cookiesProvider.defaults.secure = true;
@@ -170,6 +172,29 @@ var AMIApp = angular.module('AMIApp', [
           }]
         },
       })
+      .when('/stats', {
+        templateUrl: 'views/stats.html',
+        controller: 'StatsCtrl',
+        resolve: {
+          operators: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            var params = {"per_page": 100}
+            return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction + "/operators", params);
+          }],
+          total: ["dataProviderService", "urls", "$location", "envOptions", function(dataProviderService, urls, $location, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/stats/getTotal/" + jurisdiction, {}, {}, false);
+          }],
+          byCompany: ["dataProviderService", "urls", "$location", "envOptions", function(dataProviderService, urls, $location, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/stats/getByCompany/" + jurisdiction, {}, {}, false);
+          }],
+          byDate: ["dataProviderService", "urls", "$location", "envOptions", function(dataProviderService, urls, $location, envOptions) {
+            var jurisdiction = parseInt(envOptions.jurisdictionID);
+            return dataProviderService.getItem(urls.enrollmentURL(), "/stats/getByDate/" + jurisdiction, {}, {}, false);
+          }]
+        },
+      })
       .when('/account', {
         templateUrl: 'views/accountInfo.html',
         controller: 'AccountCtrl'
@@ -223,9 +248,34 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'ContentCtrl',
         resolve: {
           pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
-            var industry = AMIRequest.get('industry');
-            var jurisdiction = AMIRequest.get('jurisdiction');
             return dataProviderService.getItem(urls.apiPagesURL, "/203");
+          }]
+        },
+      })
+      .when('/why-is-access-important', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            return dataProviderService.getItem(urls.apiPagesURL, "/319");
+          }]
+        },
+      })
+      .when('/i-requested-what-now', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            return dataProviderService.getItem(urls.apiPagesURL, "/316");
+          }]
+        },
+      })
+      .when('/what-can-i-get', {
+        templateUrl: 'views/remoteContent.html',
+        controller: 'ContentCtrl',
+        resolve: {
+          pageContent: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            return dataProviderService.getItem(urls.apiPagesURL, "/314");
           }]
         },
       })

@@ -21,8 +21,8 @@
           <h3 ng-show="componentType.id === 'dataBanks'"><span translate="questions.label-databanks" translate-values="{operator: operator.title}"></span> <span class="required">*</span></h3>
           <p class="f5" ng-show="componentType.id === 'dataBanks'" translate="questions.bank-desc" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
           <ul class="list margintop-large padding-none clearfix">
-            <li ng-repeat="component in componentType.items" class="marginbottom-medium clearfix">
-              <div ng-show="!component.editable">
+            <li ng-repeat="component in componentType.items | object2Array | orderBy:'+weight'" class="marginbottom-medium clearfix">
+              <div ng-show="!component.editable" class="clearfix">
                   <label><span class="width-10p textalign-center float-left">
                     <input type="checkbox" id="component-{{$index}}" ng-model="component.selected"/>
                   </span>
@@ -126,15 +126,15 @@
                 </span>
               </div>
             </div>
-            <div class="margintop-medium clearfix" ng-show="$last">
-              <span ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
-                  <span translate="status.previous"></span>
-              </span>
-              <span ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
-                <span translate="status.next"></span>
-              </span>
-            </div>
           </div>
+          <div class="margintop-medium clearfix" ng-show="$last">
+            <span ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+                <span translate="status.previous"></span>
+            </span>
+            <span ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
+              <span translate="status.next"></span>
+            </span>
+           </div>
         </div>
       </div>
     </div>

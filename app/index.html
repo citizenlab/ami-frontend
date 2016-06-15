@@ -29,6 +29,7 @@ MOSQUITO wants its sweet, sweet data
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/tachyons.min.css"/>
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -37,27 +38,27 @@ MOSQUITO wants its sweet, sweet data
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="full-screen" id="loadingScreen"></div>
-    <div ng-controller="LanguageCtrl" class="backgroundcolor-darkestred clearfix">
+    <div  class="backgroundcolor-darkestred clearfix">
         <div class="position-absolute top-1 right-033 right-1-ns" ng-class="{'display-block': showControls, 'display-none': !showControls}">
            <!-- <div class="btn-group" uib-dropdown is-open="status.isopen"> -->
                 <!-- <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" title="Select language">
                     {{lang.title}} <span class="caret"></span>
                 </button>
             -->
-             <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
+            <!--  <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
                 <li ng-repeat="languageOption in languages" role="menuitem" class="list display-inlineblock" >
                     <a ng-click="selectLanguage(languageOption)" class="borderradius-2 marginleft-small lineheight-1 padding-small f7 textalign-center backgroundcolor-black20 white80 cursor-pointer" ng-class="{buttonActive: lang == languageOption}">
                             {{languageOption.title}}
                     </a>
                 </li>
-             </ul>
+             </ul> -->
             <!-- </div> -->
         </div>
 
         <header class="navbar">
             <div class="container center textalign-center">
                 <a class="textdecoration-none black" href="#/">
-                    <h1 class="f-5 paddinghorizontal-small marginbottom-none" ng-class="{'margintop-xlarge': showControls, 'margintop-large': !showControls}"><span class="lightred">
+                    <h1 class="f-5 paddinghorizontal-small marginbottom-none" ng-class="{'margintop-small': showControls, 'margintop-small': !showControls}"><span class="lightred">
                         <img class="width-xxxlarge width-titleimage-ns maxwidth-100p marginbottom-small" src="images/ami-logo.svg" alt="Access My Info: Canada" />
                     </h1>
                 </a>
@@ -126,6 +127,8 @@ MOSQUITO wants its sweet, sweet data
     <script src="bower_components/pdfmake/build/pdfmake.js"></script>
     <script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -149,6 +152,7 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/controllers/subscriberInfo.js"></script>
     <script src="scripts/controllers/request.js"></script>
     <script src="scripts/controllers/content.js"></script>
+    <script src="scripts/controllers/stats.js"></script>
     <!-- <script src="scripts/controllers/finish.js"></script> -->
     <script src="scripts/controllers/verify.js"></script>
     <script src="scripts/controllers/unsubscribe.js"></script>

@@ -1,19 +1,50 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
 <div class="container center">
   <h2 class="textalign-center clearfix paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.title" translate-values="{operator: operator.title}"></h2>
-  <p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.callout" translate-values="{operator: operator.title}"></p>
+  <p ng-if="!componentbanks" class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.callout" translate-values="{operator: operator.title}"></p>
+   <p ng-if="componentbanks" class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.callout-gov" translate-values="{operator: operator.title}"></p>
   <p ng-if="(!letterDoneState || displayInstructions)" class="paddinghorizontal-medium paddinghorizontal-none-ns"><span translate="request.instructions.read-careful"></span></p>
 
   <div class="backgroundcolor-black05 f5 paddingvertical-medium paddinghorizontal-large lineheight-1p5 clearfix">
-    <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
+    <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" componentbanks="componentbanks" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
   </div>
 
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro" ng-if="operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.emailonly-intro" ng-if="!operator.meta.privacy_contact_address_1 && operator.meta.privacy_officer_email"></h3>
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.postalonly-intro" ng-if="!operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>
 
+  <!-- GOV OPTION BEGIN -->
+<div ng-if="pdfOptionEnabled && components.dataBanks.items">
+  <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
+    <span translate="request.instructions.gov-title"></span>
+  </p>
+  <div class="backgroundcolor-lightgrey padding-medium clearfix">
+    <div ng-if="(!letterDoneState || displayInstructions)">
+      <p class="lineheight-copy margintop-none" translate="request.instructions.gov-instructions"></p>
+      <div class="clearfix row">
+        <a href="https://atip-aiprp.apps.gc.ca" target="blank" class="fontstyle-normal f5 paddingleft-medium borderleft-thick bordercolor-white marginbottom-medium lineheight-1p5">
+          https://atip-aiprp.apps.gc.ca
+        </a>
+        <p translate="request.instructions.gov-extra"></p>
+      </div>
+    </div>
+    <div class="btn btn-lg btn-primary generatorBtn" ng-class="{disabled:pdf.isGenerating, faded: (letterDoneState && !displayInstructions)}" ng-click="generatePDF()" ng-enter="generatePDF()" tabindex="1"> 
+      <span ng-show="!pdf.isGenerating && !pdf.isGenerated">
+         &nbsp;<span translate="request.pdfButton.generate"></span>
+        </span>
+        <span ng-show="pdf.isGenerating && !pdf.isGenerated">
+          &nbsp;<span translate="status.wait"></span>
+        </span>
+        <span ng-show="!pdf.isGenerating && pdf.isGenerated">
+          &nbsp;<span translate="request.pdfButton.re-save"></span>
+        </span>
+    </div>
+  </div>
+  </div>
+  <!-- GOV OPTION END -->
+
   <!-- EMAIL OPTION BEGIN -->
-  <div ng-if="operator.meta.privacy_officer_email">
+  <div ng-if="operator.meta.privacy_officer_email && !components.dataBanks.items">
   <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
     <span ng-if="!(pdfOptionEnabled && operator.meta.privacy_contact_address_1)" translate="request.instructions.email-title"></span>
     <span ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1" translate="request.instructions.email-title-option-1"></span>
@@ -60,7 +91,7 @@
   </div>
   </div>
   <!-- EMAIL OPTION END -->
-  <div ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1">
+  <div ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1 && !components.dataBanks.items">
   <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
     <span ng-if="!operator.meta.privacy_officer_email" translate="request.instructions.post-title"></span>
     <span ng-if="operator.meta.privacy_officer_email" translate="request.instructions.post-title-option-2"></span>
