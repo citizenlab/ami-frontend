@@ -10,7 +10,7 @@
             <option value="" selected>Select company</option>
           </select> -->
         <div ng-repeat="company in companies | orderBy:'title'">
-          <div class="btn btn-select height-xlarge-ns display-flex-center content-box" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
+          <div class="btn btn-select height-xlarge display-flex-center content-box" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
               <div class="flexgrow-1"><img class="maxheight-xlarge maxwidth-xxlarge" ng-src="{{company.meta.operator_logo.sizes.thumbnail}}" alt="{{company.title}}"></div>
               <h4 class="flexgrow-2 f4 marginbottom-none margintop-none textalign-right">
                 {{company.title}}
