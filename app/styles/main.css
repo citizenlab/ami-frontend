@@ -279,7 +279,6 @@ canvas.chart {
 
 
 @media screen and (min-width: 48em) {
-  .container {max-width: 30em;}
   .width-titleimage-ns {
   	width: 24rem;
   }
@@ -313,6 +312,25 @@ canvas.chart {
 }
 .pagecontent h2 {
 	font-size: 1.25rem;
+}
+/* not-so-great quick fix to account for table content */
+.pagecontent > p,
+.pagecontent > h1,
+.pagecontent > h2,
+.pagecontent > h3,
+.pagecontent > ul {
+	display: block;
+	max-width: 33rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+.pagecontent > table {
+	margin-top: 3em;
+	margin-bottom: 3em;
+}
+.pagecontent td {
+	vertical-align: top;
+	padding: 0.5em;
 }
 
 

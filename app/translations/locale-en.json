@@ -19,7 +19,7 @@
     "label": "Category", 
     "requestsProcessed": "Join the <strong>231</strong> other people who have created a request on this system.", 
     "instruction1": "Request information from:", 
-    "instruction2": "You may make multiple request with our website.", 
+    "instruction2": "You may make multiple request with our website (but one at a time!).", 
     "instruction3": "It only takes 5 easy steps. Start by choosing a category below.", 
     "start": "Start", 
     "info-1-title": "About this project", 
@@ -66,7 +66,7 @@
   "subject": {
     "title": "Identifying information",
     "callout": "Enter your information so {{company}} can identify you in their records.",
-    "callout-not-store": "Access My Info will not collect or store any of the personal information below.",
+    "callout-not-store": "<em>Access My Info</em> will not collect or store any of the personal information below.",
     "label": "Your Personal Information",
     "emailField": "email"
   },
@@ -103,7 +103,7 @@
     },
     "pdfButton": {
       "generate": "Create PDF Letter",
-      "re-save": "Re-save Letter"
+      "re-save": "Create PDF Letter"
     },
     "emailButton": "Open email client",
     "emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
@@ -117,8 +117,8 @@
     "share-text": "Do you know you have the right to access your own personal info? Find out what your ISP or telco knows about you at {{shareURL}}",
     "share-prompt": "Share this campaign with your friends:", 
     "consent-clause": "I consent and authorise: ",
-    "label-data": "Access My Info may collect the number of my data access request made via this programme for the statistics and research purposes.",
-    "label-subscribe": "Access My Info may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
+    "label-data": "<em>Access My Info</em> may collect the number of my data access request made via this programme for the statistics and research purposes.",
+    "label-subscribe": "<em>Access My Info</em> may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
     "email": "Email address",
     "text-data": "Share the following data with Access My Info: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
     "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
