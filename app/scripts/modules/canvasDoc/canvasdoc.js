@@ -262,7 +262,7 @@ function Document(paperType, margins){
 		self.pdf.open();
 	}
 	self.savePDF = function(){
-		self.pdf.download('request_letter');
+		self.pdf.download('AccessMyInfoRequestLetter.pdf');
 	}
 }
 function textToWords(text){

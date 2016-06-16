@@ -2,6 +2,7 @@
     <h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns">{{title}}</h2>
     <div class="darkgray pagecontent lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" ng-bind-html="body"></div>
     <div class="container center b margintop-xlarge">
-    	<a href="/#/">Back to start</a>
+    	<a ng-if="(selectedNavItem && selectedNavItem.path !== '#/')" href="{{selectedNavItem.path}}">Continue your request</a>
+    	<a ng-if="(!selectedNavItem || selectedNavItem.path == '#/')" href="#/">Return to Homepage</a>
     </div>
 </div>

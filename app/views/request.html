@@ -14,7 +14,7 @@
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.postalonly-intro" ng-if="!operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>
 
   <!-- GOV OPTION BEGIN -->
-<div ng-if="pdfOptionEnabled && components.dataBanks.items">
+<div ng-if="components.dataBanks.items.length">
   <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
     <span translate="request.instructions.gov-title"></span>
   </p>
@@ -44,7 +44,7 @@
   <!-- GOV OPTION END -->
 
   <!-- EMAIL OPTION BEGIN -->
-  <div ng-if="operator.meta.privacy_officer_email && !components.dataBanks.items">
+  <div ng-if="operator.meta.privacy_officer_email && !components.dataBanks.items.length">
   <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
     <span ng-if="!(pdfOptionEnabled && operator.meta.privacy_contact_address_1)" translate="request.instructions.email-title"></span>
     <span ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1" translate="request.instructions.email-title-option-1"></span>
@@ -65,7 +65,7 @@
     <div class="clearfix" ng-class="{faded: (letterDoneState && !displayInstructions)}">
       <div>
         <a ng-href="{{email.contents}}" target="_blank" tabindex="1" ng-click="emailClick()" ng-mouseenter="emailBtnHover = true" ng-mouseleave="emailBtnHover = false" >
-          <button class="btn btn-primary" ng-class="{disabled: !operator.meta.privacy_officer_email}">
+          <button class="btn btn-lg btn-primary generatorBtn display-block" ng-class="{disabled: !operator.meta.privacy_officer_email}">
             <span translate="request.emailButton"></span>
           </button>
         </a>
@@ -91,7 +91,7 @@
   </div>
   </div>
   <!-- EMAIL OPTION END -->
-  <div ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1 && !components.dataBanks.items">
+  <div ng-if="operator.meta.privacy_contact_address_1 && !components.dataBanks.items.length">
   <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns margintop-large">
     <span ng-if="!operator.meta.privacy_officer_email" translate="request.instructions.post-title"></span>
     <span ng-if="operator.meta.privacy_officer_email" translate="request.instructions.post-title-option-2"></span>
@@ -150,7 +150,7 @@
     <span translate="request.ami-again-prompt"></span>
   </p>
   <p class="margintop-medium">
-    <a class="btn btn-primary" href="/#/">
+    <a class="btn btn-primary" href="#/" ng-click="dropRequest()">
       <span class="white b f5" translate="request.ami-again-button"></span>
     </a>
   </p>
