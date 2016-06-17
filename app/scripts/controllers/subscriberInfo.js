@@ -56,17 +56,18 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
      $scope.submit(); 
   });
   var emailFieldREGEX;
-  $translate('status.emailField').then(function (emailField) {
-    emailFieldREGEX = new RegExp("/" + emailField + "/i");
-  });
+  // $translate('subject.emailField').then(function (emailField) {
+    emailFieldREGEX = new RegExp(/email/i);
+  // });
 
   var findEmail = function(subject){
     var email = null;
     var keys;
     for(var property in subject.basic_personal_info){
       console.log(subject.basic_personal_info[property]);
-      if(subject.basic_personal_info[property]['title'].match(emailFieldREGEX)){
+      if(subject.basic_personal_info[property]['title'].toLowerCase().match(emailFieldREGEX)){
         email = subject.basic_personal_info[property]['value'];
+        console.log(email)
       }
       if(email){
         break;
@@ -74,6 +75,7 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
     }
     return email;
   }
+
   $scope.hasEmailField = (typeof findEmail($scope.service_identifiers) !== "undefined");
 
   $scope.email = {};
