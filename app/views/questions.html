@@ -45,16 +45,16 @@
               <div ng-show="(component.editable && componentType.toUpdate !== component)" class="clear-left">
                   <label>
                     <div class="width-10p textalign-center float-left"><input type="checkbox" ng-model="component.selected"/></div>
-                    <div class="f5 float-left width-80p">{{component.data}}</div>
+                    <div class="f5 float-left width-70p">{{component.data}}</div>
                   </label>
-                  <span class="float-left width-10p text-right">
-                  <span class="btn-sm btn-secondary marginbottom-xsmall" ng-click="componentType.startUpdate($index)" aria-label="{{'questions.edit-component' | translate}}" title="{{'questions.edit-component' | translate}}">
-                    <img nag-svg data-src="images/iconic/pencil.svg" alt="pencil" class="icon" />
-                  </span>
-                  <span class="btn-sm btn-secondary" ng-click="componentType.delete($index)" aria-label="{{'questions.remove-component' | translate}}" title="{{'questions.remove-component' | translate}}">
-                    <!-- <img src="images/iconic/trash.svg" alt="x" class="icon"/> -->
-                    <img nag-svg data-src="images/iconic/trash.svg" alt="x" class="icon" />
-                  </span>
+                  <span class="float-left width-20p text-right">
+                    <span class="btn-sm btn-secondary marginbottom-xsmall" ng-click="componentType.startUpdate($index)" aria-label="{{'questions.edit-component' | translate}}" title="{{'questions.edit-component' | translate}}">
+                      <img nag-svg data-src="images/iconic/pencil.svg" alt="pencil" class="icon" />
+                    </span>
+                    <span class="btn-sm btn-secondary" ng-click="componentType.delete($index)" aria-label="{{'questions.remove-component' | translate}}" title="{{'questions.remove-component' | translate}}">
+                      <!-- <img src="images/iconic/trash.svg" alt="x" class="icon"/> -->
+                      <img nag-svg data-src="images/iconic/trash.svg" alt="x" class="icon" />
+                    </span>
                   </span>
               </div>
               <div ng-show="(component.editable && componentType.toUpdate == component)" class="clearfix">
