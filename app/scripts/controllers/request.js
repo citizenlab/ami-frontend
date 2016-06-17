@@ -20,6 +20,9 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     $scope.previous();
     return;
   }
+  $scope.dropRequest = function(){
+    AMIRequest.drop('industry');
+  }
 
   $scope.pdfOptionEnabled = pdfOptionEnabled;
   $scope.components = AMIRequest.get('components');

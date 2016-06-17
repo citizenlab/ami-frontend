@@ -10,11 +10,12 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('ContentCtrl', ['$scope', 'pageContent', '$translate', 'dataProviderService', 'urls', '$window', function ($scope, pageContent, $translate, dataProviderService, urls, $window) {
+AMIApp.controller('ContentCtrl', ['$scope', 'pageContent', '$translate', 'dataProviderService', 'urls', '$window', 'NavCollection', function ($scope, pageContent, $translate, dataProviderService, urls, $window, NavCollection) {
 	$window.scrollTo(0,0);
 	$scope.title = pageContent.title;
 	$scope.body = pageContent.content;
 	$scope.lang = $translate.use();
+	$scope.selectedNavItem = NavCollection.selectedNavItem;
 	$scope.$watch(function() {
       var newLang = $translate.use();
       if(newLang !== $scope.lang){
