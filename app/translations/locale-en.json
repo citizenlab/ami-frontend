@@ -35,7 +35,7 @@
   },
   "operator": {
     "title": "Select your service provider",
-    "callout": "<strong>Begin your request</strong> by selecting a company that provides your mobile phone and/or internet service.",
+    "callout": "<strong>Begin your request</strong> by selecting a company that provides you a service.",
     "label": "Companies",
     "label-services": "Services"
   },
@@ -117,8 +117,8 @@
     "share-text": "Do you know you have the right to access your own personal info? Find out what your ISP or telco knows about you at {{shareURL}}",
     "share-prompt": "Share this campaign with your friends:", 
     "consent-clause": "I consent and authorise: ",
-    "label-data": "<em>Access My Info</em> may collect the number of my data access request made via this programme for the statistics and research purposes.",
-    "label-subscribe": "<em>Access My Info</em> may use my email address regularly for the purposes of reminding me the progress of my request and inviting me to complete a survey and store my email address in a server located in Canada.",
+    "label-data": "<em>Access My Info</em> may collect basic information about from whom I requested data for statistical purposes.",
+    "label-subscribe": "<em>Access My Info</em> may use my email address in order to provide me with reminders, tips, and invitations to help further research regarding my request.",
     "email": "Email address",
     "text-data": "Share the following data with Access My Info: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
     "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",

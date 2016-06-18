@@ -3,6 +3,7 @@
 a, a:link, a:visited, a:active {
 	color: #bd001a;
 	text-decoration: none;
+	cursor: pointer;
 }
 .progressActive, .buttonActive {
 	background-color: #bd001a;

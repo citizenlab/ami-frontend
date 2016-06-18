@@ -30,12 +30,14 @@
         </fieldset>
   </form>
       <div class="clearfix" ng-if="customOperator">
-        <p><a ng-click="showCustomOperator = !showCustomOperator"><strong>Help:</strong> My service provider isn't listed</a></p>
+        <p><a ng-click="showCustomOperator = !showCustomOperator"><strong>Help:</strong> My company isn't listed</a></p>
         <form ng-if="showCustomOperator">
          <fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
-          <h3>Add custom service provider</h3>
-          <label class="form-item">Service Provider Name <input type="text" ng-model="customOperator.title"/></label>
-          <h4>Privacy Contact</h4>
+          <h3>Add custom company</h3>
+          <label class="form-item">Company Name <input type="text" ng-model="customOperator.title"/></label>
+          <h4>Company Privacy Contact</h4>
+          <p>Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.</p>
+          <p><strong>Provide either a full mailing address or an email address.</strong></p>
           <label class="form-item">Email address <input type="text" ng-model="customOperator.meta.privacy_officer_email"/></label>
           <label class="form-item">Address 1 <input type="text" ng-model="customOperator.meta.privacy_contact_address_1"/></label>
           <label class="form-item">Address 2 <input type="text" ng-model="customOperator.meta.privacy_contact_address_2"/></label>
