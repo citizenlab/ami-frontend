@@ -522,7 +522,6 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
       $timeout(function(){
         screen.style.display = "none";
         screen.className.replace('faded-out', '');
-        screen.remove();
       }, 200);
     }, 170);
 }]);
