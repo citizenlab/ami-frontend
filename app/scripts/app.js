@@ -520,8 +520,8 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
     var screen = document.getElementById("loadingScreen");
       screen.className += ' faded-out';
       $timeout(function(){
-        screen.className.style.display = "none";
-        screen.className.replace('faded-out', '');
+        screen.style.display = "none";
+        screen.replace('faded-out', '');
         screen.remove();
       }, 200);
     }, 170);
