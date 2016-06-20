@@ -114,7 +114,7 @@
   },
   "finish": {
     "title": "Thank you for submitting your request!", 
-    "share-text": "Do you know you have the right to access your own personal info? Find out what your ISP or telco knows about you at {{shareURL}}",
+    "share-text": "Do you know you have the right to access your own personal info? Find out what companies know about you at {{shareURL}}",
     "share-prompt": "Share this campaign with your friends:", 
     "consent-clause": "I consent and authorise: ",
     "label-data": "<em>Access My Info</em> may collect basic information about from whom I requested data for statistical purposes.",

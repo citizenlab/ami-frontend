@@ -32,10 +32,11 @@
       <div class="clearfix" ng-if="customOperator">
         <p><a ng-click="showCustomOperator = !showCustomOperator"><strong>Help:</strong> My company isn't listed</a></p>
         <form ng-if="showCustomOperator">
-         <fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
+         <div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
           <h3>Add custom company</h3>
           <label class="form-item">Company Name <input type="text" ng-model="customOperator.title"/></label>
-          <h4>Company Privacy Contact</h4>
+          <fieldset>
+          <legend>Company Privacy Contact</legend>
           <p>Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.</p>
           <p><strong>Provide either a full mailing address or an email address.</strong></p>
           <label class="form-item">Email address <input type="text" ng-model="customOperator.meta.privacy_officer_email"/></label>
@@ -46,6 +47,7 @@
           <label class="form-item">Postal/Zip Code <input type="text" ng-model="customOperator.meta.privacy_contact_postal_code"/></label>
           <label class="form-item">Country <input type="text" ng-model="customOperator.meta.privacy_contact_country"/></label>
           </fieldset>
+          </div>
         </form>
       </div>
       <div class="margintop-medium clearfix">
