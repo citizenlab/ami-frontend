@@ -517,10 +517,12 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
     }
   }, 60000);
   $timeout(function(){
-      document.getElementById("loadingScreen").className += ' faded-out';
+    var screen = document.getElementById("loadingScreen");
+      screen.className += ' faded-out';
       $timeout(function(){
-        document.getElementById("loadingScreen").className.replace('faded-out', '');
-        document.getElementById("loadingScreen").remove();
+        screen.className.replace('faded-out', '');
+        screen.className.style.display = "none";
+        screen.remove();
       }, 200);
     }, 170);
 }]);
