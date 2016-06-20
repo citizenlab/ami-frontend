@@ -521,7 +521,7 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
       screen.className += ' faded-out';
       $timeout(function(){
         screen.style.display = "none";
-        screen.replace('faded-out', '');
+        screen.className.replace('faded-out', '');
         screen.remove();
       }, 200);
     }, 170);
