@@ -12,7 +12,9 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
 
             scope.$watch('pdf.isGenerating', function(newVal, oldVal){
                 if(newVal === true && oldVal === false){
-                    makePDF(element);
+                    $timeout(function(){
+                      makePDF(element);
+                    }, 100);
                 }
             });
             $timeout(function(){
@@ -31,10 +33,8 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             // convert series of canvases into PDF
             requestLetter.createPDF();
             requestLetter.savePDF();
-            $timeout(function(){
-              scope.pdf.isGenerating = false;
-              scope.pdf.isGenerated = true;
-            });
+            scope.pdf.isGenerating = false;
+            scope.pdf.isGenerated = true;
         }
 
         var buildEmail = function(){
