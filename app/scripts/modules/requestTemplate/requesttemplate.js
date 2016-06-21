@@ -1,6 +1,6 @@
 'use strict';
 var requestTemplate = angular.module('requestTemplate', []);
-requestTemplate.directive('requestTemplate', function ($compile, dataProviderService, urls, $timeout, $location) {
+requestTemplate.directive('requestTemplate', function ($compile, dataProviderService, urls, $timeout, $location, $q) {
     var linker = function (scope, element, attrs) {
         var jurisdiction = scope.jurisdiction.id;
         var industry = scope.industry.id;
@@ -12,9 +12,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
 
             scope.$watch('pdf.isGenerating', function(newVal, oldVal){
                 if(newVal === true && oldVal === false){
-                    $timeout(function(){
-                      makePDF(element);
-                    }, 100);
+                  makePDF(element);
                 }
             });
             $timeout(function(){
@@ -38,6 +36,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         }
 
         var buildEmail = function(){
+                    scope.makePDF = makePDF
             var to, subject, body, email, el, clone, listItems;
             to = scope.operator.meta.privacy_officer_email;
             subject = scope.emailsubject;
