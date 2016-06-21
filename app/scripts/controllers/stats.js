@@ -28,10 +28,14 @@ AMIApp.controller('StatsCtrl', ['$scope', 'total', 'byDate', 'byCompany', 'opera
 	  	var operator_id = parseInt(val["operator_id"]);
 	  	console.log(operator_id);
 	  	var operator = _.findWhere(operators, {id: operator_id});
-	  	var title = operator.title;
-	  	
-	    companyLabels.push(title);
-	    companyData.push(val["count"]);
+	  	try{
+		  	var title = operator.title;
+		    companyLabels.push(title);
+		    companyData.push(val["count"]);
+		}
+		catch(e){
+			console.log("ignoring custom company from stats");
+		}
 	  }
 	});
 
