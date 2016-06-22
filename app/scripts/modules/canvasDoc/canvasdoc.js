@@ -227,6 +227,11 @@ function Document(paperType, margins){
 					pdfContent[i].options.noBottomMargin = true;
 				}
 			}
+			else if(pdfContent[i].tag == "DIV"){
+				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "DIV"){
+					pdfContent[i].options.noBottomMargin = true;
+				}
+			}
 		}
 		return pdfContent;
 	}
