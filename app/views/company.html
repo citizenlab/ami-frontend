@@ -30,22 +30,22 @@
         </fieldset>
   </form>
       <div class="clearfix" ng-if="customOperator">
-        <p><a ng-click="showCustomOperator = !showCustomOperator"><strong>Help:</strong> My company isn't listed</a></p>
+        <p><a ng-click="showCustomOperator = !showCustomOperator" translate="customCompany.cta"><strong>Help:</strong> My company isn't listed</a></p>
         <form ng-if="showCustomOperator">
          <div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
-          <h3>Add custom company</h3>
-          <label class="form-item">Company Name <input type="text" ng-model="customOperator.title"/></label>
+          <h3 translate="customCompany.heading">Add custom company</h3>
+          <label class="form-item" translate="customCompany.name">Company Name <input type="text" ng-model="customOperator.title"/></label>
           <fieldset>
-          <legend>Company Privacy Contact</legend>
-          <p>Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.</p>
-          <p><strong>Provide either a full mailing address or an email address.</strong></p>
-          <label class="form-item">Email address <input type="text" ng-model="customOperator.meta.privacy_officer_email"/></label>
-          <label class="form-item">Address 1 <input type="text" ng-model="customOperator.meta.privacy_contact_address_1"/></label>
-          <label class="form-item">Address 2 <input type="text" ng-model="customOperator.meta.privacy_contact_address_2"/></label>
-          <label class="form-item">City <input type="text" ng-model="customOperator.meta.privacy_contact_city"/></label>
-          <label class="form-item">Province / State <input type="text" ng-model="customOperator.meta.privacy_contact_province_state"/></label>
-          <label class="form-item">Postal/Zip Code <input type="text" ng-model="customOperator.meta.privacy_contact_postal_code"/></label>
-          <label class="form-item">Country <input type="text" ng-model="customOperator.meta.privacy_contact_country"/></label>
+          <legend translate="customCompany.contactOverview">Company Privacy Contact</legend>
+          <p translate="customCompany.intro">Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.</p>
+          <p><strong translate="customCompany.instructions">Provide either a full mailing address or an email address.</strong></p>
+          <label class="form-item"><span translate="customCompany.privacy_officer_email">Email address</span> <input type="text" ng-model="customOperator.meta.privacy_officer_email"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_address_1">Address 1</span> <input type="text" ng-model="customOperator.meta.privacy_contact_address_1"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_address_2">Address 2</span> <input type="text" ng-model="customOperator.meta.privacy_contact_address_2"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_city">City</span> <input type="text" ng-model="customOperator.meta.privacy_contact_city"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_province_state">Province / State</span> <input type="text" ng-model="customOperator.meta.privacy_contact_province_state"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_postal_code">Postal/Zip Code</span> <input type="text" ng-model="customOperator.meta.privacy_contact_postal_code"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_country">Country</span> <input type="text" ng-model="customOperator.meta.privacy_contact_country"/></label>
           </fieldset>
           </div>
         </form>

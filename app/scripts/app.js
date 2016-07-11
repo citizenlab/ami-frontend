@@ -420,7 +420,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     $location.path('/');
   }
   var langCookie = $cookies.get('languageCode');
-
+  var supportedLanguages = ['en'];
   // Sanitize langCookie
   if(langCookie){
     langCookie = langCookie.replace(/\W/g, '');
@@ -431,7 +431,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     $translate.use(langCookie);
     console.log($translate.use());
   }
-  else if(navigator.language){
+  else if(navigator.language && supportedLanguages.indexOf(navigator.language.substr(0,2))){
     $translate.use(navigator.language.substr(0,2))
   }
   else{
