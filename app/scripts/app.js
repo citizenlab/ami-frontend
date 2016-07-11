@@ -427,12 +427,14 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
   }
 
     console.log("cookie", langCookie);
+    console.log(supportedLanguages.indexOf(navigator.language.substr(0,2)));
   if(langCookie){  
     $translate.use(langCookie);
     console.log($translate.use());
   }
-  else if(navigator.language && supportedLanguages.indexOf(navigator.language.substr(0,2))){
-    $translate.use(navigator.language.substr(0,2))
+  else if(navigator.language && supportedLanguages.indexOf(navigator.language.substr(0,2)) >= 0){
+    $translate.use(navigator.language.substr(0,2));
+    console.log(navigator.language.substr(0,2));
   }
   else{
     $translate.use(envOptions.languageCode);
