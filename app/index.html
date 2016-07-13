@@ -39,20 +39,20 @@ MOSQUITO wants its sweet, sweet data
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="full-screen" id="loadingScreen"></div>
-    <div  class="backgroundcolor-darkestred clearfix">
+    <div  class="backgroundcolor-darkestred clearfix" ng-controller="LanguageCtrl" >
         <div class="position-absolute top-1 right-033 right-1-ns" ng-class="{'display-block': showControls, 'display-none': !showControls}">
            <!-- <div class="btn-group" uib-dropdown is-open="status.isopen"> -->
                 <!-- <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" title="Select language">
                     {{lang.title}} <span class="caret"></span>
                 </button>
             -->
-            <!--  <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
+             <ul class="uib-dropdown-menu margin-none" role="menu" aria-labelledby="single-button" class="list display-inline">
                 <li ng-repeat="languageOption in languages" role="menuitem" class="list display-inlineblock" >
                     <a ng-click="selectLanguage(languageOption)" class="borderradius-2 marginleft-small lineheight-1 padding-small f7 textalign-center backgroundcolor-black20 white80 cursor-pointer" ng-class="{buttonActive: lang == languageOption}">
                             {{languageOption.title}}
                     </a>
                 </li>
-             </ul> -->
+             </ul>
             <!-- </div> -->
         </div>
 
@@ -108,6 +108,9 @@ MOSQUITO wants its sweet, sweet data
     </a>
     <a href="https://citizenlab.org/">      
         <img class="display-block display-inline-ns height-xlarge marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns" src="images/citizen-lab-logo.png" />
+    </a>
+    <a href="http://www.option-consommateurs.org/">      
+        <img class="display-block display-inline-ns height-large marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns paddingvertical-medium" src="images/option-logo.jpg" />
     </a>
 </div>
 

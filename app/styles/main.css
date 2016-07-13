@@ -38,9 +38,11 @@ a, a:link, a:visited, a:active {
 	background-color: #4DDFC6;
 }
 */
-.progressDisabled, .progressAvailable {
+.progressAvailable, 
+.progressDisabled {
 	background-color: #E69999;
 }
+
 .backgroundcolor-pastelteal {
 	background-color: #CFFCF3;
 }
@@ -86,6 +88,7 @@ hr {
 .flexProgress a:active {
 	color: #fff;
 	text-decoration: none;
+	display:block;
 }
 .progressActive a, 
 .progressActive a:link, 
@@ -102,8 +105,9 @@ hr {
 .progressDisabled a:link, 
 .progressDisabled a:visited, 
 .progressDisabled a:active {
-	color: #fff;
+	color: #ffe1e1;
 	text-decoration: none;
+	cursor: default;
 } 
 
 .btn {

@@ -420,7 +420,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     $location.path('/');
   }
   var langCookie = $cookies.get('languageCode');
-  var supportedLanguages = ['en'];
+  var supportedLanguages = ['en','fr'];
   // Sanitize langCookie
   if(langCookie){
     langCookie = langCookie.replace(/\W/g, '');
