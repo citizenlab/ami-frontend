@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService, urls) {
+AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'AMIRequest', 'dataProviderService', 'urls', '$translate', 'envOptions', function ($scope, $timeout, $location, $window, NavCollection, industries, AMIRequest, dataProviderService, urls, $translate, envOptions) {
     $scope.jurisdiction = AMIRequest.get('jurisdiction');
 
     $window.scrollTo(0,0)
@@ -47,7 +47,19 @@ AMIApp.controller('IndustryCtrl', ['$scope', '$timeout', '$location', '$window',
         //NavCollection.restrict('operator');
       }
     });
+    $scope.lang = $translate.use();
+
     $scope.$watch(function(){
       $scope.nextStage = NavCollection.nextItem();
-    })
+      var newLang = $translate.use();
+	  console.log("!!", newLang, $scope.lang);
+      if(newLang !== $scope.lang){
+      	$scope.lang = newLang;
+        var params = {"per_page": 100}
+        dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries")
+	      .then(function(industries){
+	      	$scope.industries = industries;
+	      });
+  		}
+    });
   }]);

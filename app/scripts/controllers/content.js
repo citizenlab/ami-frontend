@@ -14,10 +14,11 @@ AMIApp.controller('ContentCtrl', ['$scope', 'pageContent', '$translate', 'dataPr
 	$window.scrollTo(0,0);
 	$scope.title = pageContent.title;
 	$scope.body = pageContent.content;
-	$scope.lang = $translate.use();
 	$scope.selectedNavItem = NavCollection.selectedNavItem;
+	$scope.lang = $translate.use();
 	$scope.$watch(function() {
       var newLang = $translate.use();
+	  console.log("!!", newLang, $scope.lang);
       if(newLang !== $scope.lang){
       	$scope.lang = newLang;
 	      dataProviderService.getItem(urls.apiPagesURL, "/"+pageContent.ID)

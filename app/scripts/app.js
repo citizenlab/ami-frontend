@@ -66,25 +66,20 @@ var AMIApp = angular.module('AMIApp', [
     }
   }])
   .service('urls', ['envOptions', '$translate', function(envOptions, $translate){
+    var self = this
+    this.languageCode = envOptions.languageCode;
+    this.setLanguageCode = function(languageCode){
+      this.languageCode = languageCode;
+    }
     this.apiURL = function(){
       var url;
-      var languageCode = envOptions.languageCode;
-      console.log($translate.use());
-      if(typeof $translate.use() !== "undefined"){
-        languageCode = $translate.use();
-      }
-      url = envOptions.apiDomain + envOptions.apiRoot + "/" + languageCode + envOptions.apiPath;
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + this.languageCode + envOptions.apiPath;
       console.log(url);
       return url;
     }
     this.apiPagesURL = function(lang){
       var url;
-      var languageCode = envOptions.languageCode;
-      console.log($translate.use());
-      if(typeof $translate.use() !== "undefined"){
-        languageCode = $translate.use();
-      }
-      url = envOptions.apiDomain + envOptions.apiRoot + "/" + languageCode + "/wp-json/pages";
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + self.languageCode + "/wp-json/pages";
       console.log(url);
       return url;
     }
@@ -414,12 +409,13 @@ AMIApp.directive('nagSvg', ['$compile',
     }
   }
 ]);
-AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', '$cookies', 'AMIRequest', function($http, NavCollection, $timeout, $location, $translate, envOptions, $cookies, AMIRequest){
+AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'envOptions', '$cookies', 'AMIRequest', 'urls', function($http, NavCollection, $timeout, $location, $translate, envOptions, $cookies, AMIRequest, urls){
   // Redirect to landing page if on a dependant stage path
   if(AMIRequest.hierarchy.indexOf($location.path().substring(1)) > -1){
     $location.path('/');
   }
   var langCookie = $cookies.get('languageCode');
+  var languageCode;
   var supportedLanguages = ['en','fr'];
   // Sanitize langCookie
   if(langCookie){
@@ -429,16 +425,17 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     console.log("cookie", langCookie);
     console.log(supportedLanguages.indexOf(navigator.language.substr(0,2)));
   if(langCookie){  
-    $translate.use(langCookie);
-    console.log($translate.use());
+    languageCode = langCookie;
   }
   else if(navigator.language && supportedLanguages.indexOf(navigator.language.substr(0,2)) >= 0){
-    $translate.use(navigator.language.substr(0,2));
-    console.log(navigator.language.substr(0,2));
+    languageCode = navigator.language.substr(0,2);
   }
   else{
-    $translate.use(envOptions.languageCode);
+    languageCode = envOptions.languageCode;
   }
+  $translate.use(languageCode);
+  urls.setLanguageCode(languageCode);
+  console.log(languageCode);
 
       var stages = [
         {
