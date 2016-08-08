@@ -17,6 +17,7 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
     $scope.selectLanguage = function(lang){
       $translate.use(lang.languageCode);
       urls.setLanguageCode(lang.languageCode);
+      moment.lang(lang.languageCode);
       $cookies.put('languageCode', lang.languageCode);
       AMIRequest.drop('operator');
     }
