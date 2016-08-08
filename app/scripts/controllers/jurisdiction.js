@@ -4,11 +4,13 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
 	$scope.languages = {
 		"en": {
 			"title": "English",
-			"languageCode": "en"
+			"languageCode": "en",
+      "languageCodeMoment": "en"
 		},
 		"fr": {
 			"title": "Français",
-			"languageCode": "fr"
+			"languageCode": "fr",
+      "languageCodeMoment": "fr-ca"
 		}
 	};
 
@@ -17,7 +19,7 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
     $scope.selectLanguage = function(lang){
       $translate.use(lang.languageCode);
       urls.setLanguageCode(lang.languageCode);
-      moment.lang(lang.languageCode);
+      moment.lang(lang.languageCodeMoment);
       $cookies.put('languageCode', lang.languageCode);
       AMIRequest.drop('operator');
     }
