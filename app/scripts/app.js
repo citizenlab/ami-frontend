@@ -435,6 +435,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
   }
   $translate.use(languageCode);
   urls.setLanguageCode(languageCode);
+  moment.lang(languageCode);
   console.log(languageCode);
 
       var stages = [
