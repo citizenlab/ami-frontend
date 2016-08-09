@@ -67,6 +67,7 @@
     "skip": "Skip and use default request",
     "label-questions": "Questions for {{operator}}",
     "label-data": "Data requested from {{operator}}",
+    "label-data-note": "This list is meant to be exhaustive. <strong>{{operator}} may not retain some of these items</strong>.",
     "label-databanks": "Selected data banks for {{operator}}",
     "bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
     "otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",

@@ -363,3 +363,11 @@ canvas.chart {
 .height-xlarger {
 	height: 5rem;
 }
+.note {
+	display:block;
+	font-size: 0.6em;
+	padding:0.25em 0.5em;
+	margin-top:0.25em;
+	font-weight: normal;
+	background: #e69999;
+}

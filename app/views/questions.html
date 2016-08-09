@@ -16,7 +16,7 @@
           </h3>
           <h3 ng-show="componentType.id === 'data'">
             <span translate="questions.label-data" translate-values="{operator: operator.title}"></span>
-            <!-- <span class="required">*</span> -->
+            <span class="note" translate="questions.label-data-note" translate-values="{operator: operator.title}"></span>
           </h3>
           <h3 ng-show="componentType.id === 'dataBanks'"><span translate="questions.label-databanks" translate-values="{operator: operator.title}"></span> <span class="required">*</span></h3>
           <p class="f5" ng-show="componentType.id === 'dataBanks'" translate="questions.bank-desc" translate-values="{operator: operator.title, link: operator.meta.bankHref}"></p>
