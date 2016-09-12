@@ -1,5 +1,6 @@
 {
 "pagetitle": "Obtenir mes infos",
+"logo_src": "images/ami-logo/qc/AMICAFullLogoRedBackground.png",
 "status": {
   "wait": "Veuillez patienter…",
   "next": "Suivant",
@@ -32,7 +33,7 @@
   "instruction3": "Cela se fait en cinq étapes faciles. Commencez en choisissant une des catégories ci-dessous.",
   "start": "Début",
   "info-1-title": "À propos de ce projet",
-  "info-1": "Obtenir mes infos (OMI) est un service web qui vous permet de découvrir ce que des entreprises ou des ministères savent à votre sujet. Ce service vous guide pas-à-pas lors de la création d'une lettre officielle de demande l'accès à vos renseignements personnels. Cette lettre peut ensuite être envoyée par la poste ou par courriel au responsable de la protection de la vie privée d'une entreprise, ou jointe à l'outil de demande d'accès aux renseignements personnels du gouvernement fédéral.",
+  "info-1": "Obtenir mes infos (OMI) est un service web qui vous permet de découvrir ce que des entreprises ou des ministères savent à votre sujet. Ce service vous guide pas-à-pas lors de la création d'une lettre officielle de demande d'accès à vos renseignements personnels. Cette lettre peut ensuite être envoyée par la poste ou par courriel au responsable de la protection de la vie privée d'une entreprise, ou jointe à l'outil de demande d'accès aux renseignements personnels du gouvernement fédéral.",
   "more-info-title": "Plus en savoir plus",
   "press-kit": "Trousse média",
   "press-release": "Communiqué de presse",
@@ -133,8 +134,10 @@
   "ami-again-button": "Créer une autre demande d'accès"
 },
 "finish":{
-  "title": "Merci d'avoir envoyé votre demande!",
-  "share-text": "Saviez-vous que vous avez le droit d'accéder à vos renseignements personnels? Apprenez ce que les entreprises savent sur vous à {{shareURL}}",
+  "title": "Merci d'avoir envoyé votre demande!", 
+    "atipLink": "https://atip-aiprp.apps.gc.ca/atip/welcome.do?lang=fr",
+  "share-text": "Vous avez le droit d'accéder à vos renseignements personnels! Apprenez ce que les entreprises savent sur vous à {{shareURL}}",
+  "date-format": "Do MMMM YYYY",
   "share-prompt": "Faites connaître ce site à vos amis :",
   "consent-clause": "Je consens et j'autorise :",
   "label-data": "<em>Obtenir mes infos</em> pourrait recueillir des informations à propos des organisations auxquelles j'ai fait une demande d'accès, cela à des fins statistiques.",

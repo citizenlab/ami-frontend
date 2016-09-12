@@ -71,15 +71,21 @@ var AMIApp = angular.module('AMIApp', [
     this.setLanguageCode = function(languageCode){
       this.languageCode = languageCode;
     }
-    this.apiURL = function(){
+    this.apiURL = function(lang){
       var url;
-      url = envOptions.apiDomain + envOptions.apiRoot + "/" + this.languageCode + envOptions.apiPath;
+      if(typeof lang == "undefined"){
+        lang = self.languageCode;
+      }
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + lang + envOptions.apiPath;
       console.log(url);
       return url;
     }
     this.apiPagesURL = function(lang){
       var url;
-      url = envOptions.apiDomain + envOptions.apiRoot + "/" + self.languageCode + "/wp-json/pages";
+      if(typeof lang == "undefined"){
+        lang = self.languageCode;
+      }
+      url = envOptions.apiDomain + envOptions.apiRoot + "/" + lang + "/wp-json/pages";
       console.log(url);
       return url;
     }
@@ -111,6 +117,10 @@ var AMIApp = angular.module('AMIApp', [
           industries: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
             var params = {"per_page": 100}
             return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID + "/industries", params);
+          }],
+          industries_en: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
+            var params = {"per_page": 100}
+            return dataProviderService.getItem(urls.apiURL('en'), "/jurisdictions/" + envOptions.jurisdictionID + "/industries", params);
           }]
           // ,
           // links: ["dataProviderService", "urls", "AMIRequest", "envOptions", function(dataProviderService, urls, AMIRequest, envOptions) {
@@ -127,6 +137,12 @@ var AMIApp = angular.module('AMIApp', [
             var jurisdiction = AMIRequest.get('jurisdiction');
             var params = {"per_page": 100}
             return dataProviderService.getItem(urls.apiURL(), "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators", params);
+          }],
+          companies_en: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var industry = AMIRequest.get('industry');
+            var jurisdiction = AMIRequest.get('jurisdiction');
+            var params = {"per_page": 100}
+            return dataProviderService.getItem(urls.apiURL('en'), "/jurisdictions/" + jurisdiction.id + "/industries/" + industry.id + "/operators", params);
           }]
         },
       })
@@ -135,36 +151,13 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'SubscriberCtrl',
         resolve: {
           identifiers: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest){
-          var operator = AMIRequest.get('operator');
-          var path;
-          var params;
-
-          if(operator.meta.data_management_unit == "data-banks"){
-            path = "/data_banks/identifiers/"
-            var banks = AMIRequest.get('components')['dataBanks'].items;
-            console.log("bank", banks);
-            var bank_ids = [];
-            angular.forEach(banks, function(bank, key){
-              if(bank && bank.selected && bank.serverID){
-                console.log("bank", bank.serverID);
-                bank_ids.push(bank.serverID);
-              }
-            }, bank_ids);
-            params = {"banks[]": bank_ids};
-          }
-          else{
-            path = "/services/identifiers/";
-            var services = AMIRequest.get('services');
-            var service_ids = [];
-            angular.forEach(services, function(service, key){
-              if(service.selected){
-                service_ids.push(service.id);
-              }
-            }, service_ids);
-            params = {"services[]": service_ids}
-          }
-            return dataProviderService.getItem(urls.apiURL(), path, params);
-          }]
+            var opts = getIdentifierOpts(AMIRequest)
+            return dataProviderService.getItem(urls.apiURL(), opts.path, opts.params);
+          }],
+          identifiers_en: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest){
+            var opts = getIdentifierOpts(AMIRequest)
+            return dataProviderService.getItem(urls.apiURL('en'), opts.path, opts.params);
+          }],
         },
       })
       .when('/stats', {
@@ -288,23 +281,14 @@ var AMIApp = angular.module('AMIApp', [
         controller: 'QuestionsCtrl',
         resolve: {
           components: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
-            var operator = AMIRequest.get('operator');
-            console.log("OG", operator);
-            if(operator.meta.data_management_unit == "data-banks"){
-              return dataProviderService.getItem(urls.apiURL(), "/operators/" + operator.id + "/data_banks/");
-            }
-            else{
-              var services = AMIRequest.get('services');
-              var service_ids = [];
-               angular.forEach(services, function(value, key){
-                  if(value.selected){
-                    service_ids.push(value.id);
-                  }
-                }, service_ids);
-              return dataProviderService.getItem(urls.apiURL(), "/components/", {"services[]": service_ids});
-            }
+            var opts = buildComponentRequest(dataProviderService, urls, AMIRequest);
+            return dataProviderService.getItem(urls.apiURL(), opts.path, opts.args);
+          }],
+          components_en: ["dataProviderService", "urls", "AMIRequest", function(dataProviderService, urls, AMIRequest) {
+            var opts = buildComponentRequest(dataProviderService, urls, AMIRequest);
+            return dataProviderService.getItem(urls.apiURL('en'), opts.path, opts.args);
           }]
-        }
+        } 
       })
       .when('/finish', {
         templateUrl: 'views/finish.html',
@@ -525,3 +509,57 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
       }, 200);
     }, 170);
 }]);
+
+var getIdentifierOpts = function(AMIRequest){
+  var opts = {};
+  var operator = AMIRequest.get('operator');
+  if(operator.meta.data_management_unit == "data-banks"){
+    opts.path = "/data_banks/identifiers/"
+    var banks = AMIRequest.get('components')['dataBanks'].items;
+    console.log("bank", banks);
+    var bank_ids = [];
+    angular.forEach(banks, function(bank, key){
+      if(bank && bank.selected && bank.serverID){
+        console.log("bank", bank.serverID);
+        bank_ids.push(bank.serverID);
+      }
+    }, bank_ids);
+    opts.params = {"banks[]": bank_ids};
+  }
+  else{
+    opts.path = "/services/identifiers/";
+    var services = AMIRequest.get('services');
+    var service_ids = [];
+    angular.forEach(services, function(service, key){
+      if(service.selected){
+        service_ids.push(service.id);
+      }
+    }, service_ids);
+    opts.params = {"services[]": service_ids}
+  }
+  return opts;
+}
+
+var buildComponentRequest = function(dataProviderService, urls, AMIRequest, lang){
+  var operator = AMIRequest.get('operator');
+  console.log("OG", operator);
+  if(operator.meta.data_management_unit == "data-banks"){   
+    return {
+      path:  "/operators/" + operator.id + "/data_banks/",
+      args: {}
+    }
+  }
+  else{
+    var services = AMIRequest.get('services');
+    var service_ids = [];
+     angular.forEach(services, function(value, key){
+        if(value.selected){
+          service_ids.push(value.id);
+        }
+      }, service_ids);
+    return {
+      path:  "/components/",
+      args: {"services[]": service_ids}
+    }
+  }
+}

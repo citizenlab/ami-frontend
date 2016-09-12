@@ -2,8 +2,12 @@
 AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'pdfOptionEnabled', '$translate', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, pdfOptionEnabled, $translate) {
   var blurListener;
   $window.scrollTo(0,0);
-  $translate('finish.share-text', {shareURL: $window.location.origin }).then(function (translation) {
-    $scope.shareText = encodeURIComponent(translation);
+  $scope.shareURL = encodeURIComponent($window.location.origin);
+  $translate(['finish.share-text', 'finish.atipLink', 'finish.date-format'], {shareURL: $window.location.origin }).then(function (translation) {
+    $scope.shareText = encodeURIComponent(translation["finish.share-text"]);
+    $scope.atipLink = translation["finish.atipLink"];
+    $scope.date = moment().format(translation["finish.date-format"]);
+    AMIRequest.set('date', $scope.date);
   });
   $scope.nextIsLoading = false;
   $scope.$watch(function(){
@@ -32,9 +36,23 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $scope.operator = AMIRequest.get('operator');
   $scope.services = AMIRequest.get('services');
   $scope.subject = AMIRequest.get('subject');
+
+  $scope.industry_en = AMIRequest.getEnglish('industry', 'industries_en');
+  $scope.operator_en = AMIRequest.getEnglish('operator', 'companies_en');
+  console.log($scope.subject);
+  console.log(_.filter($scope.components['data']['items'], function(i){
+    return i.selected;
+  }));
+  $scope.components_en = AMIRequest.getEnglish(null, 'components_en', _.filter($scope.components['data']['items'], function(i){
+    return i.selected;
+  }));
+  console.log("en", $scope.industry_en);
+  console.log("en", $scope.operator_en);
+  console.log("en", $scope.components_en);
+
+
   console.log("subject", $scope.subject);
-  $scope.date = moment().format('MMMM Do, YYYY');
-  AMIRequest.set('date', $scope.date);
+  
   
   $scope.servicelist = '';
   for(var i=0; i < $scope.services.length; i++){

@@ -1,18 +1,24 @@
 'use strict';
 AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', 'AMIRequest', '$cookies', 'urls', function ($scope, $timeout, $location, $window, $translate, AMIRequest, $cookies, urls) {
 
-	$scope.languages = {
-		"en": {
-			"title": "English",
-			"languageCode": "en",
+  // $translate.onReady(function(){
+  //   $translate(['logo_src']).then(function (translation) {
+  //     $scope.logo_src = translation["logo_src"];
+  //   });
+  // });
+
+  $scope.languages = {
+    "en": {
+      "title": "English",
+      "languageCode": "en",
       "languageCodeMoment": "en"
-		},
-		"fr": {
-			"title": "Français",
-			"languageCode": "fr",
+    },
+    "fr": {
+      "title": "Français",
+      "languageCode": "fr",
       "languageCodeMoment": "fr-ca"
-		}
-	};
+    }
+  };
 
     $scope.lang = $scope.languages[$translate.use()];
     

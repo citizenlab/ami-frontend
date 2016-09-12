@@ -10,7 +10,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'components', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, components, AMIRequest, dataProviderService, urls) {
+AMIApp.controller('QuestionsCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'components', 'components_en', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, components, components_en, AMIRequest, dataProviderService, urls) {
+  AMIRequest.set('components_en', components_en);
     $window.scrollTo(0,0)
     $scope.$watch(function(){
       $scope.previousStage = NavCollection.previousItem();

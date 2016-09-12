@@ -10,7 +10,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, AMIRequest, dataProviderService, urls) {
+AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'companies_en', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, companies_en, AMIRequest, dataProviderService, urls) {
+  AMIRequest.set('companies_en', companies_en);
     $window.scrollTo(0,0)
     $scope.showCustomOperator = false;
     $scope.$watch(function(){
@@ -51,7 +52,14 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
       $scope.customOperator = customCompanyTemplate;
     }
 
-
+    $scope.customToggle = function(){
+      if($scope.showCustomOperator){
+        $scope.showCustomOperator = false;
+      }
+      else{
+        $scope.showCustomOperator = true;
+      }
+    }
 
     if(AMIRequest.has('operator')){
       $scope.company = AMIRequest.get('operator');
@@ -77,7 +85,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
         $scope.services = null;
       }
       if(
-        newOperator.title && 
+        newOperator && newOperator.title && 
         (
           newOperator.meta.privacy_officer_email
           || (

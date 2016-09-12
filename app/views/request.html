@@ -22,8 +22,8 @@
     <div ng-if="(!letterDoneState || displayInstructions)">
       <p class="lineheight-copy margintop-none" translate="request.instructions.gov-instructions"></p>
       <div class="clearfix row">
-        <a href="https://atip-aiprp.apps.gc.ca" target="blank" class="fontstyle-normal f5 paddingleft-medium borderleft-thick bordercolor-white marginbottom-medium lineheight-1p5">
-          https://atip-aiprp.apps.gc.ca
+        <a ng-href="{{atipLink}}" target="blank" class="fontstyle-normal f5 paddingleft-medium borderleft-thick bordercolor-white marginbottom-medium lineheight-1p5">
+          {{atipLink}}
         </a>
         <p translate="request.instructions.gov-extra"></p>
       </div>
@@ -133,7 +133,7 @@
   
   <p class="paddinghorizontal-medium paddinghorizontal-none-ns" translate="category.socialMediaMessage"></p>
   <div class="paddinghorizontal-medium paddinghorizontal-none-ns">
-    <a class="btn btn-social display-inlineblock fill-white paddingvertical-xsmall paddinghorizontal-xsmall" ng-href="https://www.facebook.com/sharer/sharer.php?u={{shareText}}" target="blank">
+    <a class="btn btn-social display-inlineblock fill-white paddingvertical-xsmall paddinghorizontal-xsmall" ng-href="https://www.facebook.com/sharer/sharer.php?u={{shareURL}}" target="blank">
       <img ng-src="images/facebook.svg" class="width-large height-large"/>
     </a>
     <a class="btn btn-social display-inlineblock fill-white paddingvertical-xsmall paddinghorizontal-xsmall" ng-href="https://twitter.com/home?status={{shareText}}" target="blank">

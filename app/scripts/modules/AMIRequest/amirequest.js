@@ -141,5 +141,37 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
       date: date
     }
   }
+  request.getEnglish = function(key, englishCollectionKey, collection){
+    var englishItem;
+    var naturalLangItem = this.get(key);
+    var englishCollection = this.get(englishCollectionKey);
+    if(naturalLangItem){
+      if(typeof englishCollection !== "undefined"){
+        englishItem = _.find(englishCollection, function(item){
+          return (item.id === naturalLangItem.id);
+        });
+      }
+      else{
+        return null;
+      }
+    }
+    else{
+      englishItem = []
+      _.each(collection, function(c){
+        var item = _.find(englishCollection, function(e){
+          return (e.id === c.id || e.id === c.serverID);
+        });
+        if(item){
+          item.selected = true;
+          if(c.value){
+            item.value = c.value;
+          }
+          englishItem.push(item);
+        }
+      });
+    }
+
+    return englishItem;
+  }
   return request;
 });

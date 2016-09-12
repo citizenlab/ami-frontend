@@ -30,7 +30,7 @@
         </fieldset>
   </form>
       <div class="clearfix" ng-if="customOperator">
-        <p><a ng-click="showCustomOperator = !showCustomOperator" translate="customCompany.cta"><strong>Help:</strong> My company isn't listed</a></p>
+        <p><a ng-click="customToggle()" translate="customCompany.cta"><strong>Help:</strong> My company isn't listed</a></p>
         <form ng-if="showCustomOperator">
          <div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
           <h3 translate="customCompany.heading">Add custom company</h3>
