@@ -45,7 +45,6 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
         prevIndex =  this.collection.indexOf(this.selectedNavItem);
       }
       this.previous = this.collection[prevIndex];
-      console.log(this.previous);
       return this.previous;
     }
     else{

@@ -144,7 +144,13 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   request.getEnglish = function(key, englishCollectionKey, collection){
     var englishItem;
     var naturalLangItem = this.get(key);
-    var englishCollection = this.get(englishCollectionKey);
+    var englishCollection;
+    if(typeof englishCollectionKey == "string"){
+      englishCollection = this.get(englishCollectionKey);
+    }
+    else if(typeof englishCollectionKey  == "object"){
+      englishCollection = englishCollectionKey;
+    }
     if(naturalLangItem){
       if(typeof englishCollection !== "undefined"){
         englishItem = _.find(englishCollection, function(item){
@@ -157,16 +163,25 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
     }
     else{
       englishItem = []
-      _.each(collection, function(c){
+      _.each(collection, function(c, index, list){
+        var mergedItem;
         var item = _.find(englishCollection, function(e){
-          return (e.id === c.id || e.id === c.serverID);
+         // else{
+            return (e.id === c.id || e.id === c.serverID || e.id == index);
+          //}
         });
         if(item){
-          item.selected = true;
-          if(c.value){
-            item.value = c.value;
+          mergedItem = angular.copy(c);
+          if(item.title){
+            mergedItem.title = item.title;
           }
-          englishItem.push(item);
+          if(typeof item['meta'] !== "undefined"){      
+            mergedItem['meta'] = angular.copy(item['meta']);
+            if(typeof item['meta']['component_value'] !== "undefined"){
+              mergedItem['data'] = item['meta']['component_value'];
+            }
+          }
+          englishItem.push(mergedItem);
         }
       });
     }

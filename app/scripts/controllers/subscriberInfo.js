@@ -9,7 +9,18 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'urls', 'dataProviderService', '$translate', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, urls, dataProviderService, $translate) {
+AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'identifiers_en', 'urls', 'dataProviderService', '$translate', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, identifiers_en, urls, dataProviderService, $translate) {
+  var subject_en = {
+    basic_personal_info: identifiers_en['basic_personal_info'],
+    service_identifiers: identifiers_en
+  }
+  delete subject_en.service_identifiers['basic_personal_info'];
+  for(i in subject_en.service_identifiers){
+    if(typeof subject_en.service_identifiers[i] == "undefined"){
+      subject_en.service_identifiers[i] = {};
+    }
+  }
+  AMIRequest.set('subject_en', subject_en);
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
   

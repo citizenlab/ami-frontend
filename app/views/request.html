@@ -6,7 +6,10 @@
   <p ng-if="(!letterDoneState || displayInstructions)" class="paddinghorizontal-medium paddinghorizontal-none-ns"><span translate="request.instructions.read-careful"></span></p>
 
   <div class="backgroundcolor-black05 f5 paddingvertical-medium paddinghorizontal-large lineheight-1p5 clearfix">
-    <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" date="date" componentquestions="componentquestions" componentdata="componentdata" componentbanks="componentbanks" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
+    <request-template id="request" jurisdiction="jurisdiction" industry="industry" operator="operator" servicelist="servicelist" subject="subject" lang="lang" date="date" componentquestions="componentquestions" componentdata="componentdata" componentbanks="componentbanks" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
+  </div>
+  <div class="backgroundcolor-black05 f5 paddingvertical-medium paddinghorizontal-large lineheight-1p5 clearfix">
+    <request-template id="request" jurisdiction="jurisdiction" industry="industry_en" operator="operator_en" servicelist="servicelist" subject="subject_en" lang="lang_en" date="date_en" componentquestions="componentquestions_en" componentdata="componentdata_en" componentbanks="componentbanks_en" services="services" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
   </div>
 
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro" ng-if="operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>

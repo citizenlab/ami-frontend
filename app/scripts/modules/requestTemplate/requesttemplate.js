@@ -4,9 +4,10 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
     var linker = function (scope, element, attrs) {
         var jurisdiction = scope.jurisdiction.id;
         var industry = scope.industry.id;
+        var lang = scope.lang;
         var pdfForm;
         var itemPath = "/jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
-        dataProviderService.getItem(urls.apiURL(), itemPath).then(function (response) {
+        dataProviderService.getItem(urls.apiURL(lang), itemPath).then(function (response) {
             element.html(response[0].content);
             $compile(element.contents())(scope);
 
@@ -92,7 +93,8 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             pdf: '=',
             email: '=',
             emailsubject: '=',
-            pdffilenameprefix: '='
+            pdffilenameprefix: '=',
+            lang: '='
         }
     };
 });
