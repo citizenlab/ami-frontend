@@ -12,8 +12,14 @@ Unless required by applicable law or agreed to in writing, software distributed 
 'use strict';
 var AMIRequest = angular.module('AMIRequest', []);
 AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
+  var getEnglishDate = function(){
+    var eng_moment = moment();
+    eng_moment.locale('en');  
+    return eng_moment.format('MMMM Do, YYYY');
+  }
   var request = {};
   request.date = moment().format('MMMM Do, YYYY');
+  request.date_en = getEnglishDate();
   request.get = function(key){
     if(this.has(key)){
       return this[key]['data'];
@@ -130,7 +136,7 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   }
   request.hierarchy = ['jurisdiction', 'industry', 'operator', 'services', 'components', 'subject', 'request'];
   request.getAnon = function(){
-    var date = this.date;
+    var date = this.date_en;
     if(typeof date.data !=="undefined"){
       date = date.data;
     }
