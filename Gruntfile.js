@@ -1,4 +1,4 @@
-// Generated on 2014-05-08 using generator-angular 0.8.0
+im// Generated on 2014-05-08 using generator-angular 0.8.0
 'use strict';
 
 // # Globbing
@@ -191,7 +191,7 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}, !<%= yeoman.dist %>/images/ami-logo/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}, !<%= yeoman.dist %>/images/ami-logo/{,*/}*.{png,jpg,jpeg,gif,webp,svg, !<%= yeoman.dist %>/images/ami-logo/qc/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
