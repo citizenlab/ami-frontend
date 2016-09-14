@@ -68,7 +68,7 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   });
   var emailFieldREGEX;
   // $translate('subject.emailField').then(function (emailField) {
-    emailFieldREGEX = new RegExp(/email/i);
+    emailFieldREGEX = new RegExp(/email|courriel/i);
   // });
 
   var findEmail = function(subject){
