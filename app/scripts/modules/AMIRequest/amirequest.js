@@ -165,13 +165,13 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
       englishItem = []
       _.each(collection, function(c, index, list){
         var mergedItem;
+        mergedItem = angular.copy(c);
         var item = _.find(englishCollection, function(e){
          // else{
             return (e.id === c.id || e.id === c.serverID || e.id == index);
           //}
         });
         if(item){
-          mergedItem = angular.copy(c);
           if(item.title){
             mergedItem.title = item.title;
           }
@@ -182,6 +182,10 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
             }
           }
           englishItem.push(mergedItem);
+        }
+        else{
+          // Add natural language equivalent if no Eng present.
+          englishItem.push(c);
         }
       });
     }

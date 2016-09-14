@@ -2,25 +2,38 @@
 var requestTemplate = angular.module('requestTemplate', []);
 requestTemplate.directive('requestTemplate', function ($compile, dataProviderService, urls, $timeout, $location, $q) {
     var linker = function (scope, element, attrs) {
+        console.log("change");
         var jurisdiction = scope.jurisdiction.id;
         var industry = scope.industry.id;
         var lang = scope.lang;
         var pdfForm;
         var itemPath = "/jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
         dataProviderService.getItem(urls.apiURL(lang), itemPath).then(function (response) {
-            element.html(response[0].content);
-            $compile(element.contents())(scope);
-
-            scope.$watch('pdf.isGenerating', function(newVal, oldVal){
-                if(newVal === true && oldVal === false){
-                  makePDF(element);
-                }
-            });
-            $timeout(function(){
-                    scope.email.contents = buildEmail();
-                    scope.email.isGenerating = false;
-                    scope.email.isGenerated = true;
-            }, 100);
+              element.html(response[0].content);
+              $compile(element.contents())(scope);
+        scope.$watch('lang', function (v) {
+          console.log('lang', v)
+          var itemPath = "/jurisdictions/" + jurisdiction + "/industries/" + industry+ "/request_template";
+          dataProviderService.getItem(urls.apiURL(v), itemPath).then(function (response) {
+              element.html(response[0].content);
+              $compile(element.contents())(scope);
+              $timeout(function(){
+                scope.email.contents = buildEmail();
+                scope.email.isGenerating = false;
+                scope.email.isGenerated = true;
+              }, 100);
+        });
+        scope.$watch('pdf.isGenerating', function(newVal, oldVal){
+            if(newVal === true && oldVal === false){
+              makePDF(element);
+            }
+        });
+        $timeout(function(){
+                scope.email.contents = buildEmail();
+                scope.email.isGenerating = false;
+                scope.email.isGenerated = true;
+        }, 100);
+        });
         });
 
         var makePDF = function($element){

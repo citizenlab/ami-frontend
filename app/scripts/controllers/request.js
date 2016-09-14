@@ -8,6 +8,7 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     $scope.shareText = encodeURIComponent(translation["finish.share-text"]);
     $scope.atipLink = translation["finish.atipLink"];
     $scope.date = moment().format(translation["finish.date-format"]);
+    $scope.date_req = $scope.date;
     AMIRequest.set('date', $scope.date);
   });
   var eng_moment = moment();
@@ -124,6 +125,37 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     $window.removeEventListener('blur', blurListener, false);
     $timeout.cancel(timer);
   }
+    $scope.toggleRequestLanguage = function(){
+    if(!$scope.activeRequestLanguage || $scope.activeRequestLanguage == "en"){
+      $scope.jurisdiction_req = $scope.jurisdiction;
+      $scope.industry_req = $scope.industry;
+      $scope.operator_req = $scope.operator;
+      $scope.servicelist_req = $scope.servicelist;
+      $scope.subject_req = $scope.subject;
+      $scope.lang_req = $scope.lang;
+      $scope.date_req = $scope.date;
+      $scope.componentquestions_req = $scope.componentquestions;
+      $scope.componentdata_req = $scope.componentdata;
+      $scope.componentbanks_req = $scope.componentbanks;
+      $scope.services_req = $scope.services;
+      $scope.activeRequestLanguage = urls.languageCode;
+    }
+    else{
+      $scope.jurisdiction_req = $scope.jurisdiction_en;
+      $scope.industry_req = $scope.industry_en;
+      $scope.operator_req = $scope.operator_en;
+      $scope.servicelist_req = $scope.servicelist_en;
+      $scope.subject_req = $scope.subject_en;
+      $scope.lang_req = $scope.lang_en;
+      $scope.date_req = $scope.date_en;
+      $scope.componentquestions_req = $scope.componentquestions_en;
+      $scope.componentdata_req = $scope.componentdata_en;
+      $scope.componentbanks_req = $scope.componentbanks_en;
+      $scope.services_req = $scope.services_en;
+      $scope.activeRequestLanguage = 'en';
+    }
+  }
+  $scope.toggleRequestLanguage();
   $scope.emailClick = function(){
       var timer2;
       var timer = $timeout(function(){
