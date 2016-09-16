@@ -68,6 +68,7 @@
   "skip": "Passer cette étape et utiliser la demande par défaut",
   "label-questions": "Questions pour {{operator}}",
   "label-data": "Données demandées de {{operator}}",
+  "label-data-note": "Cette liste se veut exhaustive. <strong>{{operator}} ne détient peut-être pas certains de ces éléments</strong>.",
   "label-databanks": "Bases de données sélectionnées pour {{operator}}",
   "bank-desc": "Les services du gouvernement fédéral conservent vos renseignements personnels dans des « bases de données ». En indiquant dans quelles bases de données de {{operator}} vous souhaitez qu'on cherche vos renseignements personnels, vous améliorerez les chances de succès de votre demande d'accès. Nous avons identifié quelques bases de données d'intérêt, mais veuillez consulter la liste complète en <a href=\"{{link}}\" target=\"_blank\">cliquant ici</a> et ajouter les bases de données qui vous semblent pertinentes.",
   "otherBank": "Pour ajouter une autre base de données à votre demande, veuillez consulter la liste complète des bases de données de {{operator}} en <a href=\"{{link}}\" target=\"_blank\">cliquant ici</a>.",

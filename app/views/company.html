@@ -34,7 +34,9 @@
         <form ng-if="showCustomOperator">
          <div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
           <h3 translate="customCompany.heading">Add custom company</h3>
-          <label class="form-item" translate="customCompany.name">Company Name <input type="text" ng-model="customOperator.title"/></label>
+          <label class="form-item">
+            <span translate="customCompany.name">Company Name</span> <input type="text" ng-model="customOperator.title">
+          </label>
           <fieldset>
           <legend translate="customCompany.contactOverview">Company Privacy Contact</legend>
           <p translate="customCompany.intro">Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.</p>
