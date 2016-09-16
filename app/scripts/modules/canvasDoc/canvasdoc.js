@@ -99,12 +99,12 @@ function Page(pageSize, margins, dpiFactor){
 				}
 				line = words[n] + '';
 				this.paintPosition.y += page.lineHeight;
-				if(this.paintPosition.y >= page.maxPaintPosition.y){
-					return words.slice(n);
-				}
 			}
 			else {
 				line = testLine;
+			}
+			if(this.paintPosition.y >= page.maxPaintPosition.y){
+				return words.slice(n);
 			}
 		}
 		this.ctx.fillText(line, xPos, this.paintPosition.y);
