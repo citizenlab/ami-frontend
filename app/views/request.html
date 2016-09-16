@@ -4,7 +4,8 @@
   <p ng-if="!componentbanks" class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.callout" translate-values="{operator: operator.title}"></p>
    <p ng-if="componentbanks" class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.callout-gov" translate-values="{operator: operator.title}"></p>
   <p ng-if="(!letterDoneState || displayInstructions)" class="paddinghorizontal-medium paddinghorizontal-none-ns"><span translate="request.instructions.read-careful"></span></p>
-  <div ng-if="lang !== lang_en" class="btn btn-primary" ng-click="toggleRequestLanguage()">Toggle Language</div>
+  <p ng-if="lang !== lang_en" translate="finish.language-switch-legend"></p>
+  <div ng-if="lang !== lang_en" class="btn btn-primary" ng-click="toggleRequestLanguage()" translate="finish.language-switch">Toggle Language</div>
   <div class="backgroundcolor-black05 f5 paddingvertical-medium paddinghorizontal-large lineheight-1p5 clearfix">
     <request-template id="request" jurisdiction="jurisdiction_req" industry="industry_req" operator="operator_req" servicelist="servicelist_req" subject="subject_req" lang="lang_req" date="date_req" componentquestions="componentquestions_req" componentdata="componentdata_req" componentbanks="componentbanks_req" services="services_req" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
   </div>

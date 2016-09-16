@@ -43,8 +43,8 @@
 },
 "operator":{
   "title": "Sélectionnez votre fournisseur de service",
-  "callout": "<strong>Commencez votre demande d'accès</strong> en sélectionnant une entreprise qui vous fournit un service.",
-  "label": "Entreprises",
+  "callout": "<strong>Commencez votre demande d'accès</strong> en sélectionnant une organisation qui vous fournit un service.",
+  "label": "Organisations",
   "label-services": "Services"
 },
 "customCompany":{
@@ -143,6 +143,8 @@
   "consent-clause": "Je consens et j'autorise :",
   "label-data": "<em>Obtenir mes infos</em> pourrait recueillir des informations à propos des organisations auxquelles j'ai fait une demande d'accès, cela à des fins statistiques.",
   "label-subscribe": "<em>Obtenir mes infos</em> pourrait utiliser mon adresse courriel pour me faire parvenir des rappels et des conseils ainsi que des invitations qui me permettont d'aider la recherche concernant ma demande.",
+  "language-switch": "Changer la langue",
+  "language-switch-legend": "Vous pourriez obtenir de meilleurs résultats avec les entreprises situées à l'étranger et n'offrant pas de services en français en leur faisant parvenir votre demande en anglais.",
   "email": "Adresse courriel",
   "text-data": "Partager les informations suivantes avec Obtenir mes infos : Demande faite à {{operator}} pour le service {{servicelist}} ({{jurisdiction}}) le {{date}}.",
   "text-subscribe": "Je consens à ce que Obtenir mes infos m'envoie des courriels sur une base régulière pour me faire connaître l'état d'avancement de ma demande d'accès. En conséquence, j'autorise Obtenir mes infos à conserver mon adresse courriel dans un serveur situé au Canada. Obtenir mes infos pourrait m'envoyer un courriel d'alerte ou des directives pour faire face à des situations où {{operator}} ne donne pas suite à ma demande après une certaine période de temps. Si je reçois une réponse, je consens à ce que Obtenir mes infos m'invite par courriel à répondre à un court sondage. Je comprends qu'Obtenir mes infos ne partagera pas mon courriel avec des tiers-parties autres que le service de courriel utilisé pour me contacter.",

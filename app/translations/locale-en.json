@@ -143,6 +143,8 @@
     "consent-clause": "I consent and authorise: ",
     "label-data": "<em>Access My Info</em> may collect basic information about from whom I requested data for statistical purposes.",
     "label-subscribe": "<em>Access My Info</em> may use my email address in order to provide me with reminders, tips, and invitations to help further research regarding my request.",
+    "language-switch": "Toggle language",
+    "language-switch-legend": "Vous pourriez obtenir de meilleurs résultats avec les entreprises situées à l'étranger et n'offrant pas de services en français en leur faisant parvenir votre demande en anglais.",
     "email": "Email address",
     "text-data": "Share the following data with Access My Info: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
     "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
