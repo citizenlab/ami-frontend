@@ -60,6 +60,7 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $scope.componentbanks_en = AMIRequest.getEnglish(null, 'components_en', _.filter($scope.components['dataBanks']['items'], function(i){
     return i.selected;
   }));
+
   console.log(AMIRequest.get('subject_en'));
   $scope.subject_en.basic_personal_info = AMIRequest.getEnglish(null, AMIRequest.get('subject_en').basic_personal_info, $scope.subject.basic_personal_info);
   //get all serviec identifiers in English in proper structure
@@ -69,6 +70,9 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   
   _.each(ami_service_ids_en, function(service, service_id, list){
     $scope.subject_en.service_identifiers[service_id] = AMIRequest.getEnglish(null, service, $scope.subject.service_identifiers[service_id]);
+  });
+  _.each($scope.componentbanks_en, function(component, index, list){
+    $scope.componentbanks_en[index]['data'] = component.title + " (" + component.meta.data_bank_number + ")";
   });
 
   console.log("english_req", $scope.industry_en);
