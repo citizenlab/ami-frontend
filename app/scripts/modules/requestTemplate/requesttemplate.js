@@ -56,7 +56,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             subject = scope.emailsubject;
             
             el = element[0];
-            listItems = el.getElementsByTagName("ins")
+            listItems = el.getElementsByTagName("li")
             angular.forEach(listItems, function(value, key){
               listItems[key].innerHTML = "* " + listItems[key].innerHTML + "<br/>";
             });
