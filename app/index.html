@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="AMIApp">
+<html ng-app="AMIApp" ng-controller="HeaderCtrl">
 <!--
 
 MOSQUITO wants its sweet, sweet data
@@ -18,7 +18,7 @@ MOSQUITO wants its sweet, sweet data
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{lang}}"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <title translate="pagetitle">Access My Info</title>
@@ -200,6 +200,7 @@ MOSQUITO wants its sweet, sweet data
     <script src="scripts/modules/AMIRequest/amirequest.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/config.js"></script>
+    <script src="scripts/controllers/header.js"></script>
     <script src="scripts/controllers/jurisdiction.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/industry.js"></script>
