@@ -25,7 +25,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         });
         scope.$watch('pdf.isGenerating', function(newVal, oldVal){
             if(newVal === true && oldVal === false){
-              makePDF(element);
+              makePDF(element, scope.papersize);
             }
         });
         $timeout(function(){
@@ -36,8 +36,8 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         });
         });
 
-        var makePDF = function($element){
-            var requestLetter = new Document("letter", [11.7647, 11.7647, 11.7647, 11.7647]);
+        var makePDF = function($element, papersize){
+            var requestLetter = new Document(papersize, [11.7647, 11.7647, 11.7647, 11.7647]);
 
             // convert HTML in #request element to canvas-based document
             requestLetter.writeHTMLtoDoc($element[0]);
@@ -107,7 +107,8 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             email: '=',
             emailsubject: '=',
             pdffilenameprefix: '=',
-            lang: '='
+            lang: '=',
+            papersize: '='
         }
     };
 });

@@ -1,12 +1,16 @@
-# Access My Info: Canada
-This is a fork of the Access My Info project that is a work-in-progress. For more information about Access My Info, [please see here](https://github.com/digitalstewards/ami).
+#AMI Frontend
+AMI Frontend is an AngularJS application. The codebase is structured around being either served for development or compiled for production by the task-running system Grunt.
 
+**This README assumes that you have set up an AMI System server environment per: https://github.com/andrewhilts/ami-server**. To learn about initally setting up and deploying the AMI Frontend, read that document.
 
-## License
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+This document describes the different components of the frontend and how they interoperate with AMI CMS and AMI Community Tools.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this software except in compliance with the License. You may obtain a copy of the License at:
+#User Interface
+The AMI user interface are HTML files stored in app/views. They represent UI Views that contain Angular elements and variable placeholders.
 
-http://www.apache.org/licenses/LICENSE-2.0
+##Internationalization
+AMI is set up to be simple to internationalize. For this reason, all user interface strings for AMI for a given language are stored in a translation file. Translation files are JSON formatted. To add new translated strings to UI Views refer to the angular translate documentation.
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+To add a new supported language to the platform,
+
+Add new Moment Locale

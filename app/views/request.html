@@ -7,7 +7,7 @@
   <p ng-if="lang !== lang_en" translate="finish.language-switch-legend"></p>
   <div ng-if="lang !== lang_en" class="btn btn-primary" ng-click="toggleRequestLanguage()" translate="finish.language-switch">Toggle Language</div>
   <div class="backgroundcolor-black05 f5 paddingvertical-medium paddinghorizontal-large lineheight-1p5 clearfix">
-    <request-template id="request" jurisdiction="jurisdiction_req" industry="industry_req" operator="operator_req" servicelist="servicelist_req" subject="subject_req" lang="lang_req" date="date_req" componentquestions="componentquestions_req" componentdata="componentdata_req" componentbanks="componentbanks_req" services="services_req" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
+    <request-template id="request" jurisdiction="jurisdiction_req" industry="industry_req" operator="operator_req" servicelist="servicelist_req" subject="subject_req" lang="lang_req" date="date_req" componentquestions="componentquestions_req" componentdata="componentdata_req" componentbanks="componentbanks_req" services="services_req" pdf="pdf" email="email" emailsubject="'Formal Request for Personal Information Held By Your Company'" papersize="papersize" pdffilenameprefix="'Access_To_Information_Request'"></request-template>
   </div>
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.choice-intro" ng-if="operator.meta.privacy_officer_email && operator.meta.privacy_contact_address_1"></h3>
   <h3 class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="request.instructions.emailonly-intro" ng-if="!operator.meta.privacy_contact_address_1 && operator.meta.privacy_officer_email"></h3>
@@ -46,8 +46,8 @@
   <!-- EMAIL OPTION BEGIN -->
   <div ng-if="operator.meta.privacy_officer_email && !components.dataBanks.items.length">
   <p class="darkgray darkestred f3 b paddinghorizontal-medium paddinghorizontal-none-ns">
-    <span ng-if="!(pdfOptionEnabled && operator.meta.privacy_contact_address_1)" translate="request.instructions.email-title"></span>
-    <span ng-if="pdfOptionEnabled && operator.meta.privacy_contact_address_1" translate="request.instructions.email-title-option-1"></span>
+    <span ng-if="!operator.meta.privacy_contact_address_1" translate="request.instructions.email-title"></span>
+    <span ng-if="operator.meta.privacy_contact_address_1" translate="request.instructions.email-title-option-1"></span>
   </p>
   <div class="backgroundcolor-lightgrey padding-medium clearfix">
     <div ng-if="(!letterDoneState || displayInstructions)">

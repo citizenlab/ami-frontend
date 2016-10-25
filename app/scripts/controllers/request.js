@@ -1,5 +1,5 @@
 'use strict';
-AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'pdfOptionEnabled', '$translate', 'urls', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, pdfOptionEnabled, $translate, urls) {
+AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'papersize', '$translate', 'urls', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, papersize, $translate, urls) {
   var blurListener;
   var ami_service_ids_en;
   $window.scrollTo(0,0);
@@ -37,7 +37,7 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
     AMIRequest.drop('industry');
   }
 
-  $scope.pdfOptionEnabled = pdfOptionEnabled;
+  $scope.papersize = papersize;
   $scope.components = AMIRequest.get('components');
 
   $scope.jurisdiction = AMIRequest.get('jurisdiction');

@@ -271,8 +271,9 @@ var AMIApp = angular.module('AMIApp', [
         templateUrl: 'views/request.html',
         controller: 'RequestCtrl',
         resolve: {
-          pdfOptionEnabled: ["envOptions", function(envOptions){
-            return envOptions.pdfOption;
+          papersize: ["envOptions", function(envOptions){
+            console.log("paper", envOptions.paperSize);
+            return envOptions.paperSize;
           }]
         }
       })
@@ -400,7 +401,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
   }
   var langCookie = $cookies.get('languageCode');
   var languageCode;
-  var supportedLanguages = ['en','fr'];
+  var supportedLanguages = envOptions.supportedLanguages
   // Sanitize langCookie
   if(langCookie){
     langCookie = langCookie.replace(/\W/g, '');
@@ -420,11 +421,14 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
   $translate.use(languageCode);
   urls.setLanguageCode(languageCode);
   moment.locale(languageCode);
-  moment.updateLocale('fr-ca', {
-    ordinal : function (number) {
-      return number + (number === 1 ? 'er' : '');
-    }
-  });
+
+  if(supportedLanguages.indexOf("fr") > -1){
+    moment.updateLocale('fr-ca', {
+      ordinal : function (number) {
+        return number + (number === 1 ? 'er' : '');
+      }
+    });
+  }
   console.log(languageCode);
 
       var stages = [
