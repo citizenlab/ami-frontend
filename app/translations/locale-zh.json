@@ -1,0 +1,193 @@
+{
+  "pagetitle": "誰手可得",
+  "status": {
+    "wait": "請您稍等⋯⋯",
+    "next": "下一步",
+    "previous": "上一步", 
+    "thanks": "謝謝。",
+    "error": "錯誤。",
+    "tryAgain": "請稍候再試。",
+    "rateLimited": "您過於頻繁使用此項操作。請稍後再試。",
+    "serverDown": "服務器無法正常運作。請稍後再試。"
+  },
+  "presskit": {
+    "title": "Press kit"
+  },
+  "category": {
+    "title": "歡迎到「誰手可得」",
+    "callout": "資料收集者的種類：選擇一個您感興趣及為您提供服務的行業，並開始提出您的查閱資料要求。",
+    "label": "種類",
+    "requestsProcessed": "Join <strong>231</strong> others who have created a request on this system.", 
+    "instruction1": " 到底網絡或電訊供應商知道你啲咩？", 
+    "instruction2": "根據個人資料私隱條例，你可以要求查閱資料，而「誰手可得」可以幫你撰寫這份「查閱資料要求書」。", 
+    "instruction3": "只需五個步驟就可完成。", 
+    "start": "開始",
+    "info-1-title": "簡介", 
+    "info-1": "「誰手可得」是一個簡單、易用的網絡應用程式。只要依照步驟輸入資料，程式就會為你撰寫一份「查閱資料要求書」，助你向電訊商或網絡供應商查詢你的個人資料使用，包括如何收集、共享及儲存等。寫好「要求書」後，記緊要以郵遞或電郵方式，將之發送給公司的私隱條例事務主任，對方有責任向你提供相關資料。", 
+    "more-info-title": "了解更多", 
+    "press-kit": "Press kit", 
+    "press-release": "Press release", 
+    "article": "InmediaHK feature article", 
+    "law": "Hong Kong Data Privacy Ordinance", 
+    "sponsorStatement": "「誰手可得」由以下團體協力制作",
+    "socialMediaMessage": "廣傳「誰手可得」俾朋友",
+    "whatsapp-share-text": "誰手可得"
+  },
+  "operator": {
+    "title": "{{industry}}:  選擇一家機構",
+    "callout": "選擇你的電訊或網絡服務供應商。",
+    "label": "機構",
+    "label-services": "服務"
+  },
+  "questions": {
+    "title": "個人資料用途查詢",
+    "callout": "查詢你的個人資料如何被收集、使用、共享以及儲存。在下列選取你想要查閱的個人資料。",
+    "skip": "Skip and use default request",
+    "label-questions": "針對{{operator}}的問題",
+    "label-data": "向{{operator}}提出的查閱資料要求",
+    "label-databanks": "Selected data banks for {{operator}}",
+    "bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
+    "otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",
+    "newQuestion": "New Question",
+    "newData": "New Data Type",
+    "addDataBank": "Add Data Bank to request",
+  "show-desc": "Show description",
+  "edit-component": "Edit Request Component",
+  "remove-component": "Remove Request Component",
+  "update-component": "Update Request Component",
+  "cancel-component": "Cancel Update to Request Component",
+  "type-question": "Type a question",
+  "add-question": "Add Question",
+  "desc-data": "Describe the data you want",
+  "add-data": "Add Data Type",
+  "desc-bank": "Describe the data bank you want",
+  "add-bank": "Add Data Bank"
+  },
+  "subject": {
+    "title": "個人資料",
+    "callout": "請提供以下資料，以協助該公司識別你的相關資料。",
+    "callout-not-store": "「誰手可得」並不儲收集及儲存你以下得個人資料。",
+    "label": "基本個人資料",
+    "emailField": "email"
+  },
+  "request": {
+    "title": "您向{{operator}}提出的查閱資料要求",
+    "callout": "以下是你查閱資料要求的草稿. <strong>在你的同意下，該公司可就依從查閱資料的要求徵收費用。</strong>", 
+    "callout-hkid-email": "請緊記在電郵附上你的身份證或護照，以作身份證明。", 
+    "callout-hkid-postal": "請緊記在信件附上你身份證或護照的副本，以作身份證明。", 
+    "instructions": {
+      "choice-intro": "選擇你的遞交方法", 
+      "postalonly-intro": "該公司現只接受平郵查詢。", 
+      "emailonly-intro": "該公司現只接受電郵查詢。",  
+      "show": "顯示操作說明",
+      "hide": "隱藏操作說明",
+      "read-careful": "請仔細閱讀，然後送出信件。",
+      "post-instructions": "請按以下按鈕，製作信件的PDF版本，列印並郵寄至：",
+      "privacy-officer-title": "{{operator}} 私隱主任",
+      "post-or-email": "或郵寄至：{{email}}",
+      "post-title-option-1": "選擇一：郵寄", 
+      "post-title-option-2": "選擇二：郵寄", 
+      "post-title": "郵寄", 
+      "email-title": "電郵", 
+      "email-title-option-1": "選擇一: 電郵", 
+      "email-title-option-2": "選擇二: 電郵",
+      "email-instructions": "選項二：按「電郵」按鈕，寄出您的信件。如無法操作，或您使用的是網頁郵件，請複製並貼上如下信件並發送至：",
+      "email-unavailable": "選項二 無法使用：沒有該公司私隱主任的電子郵件。", 
+      "email-empty-prompt": "無法操作？", 
+      "email-empty-instructions": "複製並貼上以上信件"
+    },
+    "pdfButton": {
+      "generate": "製作PDF版本",
+      "re-save": "現重新儲存信件"
+    },
+    "emailButton": "發送電郵按鈕",
+    "emailProblem": "遇上問題？請複製或貼上以下文字至您的電郵客戶端，並寄至 {{email}}",
+    "thanks": "已完成，多謝你參與「誰手可得」！",
+    "continue": "請繼續完成下列操作，把信件的影響力全面發揮"
+  },
+  "finish": {
+    "title": "阿Thank you for submitting your request for information",
+    "share-text": "您知道您有查閱自己個人資料的權利嗎？看看電訊公司有多少您的資料！請按： {{shareURL}}",
+    "share-prompt": "阿Share this campaign with your friends on:", 
+    "consent-clause": "我同意及授權：",
+    "label-data": "「誰手可得」收集我透過本程式查閱資料要求的次數，以作統計及研究用途。",
+    "label-subscribe": "「誰手可得」可使用我的電郵地址定期提示我這次查閱資料要求的進展及邀請我完成簡短的問卷，並儲存我的電郵地址於加拿大的伺服器內。",
+    "email": "電郵地址",
+    "text-data": "於{{date}}.在 {{jurisdiction}} 發送給{{operator}}，有關查閱{{servicelist}}資料的要求。",
+    "text-subscribe": "數天後，本應用程式將向您寄出電郵，以確認您是否收到來自{{operator}}的回覆。如您在指定日期後仍未收到對方任何回覆，這封信將指引您該如何處理。您也將收到一個填寫簡短問卷的邀請。請放心，您的電郵內容除了在我們用以收發電郵的客戶端出現外，不會與任何第三方共享。",
+    "enroll": "登記"
+  },
+  "wrapper": {
+    "privacy":
+    "本網頁服務不會收集任何你提供的個人資料。所有資料用作制作資料查閱信件均在你的瀏灠器上進行。其他於查網頁上的超鏈結則由其他政策所規管。當你使用本網站服務時，本網站的伺服器會記錄是此使用，包括用作接駁本網站服務的 IP Address、使用時間及日期及其他沒有個人資料的元數據。<p>如你提供你的電郵地址給我們聯絡你，我們只會用作你同意了的特定目的上。我們不會使用、披露或轉移你的電郵地址予第三方作牟利用途。", 
+    "disclaimer":
+    "本應用程式只為研究和教學用的參考工具，不代表任何法律建議。換言之，使用本應用程式者，須對使用服務時、與由此產生的任何後果負全責。公民實驗室（Citizen Lab）、香港中文大學（The Chinese University of Hong Kong）、開放效應（Open Effect）、獨立媒體（香港）（Hong Kong In-media）及其夥伴團體將不對本應用程式文字中所包含資訊的準確性、完整性和適切性作任何聲明、承諾和保證。本軟件以「現狀」形式提供，且不帶有任何明示或隱含的保證。本應用程式中的信息，不應視為可以取代專門法律顧問的法律建議",
+    "license": "本應用程式已獲── CC 姓名標示-非商業性-相同方式分享 4.0 授權條款──許可授權。"
+  },
+  "feedback": {
+    "button-label": "分享您的意見",
+    "modal": {
+      "title": "分享您的意見",
+    "desc": "請分享您使用<em>Access My Info</em>的感受。",
+      "submit": "提交意見",
+    "cancel": "取消",
+    "agree": "非常同意",
+    "disagree": "非常不同意"
+    },
+    "questions": {
+    "easyToUse": "<em>Access My Info</em>方便使用。",
+    "quickToLearn": "我很快便學會使用這個網絡應用程式。",
+    "fewSteps": "這個應用程式以最簡便的步驟，完成我需要的程序。",
+    "noInstructions": "我無須使用操作說明，也能使用本應用程式。",
+    "mistakeRecover": "我能快速、簡易地更正錯誤。",
+    "success": "我每次也能成功使用本應用程式。",
+    "satisfied": "我對本應用程式感到滿意。",
+    "recommend": "我打算把本應用程式推薦給一位朋友。",
+    "like": "您喜歡本應用程式的哪些特點？",
+    "challenge": "使用本應用程式時，您曾遇甚麼困難？",
+    "industry": "接下來，您希望AMI支援哪個行業或政府部門？",
+    "general": "您有其他意見嗎？"
+    }
+  },
+  "offline": {
+    "title": "我們已離線！",
+    "sorry": "非常抱歉，<em>Access My Info</em> 應用程式現已離線！",
+    "soon": "請靜候，我們正盡力重新上線！"
+  },
+  "unsubscribe": {
+    "title": "取消訂閱",
+    "label": "進程"
+  },
+  "verifyemail": {
+    "title": "驗證電郵地址",
+    "label": "進程"
+  },
+  "nav": {
+    "start": "開始",
+    "operator": "公司",
+    "components": "查詢",
+    "subject": "個人資料",
+    "request": "送出",
+    "finish": "完"
+  },
+  "messages": {
+  "R1": "謝謝。目前，在{{jurisdiction}}，有申請專門提交給{{operator}}。 {{count}} ",
+  "R2": "抱歉，您最近已提交申請給{{operator}}。",
+  "R3": "系統錯誤。無法儲存申請。",
+  "D1": "資料庫錯誤。",
+  "V1": "電郵地址<strong>{{email}}</strong>已被驗證，並已訂閱通知。",
+  "V2": "電郵地址已被驗證。",
+  "V3": "驗證碼過期。",
+  "V4": "所提供的驗證碼無效。",
+  "V5": "沒有提供驗證碼。",
+  "V6": "沒有發現提交給<strong>{{email}}</strong>的AMI申請。",
+  "V7": "沒有獲得將要收集的電郵地址許可。",
+  "M1": "現在未能發送郵件。",
+  "M2": "您提供了一個無效的電郵地址。",
+  "U1": "已成功取消訂閱來自AMI通知的<strong>{{email}}</strong>。",
+  "U2": "無法取消已訂閱來自AMI通知的<strong>{{email}}</strong>。",
+  "F1": "意見已獲儲存。",
+  "F2": "未能儲存意見。",
+  "F2": "未能儲存意見。未能提交意見。"
+  }
+}

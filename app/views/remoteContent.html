@@ -1,0 +1,8 @@
+<div class="container-wide center">
+    <h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns">{{title}}</h2>
+    <div class="darkgray pagecontent lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" ng-bind-html="body"></div>
+    <div class="container center textalign-center margintop-xlarge">
+    	<a class="btn btn-primary" ng-if="(selectedNavItem && selectedNavItem.path !== '#/')" href="{{selectedNavItem.path}}"><span class="white" translate="content.link-continue">Continue your request</span></a>
+    	<a class="btn btn-primary" ng-if="(!selectedNavItem || selectedNavItem.path == '#/')" href="#/"><span class="white" translate="content.link-return">Return to Homepage</span></a>
+    </div>
+</div>

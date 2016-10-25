@@ -1,40 +1,63 @@
 <!-- <div class="btn btn-default marb10" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Back to Overview</div> -->
-<h2>Your Telecommunications Service Providers</h2>
-<form>
-  <fieldset>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-briefcase bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Begin creating your request</strong> by selecting a company that provides you telecommunications services (internet, landline, or mobile telephone). You're entitled to do this for all companies that provide you such services.</p></div>
-<div class="well">
-  <h3><label for="company">Company <span class="required">*</span></label></h3>
-  <div class="row">
-    <div class="col-sm-6">
-      <select tabindex="1" name="company" ng-model="company" ng-options="company.name for company in companies" class="form-control input-lg">
-        <option value="" selected>Select company</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 mart10">
-      Supplementary info about companies. What to do if company not on list: Here's template for you.
-    </div>
-  </div>
+<div class="container center">
+  <h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="operator.title" translate-values="{industry: industry.title}"></h2>
+  <p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="operator.callout"></p>
+  <form>
+    <fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
+      <!-- <h3 class="margintop-none" translate="operator.label"></h3> -->
+      <div class="clearfix">
+          <!-- <select tabindex="1" name="company" ng-model="company" ng-options="company.title for company in companies track by company.id" class="form-control input-lg">
+            <option value="" selected>Select company</option>
+          </select> -->
+        <div ng-repeat="company in companies | orderBy:'title'">
+          <div class="btn btn-select height-xlarge display-flex-center content-box" ng-click="selectCompany(company)" ng-class="{'btn-media-select': ($parent.company.id == company.id), 'btn-media': ($parent.company.id !== company.id), disabled:  (nextStage.selecting && $parent.company.id == company.id)}" aria-label="{{company.title}}" aria-role="button">
+              <div class="flexgrow-1"><img class="maxheight-xlarge maxwidth-xxlarge" ng-src="{{company.meta.operator_logo.sizes.thumbnail}}" alt="{{company.title}}"></div>
+              <h4 class="flexgrow-2 f4 marginbottom-none margintop-none textalign-right">
+                {{company.title}}
+              </h4>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix" ng-show="(services.length > 1)">
+        <h3><label><span translate="operator.label-services">Service(s)</span> <span class="required">*</span></label></h3>
+        <div class="checkbox  clearfix" ng-repeat="service in services">
+          <label ng-class="{'bg-success': service.selected}" >
+            <input type="checkbox" ng-model="service.selected" ng-true-value="{{true}}" ng-checked="showService(service)" data-ng-false-value="{{false}}"  tabindex="1" ng-disabled="(services.length == 1)" ng-change="setServices()"/>
+          {{service.title}}
+          </label>
+        </div>
+      </div>
+        </fieldset>
+  </form>
+      <div class="clearfix" ng-if="customOperator">
+        <p><a ng-click="customToggle()" translate="customCompany.cta"><strong>Help:</strong> My company isn't listed</a></p>
+        <form ng-if="showCustomOperator">
+         <div class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
+          <h3 translate="customCompany.heading">Add custom company</h3>
+          <label class="form-item">
+            <span translate="customCompany.name">Company Name</span> <input type="text" ng-model="customOperator.title">
+          </label>
+          <fieldset>
+          <legend translate="customCompany.contactOverview">Company Privacy Contact</legend>
+          <p translate="customCompany.intro">Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.</p>
+          <p><strong translate="customCompany.instructions">Provide either a full mailing address or an email address.</strong></p>
+          <label class="form-item"><span translate="customCompany.privacy_officer_email">Email address</span> <input type="text" ng-model="customOperator.meta.privacy_officer_email"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_address_1">Address 1</span> <input type="text" ng-model="customOperator.meta.privacy_contact_address_1"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_address_2">Address 2</span> <input type="text" ng-model="customOperator.meta.privacy_contact_address_2"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_city">City</span> <input type="text" ng-model="customOperator.meta.privacy_contact_city"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_province_state">Province / State</span> <input type="text" ng-model="customOperator.meta.privacy_contact_province_state"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_postal_code">Postal/Zip Code</span> <input type="text" ng-model="customOperator.meta.privacy_contact_postal_code"/></label>
+          <label class="form-item"><span translate="customCompany.privacy_contact_country">Country</span> <input type="text" ng-model="customOperator.meta.privacy_contact_country"/></label>
+          </fieldset>
+          </div>
+        </form>
+      </div>
+      <div class="margintop-medium clearfix">
+        <button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+            <span translate="status.previous"></span>
+        </button>
+        <button ng-click="next()" class="btn float-right" ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted), 'btn-disabled': (nextStage.selecting || nextStage.restricted)}">
+          <span translate="status.next"></span>
+        </button>
+      </div>
 </div>
-<div class="well clearfix" ng-show="company">
-<h3><label>Service(s) <span class="required">*</span></label></h3>
-<div class="checkbox  clearfix" ng-repeat="companyService in services">
-    <label class="fat col-sm-6" ng-class="{'bg-success': companyService.selected}" >
-      <input type="checkbox" ng-model="companyService.selected" ng-true-value="{{true}}" ng-checked="showService(companyService)" data-ng-false-value="{{false}}"  tabindex="1" />
-      <span class="fa" ng-class="{'fa-phone': companyService.serviceObj.serviceType.name=='telephone', 'fa-mobile': companyService.serviceObj.serviceType.name=='mobile', 'fa-globe': companyService.serviceObj.serviceType.name=='internet'}"></span>&nbsp;{{companyService.serviceObj.name}}
-    </label>
-    <div class="fat col-sm-6" ng-show="company.linkedDataSets.ixMapStars && companyService.serviceObj.serviceType.name=='internet'">
-      <span ng-repeat="star in company.linkedDataSets.ixMapStars" class="fa ixmapstar" ng-class="{'fa-star': star.score == '1', 'fa-star-half-o': star.score == '0.5', 'fa-star-o': star.score == '0'}" tooltip-animation="false" tooltip="{{star.star_short_name}}"></span>
-      <br/><a href="http://ixmaps.ca/transparency.php" target="_blank">ISP Privacy Transparency Score <span class="fa fa-external-link"></span></a>: 
-    </div>
-</div>
-<button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!IsServiceSelected || nextIsLoading)}" ng-click="next()">
-<span ng-if="!nextIsLoading">Next</span>
-<span ng-if="nextIsLoading">Please Wait...</span>
-&nbsp;
-<i class="fa" ng-class="{'fa-arrow-right': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i>
-</button>
-</fieldset>
-</form>

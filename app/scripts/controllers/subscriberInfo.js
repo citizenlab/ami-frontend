@@ -1,6 +1,6 @@
 /**************
 
-Copyright 2014 Digital Stewardship Initiative Contributors (University of Toronto and Fort Effect Company Corporation)
+Copyright 2016 Open Effect
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
@@ -9,123 +9,179 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-pirsApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'StateDataManager', 'NavCollection', function ($scope, $location, $window, StateDataManager, NavCollection) {
+AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'identifiers_en', 'urls', 'dataProviderService', '$translate', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, identifiers_en, urls, dataProviderService, $translate) {
+  var subject_en = {
+    basic_personal_info: identifiers_en['basic_personal_info'],
+    service_identifiers: identifiers_en
+  }
+  delete subject_en.service_identifiers['basic_personal_info'];
+  for(i in subject_en.service_identifiers){
+    if(typeof subject_en.service_identifiers[i] == "undefined"){
+      subject_en.service_identifiers[i] = {};
+    }
+  }
+  AMIRequest.set('subject_en', subject_en);
   $window.scrollTo(0,0);
   $scope.nextIsLoading = false;
+  
+  $scope.$watch(function(){
+     $scope.previousStage = NavCollection.previousItem();
+    $scope.nextStage = NavCollection.nextItem();
+  });
   $scope.previous = function(){
-    $location.path('/companyInfo');
+    $location.url($scope.previousStage.id);
   }
-  if(!StateDataManager.has('piiTypes')){
+  $scope.next = function(){
+    $location.url($scope.nextStage.id);
+  }
+  if(!AMIRequest.has('services')){
     $scope.previous();
     return;
   }
-  else{
-    if(StateDataManager.has('company')){
-      $scope.company = StateDataManager.get('company');
-    }
-    if(StateDataManager.has('customer')){
-      $scope.customer = StateDataManager.get('customer');
-    }else{
-      $scope.customer = {address: {}};
-    }
-    // $scope.customer.firstName = "Tester";
-    // $scope.customer.lastName = "Testerson";
-    // $scope.customer.address.address1 = "47 Test Avenue";
-    // $scope.customer.address.address2 = "#123";
-    // $scope.customer.address.city = "Testfield";
-    // $scope.customer.address.province = "ON";
-    // $scope.customer.address.postalcode = "T3S7E4";
-
-    $scope.provinces = [
-        {
-          "name":"Alberta",
-          "code":"AB"
-        },
-        {
-          "name":"British Columbia",
-          "code":"BC"
-        },
-        {
-          "name":"Manitoba", 
-          "code":"MB"
-        },
-        {
-          "name":"New Brunswick",
-          "code":"NB"
-        },
-        {
-          "name":"Newfoundland",
-          "code":"NL"
-        },
-        {
-          "name":"Northwest Territories",
-          "code":"NT"
-        },
-        {
-          "name":"Nova Scotia",
-          "code":"NS"
-        },
-        {
-          "name":"Nunavut",
-          "code":"NU"
-        },
-        {
-          "name":"Ontario",
-          "code":"ON"
-        },
-        {
-          "name":"Prince Edward Island",
-          "code":"PE"
-        },
-        {
-          "name":"Quebec",
-          "code":"QC"
-        },
-        {
-          "name":"Saskatchewan",
-          "code":"SK"
-        },
-        {
-          "name":"Yukon Territory",
-          "code":"YT"
-        }
-    ]
-  }
-  $scope.requiredFieldsFilled = function(){
-    console.log("province", $scope.customer.address.province)
-    var filled = (
-    ($scope.customer.firstName)
-    && ($scope.customer.lastName)
-    && ($scope.customer.address.address1)
-    && ($scope.customer.address.city)
-    && ($scope.customer.address.province)
-    && ($scope.customer.address.province !== "")
-    && ($scope.customer.address.postalcode)
-    );
-    if(filled){
-      $scope.customer.isComplete = true;
-      NavCollection.unRestrict('accountInfo');
+  $scope.operator = AMIRequest.get('operator');
+  $scope.services = AMIRequest.get('services');
+  if(identifiers){
+    if(AMIRequest.has('subject')){
+      $scope.subject = AMIRequest.get('subject');
     }
     else{
-      $scope.customer.isComplete = false;
-      NavCollection.restrict('accountInfo');
+      $scope.subject = {};
+      $scope.subject.basic_personal_info = {};
+      $scope.subject.service_identifiers = {};
+      console.log("subject overwrite", $scope.subject);
+      AMIRequest.set('subject', $scope.subject);
     }
-    return filled;
-  }
-  $scope.next = function(){
-    if($scope.requiredFieldsFilled()){
-      $scope.nextIsLoading = true;
-      $location.path('accountInfo');
+    console.log($scope.subject);
+    if(identifiers['basic_personal_info']){
+      $scope.basic_identifiers = identifiers['basic_personal_info'];
+    }
+    $scope.service_identifiers = identifiers;
+    delete $scope.service_identifiers['basic_personal_info'];
+    for(i in $scope.service_identifiers){
+      if(typeof $scope.subject.service_identifiers[i] == "undefined"){
+        $scope.subject.service_identifiers[i] = {};
+      }
     }
   }
-  $scope.$watch('customer', function(){
-    StateDataManager.stash('customer', $scope.customer);
-  })
-  $scope.showNotice = function(){
-    StateDataManager.stash('noticeValue', true);
+  $scope.$on("$destroy", function(){
+     $scope.submit(); 
+  });
+  var emailFieldREGEX;
+  // $translate('subject.emailField').then(function (emailField) {
+    emailFieldREGEX = new RegExp(/email|courriel/i);
+  // });
+
+  var findEmail = function(subject){
+    var email = null;
+    var keys;
+    for(var property in subject.basic_personal_info){
+      console.log(subject.basic_personal_info[property]);
+      if(subject.basic_personal_info[property]['title'].toLowerCase().match(emailFieldREGEX)){
+        email = subject.basic_personal_info[property]['value'];
+        console.log(email)
+      }
+      if(email){
+        break;
+      }
+    }
+    return email;
   }
-  if(StateDataManager.has('alreadyDone')){
-    $scope.showNotice();
+
+  $scope.hasEmailField = (typeof findEmail($scope.service_identifiers) !== "undefined");
+
+  $scope.email = {};
+  $scope.rateLimited = false;
+  if(AMIRequest.has('statistics')){
+    $scope.statistics = AMIRequest.get('statistics');
   }
-  NavCollection.finishSelect('subscriberInfo');
+  else{
+    $scope.statistics = true;
+  }
+  if(AMIRequest.has('subscribe')){
+    $scope.subscribe = AMIRequest.get('subscribe');
+  }
+  else{
+    $scope.subscribe = false;
+  }
+  $scope.anon = AMIRequest.getAnon();
+  $scope.servicelist = '';  
+  for(var i=0; i < $scope.anon.services.length; i++){
+    var dividerChar = "";
+    if(i == $scope.anon.services.length - 1){
+      dividerChar = ""
+    }
+    else{
+      dividerChar = ", ";
+    }
+    $scope.servicelist = $scope.servicelist + $scope.anon.services[i].title + dividerChar;
+  }
+
+  if(AMIRequest.has('operator')){
+    $scope.company = AMIRequest.get('operator');
+  }
+
+  $scope.$watch('subject', function(newVal, oldVal){
+    console.log("subject", newVal);
+    AMIRequest.set('subject', newVal);
+  });
+    
+  $scope.$watch(function(){
+    AMIRequest.set('statistics', $scope.statistics);
+    if($scope.statistics === false){
+      $scope.subscribe = false;
+    }
+    AMIRequest.set('subscribe', $scope.subscribe);
+    $scope.nextStage = NavCollection.nextItem();
+    if(AMIRequest.has('subject')){
+      if(findEmail(AMIRequest.get('subject'))){
+        $scope.hasEmail = true;
+        $scope.email.address = findEmail(AMIRequest.get('subject'));
+      }
+    }
+    else{
+      $scope.hasEmail = false;
+    }
+  });
+  
+  $scope.submit = function(){
+     if(!AMIRequest.get('statistics')){
+       return;
+     }
+     var payload = {
+        data: $scope.anon,
+        subscribe: AMIRequest.get('subscribe'),
+        language: $translate.use(),
+        email: false
+     }
+     if(AMIRequest.get('subscribe')){
+       payload.email = $scope.email;
+     }
+     AMIRequest.serverResponse = {};
+     AMIRequest.serverIsLoading = true;
+     dataProviderService.postItem(urls.enrollmentURL(), "/enroll/", {}, payload)
+     .then(function(response){
+      AMIRequest.serverResponse.serverIsLoading = false;
+      AMIRequest.serverResponse.serverError = false;
+      AMIRequest.serverResponse.serverDown = false;
+      AMIRequest.serverResponse.response = response.title;
+      AMIRequest.serverResponse.responseStatuses = {};
+      AMIRequest.serverResponse.responseStatuses[response.title.statusCode] = true;
+      AMIRequest.serverResponse.success = true;
+     }, function(response){
+      AMIRequest.serverResponse.serverIsLoading = false;
+      AMIRequest.serverResponse.serverError = true;
+      if(response.status === -1){
+        AMIRequest.serverResponse.serverDown = true;
+      }
+      else{
+        AMIRequest.serverResponse.serverDown = false;
+      }
+      if(response.status === 429){
+        AMIRequest.serverResponse.rateLimited = true;
+      }
+     });
+  }
+  $scope.submitAndNext = function(){
+      $scope.next();
+  }
 }]);

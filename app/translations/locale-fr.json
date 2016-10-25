@@ -1,0 +1,227 @@
+{
+"pagetitle": "Obtenir mes infos",
+"logo_src": "images/ami-logo/AMICAFullLogoRedBackground-fr.png",
+"status": {
+  "wait": "Veuillez patienter…",
+  "next": "Suivant",
+  "previous": "Précédent",
+  "thanks": "Merci.",
+  "error": "Erreur.",
+  "tryAgain": "Veuillez essayer plus tard.",
+  "rateLimited": "Vous faites cela trop souvent. Veuillez attendre et essayer plus tard.",
+  "serverDown": "Le serveur semble hors d'usage. Veuillez essayer plus tard."
+},
+"presskit": {
+  "title": "Trousse média"
+},
+"home":{
+  "link1": "Quels sont mes droits d'accès?",
+  "link2": "Pourquoi le droit d'accès est-il important?",
+  "link3": "J'ai fait une demande d'accès. Et ensuite?",
+  "link4": "Que vais-je obtenir en réponse à ma demande?",
+  "link-about": "À propos de nous",
+  "link-contact": "Nous joindre",
+  "link-press": "Trousse média"
+},
+"category":{
+  "title": "Bienvenue sur Obtenir mes infos",
+  "callout": "Que savent les entreprises et le gouvernement à votre sujet? Quelles informations conservent-ils? Avec qui partagent-ils ces informations? En vertu des lois canadiennes sur la protection de la vie privée, les organisations doivent vous donner accès à vos renseignements personnels lorsque vous en faites la demande. Nous pouvons vous aider à faire une telle demande.",
+  "label": "Catégorie",
+  "requestsProcessed": "Faites partie des <b>232</b> personnes qui ont fait une demande d'accès grâce à ce système.",
+  "instruction1": "Demande d'accès à :",
+  "instruction2": "Vous pouvez faire plusieurs demandes d'accès avec notre site web (mais une seule à la fois!).",
+  "instruction3": "Cela se fait en cinq étapes faciles. Commencez en choisissant une des catégories ci-dessous.",
+  "start": "Début",
+  "info-1-title": "À propos de ce projet",
+  "info-1": "Obtenir mes infos (OMI) est un service web qui vous permet de découvrir ce que des entreprises ou des ministères savent à votre sujet. Ce service vous guide pas-à-pas lors de la création d'une lettre officielle de demande d'accès à vos renseignements personnels. Cette lettre peut ensuite être envoyée par la poste ou par courriel au responsable de la protection de la vie privée d'une entreprise, ou jointe à l'outil de demande d'accès aux renseignements personnels du gouvernement fédéral.",
+  "more-info-title": "Plus en savoir plus",
+  "press-kit": "Trousse média",
+  "press-release": "Communiqué de presse",
+  "sponsorStatement": "Obtenir mes infos est une initiative conjointe créée par des membres de",
+  "socialMediaMessage": "Faites connaître notre projet :",
+  "whatsapp-share-text": "Obtenir mes infos"
+},
+"operator":{
+  "title": "Sélectionnez votre fournisseur de service",
+  "callout": "<strong>Commencez votre demande d'accès</strong> en sélectionnant une organisation qui vous fournit un service.",
+  "label": "Organisations",
+  "label-services": "Services"
+},
+"customCompany":{
+  "cta": "<strong>Aide :</strong> L'entreprise à laquelle je veux présenter une demande d'accès n'est pas dans la liste",
+  "heading": "Ajouter une autre entreprise",
+  "name": "Nom de l'entreprise",
+  "contactOverview": "Personne responsable de la protection de la vie privée dans cette entreprise",
+  "intro": "Veuillez fournir les coordonnées de la personne responsable qui, dans cette entreprise, a la tâche  d'interagir avec le public à propos des questions relatives à la protection de la vie privée. Habituellement, cette information se trouve dans la politique de confidentialité de l'entreprise.",
+  "instructions": "Veuillez fournir une adresse postale ou une adresse courriel.",
+  "privacy_officer_email": "Courriel :",
+  "privacy_contact_address_1": "Adresse 1",
+  "privacy_contact_address_2": "Adresse 2",
+  "privacy_contact_city": "Ville",
+  "privacy_contact_province_state": "Province / État",
+  "privacy_contact_postal_code": "Code postal / Code ZIP",
+  "privacy_contact_country": "Pays"
+},
+"questions":{
+  "title": "Quelles sont les données auxquelles vous voulez avoir accès?",
+  "callout": "Apprenez comment vos données sont recueillies, utilisées, partagées et conservées.",
+  "skip": "Passer cette étape et utiliser la demande par défaut",
+  "label-questions": "Questions pour {{operator}}",
+  "label-data": "Données demandées de {{operator}}",
+  "label-data-note": "Cette liste se veut exhaustive. <strong>{{operator}} ne détient peut-être pas certains de ces éléments</strong>.",
+  "label-databanks": "Bases de données sélectionnées pour {{operator}}",
+  "bank-desc": "Les services du gouvernement fédéral conservent vos renseignements personnels dans des « bases de données ». En indiquant dans quelles bases de données de {{operator}} vous souhaitez qu'on cherche vos renseignements personnels, vous améliorerez les chances de succès de votre demande d'accès. Nous avons identifié quelques bases de données d'intérêt, mais veuillez consulter la liste complète en <a href=\"{{link}}\" target=\"_blank\">cliquant ici</a> et ajouter les bases de données qui vous semblent pertinentes.",
+  "otherBank": "Pour ajouter une autre base de données à votre demande, veuillez consulter la liste complète des bases de données de {{operator}} en <a href=\"{{link}}\" target=\"_blank\">cliquant ici</a>.",
+  "newQuestion": "Autres questions (décrire ci-dessous)",
+  "newData": "Autres données (décrire ci-dessous)",
+  "addDataBank": "Ajouter une base de données à votre demande",
+  "show-desc": "Montrer la description",
+  "edit-component": "Modifier un élément de la demande",
+  "remove-component": "Retirer un élément de la demande",
+  "update-component": "Mettre à jour un élément de la demande",
+  "cancel-component": "Annuler la mise à jour d'un élément de la demande",
+  "type-question": "",
+  "add-question": "Ajouter une question",
+  "desc-data": "",
+  "add-data": "Ajouter un type de données",
+  "desc-bank": "",
+  "add-bank": "Ajouter une base de données"
+},
+"subject":{
+  "title": "Vos coordonnées",
+  "callout": "Entrez vos renseignements personnels pour que {{company}} puisse vous identifier dans ses archives.",
+  "callout-not-store": "<em>Obtenir mes infos</em> ne recueillera pas ou n'enregistrera pas les renseignements personnels ci-dessous.",
+  "label": "Vos renseignements personnels",
+  "emailField": "courriel"
+},
+"request":{
+  "title": "Votre demande d'accès est prête",
+  "callout": "Votre lettre à {{operator}} a été générée par notre système. <strong>Rappelez-vous que l'accès à vos renseignements personnels doit être gratuit ou à un coût minime.</strong>",
+  "callout-gov": "Votre lettre à {{operator}} a été générée par notre système.",
+  "instructions":{
+    "choice-intro": "Comment voulez-vous envoyer votre lettre?",
+    "gov-intro": "Joignez cette lettre au formulaire gouvernemental officiel",
+    "postalonly-intro": "Cette entreprise n'accepte actuellement que les demandes par la poste.",
+    "emailonly-intro": "Cette entreprise n'accepte actuellement que les demandes par courriel.",
+    "show": "Montrer les instructions",
+    "hide": "Masquer les instructions",
+    "read-careful": "Relisez attentivement la lettre et suivez ensuite les instructions ci-dessous.",
+    "post-instructions": "Utilisez le bouton ci-dessous pour créer un fichier PDF de votre lettre. Faites-la imprimer et postez-la à :",
+    "privacy-officer-title": "Personne responsable de {{operator}} ",
+    "post-or-email": "Ou envoyez un courriel à : {{email}}",
+    "post-title-option-1": "Option 2 : Courrier postal",
+    "post-title-option-2": "Option 2 : Courrier postal",
+    "post-title": "Courrier postal",
+    "email-title": "Courriel",
+    "email-title-option-1": "Option 1 : Courriel",
+    "email-title-option-2": "Option 2 : Courriel",
+    "email-instructions": "Utilisez le bouton ci-dessous pour envoyer votre lettre à :",
+    "email-unavailable": "<strong>Option 1 non disponible :</strong> L'entreprise ne diffuse pas le courriel de la personne responsable de la protection de la vie privée.",
+    "email-empty-prompt": "Si le texte de la demande n'apparaît pas dans le courriel ou si le bouton n'a pas fonctionné...",
+    "email-empty-instructions": "Cliquez ici pour copier le texte du courriel dans votre presse-papier.",
+    "gov-title": "Formulaire de demande d'accès destiné au gouvernement",
+    "gov-instructions": "Utilisez le bouton ci-dessous pour créer un fichier PDF de votre lettre. Téléchargez ensuite ce fichier à l'étape « Joindre les documents », lorsque vous remplissez le formulaire gouvernemental suivant :",
+    "gov-extra": "<strong>Rappelez-vous de sélectionner la Loi sur la protection des renseignements personnels dans le formulaire gouvernemental.</strong>"
+  },
+  "pdfButton":{
+    "generate": "Créer une lettre en format PDF",
+    "re-save": "Créer une lettre en format PDF"
+  },
+  "emailButton": "Ouvrir le logiciel de messagerie",
+  "emailProblem": "Un problème? Copiez-collez simplement le texte ci-dessous dans un courriel et envoyez-le à {{email}}",
+  "thanks": "C'est tout! Merci d'avoir participé au projet Obtenir mes infos.",
+  "continue": "Continuez pour maximiser votre impact",
+  "ami-again-prompt": "Encore curieux? Vous pouvez envoyer plusieurs demandes d'accès grâce à Obtenir mes infos :",
+  "ami-again-button": "Créer une autre demande d'accès"
+},
+"finish":{
+  "title": "Merci d'avoir envoyé votre demande!", 
+    "atipLink": "https://atip-aiprp.apps.gc.ca/atip/welcome.do?lang=fr",
+  "share-text": "Vous avez le droit d'accéder à vos renseignements personnels! Apprenez ce que les entreprises savent sur vous à {{shareURL}}",
+  "date-format": "Do MMMM YYYY",
+  "share-prompt": "Faites connaître ce site à vos amis :",
+  "consent-clause": "Je consens et j'autorise :",
+  "label-data": "<em>Obtenir mes infos</em> pourrait recueillir des informations à propos des organisations auxquelles j'ai fait une demande d'accès, cela à des fins statistiques.",
+  "label-subscribe": "<em>Obtenir mes infos</em> pourrait utiliser mon adresse courriel pour me faire parvenir des rappels et des conseils ainsi que des invitations qui me permettont d'aider la recherche concernant ma demande.",
+  "language-switch": "Changer la langue",
+  "language-switch-legend": "Vous pourriez obtenir de meilleurs résultats avec les entreprises situées à l'étranger et n'offrant pas de services en français en leur faisant parvenir votre demande en anglais.",
+  "email": "Adresse courriel",
+  "text-data": "Partager les informations suivantes avec Obtenir mes infos : Demande faite à {{operator}} pour le service {{servicelist}} ({{jurisdiction}}) le {{date}}.",
+  "text-subscribe": "Je consens à ce que Obtenir mes infos m'envoie des courriels sur une base régulière pour me faire connaître l'état d'avancement de ma demande d'accès. En conséquence, j'autorise Obtenir mes infos à conserver mon adresse courriel dans un serveur situé au Canada. Obtenir mes infos pourrait m'envoyer un courriel d'alerte ou des directives pour faire face à des situations où {{operator}} ne donne pas suite à ma demande après une certaine période de temps. Si je reçois une réponse, je consens à ce que Obtenir mes infos m'invite par courriel à répondre à un court sondage. Je comprends qu'Obtenir mes infos ne partagera pas mon courriel avec des tiers-parties autres que le service de courriel utilisé pour me contacter.",
+  "enroll": "Inscrire"
+},
+"wrapper":{
+  "privacy": "Ce service ne recueille aucun des renseignements personnels que vous fournissez. Ces renseignements sont utilisés uniquement pour générer une lettre, qui est créée entièrement par votre fureteur web. D'autres pages web vers lesquelles ce service vous dirige via des hyperliens sont régies par des politiques de confidentialité différentes. Quand vous utilisez le service, le serveur web qui héberge le service enregistre l'adresse IP utilisée pour accéder à chaque ressource requise pour fournir le service, la date et l'heure de l'accès ainsi que plusieurs autres métadonnées dépersonnalisées. <p>Si vous nous fournissez une adresse courriel, nous ne l'utiliserons que pour les fins spécifiques pour lesquelles vous nous avez donné votre consentement. Sauf pour des fins d'administration du service Obtenir mes infos, votre adresse courriel ne sera pas utilisée, partagée ou transférée à aucune tiers-partie.",
+  "disclaimer": "<strong>Avertissement</strong> : Ce site est un outil de recherche et d'éducation. Il est uniquement destiné à des fins d'information. Il ne donne pas d'avis juridique. Vous êtes le seul responsable de l'usage que vous faites de ce site et des conséquences qui peuvent en résulter. Open Effect et ses partenaires ne font aucune représentation, promesse ou garantie sur le caractère exact, complet ou pertinent de l'information contenue dans ce site. Ce logiciel est offert tel quel, sans garantie. Rien sur ce site ne devrait être considéré comme un avis juridique provenant d'un professionnel.",
+  "license": "Ce travail est offert sous la licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International."
+},
+"feedback":{
+  "button-label": "Commentaires",
+  "modal":{
+    "title": "Partager vos commentaires",
+    "desc": "Merci de nous faire savoir ce que vous pensez de <em>Obtenir mes infos</em>.",
+    "submit": "Envoyer les commentaires",
+    "cancel": "Annuler",
+    "agree": "Complètement en accord",
+    "disagree": "Complètement en désaccord"
+  },
+  "questions": {
+    "easyToUse": "<em>Obtenir mes infos</em> est facile d'utilisation.",
+    "quickToLearn": "J'ai appris à l'utiliser rapidement.",
+    "fewSteps": "Il me permet de faire ce que je veux faire dans le moins d'étapes possible.",
+    "noInstructions": "Je peux l'utiliser sans instructions écrites.",
+    "mistakeRecover": "Je peux corriger mes erreurs rapidement et simplement.",
+    "success": "Je peux l'utiliser avec succès à chaque fois.",
+    "satisfied": "Je suis satisfait de ce site.",
+    "recommend": "Je le recommanderais à un ami.",
+    "like": "Qu'avez-vous aimé de Obtenir mes infos?",
+    "challenge": "Quelles difficultés avez-vous rencontrées en utilisant Obtenir mes infos?",
+    "industry": "Quels autres types d'entreprises ou de services gouvernementaux voudriez-vous qu'Obtenir mes infos supporte?",
+    "general": "Avez-vous d'autres commentaires?"
+  }
+},
+"offline":{
+  "title": "Nous sommes hors ligne!",
+  "sorry": "Désolé, mais <em>Obtenir mes infos</em> est actuellement hors ligne!",
+  "soon": "Rassurez-vous, nous travaillons d'arrache-pied pour ramener les choses à l'ordre le plus rapidement possible."
+},
+"unsubscribe":{
+  "title": "Se désabonner",
+  "label": "Statut"
+},
+"verifyemail":{
+  "title": "Vérification du courriel",
+  "label": "Statut"
+},
+"nav":{
+  "start": "Début",
+  "operator": "Entreprise",
+  "components": "Données",
+  "subject": "Coordonnées",
+  "request": "Demande",
+  "finish": "Terminer"
+},
+"content":{
+  "link-continue": "Continuer votre demande",
+  "link-return": "Retourner à la page d'accueil"
+},
+"messages": {
+  "R1": "Grâce à vous, il y a maintenant {{count}} demandes créées pour {{operator}}.",
+  "R2": "Désolé, votre requête à {{operator}} a été créée trop récemment.",
+  "R3": "Erreur système. Impossible de sauvegarder la demande.",
+  "D1": "Erreur de la base de données.",
+  "V1": "L'adresse courriel <strong>{{email}}</strong> a été vérifiée et inscrite à la liste d'avis.",
+  "V2": "Cette adresse courriel a déjà été vérifiée.",
+  "V3": "Jeton de vérification expiré.",
+  "V4": "Le jeton de vérification fourni est invalide.",
+  "V5": "Aucun jeton fourni pour valider.",
+  "V6": "Nous n'avons trouvé aucune demande Obtenir mes infos pour <strong>{{email}}</strong>.",
+  "V7": "Vous n'avez pas consenti à la collecte de votre adresse courriel.",
+  "M1": "Impossible d'envoyer le courriel à ce moment.",
+  "M2": "L'adresse courriel que vous avez fournie n'est pas valide.",
+  "U1": "Désabonnement effectué de <strong>{{email}}</strong> de Obtenir mes infos",
+  "U2": "Impossible de désabonner <strong>{{email}}</strong> de Obtenir mes infos",
+  "F1": "Commentaire sauvegardé.",
+  "F2": "Impossible de sauvegarder le commentaire. Aucun commentaire fourni."
+}
+}

@@ -1,0 +1,229 @@
+{
+  "pagetitle": "Access My Info",
+  "logo_src": "images/ami-logo.svg",
+  "status": {
+    "wait": "Please wait...",
+    "next": "Next",
+    "previous": "Back", 
+    "thanks": "Thank you.",
+    "error": "Error.",
+    "tryAgain": "Try again later.",
+    "rateLimited": "You're doing that too much. Please wait and try later.",
+    "serverDown": "Server appears to be down. Please try again later."
+  },
+  "presskit": {
+    "title": "Press kit"
+  },
+  "home": {
+    "link1": "What are my access rights?",
+    "link2": "Why is access important?",
+    "link3": "I requested; what now?",
+    "link4": "What can I get back?",
+    "link-about": "About us",
+    "link-contact": "Contact us",
+    "link-press": "Press Kit"
+  },
+  "category": {
+    "title": "Welcome to Access My Info",
+    "callout": "What do companies and government know about you? What do they keep on file? Who do they share it with? Organizations are required by Canadian privacy laws to disclose this information to their customers upon request. We can help with that.",
+    "label": "Category", 
+    "requestsProcessed": "Join the <strong>231</strong> other people who have created a request on this system.", 
+    "instruction1": "Request information from:", 
+    "instruction2": "You may make multiple requests with our website (but one at a time!).", 
+    "instruction3": "It only takes 5 easy steps. Start by choosing a category below.", 
+    "start": "Start", 
+    "info-1-title": "About this project", 
+    "info-1": "Access My Info (AMI) is a web application that enables you to find out what a variety of different companies and government departments know about you. It guides you via a step-by-step wizard to generate a formal letter that requests access to your personal information. This letter can then be sent via postal mail or email to the respective company’s privacy officer, or attached to the federal government's Access to Information request tool.", 
+    "more-info-title": "For more information", 
+    "press-kit": "Press kit", 
+    "press-release": "Press release", 
+    "sponsorStatement": "Access My Info is a joint initiative created by members of ",
+    "socialMediaMessage": "Spread the word about our project:",
+    "whatsapp-share-text": "Access My Info"
+  },
+  "operator": {
+    "title": "Select your service provider",
+    "callout": "<strong>Begin your request</strong> by selecting a company that provides you a service.",
+    "label": "Companies",
+    "label-services": "Services"
+  },
+  "customCompany": {
+    "cta": "<strong>Help:</strong> My company isn't listed",
+    "heading": "Add custom company",
+    "name": "Company Name",
+    "contactOverview": "Company Privacy Contact",
+    "intro": "Please provide the contact information for the person responsible for interacting with the public regarding customer privacy. Usually this information can be found on the company's privacy policy.",
+    "instructions": "Provide either a full mailing address or an email address.",
+    "privacy_officer_email": "Email address",
+    "privacy_contact_address_1": "Address 1",
+    "privacy_contact_address_2": "Address 2",
+    "privacy_contact_city": "City",
+    "privacy_contact_province_state": "Province / State",
+    "privacy_contact_postal_code": "Postal/Zip Code",
+    "privacy_contact_country": "Country"
+  },
+  "questions": {
+    "title": "What data do you want to access?",
+    "callout": "Make enquiries about how your data is collected, used, shared and stored.",
+    "skip": "Skip and use default request",
+    "label-questions": "Questions for {{operator}}",
+    "label-data": "Data requested from {{operator}}",
+    "label-data-note": "This list is meant to be exhaustive. <strong>{{operator}} may not retain some of these items</strong>.",
+    "label-databanks": "Selected data banks for {{operator}}",
+    "bank-desc": "Federal government departments store personal data in &ldquo;data banks&rdquo;. Specifying specific data banks for {{operator}} to look through to find your personal data will improve the chances of a successful request. We have identified some data banks of interest, but please check the full list <a href=\"{{link}}\" target=\"_blank\">here</a> and add any you see fit.",
+    "otherBank": "To add another data bank to your request, please consult the full list of {{operator}} data banks <a href=\"{{link}}\" target=\"_blank\">here</a>.",
+    "newQuestion": "Other questions (describe below)",
+    "newData": "Other data (describe below)",
+    "addDataBank": "Add another data bank to your request",
+  "show-desc": "Show description",
+  "edit-component": "Edit Request Component",
+  "remove-component": "Remove Request Component",
+  "update-component": "Update Request Component",
+  "cancel-component": "Cancel Update to Request Component",
+  "type-question": "",
+  "add-question": "Add Question",
+  "desc-data": "",
+  "add-data": "Add Data Type",
+  "desc-bank": "",
+  "add-bank": "Add Data Bank"
+  },
+  "subject": {
+    "title": "Identifying information",
+    "callout": "Enter your information so {{company}} can identify you in their records.",
+    "callout-not-store": "<em>Access My Info</em> will not collect or store any of the personal information below.",
+    "label": "Your Personal Information",
+    "emailField": "email"
+  },
+  "request": {
+    "title": "Your request is ready",
+    "callout": "Your letter to {{operator}} has been successfully generated by our system. <strong>Remember, access should be free or at minimal cost</strong>", 
+    "callout-gov": "Your letter to {{operator}} has been successfully generated by our system.",
+    "instructions": {
+      "choice-intro": "How would you like to send your letter?", 
+      "gov-intro": "Attach this letter to the official government form", 
+      "postalonly-intro": "This company currently only accepts requests by postal mail.", 
+      "emailonly-intro": "This company currently only accepts requests by email.", 
+      "show": "Show Instructions",
+      "hide": "Hide Instructions",
+      "read-careful": "Read over the letter carefully, then follow the instructions below.",
+      "post-instructions": "Use the button below to create a PDF of your letter. Then print it and mail it to:",
+      "privacy-officer-title": "{{operator}} Privacy Officer",
+      "post-or-email": "Or email to: {{email}}",
+      "post-title-option-1": "Option 2: Postal mail", 
+      "post-title-option-2": "Option 2: Postal mail", 
+      "post-title": "Postal mail", 
+      "email-title": "Email", 
+      "email-title-option-1": "Option 1: Email", 
+      "email-title-option-2": "Option 2: Email", 
+      "email-instructions": "Use the button below to email your letter to:",
+      "email-unavailable": "<strong>Option 1 Unavailable:</strong> No email listed for company privacy officer.", 
+      "email-empty-prompt": "If the email is empty or the button didn't work...",
+      "email-empty-instructions": "Click here to copy the text of the email to your clipboard",
+      "gov-title": "Government Access Form",
+      "gov-instructions": "Use the button below to create a PDF of your letter. Then upload it in the \"Attach Documents\" stage when filling out the official government form here:",
+      "gov-extra": "<strong>Remember to choose Privacy Act request in the government form.</strong>"
+    },
+    "pdfButton": {
+      "generate": "Create PDF Letter",
+      "re-save": "Create PDF Letter"
+    },
+    "emailButton": "Open email client",
+    "emailProblem": "Problem? Simply copy & paste the below text into your email client and send to {{email}}",
+    "thanks": "That's it! Thank you for participating in the Access My Info project.",
+    "continue": "Continue on to maximize your impact", 
+    "ami-again-prompt": "Still curious? You can submit multiple requests within Access My Info:",
+    "ami-again-button": "Create another request"
+  },
+  "finish": {
+    "title": "Thank you for submitting your request!", 
+    "atipLink": "https://atip-aiprp.apps.gc.ca/atip/welcome.do?lang=en",
+    "share-text": "Do you know you have the right to access your own personal info? Find out what companies know about you at {{shareURL}}",
+    "date-format": "MMMM Do, YYYY",
+    "share-prompt": "Share this campaign with your friends:", 
+    "consent-clause": "I consent and authorise: ",
+    "label-data": "<em>Access My Info</em> may collect basic information about from whom I requested data for statistical purposes.",
+    "label-subscribe": "<em>Access My Info</em> may use my email address in order to provide me with reminders, tips, and invitations to help further research regarding my request.",
+    "language-switch": "Toggle language",
+    "language-switch-legend": "Vous pourriez obtenir de meilleurs résultats avec les entreprises situées à l'étranger et n'offrant pas de services en français en leur faisant parvenir votre demande en anglais.",
+    "email": "Email address",
+    "text-data": "Share the following data with Access My Info: Request made to {{operator}} for the {{servicelist}} in {{jurisdiction}} on {{date}}.",
+    "text-subscribe": "I agree that Access My Info may send me emails regularly to remind me of the progress of my data access request. I, therefore, authorise Access My Info to store my email address in a server located in Canada.  Access My Info may send me an email alert or instructions to deal with situations where {{operator}} fails to give a reply after a specified period of time. Should I receive a reply, I agree that Access My Info may send me an email invitation to complete a short survey. I understand that Access My Info will not disclose my email address to any third parties, other than the email service which sends the emails to me.",
+    "enroll": "Enroll"
+  },
+  "wrapper": {
+    "privacy": 
+    "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be governed by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.<p>In the event you provides us your email address to contact you, we will only use it for the specific purposes agreed by you. We will not use, disclose, transfer your email address to any third parties beyond the purposes of administering the Access My Info service.", 
+    "disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
+    "license": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License."
+  },
+  "feedback": {
+    "button-label": "Feedback",
+    "modal": {
+      "title": "Share your feedback",
+    "desc": "Please share your thoughts on using <em>Access My Info</em>.",
+      "submit": "Submit Feedback",
+    "cancel": "Cancel",
+    "agree": "Strongly Agree",
+    "disagree": "Strongly Disagree"
+    },
+    "questions": {
+    "easyToUse": "<em>Access My Info</em> is easy to use.",
+    "quickToLearn": "I learned to use it quickly.",
+    "fewSteps": "It requires the fewest steps possible to accomplish what I want to do with it.",
+    "noInstructions": "I can use it without written instructions.",
+    "mistakeRecover": "I can recover from mistakes quickly and easily.",
+    "success": "I can use it successfully every time.",
+    "satisfied": "I am satisfied with it.",
+    "recommend": "I would recommend it to a friend.",
+    "like": "What did you like about Access My Info?",
+    "challenge": "What challenges did you face while using Access My Info?",
+    "industry": "What industries or government departments would you like to see AMI support next?",
+    "general": "Do you have any other comments?"
+    }
+  },
+  "offline": {
+    "title": "We are offline!",
+    "sorry": "Sorry about this, but <em>Access My Info</em> is currently offline!",
+    "soon": "Rest assured, we're working hard to bring it back up as soon as possible."
+  },
+  "unsubscribe": {
+    "title": "Unsubscribe",
+    "label": "Status"
+  },
+  "verifyemail": {
+    "title": "Email Verification",
+    "label": "Status"
+  },
+  "nav": {
+    "start": "Start",
+    "operator": "Company",
+    "components": "Data",
+    "subject": "ID",
+    "request": "Access",
+    "finish": "Finish"
+  },
+  "content": {
+    "link-continue": "Continue your request",
+    "link-return": "Return to Homepage"
+  },
+  "messages": {
+  "R1": "Thanks to you, there are now {{count}} requests created for {{operator}}.",
+  "R2": "Sorry, you've created a request to {{operator}} too recently.",
+  "R3": "System Error. Can't save request.",
+  "D1": "Database Error.",
+  "V1": "The email address <strong>{{email}}</strong> has been verified and subscribed to notifications.",
+  "V2": "This email address has already been verified.",
+  "V3": "Verification token expired.",
+  "V4": "Invalid token provided.",
+  "V5": "No token provided to validate.",
+  "V6": "No AMI requests found for <strong>{{email}}</strong>.",
+  "V7": "No consent given for email address to be collected.",
+  "M1": "Unable to send email at this time.",
+  "M2": "You've provided an invalid email address.",
+  "U1": "Successfully unsubscribed <strong>{{email}}</strong> from AMI notifications.",
+  "U2": "Unable to unsubscribe <strong>{{email}}</strong> from AMI notifications.",
+  "F1": "Feedback saved.",
+  "F2": "Unable to save feedback.",
+  "F2": "Unable to save feedback. No feedback provided."
+  }
+}

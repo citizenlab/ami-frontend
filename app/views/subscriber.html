@@ -1,51 +1,69 @@
 <!-- <div class="btn btn-default" ng-click="previous()" ng-enter="previous()" tabindex="2"><span class="glyphicon glyphicon-chevron-left"></span> Back to Services</div> -->
-<h2>Contact information</h2>
-<form>
-<fieldset>
-<div class="clearfix bg-info p-bg marb10"><span class="va-mid text-center col-xs-1 hidden-xs"><i class="fa fa-user bigIcon "></i></span><p class="va-mid col-xs-11"><strong>Your name and address</strong> will be used to create a formal letter and also help {{company.name}} identify you in its records. Remember, this form <strong>does not collect your data</strong> – it creates a letter for you to send yourself.</p></div>
-<div class="well">
-<div class="row">
-  <div class="form-group col-sm-4">
-    <label for="customer.firstName">First Name <span class="required">*</span></label>
-    <input class="form-control" name="customer.firstName" ng-model="customer.firstName" tabindex="1"/>
-  </div>
-  <div class="form-group col-sm-4">
-    <label for="customer.lastName">Last Name <span class="required">*</span></label>
-    <input class="form-control" name="customer.lastName" ng-model="customer.lastName" tabindex="1"/>
-  </div>
+<div class="container center">
+	<h2 class="textalign-center paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.title"></h2>
+	<p class="darkgray lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.callout" translate-values="{company: operator.title}"></p>
+	<p class="b lineheight-copy paddinghorizontal-medium paddinghorizontal-none-ns" translate="subject.callout-not-store"></p>
+	<form>
+		<fieldset class="backgroundcolor-black05 bordercolor-lightgrey padding-medium padding-large-ns margin-none">
+		    <!-- <h3 class="margintop-none" ng-if="basic_identifiers" translate="subject.label"></h3> -->
+		    <div ng-repeat="identifier in basic_identifiers | object2Array | orderBy:'+weight'">
+		      	<form-item class="form-item" id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.basic_personal_info">
+		  		</form-item>
+		    </div>
+		    <div ng-repeat="(key, identifiers) in service_identifiers">
+		    <div class="form-group col-sm-12" ng-repeat="identifier in identifiers | object2Array | orderBy:'+weight'">
+		      <form-item class="form-item" id="identifier.id" fieldtype="identifier.meta.form_field_type" options="identifier.meta.field_options" weight="identifier.weight" label="identifier.title" ng-model="subject.service_identifiers[key]"></form-item>
+		    </div>
+		    </div>
+
+			<hr />
+			<div class="form-group margintop-medium">
+				<p translate="finish.consent-clause"></p>
+				<div class="checkbox clearfix">
+					<label>
+						<div class="width-10p textalign-center float-left">
+							<input type="checkbox"  tabindex="1" ng-model="statistics" ng-true-value="true" ng-false-value="false"/>
+						</div>
+						<div class="width-90p float-left clear-right">
+							<span translate="finish.label-data"></span>
+						</div>
+					</label>
+				</div>
+				<div class="margintop-medium marginbottom-large">
+					<div class="checkbox clearfix">
+						<label>
+							<div class="width-10p textalign-center float-left">
+								<input type="checkbox" ng-disabled="!statistics" ng-model="subscribe" ng-true-value="true" ng-false-value="false" readonly="false"/>
+							</div>
+							<div class="width-90p float-left clear-right" ng-class="{'silver': !statistics}">
+								<span translate="finish.label-subscribe"></span>
+							</div>
+						</label>
+					</div>
+					<!-- hide/delete below? -->
+					<div class="clear-both clearfix">
+						<div class="width-90p gray float-right">
+							<label ng-if="(!hasEmailField && !hasEmail) && subscribe">
+								<span translate="finish.email"></span> <span class="required">*</span>
+							</label>
+							<input type="email" name="email" tabindex="1" class="form-control" ng-disabled="!subscribe || !statistics" ng-model="email.address" ng-if="(!hasEmailField && !hasEmail) && subscribe" />
+						</div>
+					</div>
+					<!-- end hide delete -->
+				</div>
+			</div>
+
+			<div class="margintop-medium clearfix">
+				<button ng-click="previous()" class="btn btn-previous float-left" ng-disabled="(previousStage.selecting || previousStage.restricted)">
+				    <span translate="status.previous"></span>
+				</button>
+				<button ng-click="submitAndNext()" class="btn float-right btn-primary">
+					<!-- states removed from above since it didn't work/always showed up as disabled
+						ng-disabled="nextStage.selecting || nextStage.restricted" ng-class="{'btn-primary': (!nextStage.selecting && !nextStage.restricted)}, 'btn-disabled': (nextStage.selecting || nextStage.restricted)}"
+					-->
+					<span translate="status.next"></span>
+				</button>
+			</div>
+		</fieldset>
+	</form>
 </div>
-<div class="row">
-  <div class="form-group col-sm-6">
-    <label for="customer.address1">Address 1 <span class="required">*</span></label>
-    <input class="form-control" name="customer.address1" ng-model="customer.address.address1" tabindex="1"/>
-  </div>
-  <div class="form-group col-sm-2">
-    <label for="customer.address2">Address 2</label>
-    <input class="form-control" name="customer.address2" ng-model="customer.address.address2" tabindex="1"/>
-  </div>
-</div>
-<div class="row">
-  <div class="form-group col-sm-4">
-    <label for="customer.city">City <span class="required">*</span></label>
-    <input class="form-control" name="customer.city" ng-model="customer.address.city" tabindex="1"/>
-  </div>
-  <div class="form-group col-sm-4">
-    <label for="customer.province">Province <span class="required">*</span></label>
-    <select tabindex="1" name="customer.province" ng-model="customer.address.province" ng-options="province.code as province.name for province in provinces" class="form-control">
-      <option value="">Select province</option>
-    </select>
-  </div>
-  <div class="form-group col-sm-3">
-    <label for="customer.postalcode">Postal Code <span class="required">*</span></label>
-    <input class="form-control" name="customer.postalcode" ng-model="customer.address.postalcode" tabindex="1"/>
-  </div>
-</div>
-</div>
-<button class="btn btn-primary" tabindex="1" ng-class="{disabled: (!requiredFieldsFilled() || nextIsLoading)}" ng-click="next()">
-  <span ng-if="!nextIsLoading">Next</span>
-  <span ng-if="nextIsLoading">Please Wait...</span>
-  &nbsp;
-  <i class="fa" ng-class="{'fa-arrow-right': !nextIsLoading, 'fa-spinner': nextIsLoading, rotating: nextIsLoading}"></i>
-</button>
-</fieldset>
-</form>
