@@ -1,7 +1,7 @@
 #AMI Frontend
 AMI Frontend is an AngularJS application. The codebase is structured around being either served for development or compiled for production by the task-running system Grunt.
 
-**This README assumes that you have set up an AMI System server environment per: https://github.com/andrewhilts/ami-server**. To learn about initally setting up and deploying the AMI Frontend, read that document.
+**This README assumes that you have set up an AMI System server environment per: https://github.com/andrewhilts/ami-system**. To learn about initally setting up and deploying the AMI Frontend, read that document.
 
 This document describes the different components of the frontend and how they interoperate with AMI CMS and AMI Community Tools.
 
