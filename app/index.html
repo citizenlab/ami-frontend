@@ -33,6 +33,7 @@ MOSQUITO wants its sweet, sweet data
     <link rel="stylesheet" href="styles/tachyons.min.css"/>
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/elvish.css">
     <!-- endbuild -->
   </head>
   <body ng-controller="LangStyle" ng-class="lang" class="backgroundcolor-white">
@@ -40,7 +41,7 @@ MOSQUITO wants its sweet, sweet data
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="full-screen" id="loadingScreen"></div>
-    <div  class="backgroundcolor-darkestred clearfix" ng-controller="LanguageCtrl" >
+    <div  class="backgroundcolor-greygreen clearfix" ng-controller="LanguageCtrl" >
         <div class="position-absolute top-1 right-033 right-1-ns" ng-class="{'display-block': showControls, 'display-none': !showControls}">
            <!-- <div class="btn-group" uib-dropdown is-open="status.isopen"> -->
                 <!-- <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled" title="Select language">
@@ -60,7 +61,7 @@ MOSQUITO wants its sweet, sweet data
         <header class="navbar">
             <div class="container center textalign-center">
                 <a class="textdecoration-none black" href="#/">
-                    <h1 class="f-5 paddinghorizontal-small marginbottom-none margintop-small"><span class="lightred">
+                    <h1 class="paddinghorizontal-small marginbottom-none margintop-small"><span>
                         <img class="width-xxxlarge width-titleimage-ns maxwidth-100p marginbottom-small" ng-src="{{'logo_src' | translate}}" alt="Access My Info: Canada" />
                     </h1>
                 </a>
@@ -104,14 +105,11 @@ MOSQUITO wants its sweet, sweet data
     <div>
         <p class="f5 b display-inlineblock marginbottom-medium" translate="category.sponsorStatement"></p>
     </div>
-    <a href="https://openeffect.ca/">
-        <img class="display-block display-inline-ns height-large marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns paddingvertical-medium" src="images/open-effect-logo.png" />
-    </a>
     <a href="https://citizenlab.org/">      
         <img class="display-block display-inline-ns height-xlarge marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns" src="images/citizen-lab-logo.png" />
     </a>
-    <a href="http://www.option-consommateurs.org/">      
-        <img class="display-block display-inline-ns height-large marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns paddingvertical-medium" src="images/option-logo.jpg" />
+    <a href="https://openeffect.ca/">
+        <img class="display-block display-inline-ns height-large marginhorizontal-auto marginvertical-medium marginhorizontal-medium-ns paddingvertical-medium" src="images/open-effect-logo.png" />
     </a>
 </div>
 

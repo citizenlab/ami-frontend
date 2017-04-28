@@ -13,10 +13,10 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
       "languageCode": "en",
       "languageCodeMoment": "en"
     },
-    "fr": {
-      "title": "Français",
-      "languageCode": "fr",
-      "languageCodeMoment": "fr-ca"
+    "aa": {
+      "title": "Elvish",
+      "languageCode": "aa",
+      "languageCodeMoment": "en"
     }
   };
 

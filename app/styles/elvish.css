@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Annatar';
+    src: url('/fonts/tengwarannatarm-webfont.eot');
+    src: url('/fonts/tengwarannatarm-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/tengwarannatarm-webfont.woff2') format('woff2'),
+         url('/fonts/tengwarannatarm-webfont.woff') format('woff'),
+         url('/fonts/tengwarannatarm-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body.aa {
+	font-family: 'Annatar' !important;
+}
