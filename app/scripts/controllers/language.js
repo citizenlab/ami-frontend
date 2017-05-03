@@ -1,5 +1,5 @@
 'use strict';
-AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', 'AMIRequest', '$cookies', 'urls', function ($scope, $timeout, $location, $window, $translate, AMIRequest, $cookies, urls) {
+AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', 'AMIRequest', '$cookies', 'urls', 'envOptions', function ($scope, $timeout, $location, $window, $translate, AMIRequest, $cookies, urls, envOptions) {
 
   // $translate.onReady(function(){
   //   $translate(['logo_src']).then(function (translation) {
@@ -7,18 +7,7 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
   //   });
   // });
 
-  $scope.languages = {
-    "en": {
-      "title": "English",
-      "languageCode": "en",
-      "languageCodeMoment": "en"
-    },
-    "aa": {
-      "title": "Elvish",
-      "languageCode": "aa",
-      "languageCodeMoment": "en"
-    }
-  };
+    $scope.languages = envOptions.supportedLanguages;
 
     $scope.lang = $scope.languages[$translate.use()];
     
