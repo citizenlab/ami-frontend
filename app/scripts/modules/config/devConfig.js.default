@@ -1,9 +1,17 @@
 module.exports = {
-	apiDomain: "",
-	apiRoot: "/amicms/wp-json/amicms",
-	apiPath: "/wp-json/amicms",
-	enrollmentDomain: "",
-	enrollmentApiPath: "",
-	jurisdictionID: "",
-	languageCode: "en"
+	options: {
+		apiDomain: "",
+		apiRoot: "/amicms",
+		apiPath: "/wp-json/amicms",
+		enrollmentDomain: "",
+		enrollmentApiPath: "",
+		jurisdictionID: "",
+		languageCode: "en",
+		supportedLanguages: [{
+			languageCode: "en",
+			title: "English",
+			languageCodeMoment: "en"
+		}],
+		paperSize: "letter" // Can be letter, legal or A4
+	}
 }
