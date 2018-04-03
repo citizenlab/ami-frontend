@@ -9,10 +9,28 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
+import angular from "angular";
+import config from "./modules/config/localConfig.js";
+import ngRoute from "angular-route";
+import ngEnter from "./modules/Enter/enter";
+import ngCookies from "angular-cookies";
+import ngMessages from "angular-messages";
+import ngSanitize from "angular-sanitize";
+import ngclipboard from "angular-clipboard";
+import ngTranslate from "angular-translate";
+import "angular-translate-loader-static-files";
+import angularChart from "angular-chart.js";
+import dataProviderService from "./modules/dataProviderService/dataProviderService";
+import ProgressBarNav from "./modules/ProgressBarNav/progressbarnav";
+import formItem from "./modules/formItem/formItem";
+import AMIRequest from "./modules/AMIRequest/amirequest";
+import requestTemplate from "./modules/requestTemplate/requesttemplate";
+import LanguageCtrl from "./controllers/language";
+import LangStyleCtrl from "./controllers/langstyle";
+import IndustryCtrl from "./controllers/industry";
 'use strict';
 
 var AMIApp = angular.module('AMIApp', [
-    'config',
     'ngRoute',
     'ngEnter',
     'ngCookies',
@@ -24,9 +42,13 @@ var AMIApp = angular.module('AMIApp', [
     'requestTemplate',
     'AMIRequest',
     'pascalprecht.translate',
-    'ngclipboard',
+    'angular-clipboard',
     'chart.js'
   ])
+  .constant("envOptions", config)
+  .controller("LangStyle", ["$scope", "$translate", LangStyleCtrl])
+  .controller("LanguageCtrl", ["$scope", "$timeout", "$location", "$window", "$translate", "AMIRequest", "$cookies", "urls", "envOptions", LanguageCtrl])
+  .controller("IndustryCtrl", ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'industries_en', 'AMIRequest', 'dataProviderService', 'urls', '$translate', 'envOptions', IndustryCtrl])
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
     var firstRun = true;

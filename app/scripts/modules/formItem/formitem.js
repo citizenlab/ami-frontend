@@ -58,3 +58,4 @@ formItem.directive('formItem', function ($compile, dataProviderService) {
         }
     };
 });
+module.exports = formItem;

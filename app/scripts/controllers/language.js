@@ -1,11 +1,7 @@
 'use strict';
-AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window', '$translate', 'AMIRequest', '$cookies', 'urls', 'envOptions', function ($scope, $timeout, $location, $window, $translate, AMIRequest, $cookies, urls, envOptions) {
 
-  // $translate.onReady(function(){
-  //   $translate(['logo_src']).then(function (translation) {
-  //     $scope.logo_src = translation["logo_src"];
-  //   });
-  // });
+class LanguageCtrl {
+  constructor($scope, $timeout, $location, $window, $translate, AMIRequest, $cookies, urls, envOptions) {
 
     $scope.languages = envOptions.supportedLanguages;
 
@@ -22,14 +18,7 @@ AMIApp.controller('LanguageCtrl', ['$scope', '$timeout', '$location', '$window',
       $scope.showControls = (AMIRequest.hierarchy.indexOf($location.path().substring(1)) <= 1);
       $scope.lang = $scope.languages[$translate.use()];
     });
-    
-}]);
-AMIApp.controller('LangStyle', ['$scope', '$translate', function ($scope, $translate) {
+  }   
+}
 
-    $scope.lang = $translate.use();
-    
-    $scope.$watch(function() {
-      $scope.lang = $translate.use();
-    });
-    
-}]);
+module.exports = LanguageCtrl;

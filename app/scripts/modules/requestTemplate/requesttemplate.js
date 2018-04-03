@@ -112,3 +112,4 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         }
     };
 });
+module.exports = requestTemplate;

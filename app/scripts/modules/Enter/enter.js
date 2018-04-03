@@ -12,3 +12,4 @@ ngEnter.directive('ngEnter', function () {
         });
     };
 });
+module.exports = ngEnter;

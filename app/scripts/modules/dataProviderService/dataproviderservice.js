@@ -11,17 +11,17 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
             });
         },
         postItem:  function (baseURL, itemPath, params, data, responseType) {
-            return this.promiseRequest(baseURL, itemPath, params, 'POST', data, responseType);
+            return self.promiseRequest(baseURL, itemPath, params, 'POST', data, responseType);
         },
         promiseRequest: function (baseURL, itemPath, params, httpMethod, data, setCache, responseType) {
             var delay = $q.defer();
-            this.request(baseURL, itemPath, params, httpMethod, data, setCache, responseType)
-            .success( function(data, status, headers, config) {
+            self.request(baseURL, itemPath, params, httpMethod, data, setCache, responseType)
+            .then( function(data, status, headers, config) {
                 if(urls.apiURL === baseURL && !cmsStatus.isOnline()){
                     cmsStatus.isOnline(true);
                 }
-                delay.resolve( data );
-            }).error( function(data, status, headers, config) {
+                delay.resolve( data.data );
+            }).catch( function(data, status, headers, config) {
                 if(urls.apiURL === baseURL){
                     cmsStatus.isOnline(false);
                 }
@@ -62,3 +62,4 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
     };
     return self;
 }]);
+module.exports = dataProviderService;

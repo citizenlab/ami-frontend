@@ -217,3 +217,4 @@ ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 
       NavCollection.finishSelectByPath(path);
     });
 }]);
+module.exports = ProgressBarNav;

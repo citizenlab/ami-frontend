@@ -200,3 +200,4 @@ AMIRequest.service("AMIRequest", function($rootScope, $location, NavCollection){
   }
   return request;
 });
+module.exports = AMIRequest;
