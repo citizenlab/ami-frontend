@@ -65,4 +65,4 @@ class IndustryCtrl {
     });
   }
 }
-module.exports = IndustryCtrl;
+module.exports = ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'industries_en', 'AMIRequest', 'dataProviderService', 'urls', '$translate', 'envOptions', IndustryCtrl];

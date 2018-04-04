@@ -19,15 +19,22 @@ import ngSanitize from "angular-sanitize";
 import ngclipboard from "angular-clipboard";
 import ngTranslate from "angular-translate";
 import "angular-translate-loader-static-files";
+window.Page = require("./modules/canvasDoc/canvasdoc").Page;
+window.Document = require("./modules/canvasDoc/canvasdoc").Document;
+window.SVGInjector = require("svg-injector");
 import angularChart from "angular-chart.js";
-import dataProviderService from "./modules/dataProviderService/dataProviderService";
+import dataProviderService from "./modules/dataProviderService/dataproviderservice";
 import ProgressBarNav from "./modules/ProgressBarNav/progressbarnav";
-import formItem from "./modules/formItem/formItem";
+import formItem from "./modules/formItem/formitem";
 import AMIRequest from "./modules/AMIRequest/amirequest";
 import requestTemplate from "./modules/requestTemplate/requesttemplate";
 import LanguageCtrl from "./controllers/language";
 import LangStyleCtrl from "./controllers/langstyle";
 import IndustryCtrl from "./controllers/industry";
+import CompanyCtrl from "./controllers/company"
+import QuestionsCtrl from "./controllers/questions"
+import SubscriberCtrl from "./controllers/subscriberInfo"
+import RequestCtrl from "./controllers/request"
 'use strict';
 
 var AMIApp = angular.module('AMIApp', [
@@ -46,9 +53,13 @@ var AMIApp = angular.module('AMIApp', [
     'chart.js'
   ])
   .constant("envOptions", config)
-  .controller("LangStyle", ["$scope", "$translate", LangStyleCtrl])
-  .controller("LanguageCtrl", ["$scope", "$timeout", "$location", "$window", "$translate", "AMIRequest", "$cookies", "urls", "envOptions", LanguageCtrl])
-  .controller("IndustryCtrl", ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'industries', 'industries_en', 'AMIRequest', 'dataProviderService', 'urls', '$translate', 'envOptions', IndustryCtrl])
+  .controller("LangStyle", LangStyleCtrl)
+  .controller("LanguageCtrl", LanguageCtrl)
+  .controller("IndustryCtrl", IndustryCtrl)
+  .controller("CompanyCtrl", CompanyCtrl)
+  .controller("QuestionsCtrl", QuestionsCtrl)
+  .controller("SubscriberCtrl", SubscriberCtrl)
+  .controller("RequestCtrl", RequestCtrl)
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
     var firstRun = true;
@@ -523,10 +534,10 @@ AMIApp.run(['urls', 'envOptions', 'AMIRequest', 'cmsStatus', 'dataProviderServic
     if(!cmsStatus.isOnline()){
       var randomInt = Math.floor(Math.random() * (100000000 - 0)) + 0;
       dataProviderService.request(urls.apiURL(), "/jurisdictions/" + envOptions.jurisdictionID, {"flag": randomInt}, 'GET', null, false)
-        .success( function(data, status, headers, config) {
+        .then( function(data, status, headers, config) {
           cmsStatus.isOnline(true);
         })
-        .error( function(data, status, headers, config) {
+        .catch( function(data, status, headers, config) {
           cmsStatus.isOnline(false);
         });
     }

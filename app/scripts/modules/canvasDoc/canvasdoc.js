@@ -261,7 +261,7 @@ function Document(paperType, margins){
 				alignment: 'center'
 			})
 		}
-		self.pdf = pdfMake.createPdf(dd);
+		self.pdf = pdfMake(dd);
 	}
 	self.openPDF = function(){
 		self.pdf.open();
@@ -303,4 +303,8 @@ function textToWords(text){
 		}
 	}
 	return words;
+}
+module.exports = {
+	Page: Page,
+	Document: Document
 }

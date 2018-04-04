@@ -9,4 +9,4 @@ class LangStyleCtrl {
 		
 	}
 }
-module.exports = LangStyleCtrl;
+module.exports = ["$scope", "$translate", LangStyleCtrl];

@@ -10,7 +10,8 @@ Unless required by applicable law or agreed to in writing, software distributed 
 ***************/
 
 'use strict';
-AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'companies_en', 'AMIRequest', 'dataProviderService', 'urls', function ($scope, $timeout, $location, $window, NavCollection, companies, companies_en, AMIRequest, dataProviderService, urls) {
+class CompanyCtrl {
+  constructor($scope, $timeout, $location, $window, NavCollection, companies, companies_en, AMIRequest, dataProviderService, urls) {
   AMIRequest.set('companies_en', companies_en);
     $window.scrollTo(0,0)
     $scope.showCustomOperator = false;
@@ -214,4 +215,7 @@ AMIApp.controller('CompanyCtrl', ['$scope', '$timeout', '$location', '$window', 
     $scope.showService = function(service){
       return (service.selected === true);
     }
-  }]);
+  }
+}
+
+module.exports = ['$scope', '$timeout', '$location', '$window', 'NavCollection', 'companies', 'companies_en', 'AMIRequest', 'dataProviderService', 'urls', CompanyCtrl];

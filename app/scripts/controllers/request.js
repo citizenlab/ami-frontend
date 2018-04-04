@@ -1,5 +1,6 @@
 'use strict';
-AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'papersize', '$translate', 'urls', function ($scope, $location, $window, $timeout, NavCollection, AMIRequest, papersize, $translate, urls) {
+class RequestCtrl {
+  constructor ($scope, $location, $window, $timeout, NavCollection, AMIRequest, papersize, $translate, urls) {
   var blurListener;
   var ami_service_ids_en;
   $window.scrollTo(0,0);
@@ -193,4 +194,6 @@ AMIApp.controller('RequestCtrl', ['$scope', '$location', '$window', '$timeout', 
   $timeout(function(){
     $scope.email.isGenerating = true;
   }, 100);
-}]);
+}
+}
+module.exports = ['$scope', '$location', '$window', '$timeout', 'NavCollection', 'AMIRequest', 'papersize', '$translate', 'urls', RequestCtrl]

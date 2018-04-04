@@ -8,8 +8,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 ***************/
-
-AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'identifiers_en', 'urls', 'dataProviderService', '$translate', function ($scope, $location, $window, NavCollection, AMIRequest, identifiers, identifiers_en, urls, dataProviderService, $translate) {
+class SubscriberCtrl {
+  constructor ($scope, $location, $window, NavCollection, AMIRequest, identifiers, identifiers_en, urls, dataProviderService, $translate) {
   var subject_en = {
     basic_personal_info: identifiers_en['basic_personal_info'],
     service_identifiers: identifiers_en
@@ -184,4 +184,6 @@ AMIApp.controller('SubscriberCtrl', ['$scope', '$location', '$window', 'NavColle
   $scope.submitAndNext = function(){
       $scope.next();
   }
-}]);
+}
+}
+module.exports = ['$scope', '$location', '$window', 'NavCollection', 'AMIRequest', 'identifiers', 'identifiers_en', 'urls', 'dataProviderService', '$translate', SubscriberCtrl]

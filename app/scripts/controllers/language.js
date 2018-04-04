@@ -21,4 +21,4 @@ class LanguageCtrl {
   }   
 }
 
-module.exports = LanguageCtrl;
+module.exports = ["$scope", "$timeout", "$location", "$window", "$translate", "AMIRequest", "$cookies", "urls", "envOptions", LanguageCtrl];

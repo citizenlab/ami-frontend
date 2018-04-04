@@ -19,6 +19,10 @@ const basePlugins = [
 		_: "underscore",
 		"window._": "_"
 	}),
+	new webpack.ProvidePlugin({
+		pdfMake: "pdfmake-browserified",
+		"window.pdfMake": "pdfMake"
+	}),
 	new CopyWebpackPlugin([
 		{ from: "./app/views", to: "./views/" },
 		{ from: "./app/translations", to: "./translations/" },
