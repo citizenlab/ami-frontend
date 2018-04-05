@@ -68,7 +68,6 @@ ProgressBarNav.service('NavCollection', ['$rootScope', '$timeout', function($roo
     }
   }
   navCollection.startSelect = function(id){
-    console.log("!!!", id);
     var itemToSelect = _.findWhere(this.collection, {'id': id});
     if(itemToSelect){
       itemToSelect.selectError = false;
@@ -186,7 +185,6 @@ ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 
       }
     };
     $rootScope.$on('$translateChangeSuccess', function () {
-      console.log(NavCollection.collection);
       var keys = NavCollection.getItemKeys();
       var translateKeys = [];
       for (var i = keys.length - 1; i >= 0; i--) {
@@ -210,7 +208,6 @@ ProgressBarNav.controller('ProgressCtrl', ['$rootScope', '$scope', '$location', 
       $scope.activeIndex = NavCollection.collection.indexOf(NavCollection.selectedNavItem);
       return $location.path();
     }, function(){
-      console.log("!!!!", $location.url())
       var activeLocation = "#" + $location.url();
       NavCollection.startSelectByPath(activeLocation);
     });
