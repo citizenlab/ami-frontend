@@ -1,3 +1,4 @@
+console.log("%% Canvas");
 function Page(pageSize, margins, dpiFactor){
 	var page = {}
 	page.canvas = document.createElement('canvas');
