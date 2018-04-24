@@ -223,7 +223,7 @@ function Document(paperType, margins){
 		}
 		for(var i=0; i < pdfContent.length; i++){
 			pdfContent[i].options = {};
-			if(i>0 && pdfContent[i].tag == "LI" && pdfContent.length && pdfContent[i-1].tag == "LI"){
+			if(i>0 && pdfContent[i].tag == "LI" && pdfContent.length && pdfContent[i-1].tag !== "LI"){
 				console.log("new list");
 			}
 			if(pdfContent[i].tag == "LI"){
