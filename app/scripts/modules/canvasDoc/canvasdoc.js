@@ -217,7 +217,7 @@ function Document(paperType, margins){
 				pdfContent.push({
 					'tag': nodes[i].el.tagName,
 					'text': nodes[i].el.innerText,
-					'parent': nodes[i].parentNode.tagName
+					'parent': nodes[i].el.parentNode.tagName
 				});
 			}
 		}
