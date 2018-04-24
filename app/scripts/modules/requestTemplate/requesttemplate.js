@@ -76,6 +76,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
                 }
               }
               listItems[key].innerHTML = listSymbol + listItems[key].innerHTML + "<br/>";
+              listIndex++;
             });
             
             body = getInnerText(el).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
