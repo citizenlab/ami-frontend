@@ -217,14 +217,14 @@ function Document(paperType, margins){
 				pdfContent.push({
 					'tag': nodes[i].el.tagName,
 					'text': nodes[i].el.innerText,
-					'parent': nodes[i].el.parentNode.tagName
+					'parent': nodes[i].el.parentNode
 				});
 			}
 		}
 		for(var i=0; i < pdfContent.length; i++){
 			pdfContent[i].options = {};
 			if(pdfContent[i].tag == "LI"){
-				console.log(pdfContent[i].parent);
+				console.log(pdfContent[i].parent.tagName, pdfContent[i].parent.getAttribute("type"));
 				pdfContent[i].options.bulletItem = true;
 				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "LI"){
 					pdfContent[i].options.noBottomMargin = true;
