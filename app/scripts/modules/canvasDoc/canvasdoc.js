@@ -78,7 +78,7 @@ function Page(pageSize, margins, dpiFactor){
 			if(options.listItem && continuing){
 				listItem = true;
 				maxWidth -= 45+40;
-				xPos += 45+40;
+				xPos += 45+50;
 			}
 			if(options.noBottomMargin){
 				bottomMargin = page.lineHeight;
