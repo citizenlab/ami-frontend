@@ -225,21 +225,23 @@ function Document(paperType, margins){
 			pdfContent[i].options = {};
 			if(i>0 && pdfContent[i].tag == "LI" && pdfContent.length && pdfContent[i-1].tag !== "LI"){
 				console.log("new list");
+				list_position = 0;
 			}
 			if(pdfContent[i].tag == "LI"){
 				console.log(pdfContent[i].parent.tagName, pdfContent[i].parent.getAttribute("type"));
 				pdfContent[i].options.listItem = true;
 				if(pdfContent[i].parent.tagName == "OL"){
-					pdfContent[i].options.listSymbol = i+1+".   ";
+					pdfContent[i].options.listSymbol = list_position+1+".   ";
 				}
 				else{
 					pdfContent[i].options.listSymbol = "•   ";
 				}
 				if(pdfContent[i].parent.tagName == "OL" && pdfContent[i].parent.getAttribute("type") == "A"){
-					pdfContent[i].options.listSymbol = String.fromCharCode(97 + i)+".   ";
+					pdfContent[i].options.listSymbol = String.fromCharCode(97 + list_position)+".   ";
 				}
 				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "LI"){
 					pdfContent[i].options.noBottomMargin = true;
+					list_position++;
 				}
 			}
 			else if(pdfContent[i].tag == "DIV"){
