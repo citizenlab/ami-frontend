@@ -64,7 +64,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
               if(key > 0 && listItems[key-1].parentNode !== listItems[key].parentNode){
                 var newList = false;
               }
-              if(varNewList){
+              if(newList){
                   listIndex = 0;
               }
               if(listItems[key].parentNode.tagName == "OL"){
