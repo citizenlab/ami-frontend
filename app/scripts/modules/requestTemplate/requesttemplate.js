@@ -57,11 +57,15 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             
             el = element[0];
             listItems = el.getElementsByTagName("li")
+            var listIndex = 0;
             angular.forEach(listItems, function(value, key){
               var listSymbol = "* ";
               var newList = true;
               if(key > 0 && listItems[key-1].parentNode !== listItems[key].parentNode){
                 var newList = false;
+              }
+              if(varNewList){
+                  listIndex = 0;
               }
               if(listItems[key].parentNode.tagName == "OL"){
                 if(listItems[key].parentNode.getAttribute("type") == "A"){
