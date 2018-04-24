@@ -231,13 +231,13 @@ function Document(paperType, margins){
 				console.log(pdfContent[i].parent.tagName, pdfContent[i].parent.getAttribute("type"));
 				pdfContent[i].options.listItem = true;
 				if(pdfContent[i].parent.tagName == "OL"){
-					pdfContent[i].options.listSymbol = list_position+1+".   ";
+					pdfContent[i].options.listSymbol = list_position+1+".  ";
 				}
 				else{
 					pdfContent[i].options.listSymbol = "•   ";
 				}
 				if(pdfContent[i].parent.tagName == "OL" && pdfContent[i].parent.getAttribute("type") == "A"){
-					pdfContent[i].options.listSymbol = String.fromCharCode(97 + list_position)+".   ";
+					pdfContent[i].options.listSymbol = String.fromCharCode(97 + list_position).toUpperCase()+".  ";
 				}
 				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "LI"){
 					pdfContent[i].options.noBottomMargin = true;
