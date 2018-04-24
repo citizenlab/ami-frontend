@@ -58,7 +58,18 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             el = element[0];
             listItems = el.getElementsByTagName("li")
             angular.forEach(listItems, function(value, key){
-              listItems[key].innerHTML = "* " + listItems[key].innerHTML + "<br/>";
+              if(listItems[key].parentNode.tagName == "ol"){
+                if(listItems[key].parentNode.getAttribute("type") == "A"){
+                    listSymbol = String.fromCharCode(97 + key).toUpperCase()+". ";
+                }
+                else{
+                    listSymbol = key+1+". ";
+                }
+              }
+              else{
+                listSymbol = "* ";
+              }
+              listItems[key].innerHTML = listSymbol + listItems[key].innerHTML + "<br/>";
             });
             
             body = getInnerText(el).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
