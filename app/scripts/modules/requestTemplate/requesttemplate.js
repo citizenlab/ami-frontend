@@ -69,10 +69,10 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
               }
               if(listItems[key].parentNode.tagName == "OL"){
                 if(listItems[key].parentNode.getAttribute("type") == "A"){
-                    listSymbol = String.fromCharCode(97 + key).toUpperCase()+". ";
+                    listSymbol = String.fromCharCode(97 + listIndex).toUpperCase()+". ";
                 }
                 else{
-                    listSymbol = key+1+". ";
+                    listSymbol = listIndex+1+". ";
                 }
               }
               listItems[key].innerHTML = listSymbol + listItems[key].innerHTML + "<br/>";
