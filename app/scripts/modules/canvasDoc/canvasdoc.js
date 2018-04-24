@@ -65,18 +65,18 @@ function Page(pageSize, margins, dpiFactor){
 
 		var line = '';
 
-		var bulletItem = false;
+		var listItem = false;
 		var bottomMargin = page.lineHeight*2;
 
 		if(typeof options !== "undefined"){
-			if(options.bulletItem && !continuing){
-				bulletItem = true;
-				line = "•   ";
+			if(options.listItem && !continuing){
+				listItem = true;
+				line = options.listSymbol;
 				maxWidth -= 45;
 				xPos += 45;
 			}
-			if(options.bulletItem && continuing){
-				bulletItem = true;
+			if(options.listItem && continuing){
+				listItem = true;
 				maxWidth -= 45+40;
 				xPos += 45+40;
 			}
@@ -92,7 +92,7 @@ function Page(pageSize, margins, dpiFactor){
 			var testWidth = metrics.width;
 			if (testWidth > maxWidth && n > 0) {
 				this.ctx.fillText(line, xPos, this.paintPosition.y);
-				if(bulletItem && !firstNewLineDone && !continuing){
+				if(listItem && !firstNewLineDone && !continuing){
 
 					maxWidth -= 42;
 					xPos += 42;
@@ -225,7 +225,16 @@ function Document(paperType, margins){
 			pdfContent[i].options = {};
 			if(pdfContent[i].tag == "LI"){
 				console.log(pdfContent[i].parent.tagName, pdfContent[i].parent.getAttribute("type"));
-				pdfContent[i].options.bulletItem = true;
+				pdfContent[i].options.listItem = true;
+				if(pdfContent[i].parent.tagName == "OL"){
+					pdfContent[i].options.listSymbol = i+1+".   ";
+				}
+				else{
+					pdfContent[i].options.listSymbol = "•   ";
+				}
+				if(pdfContent[i].parent.tagName == "OL" && pdfContent[i].parent.getAttribute("type") == "A"){
+					pdfContent[i].options.listSymbol = String.fromCharCode(97 + i)+".   ";
+				}
 				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "LI"){
 					pdfContent[i].options.noBottomMargin = true;
 				}
