@@ -62,7 +62,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
               var listSymbol = "* ";
               var newList = true;
               if(key > 0 && listItems[key-1].parentNode !== listItems[key].parentNode){
-                var newList = false;
+                var newList = true;
               }
               if(newList){
                   listIndex = 0;
