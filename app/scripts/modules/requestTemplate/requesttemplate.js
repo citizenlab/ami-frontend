@@ -64,6 +64,9 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
               if(key > 0 && listItems[key-1].parentNode !== listItems[key].parentNode){
                 var newList = true;
               }
+              else{
+                newList = false;
+              }
               if(newList){
                   listIndex = 0;
               }
