@@ -59,8 +59,8 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             listItems = el.getElementsByTagName("li")
             angular.forEach(listItems, function(value, key){
               var listSymbol = "* ";
-              console.log(listItems[key].parentNode.tagName, listItems[key].parentNode.getAttribute("type"));
-              if(listItems[key].parentNode.tagName == "ol"){
+
+              if(listItems[key].parentNode.tagName == "OL"){
                 if(listItems[key].parentNode.getAttribute("type") == "A"){
                     listSymbol = String.fromCharCode(97 + key).toUpperCase()+". ";
                 }
