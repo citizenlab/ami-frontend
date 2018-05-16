@@ -37,7 +37,7 @@
     "more-info-title": "For more information", 
     "press-kit": "Press kit", 
     "press-release": "Press release", 
-    "sponsorStatement": "Access My Info is a joint initiative created by members of ",
+    "sponsorStatement": "Access My Info is maintained by ",
     "socialMediaMessage": "Spread the word about our project:",
     "whatsapp-share-text": "Access My Info"
   },
@@ -153,7 +153,7 @@
   "wrapper": {
     "privacy": 
     "This service does not collect any of the personal information you provide. This information is used only to generate a letter, which is done entirely in your web browser. Other web pages linked to from this service will be governed by different policies. When you load the service, the web server that hosts the service logs a record of that event. These logs include the IP address used to access each resource required for the service, the date & time of access, and several other non-identifying metadata fields.<p>In the event you provides us your email address to contact you, we will only use it for the specific purposes agreed by you. We will not use, disclose, transfer your email address to any third parties beyond the purposes of administering the Access My Info service.", 
-    "disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. Open Effect and partners make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
+    "disclaimer": "<strong>Disclaimer</strong>: This is a research and educational tool and is meant for informational purposes only. This service does not provide legal advice. You are solely responsible for your use of this service and any resulting consequences. The Citizen Lab make no claims, promises, or guarantees about the accuracy, completeness, or adequacy of the information contained in this document. This software is offered as-is, with no warranty. Nothing herein should be used as a substitute for the legal advice of competent counsel.",
     "license": "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License."
   },
   "feedback": {

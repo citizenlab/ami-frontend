@@ -37,7 +37,7 @@
   "more-info-title": "Plus en savoir plus",
   "press-kit": "Trousse média",
   "press-release": "Communiqué de presse",
-  "sponsorStatement": "Obtenir mes infos est une initiative conjointe créée par des membres de",
+  "sponsorStatement": "Obtenir mes infos est maintenu par ",
   "socialMediaMessage": "Faites connaître notre projet :",
   "whatsapp-share-text": "Obtenir mes infos"
 },
@@ -152,7 +152,7 @@
 },
 "wrapper":{
   "privacy": "Ce service ne recueille aucun des renseignements personnels que vous fournissez. Ces renseignements sont utilisés uniquement pour générer une lettre, qui est créée entièrement par votre fureteur web. D'autres pages web vers lesquelles ce service vous dirige via des hyperliens sont régies par des politiques de confidentialité différentes. Quand vous utilisez le service, le serveur web qui héberge le service enregistre l'adresse IP utilisée pour accéder à chaque ressource requise pour fournir le service, la date et l'heure de l'accès ainsi que plusieurs autres métadonnées dépersonnalisées. <p>Si vous nous fournissez une adresse courriel, nous ne l'utiliserons que pour les fins spécifiques pour lesquelles vous nous avez donné votre consentement. Sauf pour des fins d'administration du service Obtenir mes infos, votre adresse courriel ne sera pas utilisée, partagée ou transférée à aucune tiers-partie.",
-  "disclaimer": "<strong>Avertissement</strong> : Ce site est un outil de recherche et d'éducation. Il est uniquement destiné à des fins d'information. Il ne donne pas d'avis juridique. Vous êtes le seul responsable de l'usage que vous faites de ce site et des conséquences qui peuvent en résulter. Open Effect et ses partenaires ne font aucune représentation, promesse ou garantie sur le caractère exact, complet ou pertinent de l'information contenue dans ce site. Ce logiciel est offert tel quel, sans garantie. Rien sur ce site ne devrait être considéré comme un avis juridique provenant d'un professionnel.",
+  "disclaimer": "<strong>Avertissement</strong> : Ce site est un outil de recherche et d'éducation. Il est uniquement destiné à des fins d'information. Il ne donne pas d'avis juridique. Vous êtes le seul responsable de l'usage que vous faites de ce site et des conséquences qui peuvent en résulter. Le Citizen Lab et ses partenaires ne font aucune représentation, promesse ou garantie sur le caractère exact, complet ou pertinent de l'information contenue dans ce site. Ce logiciel est offert tel quel, sans garantie. Rien sur ce site ne devrait être considéré comme un avis juridique provenant d'un professionnel.",
   "license": "Ce travail est offert sous la licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International."
 },
 "feedback":{
