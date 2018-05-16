@@ -31,10 +31,11 @@ import requestTemplate from "./modules/requestTemplate/requesttemplate";
 import LanguageCtrl from "./controllers/language";
 import LangStyleCtrl from "./controllers/langstyle";
 import IndustryCtrl from "./controllers/industry";
-import CompanyCtrl from "./controllers/company"
-import QuestionsCtrl from "./controllers/questions"
-import SubscriberCtrl from "./controllers/subscriberInfo"
-import RequestCtrl from "./controllers/request"
+import CompanyCtrl from "./controllers/company";
+import QuestionsCtrl from "./controllers/questions";
+import SubscriberCtrl from "./controllers/subscriberInfo";
+import RequestCtrl from "./controllers/request";
+import StatsCtrl from "./controllers/stats";
 'use strict';
 
 var AMIApp = angular.module('AMIApp', [
@@ -60,6 +61,7 @@ var AMIApp = angular.module('AMIApp', [
   .controller("QuestionsCtrl", QuestionsCtrl)
   .controller("SubscriberCtrl", SubscriberCtrl)
   .controller("RequestCtrl", RequestCtrl)
+  .controller("StatsCtrl", StatsCtrl)
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
     var firstRun = true;
@@ -141,7 +143,8 @@ var AMIApp = angular.module('AMIApp', [
       suffix: '.json'
     });
   }])
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('');
     $routeProvider
       .when('/', {
         templateUrl: 'views/industry.html',
