@@ -53,6 +53,9 @@ var AMIApp = angular.module('AMIApp', [
     'angular-clipboard',
     'chart.js'
   ])
+  .config(['$locationProvider', function($locationProvider) {
+    $locationProvider.hashPrefix('');
+  }])
   .constant("envOptions", config)
   .controller("LangStyle", LangStyleCtrl)
   .controller("LanguageCtrl", LanguageCtrl)
