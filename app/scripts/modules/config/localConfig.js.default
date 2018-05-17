@@ -2,7 +2,7 @@ module.exports = {
 	apiDomain: "http://localhost:8080",
 	apiRoot: "",
 	apiPath: "/wp-json/amicms",
-	enrollmentDomain: "",
+	enrollmentDomain: "http://localhost:3214",
 	enrollmentApiPath: "",
 	jurisdictionID: "153",
 	languageCode: "en",
