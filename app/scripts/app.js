@@ -36,6 +36,7 @@ import QuestionsCtrl from "./controllers/questions";
 import SubscriberCtrl from "./controllers/subscriberInfo";
 import RequestCtrl from "./controllers/request";
 import StatsCtrl from "./controllers/stats";
+import HeaderCtrl from "./controllers/header";
 'use strict';
 
 var AMIApp = angular.module('AMIApp', [
@@ -65,6 +66,7 @@ var AMIApp = angular.module('AMIApp', [
   .controller("SubscriberCtrl", SubscriberCtrl)
   .controller("RequestCtrl", RequestCtrl)
   .controller("StatsCtrl", StatsCtrl)
+  .controller("HeaderCtrl", HeaderCtrl)
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
     var firstRun = true;
@@ -439,6 +441,7 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     $location.path('/');
   }
   var langCookie = $cookies.get('languageCode');
+  var localeParam = $location.search().locale;
   var languageCode;
   var supportedLanguages = envOptions.supportedLanguages
   // Sanitize langCookie
@@ -450,6 +453,9 @@ AMIApp.run(['$http', 'NavCollection', '$timeout', '$location', '$translate', 'en
     console.log(supportedLanguages.indexOf(navigator.language.substr(0,2)));
   if(langCookie){  
     languageCode = langCookie;
+  }
+  else if(localeParam && supportedLanguages.indexOf(localeParam.substr(0,2)) >= 0){
+    languageCode = localeParam.substr(0,2);
   }
   else if(navigator.language && supportedLanguages.indexOf(navigator.language.substr(0,2)) >= 0){
     languageCode = navigator.language.substr(0,2);

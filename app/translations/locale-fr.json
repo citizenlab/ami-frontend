@@ -25,7 +25,7 @@
 },
 "category":{
   "title": "Bienvenue sur Obtenir mes infos",
-  "callout": "Que savent les entreprises et le gouvernement à votre sujet? Quelles informations conservent-ils? Avec qui partagent-ils ces informations? En vertu des lois canadiennes sur la protection de la vie privée, les organisations doivent vous donner accès à vos renseignements personnels lorsque vous en faites la demande. Nous pouvons vous aider à faire une telle demande.",
+  "callout": "Que savent les entreprises à votre sujet? Quelles informations conservent-ils? Avec qui partagent-ils ces informations? En vertu des lois canadiennes sur la protection de la vie privée, les organisations doivent vous donner accès à vos renseignements personnels lorsque vous en faites la demande. Nous pouvons vous aider à faire une telle demande.",
   "label": "Catégorie",
   "requestsProcessed": "Faites partie des <b>232</b> personnes qui ont fait une demande d'accès grâce à ce système.",
   "instruction1": "Demande d'accès à :",
@@ -33,11 +33,12 @@
   "instruction3": "Cela se fait en cinq étapes faciles. Commencez en choisissant une des catégories ci-dessous.",
   "start": "Début",
   "info-1-title": "À propos de ce projet",
-  "info-1": "Obtenir mes infos (OMI) est un service web qui vous permet de découvrir ce que des entreprises ou des ministères savent à votre sujet. Ce service vous guide pas-à-pas lors de la création d'une lettre officielle de demande d'accès à vos renseignements personnels. Cette lettre peut ensuite être envoyée par la poste ou par courriel au responsable de la protection de la vie privée d'une entreprise, ou jointe à l'outil de demande d'accès aux renseignements personnels du gouvernement fédéral.",
+  "info-1": "Obtenir mes infos (OMI) est un service web qui vous permet de découvrir ce que des entreprises savent à votre sujet. Ce service vous guide pas-à-pas lors de la création d'une lettre officielle de demande d'accès à vos renseignements personnels. Cette lettre peut ensuite être envoyée par la poste ou par courriel au responsable de la protection de la vie privée d'une entreprise, ou jointe à l'outil de demande d'accès aux renseignements personnels du gouvernement fédéral.",
   "more-info-title": "Plus en savoir plus",
   "press-kit": "Trousse média",
   "press-release": "Communiqué de presse",
   "sponsorStatement": "Obtenir mes infos est maintenu par ",
+  "translateStatement": "Obtenir mes infos a été traduit par",
   "socialMediaMessage": "Faites connaître notre projet :",
   "whatsapp-share-text": "Obtenir mes infos"
 },

@@ -64,20 +64,20 @@ function Page(pageSize, margins, dpiFactor){
 
 		var line = '';
 
-		var bulletItem = false;
+		var listItem = false;
 		var bottomMargin = page.lineHeight*2;
 
 		if(typeof options !== "undefined"){
-			if(options.bulletItem && !continuing){
-				bulletItem = true;
-				line = "•   ";
+			if(options.listItem && !continuing){
+				listItem = true;
+				line = options.listSymbol;
 				maxWidth -= 45;
 				xPos += 45;
 			}
-			if(options.bulletItem && continuing){
-				bulletItem = true;
+			if(options.listItem && continuing){
+				listItem = true;
 				maxWidth -= 45+40;
-				xPos += 45+40;
+				xPos += 45+50;
 			}
 			if(options.noBottomMargin){
 				bottomMargin = page.lineHeight;
@@ -91,7 +91,7 @@ function Page(pageSize, margins, dpiFactor){
 			var testWidth = metrics.width;
 			if (testWidth > maxWidth && n > 0) {
 				this.ctx.fillText(line, xPos, this.paintPosition.y);
-				if(bulletItem && !firstNewLineDone && !continuing){
+				if(listItem && !firstNewLineDone && !continuing){
 
 					maxWidth -= 42;
 					xPos += 42;
@@ -215,16 +215,32 @@ function Document(paperType, margins){
 			if(nodes[i].el.children.length === 0 && nodes[i].el.innerText.length > 0){
 				pdfContent.push({
 					'tag': nodes[i].el.tagName,
-					'text': nodes[i].el.innerText
+					'text': nodes[i].el.innerText,
+					'parent': nodes[i].el.parentNode
 				});
 			}
 		}
 		for(var i=0; i < pdfContent.length; i++){
 			pdfContent[i].options = {};
+			if(i>0 && pdfContent[i].tag == "LI" && pdfContent.length && pdfContent[i-1].tag !== "LI"){
+				console.log("new list");
+				list_position = 0;
+			}
 			if(pdfContent[i].tag == "LI"){
-				pdfContent[i].options.bulletItem = true;
+				console.log(pdfContent[i].parent.tagName, pdfContent[i].parent.getAttribute("type"));
+				pdfContent[i].options.listItem = true;
+				if(pdfContent[i].parent.tagName == "OL"){
+					pdfContent[i].options.listSymbol = list_position+1+".  ";
+				}
+				else{
+					pdfContent[i].options.listSymbol = "•   ";
+				}
+				if(pdfContent[i].parent.tagName == "OL" && pdfContent[i].parent.getAttribute("type") == "A"){
+					pdfContent[i].options.listSymbol = String.fromCharCode(97 + list_position).toUpperCase()+".  ";
+				}
 				if(i+1 < pdfContent.length && pdfContent[i+1].tag == "LI"){
 					pdfContent[i].options.noBottomMargin = true;
+					list_position++;
 				}
 			}
 			else if(pdfContent[i].tag == "DIV"){
@@ -261,7 +277,7 @@ function Document(paperType, margins){
 				alignment: 'center'
 			})
 		}
-		self.pdf = pdfMake(dd);
+		self.pdf = pdfMake.createPdf(dd);
 	}
 	self.openPDF = function(){
 		self.pdf.open();
@@ -303,8 +319,4 @@ function textToWords(text){
 		}
 	}
 	return words;
-}
-module.exports = {
-	Page: Page,
-	Document: Document
 }

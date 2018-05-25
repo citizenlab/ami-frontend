@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="AMIApp">
+<html ng-app="AMIApp" ng-controller="HeaderCtrl">
 <!--
 
 MOSQUITO wants its sweet, sweet data
@@ -28,7 +28,7 @@ MOSQUITO wants its sweet, sweet data
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/elvish.css">
   </head>
-  <body ng-controller="LangStyle" ng-class="lang" class="backgroundcolor-white">
+  <body ng-controller="LangStyle" ng-class="lang" lang="{{lang}}" class="backgroundcolor-white">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->

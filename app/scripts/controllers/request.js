@@ -6,15 +6,21 @@ class RequestCtrl {
   $window.scrollTo(0,0);
   $scope.shareURL = encodeURIComponent($window.location.origin);
   $translate(['finish.share-text', 'finish.atipLink', 'finish.date-format'], {shareURL: $window.location.origin }).then(function (translation) {
+    var eng_moment = moment();
+    eng_moment.locale('en');  
+    $scope.date_en = eng_moment.format('MMMM Do, YYYY');
     $scope.shareText = encodeURIComponent(translation["finish.share-text"]);
     $scope.atipLink = translation["finish.atipLink"];
     $scope.date = moment().format(translation["finish.date-format"]);
-    $scope.date_req = $scope.date;
-    AMIRequest.set('date', $scope.date);
+    if(urls.languageCode == "en"){
+      $scope.date_req = $scope.date_en;
+    }
+    else{
+      $scope.date_req = $scope.date;
+    }
+    AMIRequest.set('date', $scope.date_req);
   });
-  var eng_moment = moment();
-  eng_moment.locale('en');  
-  $scope.date_en = eng_moment.format('MMMM Do, YYYY');
+
   $scope.nextIsLoading = false;
 
   $scope.lang = urls.languageCode;

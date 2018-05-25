@@ -25,7 +25,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         });
         scope.$watch('pdf.isGenerating', function(newVal, oldVal){
             if(newVal === true && oldVal === false){
-              makePDF(element, scope.papersize);
+              makePDF(element);
             }
         });
         $timeout(function(){
@@ -36,8 +36,8 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
         });
         });
 
-        var makePDF = function($element, papersize){
-            var requestLetter = new Document(papersize, [11.7647, 11.7647, 11.7647, 11.7647]);
+        var makePDF = function($element){
+            var requestLetter = new Document("letter", [11.7647, 11.7647, 11.7647, 11.7647]);
 
             // convert HTML in #request element to canvas-based document
             requestLetter.writeHTMLtoDoc($element[0]);
@@ -56,9 +56,30 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             subject = scope.emailsubject;
             
             el = element[0];
-            listItems = el.getElementsByTagName("ins")
+            listItems = el.getElementsByTagName("li")
+            var listIndex = 0;
             angular.forEach(listItems, function(value, key){
-              listItems[key].innerHTML = "* " + listItems[key].innerHTML + "<br/>";
+              var listSymbol = "* ";
+              var newList = true;
+              if(key > 0 && listItems[key-1].parentNode !== listItems[key].parentNode){
+                var newList = true;
+              }
+              else{
+                newList = false;
+              }
+              if(newList){
+                  listIndex = 0;
+              }
+              if(listItems[key].parentNode.tagName == "OL"){
+                if(listItems[key].parentNode.getAttribute("type") == "A"){
+                    listSymbol = String.fromCharCode(97 + listIndex).toUpperCase()+". ";
+                }
+                else{
+                    listSymbol = listIndex+1+". ";
+                }
+              }
+              listItems[key].innerHTML = listSymbol + listItems[key].innerHTML + "<br/>";
+              listIndex++;
             });
             
             body = getInnerText(el).replace(/^\s+|\s+$/g, '').replace(/\n,'\r\n'/);
@@ -107,9 +128,7 @@ requestTemplate.directive('requestTemplate', function ($compile, dataProviderSer
             email: '=',
             emailsubject: '=',
             pdffilenameprefix: '=',
-            lang: '=',
-            papersize: '='
+            lang: '='
         }
     };
 });
-module.exports = requestTemplate;
