@@ -26,6 +26,9 @@ a, a:link, a:visited, a:active {
 .progressCompletedPast, .backgroundcolor-customdarkteal {
 	background-color: #007566;
 }
+.backgroundcolor-darkestteal {
+    background-color: #008876;
+}
 .progressCompletedPast a, 
 .progressCompletedPast a:link, 
 .progressCompletedPast a:visited, 
@@ -52,7 +55,7 @@ a, a:link, a:visited, a:active {
 /* GENERAL */
 
 .container {
-  max-width: 33em;
+  max-width: 30em;
 }
 .container-wide {
   max-width: 49.5em;

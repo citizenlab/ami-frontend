@@ -6,34 +6,47 @@
     </div>
 
     <form>
-        <fieldset class="backgroundcolor-black05 bordercolor-lightgrey paddingvertical-small paddinghorizontal-medium margin-none">
+        <fieldset class="backgroundcolor-black05 bordercolor-lightgrey paddingtop-small paddinghorizontal-small paddingbottom-large margin-none">
             <div>
                 <!-- <h3>
                     <label for="category" translate="category.label">Category</label>
                 </h3> -->
                 <div class="lineheight-1p5 f5 b textalign-center">
                     <!-- <p class="margintop-none" translate="category.requestsProcessed"></p> -->
-                    <p translate="category.instruction1"></p>
+                    <div class="padding-medium marginbottom-small backgroundcolor-white">
+                        <img class="opacity-80p display-block width-xxxlarge center" src="images/illustrations/AmiIntro1.png" />
+                        <p class="marginbottom-none" translate="category.instruction1"></p>
+                    </div>
+
+                    <div class="padding-medium marginbottom-small backgroundcolor-white">
+                        <img class="opacity-80p display-block width-xxxlarge center" src="images/illustrations/AmiIntro2.png" />
+                        <p class="marginbottom-none" translate="category.instruction2"></p>
+                    </div>
+
+                    <div class="padding-medium backgroundcolor-white">
+                        <img class="opacity-80p display-block width-xxxlarge center" src="images/illustrations/AmiIntro3.png" />
+                        <p class="marginbottom-none" translate="category.instruction3"></p>
+                    </div>
                 </div>
                 <!-- <p>
                     <img class="width-100p" src="images/how-it-works.png" />
                 </p> -->
+                <div>
             <!--       <select tabindex="1" name="industry" ng-model="industry" ng-options="industry.title for industry in industries track by industry.id" class="form-control input-lg">
                     <option value="" selected>Select industry</option>
                 </select> -->
-                    <div ng-repeat="industry in industries">
-                        <div class="btn btn-select height-xlarger btn-icon display-flex-center content-box" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
-                         ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
-                            <div class="flexgrow-1 textalign-center" style="min-width:5rem"><img nag-svg svgpath="images/categories/{{industry.title | lowercase}}.svg" class="marginright-medium width-large height-large width-xlarge height-xlarge icon" /></div>
-                            <div class="flexgrow-2 textalign-left-ns">
-                                <h4 class="f4 margintop-none marginbottom-small">{{industry.title}}</h4>
-                                <div class="f5 lineheight-1p3" ng-bind-html="industry.content"></div>
-                                <!-- <span translate="category.start"></span> -->
-                            </div>
+                    <div class="margintop-large textalign-center" ng-repeat="industry in industries">
+                        <div class="btn btn-primary" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button">
+                        <!-- took out ng-class from above because no selection for this campaign
+                         ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}" -->
+
+                            <!-- <img ng-src="images/categories/{{industry.id}}.svg" width="100px" ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"/> -->
+                            <!-- <div ng-if="!(nextStage.selecting && $parent.industry.id == industry.id)"> -->
+                                <!-- <h4>{{industry.title}}</h4>
+                                <div ng-bind-html="industry.content"></div> -->
+                                <span translate="category.start"></span>
+                            <!-- </div> -->
                         </div>
-                    </div>
-                    <div class="margintop-large lineheight-1p5 f5 textalign-center">
-                        <p translate="category.instruction2"></p>
                     </div>
                 </div>
             </div>
