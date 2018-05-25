@@ -1,12 +1,12 @@
 /********************************************************************/
 /* THEME COLORS */
 a, a:link, a:visited, a:active {
-	color: #EFBB42;
+	color: #bd001a;
 	text-decoration: none;
 	cursor: pointer;
 }
 .progressActive, .buttonActive {
-	background-color: #EFBB42;
+	background-color: #bd001a;
 }
 .dn {display:none;}
 .progressActive:after {
@@ -16,7 +16,7 @@ a, a:link, a:visited, a:active {
 	height: 0;
 	border-top: 1rem solid transparent;           /* Go big on the size, and let overflow hide */
 	border-bottom: 1rem solid transparent;
-	border-left: 1rem solid #EFBB42;
+	border-left: 1rem solid #bd001a;
 	position: absolute;
 	top: 50%;
 	margin-top: -1rem; 
@@ -24,7 +24,7 @@ a, a:link, a:visited, a:active {
 	z-index: 2; 
 }
 .progressCompletedPast, .backgroundcolor-customdarkteal {
-	background-color: #cc9d39;
+	background-color: #750000;
 }
 .progressCompletedPast a, 
 .progressCompletedPast a:link, 
@@ -40,14 +40,11 @@ a, a:link, a:visited, a:active {
 */
 .progressAvailable, 
 .progressDisabled {
-	background-color: #eddab1;
+	background-color: #E69999;
 }
 
 .backgroundcolor-pastelteal {
 	background-color: #CFFCF3;
-}
-.backgroundcolor-greygreen {
-	background-color: #313F1B;
 }
 
 
@@ -89,7 +86,7 @@ hr {
 .flexProgress a:link, 
 .flexProgress a:visited, 
 .flexProgress a:active {
-	color: #000;
+	color: #fff;
 	text-decoration: none;
 	display:block;
 }
@@ -101,14 +98,14 @@ hr {
 .buttonActive a:link, 
 .buttonActive a:visited, 
 .buttonActive a:active {
-	color: #333;
+	color: #fff;
 	text-decoration: none;
 }
 .progressDisabled a, 
 .progressDisabled a:link, 
 .progressDisabled a:visited, 
 .progressDisabled a:active {
-	color: #e0ad3e;
+	color: #ffe1e1;
 	text-decoration: none;
 	cursor: default;
 } 
@@ -145,7 +142,7 @@ hr {
 }
 .btn-select .icon path,
 .btn-select .icon polygon {
-	fill: #EFBB42;
+	fill: #9d0003;
 }
 .btn-disabled {
 	border-style: none;
@@ -159,7 +156,7 @@ hr {
 .btn-select {
 	text-align: left;
 	border-radius: 0;
-	border: 2px solid #CCC;
+	border: 2px solid #F2F2F2;
 	background-color: #fff;
 }
 .btn p {
@@ -168,14 +165,14 @@ hr {
 .btn-social {
 	border-style: none;
 	border: 0;
-	background-color: #EFBB42;
+	background-color: #bd001a;
 	color: #fff;
 	min-width: 0;
 }
 .btn-primary {
 	border-style: none;
 	border: 0;
-	background-color: #EFBB42;
+	background-color: #bd001a;
 	color: #fff;
 }
 .btn-primary .icon path {
@@ -184,7 +181,7 @@ hr {
 .btn-next {
 	border-style: none;
 	border: 0;
-	background-color: #EFBB42;
+	background-color: #bd001a;
 	color: #fff;
 }
 .btn-info {
@@ -194,7 +191,7 @@ hr {
 	color: #fff;
 }
 .btn-media-select {
-	border: 2px solid #EFBB42;
+	border: 2px solid #f94f44;
 }
 .lineheight-xlarge-ns {
 	line-height: 4rem;
@@ -372,5 +369,5 @@ canvas.chart {
 	padding:0.25em 0.5em;
 	margin-top:0.25em;
 	font-weight: normal;
-	background: #eddab1;
+	background: #e69999;
 }
