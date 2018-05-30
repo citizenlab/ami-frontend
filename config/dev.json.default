@@ -1,0 +1,19 @@
+{
+	"apiDomain": "http://localhost:8080",
+	"apiRoot": "",
+	"apiPath": "/wp-json/amicms",
+	"enrollmentDomain": "http://localhost:3214",
+	"enrollmentApiPath": "",
+	"jurisdictionID": "153",
+	"languageCode": "en",
+	"supportedLanguages": [{
+		"languageCode": "en",
+		"title": "English",
+		"languageCodeMoment": "en"
+	},{
+		"languageCode": "zh",
+		"title": "中文",
+		"languageCodeMoment": "zh"
+}],
+	"paperSize": "letter"
+}

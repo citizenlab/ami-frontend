@@ -4,7 +4,8 @@ dist
 .sass-cache
 .DS_Store
 app/bower_components
-app/scripts/modules/config/*.js
+config/dev.json
+config/prod.json
 app/scripts/config.js
 yarn-error.log
 yarn.lock

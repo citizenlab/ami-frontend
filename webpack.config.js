@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require('webpack');
 const glob = require("glob");
+const fs = require("fs");
 
 const basePlugins = [
 	new HtmlWebpackPlugin({
@@ -29,12 +30,30 @@ const basePlugins = [
 		{ from: "./app/images", to: "./images/" },
 		{ from: "./app/styles", to: "./styles/" },
 		{ from: "./app/fonts", to: "./fonts/" }
-	]),
+	])
 ]
-console.log(path.resolve(__dirname + '/app/scripts/modules/config/localConfig.json'));
-const plugins = basePlugins;
 
-module.exports = {
+const buildPlugins = function(mode){
+	let plugins = basePlugins;
+	var config;
+
+	switch(mode){
+		case "production":
+			config = fs.readFileSync("./config/prod.json", "utf8");
+			break;
+		default:
+			config = fs.readFileSync("./config/dev.json", "utf8");
+			break;
+	}
+	plugins.push(
+		new webpack.DefinePlugin({
+			__CONFIG__: config
+		}),
+	);
+	return plugins;
+};
+
+module.exports = (env, argv) => ({
 	entry: {
 		"app": [
 			"./app/scripts/app.js",
@@ -51,22 +70,8 @@ module.exports = {
 			test: /\.js$/,
 			loader: 'babel-loader',
 			exclude: /node_modules/
-		},
-		{
-			// Let's take our config file by absolute url 
-			test: path.resolve(__dirname + 'app/scripts/modules/config/localConfig.json'),
-			loader: 'ng-constants-json-loader',
-			query: {
-			  // default 
-			  moduleName: 'envOptions',
-			  // Should it be a standalone module: 
-			  //   angular.module('name', []) 
-			  // or not: 
-			  //   angular.module('name') 
-			  standalone: true
-			}
-		  }
+		}
 		]
 	},
-	plugins: plugins
-};
+	plugins: buildPlugins(argv.mode)
+});
