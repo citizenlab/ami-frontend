@@ -44,7 +44,7 @@ angular.module('ProgressBarNav', []).service('NavCollection', ProgressBarNav.nav
 angular.module('requestTemplate', []).directive('requestTemplate', requestTemplate);
 angular.module('AMIRequest', []).service("AMIRequest", AMIRequest);
 angular.module('formItem', []).directive('formItem', FormItem);
-
+console.log(pdfMake);
 'use strict';
 console.log(config);
 var AMIApp = angular.module('AMIApp', [

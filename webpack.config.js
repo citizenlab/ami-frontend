@@ -27,7 +27,7 @@ const basePlugins = [
 	}),
 	new webpack.ProvidePlugin({
 		pdfMake: "pdfmake-browserified",
-		"window.pdfMake": "pdfMake"
+		"window.pdfMake": "pdfmake-browserified"
 	}),
 	new CopyWebpackPlugin([
 		{ from: "./app/views", to: "./views/" },
