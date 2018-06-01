@@ -1,6 +1,6 @@
 'use strict';
-var dataProviderService = angular.module('dataProviderService', []);
-dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'urls', 'cmsStatus', '$translate', function( $route, $q, $http, urls, cmsStatus, $translate ) {
+class dataProviderService {
+    constructor ($route, $q, $http, urls, cmsStatus, $translate ) {
     var self = {
         getItem: function (baseURL, itemPath, params, responseType) {
             return $translate.onReady().then(function(){
@@ -61,5 +61,6 @@ dataProviderService.factory('dataProviderService', ['$route', '$q', '$http', 'ur
         }
     };
     return self;
-}]);
-module.exports = dataProviderService;
+    }
+};
+module.exports = ['$route', '$q', '$http', 'urls', 'cmsStatus', '$translate', dataProviderService];

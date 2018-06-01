@@ -24,7 +24,7 @@ window.SVGInjector = require("svg-injector");
 import angularChart from "angular-chart.js";
 import dataProviderService from "./modules/dataProviderService/dataproviderservice";
 import ProgressBarNav from "./modules/ProgressBarNav/progressbarnav";
-import formItem from "./modules/formItem/formitem";
+import FormItem from "./modules/formItem/formitem";
 import AMIRequest from "./modules/AMIRequest/amirequest";
 import requestTemplate from "./modules/requestTemplate/requesttemplate";
 import LanguageCtrl from "./controllers/language";
@@ -36,6 +36,15 @@ import SubscriberCtrl from "./controllers/subscriberInfo";
 import RequestCtrl from "./controllers/request";
 import StatsCtrl from "./controllers/stats";
 import HeaderCtrl from "./controllers/header";
+
+angular.module('ngEnter', []).directive('ngEnter', ngEnter);
+angular.module('dataProviderService', []).factory('dataProviderService', dataProviderService);
+var prograssbarnav = angular.module('ProgressBarNav', []).service('NavCollection', ProgressBarNav.navCollection);
+prograssbarnav.controller('ProgressCtrl', ProgressBarNav.controller);
+angular.module('requestTemplate', []).directive('requestTemplate', requestTemplate);
+angular.module('AMIRequest', []).service("AMIRequest", AMIRequest);
+angular.module('formItem', []).directive('formItem', FormItem);
+
 'use strict';
 console.log(config);
 var AMIApp = angular.module('AMIApp', [
