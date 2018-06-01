@@ -1,9 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const webpack = require('webpack');
 const glob = require("glob");
 const fs = require("fs");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const basePlugins = [
 	new HtmlWebpackPlugin({
@@ -20,10 +25,10 @@ const basePlugins = [
 		_: "underscore",
 		"window._": "_"
 	}),
-	new webpack.ProvidePlugin({
-		pdfMake: "pdfmake-browserified",
-		"window.pdfMake": "pdfMake"
-	}),
+	// new webpack.ProvidePlugin({
+	// 	pdfMake: "pdfmake-browserified",
+	// 	"window.pdfMake": "pdfMake"
+	// }),
 	new CopyWebpackPlugin([
 		{ from: "./app/views", to: "./views/" },
 		{ from: "./app/translations", to: "./translations/" },
@@ -33,23 +38,42 @@ const basePlugins = [
 	])
 ]
 
-const buildPlugins = function(mode){
-	let plugins = basePlugins;
-	var config;
+const prodPluginsBefore = [
+	new webpack.DefinePlugin({
+		__CONFIG__: fs.readFileSync("./config/prod.json", "utf8")
+	})
+]
+const devPluginsBefore = [
+	new webpack.DefinePlugin({
+		__CONFIG__: fs.readFileSync("./config/dev.json", "utf8")
+	})
+]
 
-	switch(mode){
-		case "production":
-			config = fs.readFileSync("./config/prod.json", "utf8");
-			break;
-		default:
-			config = fs.readFileSync("./config/dev.json", "utf8");
-			break;
+const prodPluginsAfter = [
+	new ImageminPlugin({
+		test: /\.(jpe?g|png|gif|svg)$/i,
+		disable: process.env.NODE_ENV !== 'production', // Disable during development
+		pngquant: {
+		quality: '95-100'
+		}
+	})
+];
+
+const devPluginsAfter = [];
+
+
+const buildPlugins = function(mode){
+	let PRODUCTION = false;
+	if(mode === "production"){
+		PRODUCTION = true;
 	}
-	plugins.push(
-		new webpack.DefinePlugin({
-			__CONFIG__: config
-		}),
-	);
+	const plugins = []
+	.concat(PRODUCTION ? prodPluginsBefore : [])
+	.concat(!PRODUCTION ? devPluginsBefore : [])
+	.concat(basePlugins)
+	.concat(PRODUCTION ? prodPluginsAfter : [])
+	.concat(!PRODUCTION ? devPluginsAfter : []);
+
 	return plugins;
 };
 
@@ -63,7 +87,7 @@ module.exports = (env, argv) => ({
 		path: path.join(__dirname, "dist"),
 		filename: "js/[name].js",
 		// publicPath: "/",
-		chunkFilename: "[id].js",
+		chunkFilename: "js/[name].js",
 	},
 	module: {
 		rules: [{
@@ -73,5 +97,10 @@ module.exports = (env, argv) => ({
 		}
 		]
 	},
-	plugins: buildPlugins(argv.mode)
+	plugins: buildPlugins(argv.mode),
+	// optimization: {
+	// 	splitChunks: {
+	// 		chunks: 'initial'
+	// 	}
+	// }
 });
