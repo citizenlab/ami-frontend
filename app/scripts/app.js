@@ -37,10 +37,10 @@ import RequestCtrl from "./controllers/request";
 import StatsCtrl from "./controllers/stats";
 import HeaderCtrl from "./controllers/header";
 
+// Wire up custom libraries into the angular 
 angular.module('ngEnter', []).directive('ngEnter', ngEnter);
 angular.module('dataProviderService', []).factory('dataProviderService', dataProviderService);
-var prograssbarnav = angular.module('ProgressBarNav', []).service('NavCollection', ProgressBarNav.navCollection);
-prograssbarnav.controller('ProgressCtrl', ProgressBarNav.controller);
+angular.module('ProgressBarNav', []).service('NavCollection', ProgressBarNav.navCollection).controller('ProgressCtrl', ProgressBarNav.controller);
 angular.module('requestTemplate', []).directive('requestTemplate', requestTemplate);
 angular.module('AMIRequest', []).service("AMIRequest", AMIRequest);
 angular.module('formItem', []).directive('formItem', FormItem);
