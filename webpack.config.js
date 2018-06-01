@@ -1,8 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const webpack = require('webpack');
 const glob = require("glob");
+const fs = require("fs");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const basePlugins = [
 	new HtmlWebpackPlugin({
@@ -19,22 +25,59 @@ const basePlugins = [
 		_: "underscore",
 		"window._": "_"
 	}),
-	new webpack.ProvidePlugin({
-		pdfMake: "pdfmake-browserified",
-		"window.pdfMake": "pdfMake"
-	}),
+	// new webpack.ProvidePlugin({
+	// 	pdfMake: "pdfmake-browserified",
+	// 	"window.pdfMake": "pdfMake"
+	// }),
 	new CopyWebpackPlugin([
 		{ from: "./app/views", to: "./views/" },
 		{ from: "./app/translations", to: "./translations/" },
 		{ from: "./app/images", to: "./images/" },
 		{ from: "./app/styles", to: "./styles/" },
 		{ from: "./app/fonts", to: "./fonts/" }
-	]),
+	])
 ]
-console.log(path.resolve(__dirname + '/app/scripts/modules/config/localConfig.json'));
-const plugins = basePlugins;
 
-module.exports = {
+const prodPluginsBefore = [
+	new webpack.DefinePlugin({
+		__CONFIG__: fs.readFileSync("./config/prod.json", "utf8")
+	})
+]
+const devPluginsBefore = [
+	new webpack.DefinePlugin({
+		__CONFIG__: fs.readFileSync("./config/dev.json", "utf8")
+	})
+]
+
+const prodPluginsAfter = [
+	new ImageminPlugin({
+		test: /\.(jpe?g|png|gif|svg)$/i,
+		disable: process.env.NODE_ENV !== 'production', // Disable during development
+		pngquant: {
+		quality: '95-100'
+		}
+	})
+];
+
+const devPluginsAfter = [];
+
+
+const buildPlugins = function(mode){
+	let PRODUCTION = false;
+	if(mode === "production"){
+		PRODUCTION = true;
+	}
+	const plugins = []
+	.concat(PRODUCTION ? prodPluginsBefore : [])
+	.concat(!PRODUCTION ? devPluginsBefore : [])
+	.concat(basePlugins)
+	.concat(PRODUCTION ? prodPluginsAfter : [])
+	.concat(!PRODUCTION ? devPluginsAfter : []);
+
+	return plugins;
+};
+
+module.exports = (env, argv) => ({
 	entry: {
 		"app": [
 			"./app/scripts/app.js",
@@ -44,29 +87,20 @@ module.exports = {
 		path: path.join(__dirname, "dist"),
 		filename: "js/[name].js",
 		// publicPath: "/",
-		chunkFilename: "[id].js",
+		chunkFilename: "js/[name].js",
 	},
 	module: {
 		rules: [{
 			test: /\.js$/,
 			loader: 'babel-loader',
 			exclude: /node_modules/
-		},
-		{
-			// Let's take our config file by absolute url 
-			test: path.resolve(__dirname + 'app/scripts/modules/config/localConfig.json'),
-			loader: 'ng-constants-json-loader',
-			query: {
-			  // default 
-			  moduleName: 'envOptions',
-			  // Should it be a standalone module: 
-			  //   angular.module('name', []) 
-			  // or not: 
-			  //   angular.module('name') 
-			  standalone: true
-			}
-		  }
+		}
 		]
 	},
-	plugins: plugins
-};
+	plugins: buildPlugins(argv.mode),
+	// optimization: {
+	// 	splitChunks: {
+	// 		chunks: 'initial'
+	// 	}
+	// }
+});

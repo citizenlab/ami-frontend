@@ -1,6 +1,9 @@
 'use strict';
 class RequestCtrl {
   constructor ($scope, $location, $window, $timeout, NavCollection, AMIRequest, papersize, $translate, urls) {
+  require('pdfmake-browserified').then(pdfMake => {
+    console.log("hi");
+  }).catch(error => 'An error occurred while loading the component');
   var blurListener;
   var ami_service_ids_en;
   $window.scrollTo(0,0);

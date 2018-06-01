@@ -1,0 +1,19 @@
+{
+	"apiDomain": "https://api.dev.accessmyinfo.org",
+	"apiRoot": "",
+	"apiPath": "/wp-json/amicms",
+	"enrollmentDomain": "https://api.dev.accessmyinfo.org",
+	"enrollmentApiPath": "/notifications",
+	"jurisdictionID": "18",
+	"languageCode": "en",
+	"supportedLanguages": [{
+		"languageCode": "en",
+		"title": "English",
+		"languageCodeMoment": "en"
+	},{
+		"languageCode": "fr",
+		"title": "Français",
+		"languageCodeMoment": "fr"
+}],
+	"paperSize": "letter"
+}

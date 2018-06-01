@@ -8,9 +8,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 ***************/
-
+const config = __CONFIG__;
 import angular from "angular";
-import config from "./modules/config/localConfig.js";
 import ngRoute from "angular-route";
 import ngEnter from "./modules/Enter/enter";
 import ngCookies from "angular-cookies";
@@ -25,7 +24,7 @@ window.SVGInjector = require("svg-injector");
 import angularChart from "angular-chart.js";
 import dataProviderService from "./modules/dataProviderService/dataproviderservice";
 import ProgressBarNav from "./modules/ProgressBarNav/progressbarnav";
-import formItem from "./modules/formItem/formitem";
+import FormItem from "./modules/formItem/formitem";
 import AMIRequest from "./modules/AMIRequest/amirequest";
 import requestTemplate from "./modules/requestTemplate/requesttemplate";
 import LanguageCtrl from "./controllers/language";
@@ -37,8 +36,17 @@ import SubscriberCtrl from "./controllers/subscriberInfo";
 import RequestCtrl from "./controllers/request";
 import StatsCtrl from "./controllers/stats";
 import HeaderCtrl from "./controllers/header";
-'use strict';
 
+// Wire up custom libraries into the angular 
+angular.module('ngEnter', []).directive('ngEnter', ngEnter);
+angular.module('dataProviderService', []).factory('dataProviderService', dataProviderService);
+angular.module('ProgressBarNav', []).service('NavCollection', ProgressBarNav.navCollection).controller('ProgressCtrl', ProgressBarNav.controller);
+angular.module('requestTemplate', []).directive('requestTemplate', requestTemplate);
+angular.module('AMIRequest', []).service("AMIRequest", AMIRequest);
+angular.module('formItem', []).directive('formItem', FormItem);
+
+'use strict';
+console.log(config);
 var AMIApp = angular.module('AMIApp', [
     'ngRoute',
     'ngEnter',
