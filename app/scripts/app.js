@@ -20,6 +20,7 @@ import ngTranslate from "angular-translate";
 import "angular-translate-loader-static-files";
 window.Page = require("./modules/canvasDoc/canvasdoc").Page;
 window.Document = require("./modules/canvasDoc/canvasdoc").Document;
+
 window.SVGInjector = require("svg-injector");
 import angularChart from "angular-chart.js";
 import dataProviderService from "./modules/dataProviderService/dataproviderservice";
@@ -44,7 +45,7 @@ angular.module('ProgressBarNav', []).service('NavCollection', ProgressBarNav.nav
 angular.module('requestTemplate', []).directive('requestTemplate', requestTemplate);
 angular.module('AMIRequest', []).service("AMIRequest", AMIRequest);
 angular.module('formItem', []).directive('formItem', FormItem);
-console.log(pdfMake);
+
 'use strict';
 console.log(config);
 var AMIApp = angular.module('AMIApp', [
