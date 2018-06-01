@@ -24,7 +24,7 @@
                     <div ng-repeat="industry in industries">
                         <div class="btn btn-select height-xlarger btn-icon display-flex-center content-box" ng-click="selectIndustry(industry)" aria-label="{{industry.title}}" aria-role="button"
                          ng-class="{'btn-media-select': ($parent.industry.id == industry.id), 'btn-media': ($parent.industry.id !== industry.id), disabled:  (nextStage.selecting && $parent.industry.id == industry.id)}">
-                            <div class="flexgrow-1 textalign-center" style="min-width:5rem"><img nag-svg svgpath="images/categories/{{industry.title | lowercase}}.svg" class="marginright-medium width-large height-large width-xlarge height-xlarge icon" /></div>
+                            <div class="flexgrow-1 textalign-center" style="min-width:5rem"><img nag-svg svgpath="images/categories/{{industry.iconfile}}.svg" class="marginright-medium width-large height-large width-xlarge height-xlarge icon" /></div>
                             <div class="flexgrow-2 textalign-left-ns">
                                 <h4 class="f4 margintop-none marginbottom-small">{{industry.title}}</h4>
                                 <div class="f5 lineheight-1p3" ng-bind-html="industry.content"></div>
