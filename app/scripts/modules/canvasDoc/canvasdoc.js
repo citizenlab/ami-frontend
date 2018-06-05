@@ -1,3 +1,4 @@
+pdfMake =require('pdfmake-browserified');
 function Page(pageSize, margins, dpiFactor){
 	var page = {}
 	page.canvas = document.createElement('canvas');
