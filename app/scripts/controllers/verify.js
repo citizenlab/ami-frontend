@@ -9,11 +9,13 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-'use strict';
-AMIApp.controller('VerificationCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$location', 'verificationStatus', function ($scope, AMIRequest, NavCollection, $location, verificationStatus) {
-	console.log(verificationStatus);
-	$scope.response = verificationStatus.message;
-	$scope.hi = "hi";
-    $scope.responseStatuses = {};
-    $scope.responseStatuses[verificationStatus.message.statusCode] = true;
-}]);
+class VerificationCtrl {
+	constructor($scope, AMIRequest, NavCollection, $location, verificationStatus){
+		console.log(verificationStatus);
+		$scope.response = verificationStatus.message;
+		$scope.hi = "hi";
+		$scope.responseStatuses = {};
+		$scope.responseStatuses[verificationStatus.message.statusCode] = true;
+	}
+}
+module.exports = ['$scope', 'AMIRequest', 'NavCollection', '$location', 'verificationStatus', VerificationCtrl];

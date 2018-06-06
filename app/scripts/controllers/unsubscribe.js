@@ -9,9 +9,11 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ***************/
 
-'use strict';
-AMIApp.controller('UnsubscribeCtrl', ['$scope', 'AMIRequest', 'NavCollection', '$location', 'unsubscribeStatus', function ($scope, AMIRequest, NavCollection, $location, unsubscribeStatus) {
-    $scope.response = unsubscribeStatus.message;
-    $scope.responseStatuses = {};
-    $scope.responseStatuses[unsubscribeStatus.message.statusCode] = true;
-}]);
+class UnsubscribeCtrl {
+    constructor ($scope, AMIRequest, NavCollection, $location, unsubscribeStatus){
+        $scope.response = unsubscribeStatus.message;
+        $scope.responseStatuses = {};
+        $scope.responseStatuses[unsubscribeStatus.message.statusCode] = true;
+    }
+}
+module.exports = ['$scope', 'AMIRequest', 'NavCollection', '$location', 'unsubscribeStatus', UnsubscribeCtrl];
