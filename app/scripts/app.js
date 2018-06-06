@@ -37,6 +37,9 @@ import SubscriberCtrl from "./controllers/subscriberInfo";
 import RequestCtrl from "./controllers/request";
 import StatsCtrl from "./controllers/stats";
 import HeaderCtrl from "./controllers/header";
+import UnsubscribeCtrl from "./controllers/unsubscribe";
+import VerificationCtrl from "./controllers/verify";
+import ContentCtrl from "./controllers/content";
 
 // Wire up custom libraries into the angular 
 angular.module('ngEnter', []).directive('ngEnter', ngEnter);
@@ -76,6 +79,9 @@ var AMIApp = angular.module('AMIApp', [
   .controller("RequestCtrl", RequestCtrl)
   .controller("StatsCtrl", StatsCtrl)
   .controller("HeaderCtrl", HeaderCtrl)
+  .controller("VerificationCtrl", VerificationCtrl)
+  .controller("UnsubscribeCtrl", UnsubscribeCtrl)
+  .controller("ContentCtrl". ContentCtrl)
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
     var firstRun = true;
