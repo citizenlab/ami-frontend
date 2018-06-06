@@ -21,10 +21,6 @@ class IndustryCtrl {
     $scope.nextIsLoading = false;
     // $scope.companies = companies;
     $scope.industries = industries;
-
-    $scope.industries.forEach(industry => {
-      industry.iconfile = industry.slug.replace(/[\s]/g, '-').toLowerCase();
-    });
     
     if(AMIRequest.has('industry')){
       $scope.industry = AMIRequest.get('industry');
