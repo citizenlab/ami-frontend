@@ -23,7 +23,7 @@ class IndustryCtrl {
     $scope.industries = industries;
 
     $scope.industries.forEach(industry => {
-      industry.iconfile = industry.title.replace(/[\s]/g, '-').toLowerCase();
+      industry.iconfile = industry.slug.replace(/[\s]/g, '-').toLowerCase();
     });
     
     if(AMIRequest.has('industry')){
