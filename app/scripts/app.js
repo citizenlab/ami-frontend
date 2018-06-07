@@ -80,7 +80,7 @@ var AMIApp = angular.module('AMIApp', [
   .controller("HeaderCtrl", HeaderCtrl)
   .controller("VerificationCtrl", VerificationCtrl)
   .controller("UnsubscribeCtrl", UnsubscribeCtrl)
-  .controller("ContentCtrl". ContentCtrl)
+  .controller("ContentCtrl", ContentCtrl)
   .service('cmsStatus', ['$location', 'NavCollection', function($location, NavCollection){
     var online = false;
     var firstRun = true;
