@@ -1,3 +1,7 @@
+# THIS PROJECT IS OUT OF DATE
+
+NOTE: THIS PROJECT IS ARCHIVED AND NEWEST CODE IS UP AT https://github.com/citizenlab/ami
+
 # AMI Frontend
 AMI Frontend is an AngularJS application. The codebase is structured around being either served for development or compiled for production by webpack.
 
